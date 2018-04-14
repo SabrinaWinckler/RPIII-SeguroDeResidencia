@@ -1,10 +1,8 @@
-package seguroderesidencia.apolice;
-
 public class ApoliceSeguro {
 
 	private int numApolice;
 
-	private int dataContratacaoA;
+	private Date dataContratacaoA;
 
 	private String premioApolice;
 
@@ -14,9 +12,15 @@ public class ApoliceSeguro {
 
 	private String nomeNoCartao;
 
-	private int vencimentoCartao;
+	private Date vencimentoCartao;
 
 	private long codSegurancaCartao;
+
+	private Segurado apolice;
+
+	private ControleDeSeguro controleApolice;
+
+	private ParcelaApolice parcelaApolice;
 
 	public void setCartao(String cartao, String bandeira, String nomeNoCartao, int vencimento, long codSeg) {
 

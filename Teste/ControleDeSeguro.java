@@ -1,5 +1,14 @@
-package seguroderesidencia.motor;
 public class ControleDeSeguro {
+
+	private Segurado segurado;
+
+	private ItemServico itemServico;
+
+	private ApoliceSeguro apoliceSeguro;
+
+	private Sinistro sinistro;
+
+	private Candidato candidato;
 
 	public void avaliaResidencia() {
 

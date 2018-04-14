@@ -1,5 +1,3 @@
-package seguroderesidencia.dadosresidencia;
-
 public class Residencia {
 
 	private String descricaoRes;
@@ -7,12 +5,6 @@ public class Residencia {
 	private String enderecoRes;
 
 	private long cepRes;
-
-	private String bairroRes;
-
-	private String cidadeRes;
-
-	private String ufRes;
 
 	private int qntComodos;
 
@@ -26,11 +18,25 @@ public class Residencia {
 
 	private int anoConstrucao;
 
+	private Candidato candidato;
+
+	private Candidato residencia;
+
+	private NivelDePericulosidade nivelDePericulosidade;
+
+	private Bem bem;
+
+	private Local local;
+
 	public void registraResidencia() {
 
 	}
 
-	public void setLocalizacao(String endereco, long cep, String bairro, String cidade, String uf) {
+	public void setLocalizacao(String endereco, long cep) {
+
+	}
+
+	public void setLocal(String bairro, String cidade, String uf) {
 
 	}
 

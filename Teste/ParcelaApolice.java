@@ -1,9 +1,10 @@
-package seguroderesidencia.apolice;
 public class ParcelaApolice {
 
 	private double valorParcela;
 
-	private int dataPagamentoP;
+	private Date dataPagamentoP;
+
+	private ApoliceSeguro apoliceSeguro;
 
 	public void setValorParcela(float valor) {
 

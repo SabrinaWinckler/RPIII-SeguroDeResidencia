@@ -1,4 +1,3 @@
-package seguroderesidencia.dadosresidencia;
 public class Bem {
 
 	private float valorEstimadoBem;
