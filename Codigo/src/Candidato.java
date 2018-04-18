@@ -8,8 +8,6 @@ public class Candidato extends Pessoa {
 
 	private Residencia residencia;
 
-	private Residencia residencia;
-
 	private ControleDeSeguro solicitacoesCandidato;
 
 	private Local local;

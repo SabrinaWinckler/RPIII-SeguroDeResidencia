@@ -1,3 +1,6 @@
+
+import java.util.List;
+
 public class Segurado extends Candidato {
 
 	private ApoliceSeguro apoliceSeguro;
@@ -16,7 +19,7 @@ public class Segurado extends Candidato {
 
 	}
 
-	public LIst<Sinistro> getSinistro() {
+	public List<Sinistro> getSinistro() {
 		return null;
 	}
 

@@ -12,7 +12,7 @@ public class Sinistro {
 
 	private Segurado registroSinistro;
 
-	private ControleDeSeguro registroSinistro;
+	private ControleDeSeguro registroSinistros;
 
 	private TipoSinistro tipoSinistro;
 

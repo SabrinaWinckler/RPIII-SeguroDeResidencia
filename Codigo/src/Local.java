@@ -6,9 +6,9 @@ public class Local {
 
 	private String bairro;
 
-	private Residencia local;
+	private Residencia localResidencia;
 
-	private Candidato local;
+	private Candidato localCanditato;
 
 	public void setDados(String uf, String cidade, String bairro) {
 
