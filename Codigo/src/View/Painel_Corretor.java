@@ -40,14 +40,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         popupMenu1 = new java.awt.PopupMenu();
         avaliarResidenciaButton = new javax.swing.JButton();
-        avaliarSinistroButton = new javax.swing.JButton();
         visualizarSolicitacoesButton = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
+        avaliarSinistroButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -75,29 +75,21 @@ public class Painel_Corretor extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        avaliarResidenciaButton.setBackground(new java.awt.Color(255, 255, 255));
-        avaliarResidenciaButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        avaliarResidenciaButton.setBackground(new java.awt.Color(0, 51, 51));
+        avaliarResidenciaButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        avaliarResidenciaButton.setForeground(new java.awt.Color(255, 255, 255));
         avaliarResidenciaButton.setText("Avaliar Residência");
         avaliarResidenciaButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avaliarResidenciaButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarResidenciaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 140, 50));
+        getContentPane().add(avaliarResidenciaButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 50));
         avaliarResidenciaButton.getAccessibleContext().setAccessibleDescription("");
 
-        avaliarSinistroButton.setBackground(new java.awt.Color(255, 255, 255));
-        avaliarSinistroButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        avaliarSinistroButton.setText("Avaliar Sinistro");
-        avaliarSinistroButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                avaliarSinistroButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, 140, 40));
-
-        visualizarSolicitacoesButton.setBackground(new java.awt.Color(255, 255, 255));
-        visualizarSolicitacoesButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        visualizarSolicitacoesButton.setBackground(new java.awt.Color(0, 51, 51));
+        visualizarSolicitacoesButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        visualizarSolicitacoesButton.setForeground(new java.awt.Color(255, 255, 255));
         visualizarSolicitacoesButton.setText("Visualizar Solicitações");
         visualizarSolicitacoesButton.setToolTipText("");
         visualizarSolicitacoesButton.addActionListener(new java.awt.event.ActionListener() {
@@ -105,17 +97,29 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 visualizarSolicitacoesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 140, 40));
+        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 240, 140, 50));
 
-        sairButton.setBackground(new java.awt.Color(255, 255, 255));
-        sairButton.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        sairButton.setBackground(new java.awt.Color(153, 0, 0));
+        sairButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        sairButton.setForeground(new java.awt.Color(255, 255, 255));
         sairButton.setText("Sair");
         sairButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 320, 140, 40));
+        getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 320, 80, 30));
+
+        avaliarSinistroButton.setBackground(new java.awt.Color(0, 51, 51));
+        avaliarSinistroButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        avaliarSinistroButton.setForeground(new java.awt.Color(255, 255, 255));
+        avaliarSinistroButton.setText("Avaliar Sinistro");
+        avaliarSinistroButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                avaliarSinistroButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 170, 140, 50));
 
         jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -123,17 +127,17 @@ public class Painel_Corretor extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 240, 130));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagem-de-fundo-preta-wallpaper-pc-computador-tela-gratis-ambiente-de-trabalho.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 540, 50));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 50));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundoAzul.jpg"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 540, 10));
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 160, 330));
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-cinza-fundos (8).jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, 320));
-
-        jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel5.setText("Bem-Vindo.");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 70, 20));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 70, 90, 20));
+
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 160, 320));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -199,10 +203,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton avaliarResidenciaButton;
     private javax.swing.JButton avaliarSinistroButton;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;

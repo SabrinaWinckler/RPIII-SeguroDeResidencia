@@ -66,6 +66,9 @@ public class Tela_EnviarSolicitacao extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        confirmarSolicitacaiButton.setBackground(new java.awt.Color(0, 51, 51));
+        confirmarSolicitacaiButton.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        confirmarSolicitacaiButton.setForeground(new java.awt.Color(255, 255, 255));
         confirmarSolicitacaiButton.setText("Confirmar");
         confirmarSolicitacaiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,47 +77,47 @@ public class Tela_EnviarSolicitacao extends javax.swing.JFrame {
         });
         getContentPane().add(confirmarSolicitacaiButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 370, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel1.setText("Localização Perigosa:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, -1, 30));
 
         ComboBoxAnoSolicitacao.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2017", "2016", "2015", "2014", "2013", "2012", "2011", "2010" }));
         getContentPane().add(ComboBoxAnoSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 180, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel2.setText("Motivo reprovação:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, 30));
 
         ComboBoxNivelLocalzacaoPerigosa1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1" }));
         ComboBoxNivelLocalzacaoPerigosa1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        getContentPane().add(ComboBoxNivelLocalzacaoPerigosa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, -1, -1));
+        getContentPane().add(ComboBoxNivelLocalzacaoPerigosa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 50, -1, -1));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel3.setText("Terreno Perigoso:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 100, 30));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 90, 110, 30));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel4.setText("Estrutura Ameaçada:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 140, -1, 30));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel5.setText("Data da Solicitação:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 180, -1, 30));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel6.setText("Data da visita:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 220, -1, 30));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel7.setText("Valor da solicitação:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 260, -1, 30));
 
-        jLabel8.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel8.setText("Aprovada solicitação:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, -1, 30));
 
         ComboBoxNivelTerrenoPerigosa1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1" }));
-        getContentPane().add(ComboBoxNivelTerrenoPerigosa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
+        getContentPane().add(ComboBoxNivelTerrenoPerigosa1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 100, -1, -1));
 
         ComboBoxNivelEstruturaAmeacada1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "10", "9", "8", "7", "6", "5", "4", "3", "2", "1" }));
         getContentPane().add(ComboBoxNivelEstruturaAmeacada1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 140, -1, -1));
@@ -135,16 +138,19 @@ public class Tela_EnviarSolicitacao extends javax.swing.JFrame {
         getContentPane().add(ComboBoxMesVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 220, -1, -1));
 
         jLabel9.setText("R$");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 20, 30));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 260, 20, 30));
 
         ComboBoxDiaVisita1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30" }));
         getContentPane().add(ComboBoxDiaVisita1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 220, -1, -1));
-        getContentPane().add(valorSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 260, 60, -1));
+        getContentPane().add(valorSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 270, 60, -1));
 
         jScrollPane1.setViewportView(motivoReprovacao);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 330, 160, 60));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 330, 160, 60));
 
+        cancelarButton.setBackground(new java.awt.Color(0, 51, 51));
+        cancelarButton.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar");
         cancelarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
