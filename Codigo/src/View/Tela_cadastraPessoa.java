@@ -5,9 +5,9 @@
  */
 package View;
 
-import Dominio.Candidato;
-import Dominio.Pessoa;
-import Gerenciador.Motor;
+import DadosUsuarios.Candidato;
+import DadosUsuarios.Pessoa;
+import Motor.Motor;
 
 /**
  *

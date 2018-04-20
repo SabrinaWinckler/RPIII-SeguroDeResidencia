@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Gerenciador;
+package Motor;
 
-import Dominio.Candidato;
-import Dominio.SolicitacaoSeguro;
+import DadosUsuarios.Candidato;
+import DadosResidencia.SolicitacaoSeguro;
 import java.util.ArrayList;
 import java.util.List;
 

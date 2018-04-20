@@ -5,8 +5,8 @@
  */
 package View;
 
-import Dominio.SolicitacaoSeguro;
-import Gerenciador.Motor;
+import DadosResidencia.SolicitacaoSeguro;
+import Motor.Motor;
 import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;

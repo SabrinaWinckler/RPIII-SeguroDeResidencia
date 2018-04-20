@@ -5,7 +5,7 @@
  */
 package View;
 
-import Dominio.SolicitacaoSeguro;
+import DadosResidencia.SolicitacaoSeguro;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
