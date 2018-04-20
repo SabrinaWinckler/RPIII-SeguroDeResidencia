@@ -6,6 +6,7 @@
 package Gerenciador;
 
 import Dominio.Candidato;
+import Dominio.SolicitacaoSeguro;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,6 +17,7 @@ import java.util.List;
 public class Motor {
 
     ArrayList<Object> listaCliente;
+    ArrayList<SolicitacaoSeguro> listaDeSolicitacao = new ArrayList<>();
 
     public Motor() {
         listaCliente = new ArrayList<>();
@@ -36,5 +38,13 @@ public class Motor {
             return listaCliente.get(i);
         }
         return null;
+    }
+
+    public boolean enviarSoliciacao(SolicitacaoSeguro solicitacao) {
+        if (listaDeSolicitacao.add(solicitacao)) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }
