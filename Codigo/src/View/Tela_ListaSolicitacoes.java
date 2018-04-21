@@ -5,7 +5,7 @@
  */
 package View;
 
-import DadosResidencia.SolicitacaoSeguro;
+import Motor.Solicitacao;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
 
-    SolicitacaoSeguro solicitacaoGuardar;
+    Solicitacao solicitacaoGuardar;
 
     /**
      * Creates new form Tela_ListaSolicitacoes

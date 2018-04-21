@@ -6,7 +6,6 @@
 package Motor;
 
 import DadosUsuarios.Candidato;
-import DadosResidencia.SolicitacaoSeguro;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,7 +16,7 @@ import java.util.List;
 public class Motor {
 
     ArrayList<Object> listaCliente;
-    ArrayList<SolicitacaoSeguro> listaDeSolicitacao = new ArrayList<>();
+    ArrayList<Solicitacao> listaDeSolicitacao = new ArrayList<>();
 
     public Motor() {
         listaCliente = new ArrayList<>();
@@ -40,7 +39,7 @@ public class Motor {
         return null;
     }
 
-    public boolean enviarSoliciacao(SolicitacaoSeguro solicitacao) {
+    public boolean enviarSoliciacao(Solicitacao solicitacao) {
         if (listaDeSolicitacao.add(solicitacao)) {
             return true;
         } else {

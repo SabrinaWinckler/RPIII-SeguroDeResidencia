@@ -5,9 +5,9 @@
  */
 package View;
 
-import DadosResidencia.SolicitacaoSeguro;
 import Motor.Motor;
-import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
+import Motor.Solicitacao;
+//import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 import javax.swing.JFrame;
 import javax.swing.table.DefaultTableModel;
 import sun.awt.im.InputMethodJFrame;
@@ -179,7 +179,7 @@ public class Tela_EnviarSolicitacao extends javax.swing.JFrame {
         } else {
             aprovadaResidencia = false;
         }
-        SolicitacaoSeguro novaSolicitacao = new SolicitacaoSeguro(localizacaoPerigosa, terrenoPerigo, estruturaAmeacada, dataSolicitacao, dataVisita, valorDeSolicitacao, aprovadaResidencia, motivoDeReprovacao);
+        Solicitacao novaSolicitacao = new Solicitacao();
         if (motor.enviarSoliciacao(novaSolicitacao)) {
             System.out.println("Solicitação Enviada com sucesso");
         } else {

@@ -1,10 +1,12 @@
 package dadosResidencia;
 
 
-import dadosUsuario.Candidato;
 import dadosResidencia.Local;
 import dadosResidencia.NivelDePericulosidade;
 import dadosResidencia.Bem;
+import dadosResidencia.Bem;
+import dadosResidencia.Local;
+import dadosResidencia.NivelDePericulosidade;
 
 public class Residencia {
 
@@ -27,8 +29,6 @@ public class Residencia {
 	private int anoConstrucao;
 
 	private String ruaRes;
-
-	private Candidato candidato;
 
 	private NivelDePericulosidade nivelDePericulosidade;
 
@@ -57,10 +57,6 @@ public class Residencia {
 
     public void setLocal(Local local) {
         this.local = local;
-    }
-
-    public Candidato getCandidato() {
-        return candidato;
     }
 
     public Bem getBem() {

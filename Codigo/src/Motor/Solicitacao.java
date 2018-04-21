@@ -1,4 +1,4 @@
-package solicitarseguro;
+package Motor;
 
 
 import dadosResidencia.Residencia;

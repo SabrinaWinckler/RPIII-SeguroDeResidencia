@@ -3,33 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package solicitarseguro;
+package View;
 
+import Motor.Solicitacao;
 import dadosResidencia.Bem;
 import dadosResidencia.Local;
 import dadosResidencia.NivelDePericulosidade;
 import dadosResidencia.Residencia;
-import dadosUsuario.Candidato;
 import excecao.ExceptionEmptySpace;
-import java.awt.event.ActionEvent;
-import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 /**
  *
- * @author SABRINA
+ * @author Matheus Montanha
  */
-public class viewSolicitarSeguro extends javax.swing.JFrame {
-
-    Solicitacao solicitacao;
-    
-    public viewSolicitarSeguro() {
+public class Painel_Candidato extends javax.swing.JFrame {
+     Solicitacao solicitacao;
+    /**
+     * Creates new form Painel_Corretor
+     */
+    public Painel_Candidato() {
         initComponents();
-        this.solicitacao = new Solicitacao(); // pegar do banco de dados, passar por parametro do método
-       
+        this.solicitacao = new Solicitacao();
+        nivel.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
+        
     }
 
     /**
@@ -41,7 +42,29 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        solicitacaoSeguro = new javax.swing.JPanel();
+        menuBar1 = new java.awt.MenuBar();
+        menu1 = new java.awt.Menu();
+        menu2 = new java.awt.Menu();
+        menuBar2 = new java.awt.MenuBar();
+        menu3 = new java.awt.Menu();
+        menu4 = new java.awt.Menu();
+        jMenu1 = new javax.swing.JMenu();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        jMenu4 = new javax.swing.JMenu();
+        jMenu5 = new javax.swing.JMenu();
+        jMenu6 = new javax.swing.JMenu();
+        popupMenu1 = new java.awt.PopupMenu();
+        solicitarSeguro = new javax.swing.JButton();
+        sairButton = new javax.swing.JButton();
+        minhasResidencias = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
+        iconUsuario = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        contratarServico = new javax.swing.JButton();
+        relatarSinistro = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        painelP = new javax.swing.JPanel();
         nivel = new javax.swing.JTabbedPane();
         endereco = new javax.swing.JPanel();
         bairro = new javax.swing.JTextField();
@@ -50,42 +73,42 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
         numero = new javax.swing.JTextField();
         cidade = new javax.swing.JTextField();
         rua = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
         dados = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         comodos = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
-        banheiro = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        garagem = new javax.swing.JTextField();
-        jLabel9 = new javax.swing.JLabel();
-        andares = new javax.swing.JTextField();
-        jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
-        areat = new javax.swing.JTextField();
+        banheiro = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
+        garagem = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        andares = new javax.swing.JTextField();
         jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        areat = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jLabel17 = new javax.swing.JLabel();
+        jLabel18 = new javax.swing.JLabel();
         anoC = new javax.swing.JTextField();
         descRes = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel17 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        jLabel21 = new javax.swing.JLabel();
         descBem = new javax.swing.JTextField();
         valor = new javax.swing.JTextField();
         nivelPericulosidade = new javax.swing.JPanel();
         enviar = new javax.swing.JButton();
-        jLabel18 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
-        jLabel21 = new javax.swing.JLabel();
         jLabel22 = new javax.swing.JLabel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel26 = new javax.swing.JLabel();
         localizacaoP = new javax.swing.JSlider();
         terrenoP = new javax.swing.JSlider();
         cancelar = new javax.swing.JButton();
@@ -93,15 +116,122 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
         l = new javax.swing.JLabel();
         t = new javax.swing.JLabel();
         e = new javax.swing.JLabel();
-        editar = new javax.swing.JButton();
-        nova = new javax.swing.JButton();
         cancelarSolicitacao = new javax.swing.JButton();
-        background = new javax.swing.JLabel();
+        nova = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+
+        menu1.setLabel("File");
+        menuBar1.add(menu1);
+
+        menu2.setLabel("Edit");
+        menuBar1.add(menu2);
+
+        menu3.setLabel("File");
+        menuBar2.add(menu3);
+
+        menu4.setLabel("Edit");
+        menuBar2.add(menu4);
+
+        jMenu1.setText("jMenu1");
+
+        jMenu4.setText("jMenu4");
+
+        jMenu5.setText("jMenu5");
+
+        jMenu6.setText("jMenu6");
+
+        popupMenu1.setLabel("popupMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        solicitacaoSeguro.setBackground(new java.awt.Color(204, 255, 255));
-        solicitacaoSeguro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        solicitarSeguro.setBackground(new java.awt.Color(0, 51, 51));
+        solicitarSeguro.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        solicitarSeguro.setForeground(new java.awt.Color(255, 255, 255));
+        solicitarSeguro.setText("Solicitar Seguro de Residência");
+        solicitarSeguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitarSeguroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 40));
+        solicitarSeguro.getAccessibleContext().setAccessibleDescription("");
+
+        sairButton.setBackground(new java.awt.Color(153, 0, 0));
+        sairButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        sairButton.setForeground(new java.awt.Color(255, 255, 255));
+        sairButton.setText("Sair");
+        sairButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 80, 30));
+
+        minhasResidencias.setBackground(new java.awt.Color(0, 51, 51));
+        minhasResidencias.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        minhasResidencias.setForeground(new java.awt.Color(255, 255, 255));
+        minhasResidencias.setText("Minhas Residências");
+        minhasResidencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minhasResidenciasActionPerformed(evt);
+            }
+        });
+        getContentPane().add(minhasResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 210, 40));
+
+        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Seguro de Residência");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 240, 130));
+
+        iconUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icone.jpg"))); // NOI18N
+        getContentPane().add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 60, 50));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagem-de-fundo-preta-wallpaper-pc-computador-tela-gratis-ambiente-de-trabalho.jpg"))); // NOI18N
+        jLabel1.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jLabel1AncestorAdded(evt);
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
+
+        contratarServico.setBackground(new java.awt.Color(0, 51, 51));
+        contratarServico.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        contratarServico.setForeground(new java.awt.Color(255, 255, 255));
+        contratarServico.setText("Contratar Serviço");
+        contratarServico.setToolTipText("");
+        contratarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contratarServicoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 210, 40));
+
+        relatarSinistro.setBackground(new java.awt.Color(0, 51, 51));
+        relatarSinistro.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        relatarSinistro.setForeground(new java.awt.Color(255, 255, 255));
+        relatarSinistro.setText("Relatar Sinistro");
+        relatarSinistro.setToolTipText("");
+        relatarSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatarSinistroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 210, 40));
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 230, 330));
+
+        jLabel6.setText("jLabel6");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 320));
+
+        painelP.setBackground(new java.awt.Color(204, 204, 255));
+        painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         endereco.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -141,17 +271,17 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setText("CEP:");
+        jLabel2.setText("CEP:");
 
-        jLabel2.setText("UF:");
+        jLabel5.setText("UF:");
 
-        jLabel3.setText("Cidade:");
+        jLabel7.setText("Cidade:");
 
-        jLabel4.setText("Bairro:");
+        jLabel8.setText("Bairro:");
 
-        jLabel5.setText("Rua:");
+        jLabel9.setText("Rua:");
 
-        jLabel6.setText("Número:");
+        jLabel10.setText("Número:");
 
         javax.swing.GroupLayout enderecoLayout = new javax.swing.GroupLayout(endereco);
         endereco.setLayout(enderecoLayout);
@@ -162,31 +292,31 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                 .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel4))
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel8))
                 .addGap(18, 18, 18)
                 .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(rua, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel2)
-                    .addComponent(jLabel5))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel9))
                 .addGap(18, 18, 18)
                 .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel6)
-                    .addComponent(jLabel3)
+                    .addComponent(jLabel10)
+                    .addComponent(jLabel7)
                     .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(cidade, javax.swing.GroupLayout.DEFAULT_SIZE, 61, Short.MAX_VALUE)
                         .addComponent(numero)))
-                .addContainerGap(90, Short.MAX_VALUE))
+                .addContainerGap(70, Short.MAX_VALUE))
         );
         enderecoLayout.setVerticalGroup(
             enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, enderecoLayout.createSequentialGroup()
                 .addContainerGap(35, Short.MAX_VALUE)
                 .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
                     .addComponent(jLabel2)
-                    .addComponent(jLabel3))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel7))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -194,9 +324,9 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                     .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel4)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel6))
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel10))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                 .addGroup(enderecoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -212,15 +342,15 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
 
         jPanel5.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel7.setText("Cômodos:");
+        jLabel11.setText("Cômodos:");
 
-        jLabel8.setText("Banheiro:");
+        jLabel12.setText("Banheiro:");
 
-        jLabel9.setText("Garagem:");
+        jLabel13.setText("Garagem:");
 
-        jLabel10.setText("Andares:");
+        jLabel14.setText("Andares:");
 
-        jLabel11.setText("Quantidade:");
+        jLabel15.setText("Quantidade:");
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -232,13 +362,13 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                         .addContainerGap()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(comodos, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel7))
+                            .addComponent(jLabel11))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
                                 .addGap(1, 1, 1)
                                 .addComponent(banheiro, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel8))
+                            .addComponent(jLabel12))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel5Layout.createSequentialGroup()
@@ -246,32 +376,32 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(andares, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(jLabel9)
+                                .addComponent(jLabel13)
                                 .addGap(18, 18, 18)
-                                .addComponent(jLabel10))))
+                                .addComponent(jLabel14))))
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGap(95, 95, 95)
-                        .addComponent(jLabel11)))
+                        .addComponent(jLabel15)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel11)
+                .addComponent(jLabel15)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel5Layout.createSequentialGroup()
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel9)
-                            .addComponent(jLabel10))
+                            .addComponent(jLabel12)
+                            .addComponent(jLabel13)
+                            .addComponent(jLabel14))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(garagem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(banheiro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(andares, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
+                        .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(comodos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -286,24 +416,24 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
         });
         dados.add(areat, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 130, 61, -1));
 
-        jLabel12.setText("Ano Construção:");
-        dados.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        jLabel16.setText("Ano Construção:");
+        dados.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
 
-        jLabel13.setText("Área Total:");
-        dados.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
+        jLabel17.setText("Área Total:");
+        dados.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 110, -1, -1));
 
-        jLabel14.setText("Descrição:");
-        dados.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
+        jLabel18.setText("Descrição:");
+        dados.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, -1, -1));
         dados.add(anoC, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 130, 61, -1));
         dados.add(descRes, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 100, 20));
 
         jPanel6.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jLabel16.setText("Bem:");
+        jLabel19.setText("Bem:");
 
-        jLabel17.setText("Descrição:");
+        jLabel20.setText("Descrição:");
 
-        jLabel15.setText("Valor:");
+        jLabel21.setText("Valor:");
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -313,11 +443,11 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jLabel17)
+                        .addComponent(jLabel20)
                         .addGap(25, 25, 25)
-                        .addComponent(jLabel16)
+                        .addComponent(jLabel19)
                         .addGap(26, 26, 26)
-                        .addComponent(jLabel15))
+                        .addComponent(jLabel21))
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addComponent(descBem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
@@ -327,7 +457,7 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel16)
+                .addComponent(jLabel19)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(descBem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -336,8 +466,8 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel15)
-                    .addComponent(jLabel17, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel21)
+                    .addComponent(jLabel20, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -354,15 +484,15 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
             }
         });
 
-        jLabel18.setText("Informe-nos qual a escala de cada um dos itens.");
+        jLabel22.setText("Informe-nos qual a escala de cada um dos itens.");
 
-        jLabel19.setText("Seja sincero!");
+        jLabel23.setText("Seja sincero!");
 
-        jLabel20.setText("Localização Perigosa:");
+        jLabel24.setText("Localização Perigosa:");
 
-        jLabel21.setText("Terreno Perigoso:");
+        jLabel25.setText("Terreno Perigoso:");
 
-        jLabel22.setText("Estrutura Ameaçada:");
+        jLabel26.setText("Estrutura Ameaçada:");
 
         localizacaoP.setMaximum(10);
         localizacaoP.setValue(5);
@@ -373,10 +503,20 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                 localizacaoPStateChanged(evt);
             }
         });
+        localizacaoP.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                localizacaoPMouseDragged(evt);
+            }
+        });
 
         terrenoP.setMaximum(10);
         terrenoP.setSnapToTicks(true);
         terrenoP.setValue(5);
+        terrenoP.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                terrenoPStateChanged(evt);
+            }
+        });
 
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -389,6 +529,11 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
         estruturaA.setValue(5);
         estruturaA.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         estruturaA.setName(""); // NOI18N
+        estruturaA.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                estruturaAStateChanged(evt);
+            }
+        });
 
         l.setText("5");
 
@@ -410,47 +555,47 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(nivelPericulosidadeLayout.createSequentialGroup()
-                        .addComponent(estruturaA, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(estruturaA, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(e))
-                    .addComponent(jLabel18)
-                    .addComponent(jLabel21)
+                    .addComponent(jLabel22)
+                    .addComponent(jLabel25)
                     .addGroup(nivelPericulosidadeLayout.createSequentialGroup()
                         .addGroup(nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(localizacaoP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel20, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel19))
+                            .addComponent(jLabel24, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel23))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(l))
                     .addGroup(nivelPericulosidadeLayout.createSequentialGroup()
-                        .addGroup(nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(terrenoP, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jLabel22, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, 108, Short.MAX_VALUE)
+                            .addComponent(terrenoP, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(t)))
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addContainerGap(74, Short.MAX_VALUE))
         );
         nivelPericulosidadeLayout.setVerticalGroup(
             nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, nivelPericulosidadeLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel18)
+                .addComponent(jLabel22)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel19)
+                .addComponent(jLabel23)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel20)
+                .addComponent(jLabel24)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(localizacaoP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(l))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel21)
+                .addComponent(jLabel25)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(terrenoP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(t))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
-                .addComponent(jLabel22)
+                .addComponent(jLabel26)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(nivelPericulosidadeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(estruturaA, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -464,23 +609,7 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
 
         nivel.addTab("Nível de Periculosidade", nivelPericulosidade);
 
-        solicitacaoSeguro.add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 40, 360, 280));
-
-        editar.setText("Editar Solicitação");
-        editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarActionPerformed(evt);
-            }
-        });
-        solicitacaoSeguro.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 130, -1, -1));
-
-        nova.setText("Nova Solicitação");
-        nova.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novaActionPerformed(evt);
-            }
-        });
-        solicitacaoSeguro.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 160, -1, -1));
+        painelP.add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 20, 340, 280));
 
         cancelarSolicitacao.setText("Cancelar Solicitação");
         cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
@@ -488,31 +617,69 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                 cancelarSolicitacaoActionPerformed(evt);
             }
         });
-        solicitacaoSeguro.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 190, -1, -1));
+        painelP.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
 
-        background.setText("background");
-        solicitacaoSeguro.add(background, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 340, -1, -1));
+        nova.setText("Nova Solicitação");
+        nova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novaActionPerformed(evt);
+            }
+        });
+        painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(solicitacaoSeguro, javax.swing.GroupLayout.PREFERRED_SIZE, 592, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(41, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(solicitacaoSeguro, javax.swing.GroupLayout.DEFAULT_SIZE, 365, Short.MAX_VALUE)
-                .addContainerGap())
-        );
+        editar.setText("Editar Solicitação");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+        painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
+
+        getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 340, 320));
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
+
+    private void minhasResidenciasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minhasResidenciasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_minhasResidenciasActionPerformed
+
+    private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
+        dispose();
+    }//GEN-LAST:event_sairButtonActionPerformed
+
+    private void solicitarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarSeguroActionPerformed
+        /*Tela_ListaSolicitacoes telaSolicitacoes = new Tela_ListaSolicitacoes();
+        telaSolicitacoes.setVisible(true);
+        dispose();*/
+        nivel.setVisible(true);
+        editar.setVisible(true);
+        nova.setVisible(true);
+        cancelarSolicitacao.setVisible(true);
+        nivel.setVisible(true);
+    }//GEN-LAST:event_solicitarSeguroActionPerformed
+
+    private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_relatarSinistroActionPerformed
+
+    private void contratarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarServicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contratarServicoActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        //recuperar dados da solicitação que el deseja editar
+        nivel.setVisible(true);
+    }//GEN-LAST:event_editarActionPerformed
+
+    private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
+        nivel.setVisible(true);
+    }//GEN-LAST:event_novaActionPerformed
+
+    private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarSolicitacaoActionPerformed
 
     private void bairroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bairroActionPerformed
         // TODO add your handling code here:
@@ -538,6 +705,10 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_ruaActionPerformed
 
+    private void areatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areatActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_areatActionPerformed
+
     private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
         try {
             ExceptionEmptySpace.informaDado(cep.getText()); //parse long
@@ -554,72 +725,69 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(anoC.getText());///parse int
             ExceptionEmptySpace.informaDado(descRes.getText());
 
-           
             int numeroCandidato = Integer.parseInt(numero.getText());
             long cepCandidato = Long.parseLong(cep.getText());
-            
+
             int comodosCandidato = Integer.parseInt(comodos.getText());
             int banheiroCandidato = Integer.parseInt(banheiro.getText());
             int garagemCandidato = Integer.parseInt(garagem.getText());
             int andaresCandidato = Integer.parseInt(andares.getText());
             float areaT = Float.parseFloat(areat.getText());
-                            
+
             int anoConstrucao = Integer.parseInt(anoC.getText());
-                    
+
             int localizacao = localizacaoP.getValue();
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
-           
-            
+
             Bem bem = new Bem();
-            
-                if(descBem.getText() != null || descBem.getText().startsWith(" ") || descBem.getText().equals("") && valor.getText() != null || valor.getText().startsWith(" ") || valor.getText().equals("")){
-                            ExceptionEmptySpace.informaDado(valor.getText());///parse int
-                            float valorBem = Float.parseFloat(valor.getText());
-                            bem.resgitraBem(descBem.getText(), valorBem);
-                }
-                
+
+            if(descBem.getText() != null || descBem.getText().startsWith(" ") || descBem.getText().equals("") && valor.getText() != null || valor.getText().startsWith(" ") || valor.getText().equals("")){
+                ExceptionEmptySpace.informaDado(valor.getText());///parse int
+                float valorBem = Float.parseFloat(valor.getText());
+                bem.resgitraBem(descBem.getText(), valorBem);
+            }
+
             Local local = new Local(uf.getText(),cidade.getText(), bairro.getText());
-            
+
             NivelDePericulosidade nivelDePericulosidade = new NivelDePericulosidade(localizacao, terreno, estrutura);
-            
+
             Residencia residencia = new Residencia(descRes.getText(), numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, andaresCandidato, anoConstrucao, rua.getText(),nivelDePericulosidade, local);
-            
+
             Date dataSolicitacao = new Date();
             this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
-            
-            JOptionPane.showMessageDialog(null,"\n Sua solicitação foi enviada para avaliação!");
+
+            JOptionPane.showMessageDialog(painelP,"\n Sua solicitação foi enviada para avaliação!");
 
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Por favor insira todas as informações");
+            JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
         nivel.setVisible(false);
     }//GEN-LAST:event_enviarActionPerformed
 
-    private void areatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areatActionPerformed
+    private void localizacaoPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_localizacaoPStateChanged
+        l.setText(Integer.toString(localizacaoP.getValue()));
+    }//GEN-LAST:event_localizacaoPStateChanged
+
+    private void localizacaoPMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_localizacaoPMouseDragged
         // TODO add your handling code here:
-    }//GEN-LAST:event_areatActionPerformed
+    }//GEN-LAST:event_localizacaoPMouseDragged
+
+    private void terrenoPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_terrenoPStateChanged
+        t.setText(Integer.toString(terrenoP.getValue()));
+    }//GEN-LAST:event_terrenoPStateChanged
 
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         nivel.setVisible(false);
     }//GEN-LAST:event_cancelarActionPerformed
 
-    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        //recuperar dados da solicitação que el deseja editar
-        nivel.setVisible(true);
-    }//GEN-LAST:event_editarActionPerformed
+    private void estruturaAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_estruturaAStateChanged
+        e.setText(Integer.toString(estruturaA.getValue()));
+    }//GEN-LAST:event_estruturaAStateChanged
 
-    private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
-        nivel.setVisible(true);
-    }//GEN-LAST:event_novaActionPerformed
-
-    private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
+    private void jLabel1AncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jLabel1AncestorAdded
         // TODO add your handling code here:
-    }//GEN-LAST:event_cancelarSolicitacaoActionPerformed
-
-    private void localizacaoPStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_localizacaoPStateChanged
-
-    }//GEN-LAST:event_localizacaoPStateChanged
+    }//GEN-LAST:event_jLabel1AncestorAdded
 
     /**
      * @param args the command line arguments
@@ -630,7 +798,6 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
-        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -639,20 +806,23 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(viewSolicitarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(viewSolicitarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(viewSolicitarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(viewSolicitarSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new viewSolicitarSeguro().setVisible(true);
+                new Painel_Candidato().setVisible(true);
             }
         });
     }
@@ -661,7 +831,6 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
     private javax.swing.JTextField andares;
     private javax.swing.JTextField anoC;
     private javax.swing.JTextField areat;
-    private javax.swing.JLabel background;
     private javax.swing.JTextField bairro;
     private javax.swing.JTextField banheiro;
     private javax.swing.JButton cancelar;
@@ -669,6 +838,7 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
     private javax.swing.JTextField cep;
     private javax.swing.JTextField cidade;
     private javax.swing.JTextField comodos;
+    private javax.swing.JButton contratarServico;
     private javax.swing.JPanel dados;
     private javax.swing.JTextField descBem;
     private javax.swing.JTextField descRes;
@@ -678,6 +848,7 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
     private javax.swing.JButton enviar;
     private javax.swing.JSlider estruturaA;
     private javax.swing.JTextField garagem;
+    private javax.swing.JButton iconUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -693,6 +864,10 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -700,24 +875,35 @@ public class viewSolicitarSeguro extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenu jMenu5;
+    private javax.swing.JMenu jMenu6;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JLabel l;
     private javax.swing.JSlider localizacaoP;
+    private java.awt.Menu menu1;
+    private java.awt.Menu menu2;
+    private java.awt.Menu menu3;
+    private java.awt.Menu menu4;
+    private java.awt.MenuBar menuBar1;
+    private java.awt.MenuBar menuBar2;
+    private javax.swing.JButton minhasResidencias;
     private javax.swing.JTabbedPane nivel;
     private javax.swing.JPanel nivelPericulosidade;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
+    private javax.swing.JPanel painelP;
+    private java.awt.PopupMenu popupMenu1;
+    private javax.swing.JButton relatarSinistro;
     private javax.swing.JTextField rua;
-    private javax.swing.JPanel solicitacaoSeguro;
+    private javax.swing.JButton sairButton;
+    private javax.swing.JButton solicitarSeguro;
     private javax.swing.JLabel t;
     private javax.swing.JSlider terrenoP;
     private javax.swing.JTextField uf;
     private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables
-
-    private void esvaziarCampos() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }
-
