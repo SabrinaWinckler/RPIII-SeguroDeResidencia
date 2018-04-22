@@ -6,9 +6,7 @@
 package View;
 
 import DadosUsuarios.Candidato;
-import DadosUsuarios.Pessoa;
 import Motor.Motor;
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
@@ -18,7 +16,6 @@ import javax.swing.JOptionPane;
 public class Tela_Login extends javax.swing.JFrame {
 
     Motor motor = new Motor();
-    Candidato pessoa = (Candidato) motor.retornaCliente();
 
     /**
      * Creates new form Tela_Login
@@ -102,10 +99,11 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarButtonActionPerformed
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
+        Candidato pessoa = (Candidato) motor.retornaCliente();
         if (campoUsuario.getText().equals(pessoa.getUsuarioCliente()) && campoSenha.getPassword().equals(pessoa.getSenhaCliente())) {
             JOptionPane.showMessageDialog(rootPane, "Senha e Usuário correto.");
-        }else{
-             JOptionPane.showMessageDialog(rootPane, "Não existe.");
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Não existe.");
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
 

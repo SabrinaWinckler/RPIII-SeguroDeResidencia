@@ -1,6 +1,6 @@
 package dadosResidencia;
 
-import dadosUsuario.Candidato;
+//import dadosUsuario.Candidato;
 
 public class Local {
 

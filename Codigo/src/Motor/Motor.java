@@ -7,7 +7,6 @@ package Motor;
 
 import DadosUsuarios.Candidato;
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  *
@@ -33,10 +32,7 @@ public class Motor {
     }
 
     public Object retornaCliente() {
-        for (int i = 0; i < listaCliente.size(); i++) {
-            return listaCliente.get(i);
-        }
-        return null;
+        return listaCliente.get(0);
     }
 
     public boolean enviarSoliciacao(Solicitacao solicitacao) {

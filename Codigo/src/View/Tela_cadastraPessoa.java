@@ -6,7 +6,6 @@
 package View;
 
 import DadosUsuarios.Candidato;
-import DadosUsuarios.Pessoa;
 import Motor.Motor;
 
 /**
@@ -245,7 +244,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         nomePessoa = campoNome.getText();
         cpf = Long.parseLong(cpfCampo.getText());
-        dataNascimento = diaComboBox.getSelectedItem() + "/" + mesComboBox.getSelectedItem()+ "/" + anoComboBox.getSelectedItem();
+        dataNascimento = diaComboBox.getSelectedItem().toString() + "/" + mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
         cep = Long.parseLong(campoCep.getText());
         endereco = campoEndereço.getText();
         email = emailCampo.getText();
