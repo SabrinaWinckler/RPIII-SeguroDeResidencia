@@ -85,23 +85,11 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel1.setText("Nome:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 51, 40, -1));
-
-        campoNome.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoNomeActionPerformed(evt);
-            }
-        });
         getContentPane().add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 41, 200, 30));
 
         jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
         jLabel2.setText("Cep:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 91, 30, -1));
-
-        campoCep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoCepActionPerformed(evt);
-            }
-        });
         getContentPane().add(campoCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 81, 200, 30));
 
         jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
@@ -120,11 +108,6 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
         ufComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         ufComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        ufComboBox.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ufComboBoxActionPerformed(evt);
-            }
-        });
         getContentPane().add(ufComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 201, -1, -1));
 
         jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
@@ -153,19 +136,9 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         getContentPane().add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 281, -1, -1));
 
         Feminino.setText("Feminino");
-        Feminino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                FemininoActionPerformed(evt);
-            }
-        });
         getContentPane().add(Feminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 241, 80, -1));
 
         Masculino.setText("Masculino");
-        Masculino.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MasculinoActionPerformed(evt);
-            }
-        });
         getContentPane().add(Masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 241, 80, -1));
 
         confirmarButton.setBackground(new java.awt.Color(0, 51, 51));
@@ -220,26 +193,6 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void campoNomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoNomeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoNomeActionPerformed
-
-    private void campoCepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoCepActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoCepActionPerformed
-
-    private void ufComboBoxActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ufComboBoxActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ufComboBoxActionPerformed
-
-    private void FemininoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_FemininoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_FemininoActionPerformed
-
-    private void MasculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MasculinoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MasculinoActionPerformed
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         nomePessoa = campoNome.getText();
