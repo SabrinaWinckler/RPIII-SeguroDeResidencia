@@ -26,8 +26,8 @@ public class Residencia {
 
     private NivelDePericulosidade nivelDePericulosidade;
 
-    private List<Bem> bem;
-
+    private List<Bem> bens;
+    
     private Local local;
 
     public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, NivelDePericulosidade nivelDePericulosidade, Local local) {
@@ -43,21 +43,21 @@ public class Residencia {
         this.ruaRes = ruaRes;
         this.nivelDePericulosidade = nivelDePericulosidade;
         this.local = local;
-        this.bem = null;
+        this.bens = null;
     }
 
     /**
      * @return the bem
      */
     public List<Bem> getBem() {
-        return bem;
+        return bens;
     }
 
     /**
      * @param bem the bem to set
      */
     public void setBem(List<Bem> bem) {
-        this.bem = bem;
+        this.bens = bem;
     }
 
     public void setLocal(Local local) {
