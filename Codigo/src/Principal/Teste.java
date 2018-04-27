@@ -5,7 +5,9 @@
  */
 package Principal;
 
+import DAO.BemDAO;
 import View.Tela_Login;
+import dadosResidencia.Bem;
 
 /**
  *
@@ -17,8 +19,13 @@ public class Teste {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        Bem bem = new Bem();
+        bem.setDescricaoBem("Teste de descrição");
+        bem.setValorEstimadoBem(1000);
+        BemDAO dao = new BemDAO();
+        dao.create(bem);
         Tela_Login telaLogin = new Tela_Login();
         telaLogin.setVisible(true);
     }
-
+    
 }
