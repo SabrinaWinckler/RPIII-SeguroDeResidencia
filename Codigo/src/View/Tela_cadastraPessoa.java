@@ -14,19 +14,19 @@ import Motor.Motor;
  */
 public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
-    String sexo;
-    long cep;
-    String dataNascimento;
-    String nomePessoa;
-    long cpf;
-    String endereco;
-    String telefone;
-    String email;
-    String usuarioCliente;
-    String senhaCliente;
-    String uf;
-    String cidade;
-    String bairro;
+    private String sexo;
+    private long cep;
+    private String dataNascimento;
+    private String nomePessoa;
+    private long cpf;
+    private String endereco;
+    private String telefone;
+    private String email;
+    private String usuarioCliente;
+    private String senhaCliente;
+    private String uf;
+    private String cidade;
+    private String bairro;
     Motor motor = new Motor();
 
     /**

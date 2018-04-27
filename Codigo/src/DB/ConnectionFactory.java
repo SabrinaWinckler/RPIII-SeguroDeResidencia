@@ -42,7 +42,7 @@ public class ConnectionFactory {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    /*
     public static void fecharConexao(Connection conexao, PreparedStatement stmt) {
         fecharConexao(conexao);
         try {
@@ -64,4 +64,5 @@ public class ConnectionFactory {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     */
 }
