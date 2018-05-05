@@ -24,13 +24,16 @@ public class Residencia {
 
     private String ruaRes;
 
-    private NivelDePericulosidade nivelDePericulosidade;
-
     private List<Bem> bens;
     
     private Local local;
+    	
+    private int localizacaoPerigosa;
 
-    public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, NivelDePericulosidade nivelDePericulosidade, Local local) {
+    private int terrenoPerigoso;
+
+    private int estruturaAmeacada;
+    public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, Local local, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
         this.descricaoRes = descricaoRes;
         this.numRes = numRes;
         this.cepRes = cepRes;
@@ -41,9 +44,11 @@ public class Residencia {
         this.numAndares = numAndares;
         this.anoConstrucao = anoConstrucao;
         this.ruaRes = ruaRes;
-        this.nivelDePericulosidade = nivelDePericulosidade;
         this.local = local;
         this.bens = null;
+        this.localizacaoPerigosa = localizacaoPerigosa;
+        this.terrenoPerigoso = terrenoPerigoso;
+        this.estruturaAmeacada = estruturaAmeacada;
     }
 
     /**
@@ -173,6 +178,22 @@ public class Residencia {
         return numAndares;
     }
 
+    public List<Bem> getBens() {
+        return bens;
+    }
+
+    public int getLocalizacaoPerigosa() {
+        return localizacaoPerigosa;
+    }
+
+    public int getTerrenoPerigoso() {
+        return terrenoPerigoso;
+    }
+
+    public int getEstruturaAmeacada() {
+        return estruturaAmeacada;
+    }
+
     /**
      * @param numAndares the numAndares to set
      */
@@ -211,16 +232,7 @@ public class Residencia {
     /**
      * @return the nivelDePericulosidade
      */
-    public NivelDePericulosidade getNivelDePericulosidade() {
-        return nivelDePericulosidade;
-    }
-
-    /**
-     * @param nivelDePericulosidade the nivelDePericulosidade to set
-     */
-    public void setNivelDePericulosidade(NivelDePericulosidade nivelDePericulosidade) {
-        this.nivelDePericulosidade = nivelDePericulosidade;
-    }
+   
 
     public void registraResidencia() {
 

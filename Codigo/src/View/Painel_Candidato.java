@@ -8,7 +8,6 @@ package View;
 import Motor.Solicitacao;
 import dadosResidencia.Bem;
 import dadosResidencia.Local;
-import dadosResidencia.NivelDePericulosidade;
 import dadosResidencia.Residencia;
 import excecao.ExceptionEmptySpace;
 import java.util.Date;
@@ -471,7 +470,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        dados.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 200, 60));
+        dados.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 230, 60));
 
         nivel.addTab("Dados", dados);
 
@@ -750,9 +749,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
             Local local = new Local(uf.getText(),cidade.getText(), bairro.getText());
 
-            NivelDePericulosidade nivelDePericulosidade = new NivelDePericulosidade(localizacao, terreno, estrutura);
 
-            Residencia residencia = new Residencia(descRes.getText(), numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, andaresCandidato, anoConstrucao, rua.getText(),nivelDePericulosidade, local);
+            Residencia residencia = new Residencia(descRes.getText(), numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, andaresCandidato, anoConstrucao, rua.getText(), local, localizacao, terreno, estrutura);
 
             Date dataSolicitacao = new Date();
             this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
