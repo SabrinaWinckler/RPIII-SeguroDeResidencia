@@ -185,19 +185,19 @@ public class Painel_Candidato extends javax.swing.JFrame {
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 240, 130));
 
         iconUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icone.jpg"))); // NOI18N
-        getContentPane().add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 10, 60, 50));
+        getContentPane().add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 0, 60, 50));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagem-de-fundo-preta-wallpaper-pc-computador-tela-gratis-ambiente-de-trabalho.jpg"))); // NOI18N
         jLabel1.addAncestorListener(new javax.swing.event.AncestorListener() {
-            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
-            }
             public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
                 jLabel1AncestorAdded(evt);
             }
             public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
             }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
         });
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 600, 70));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 600, 70));
 
         contratarServico.setBackground(new java.awt.Color(0, 51, 51));
         contratarServico.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
@@ -224,7 +224,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 210, 40));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 230, 330));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 230, 350));
 
         jLabel6.setText("jLabel6");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 320));
@@ -451,7 +451,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                         .addComponent(descBem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(16, 16, 16)
                         .addComponent(valor, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -634,7 +634,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         });
         painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
 
-        getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 340, 320));
+        getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, 340, 350));
 
         pack();
         setLocationRelativeTo(null);

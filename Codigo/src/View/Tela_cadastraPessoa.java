@@ -82,27 +82,27 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel1.setText("Nome:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 51, 40, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 51, 50, -1));
         getContentPane().add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 41, 200, 30));
 
-        jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel2.setText("Cep:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(51, 91, 30, -1));
         getContentPane().add(campoCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 81, 200, 30));
 
-        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel3.setText("Endereço:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 171, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
         getContentPane().add(campoBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 121, 200, 30));
 
-        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel4.setText("Bairro:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 131, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 50, -1));
         getContentPane().add(campoEndereço, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 161, 200, 30));
 
-        jLabel5.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel5.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel5.setText("UF:");
         getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(231, 201, -1, -1));
 
@@ -110,30 +110,30 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         ufComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
         getContentPane().add(ufComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 201, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel6.setText("Cidade:");
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(31, 211, -1, -1));
         getContentPane().add(campoCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 201, 140, 30));
 
-        jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel7.setText("Sexo:");
         getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(41, 241, -1, -1));
 
-        jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel8.setText("Data de Nascimento:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(21, 281, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 280, -1, -1));
 
         diaComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         diaComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", " " }));
-        getContentPane().add(diaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(141, 281, 60, -1));
+        getContentPane().add(diaComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 280, 60, -1));
 
         mesComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         mesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" }));
-        getContentPane().add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(201, 281, 60, -1));
+        getContentPane().add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 280, 60, -1));
 
         anoComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         anoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911", "1910" }));
-        getContentPane().add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(261, 281, -1, -1));
+        getContentPane().add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, -1, -1));
 
         Feminino.setText("Feminino");
         getContentPane().add(Feminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(81, 241, 80, -1));
@@ -141,7 +141,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         Masculino.setText("Masculino");
         getContentPane().add(Masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(181, 241, 80, -1));
 
-        confirmarButton.setBackground(new java.awt.Color(0, 51, 51));
+        confirmarButton.setBackground(new java.awt.Color(0, 102, 0));
         confirmarButton.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         confirmarButton.setForeground(new java.awt.Color(255, 255, 255));
         confirmarButton.setText("Confirmar");
@@ -152,7 +152,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         });
         getContentPane().add(confirmarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 330, -1, -1));
 
-        cancelarButton.setBackground(new java.awt.Color(0, 51, 51));
+        cancelarButton.setBackground(new java.awt.Color(204, 0, 0));
         cancelarButton.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         cancelarButton.setForeground(new java.awt.Color(255, 255, 255));
         cancelarButton.setText("Cancelar");
@@ -163,29 +163,29 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         });
         getContentPane().add(cancelarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(531, 331, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel9.setText("CPF:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(381, 51, -1, -1));
         getContentPane().add(cpfCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 41, 200, 30));
 
-        jLabel10.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel10.setText("e-mail:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 91, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 90, -1, -1));
         getContentPane().add(emailCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 81, 200, 30));
 
-        jLabel11.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel11.setText("Telefone:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 131, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
         getContentPane().add(telefoneCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 121, 200, 30));
 
-        jLabel12.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel12.setText("Usuário:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(361, 171, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 170, -1, -1));
         getContentPane().add(usuarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 161, 200, 30));
 
-        jLabel13.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel13.setText("Senha:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(371, 211, 40, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 210, 50, -1));
         getContentPane().add(senhaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(411, 201, 200, 30));
 
         jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N

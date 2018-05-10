@@ -130,7 +130,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 560, 50));
 
         jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 160, 330));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 160, 350));
 
         jLabel5.setFont(new java.awt.Font("Palatino Linotype", 1, 14)); // NOI18N
         jLabel5.setText("Bem-Vindo.");

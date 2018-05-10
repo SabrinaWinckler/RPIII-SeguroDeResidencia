@@ -87,6 +87,7 @@ public class Tela_Login extends javax.swing.JFrame {
         getContentPane().add(cadastrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 260, 110, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/kdfhkfdh.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 590, 390));
 
         pack();
