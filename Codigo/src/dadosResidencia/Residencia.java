@@ -12,8 +12,7 @@ public class Residencia {
 
     private int qntComodos;
 
-    private int qntBanheiros;
-
+    //private int qntBanheiros;
     private int qntGaragens;
 
     private float areaTotal;
@@ -24,36 +23,45 @@ public class Residencia {
 
     private String ruaRes;
 
-    private List<Bem> bens;
-    
-    private Local local;
-    	
+    private String ufResidencia;
+
+    private double areaConstruida;
+    //private List<Bem> bens;
+    //private Local local;
     private int localizacaoPerigosa;
 
     private int terrenoPerigoso;
 
     private int estruturaAmeacada;
-    public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, Local local, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
+
+    public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, String ufResidencia, double areaConstruida, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
         this.descricaoRes = descricaoRes;
         this.numRes = numRes;
         this.cepRes = cepRes;
         this.qntComodos = qntComodos;
-        this.qntBanheiros = qntBanheiros;
+        //this.qntBanheiros = qntBanheiros;
         this.qntGaragens = qntGaragens;
         this.areaTotal = areaTotal;
         this.numAndares = numAndares;
         this.anoConstrucao = anoConstrucao;
         this.ruaRes = ruaRes;
-        this.local = local;
-        this.bens = null;
+        // this.local = local;
+        //this.bens = null;
+        this.ufResidencia = ufResidencia;
+        this.areaConstruida = areaConstruida;
         this.localizacaoPerigosa = localizacaoPerigosa;
         this.terrenoPerigoso = terrenoPerigoso;
         this.estruturaAmeacada = estruturaAmeacada;
     }
 
+    public Residencia() {
+
+    }
+
     /**
      * @return the bem
      */
+    /*
     public List<Bem> getBem() {
         return bens;
     }
@@ -61,8 +69,9 @@ public class Residencia {
     /**
      * @param bem the bem to set
      */
+ /*
     public void setBem(List<Bem> bem) {
-        this.bens = bem;
+        this.setBens(bem);
     }
 
     public void setLocal(Local local) {
@@ -72,7 +81,7 @@ public class Residencia {
     public Local getLocal() {
         return local;
     }
-
+     */
     /**
      * @return the descricaoRes
      */
@@ -132,6 +141,7 @@ public class Residencia {
     /**
      * @return the qntBanheiros
      */
+    /*
     public int getQntBanheiros() {
         return qntBanheiros;
     }
@@ -139,10 +149,11 @@ public class Residencia {
     /**
      * @param qntBanheiros the qntBanheiros to set
      */
+ /*
     public void setQntBanheiros(int qntBanheiros) {
         this.qntBanheiros = qntBanheiros;
     }
-
+     */
     /**
      * @return the qntGaragens
      */
@@ -178,10 +189,11 @@ public class Residencia {
         return numAndares;
     }
 
+    /*
     public List<Bem> getBens() {
         return bens;
     }
-
+     */
     public int getLocalizacaoPerigosa() {
         return localizacaoPerigosa;
     }
@@ -229,10 +241,13 @@ public class Residencia {
         this.ruaRes = ruaRes;
     }
 
-    /**
-     * @return the nivelDePericulosidade
-     */
-   
+    public double getAreaConstrucao() {
+        return this.areaConstruida;
+    }
+
+    public void setAreaConstruida(double areaConstruida) {
+        this.areaConstruida = areaConstruida;
+    }
 
     public void registraResidencia() {
 
@@ -252,6 +267,43 @@ public class Residencia {
 
     public void calculaNivelPericulosidade() {
 
+    }
+
+    /**
+     * @param bens the bens to set
+     */
+    /*
+    public void setBens(List<Bem> bens) {
+        this.bens = bens;
+    }
+     */
+    /**
+     * @param localizacaoPerigosa the localizacaoPerigosa to set
+     */
+    public void setLocalizacaoPerigosa(int localizacaoPerigosa) {
+        this.localizacaoPerigosa = localizacaoPerigosa;
+    }
+
+    /**
+     * @param terrenoPerigoso the terrenoPerigoso to set
+     */
+    public void setTerrenoPerigoso(int terrenoPerigoso) {
+        this.terrenoPerigoso = terrenoPerigoso;
+    }
+
+    /**
+     * @param estruturaAmeacada the estruturaAmeacada to set
+     */
+    public void setEstruturaAmeacada(int estruturaAmeacada) {
+        this.estruturaAmeacada = estruturaAmeacada;
+    }
+
+    public String getufResidencia() {
+        return ufResidencia;
+    }
+
+    public void setufResidencia(String ufResidencia) {
+        this.ufResidencia = ufResidencia;
     }
 
 }

@@ -20,7 +20,7 @@ import java.util.logging.Logger;
 public class ConnectionFactory {
 
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://localhost:3306/dbSeguroDeResidencia";
+    private static final String URL = "jdbc:mysql://localhost:3306/seguroderesidencia";
     private static final String USER = "root";
     private static final String PASSWORD = "";
 
@@ -53,7 +53,7 @@ public class ConnectionFactory {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    /*
+
     public static void fecharConexao(Connection conexao, PreparedStatement stmt, ResultSet resultSet) {
         fecharConexao(conexao, stmt);
         try {
@@ -64,5 +64,5 @@ public class ConnectionFactory {
             Logger.getLogger(ConnectionFactory.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     */
+
 }

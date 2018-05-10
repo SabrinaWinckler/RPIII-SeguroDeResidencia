@@ -750,7 +750,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             Local local = new Local(uf.getText(),cidade.getText(), bairro.getText());
 
 
-            Residencia residencia = new Residencia(descRes.getText(), numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, andaresCandidato, anoConstrucao, rua.getText(), local, localizacao, terreno, estrutura);
+            //Residencia residencia = new Residencia(descRes.getText(), numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, andaresCandidato, anoConstrucao, rua.getText(), local, localizacao, terreno, estrutura);
 
             Date dataSolicitacao = new Date();
             this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);

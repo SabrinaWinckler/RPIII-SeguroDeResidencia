@@ -5,9 +5,12 @@
  */
 package View;
 
+import DAO.ResidenciaDAO;
 import Motor.Solicitacao;
+import dadosResidencia.Residencia;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableRowSorter;
 
 /**
  *
@@ -22,6 +25,21 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
      */
     public Tela_ListaSolicitacoes() {
         initComponents();
+        DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
+        listaDeSolicitacoes.setRowSorter(new TableRowSorter(modelo));
+        readTable();
+    }
+
+    public void readTable() {
+        DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
+        modelo.setNumRows(0);
+        ResidenciaDAO dao = new ResidenciaDAO();
+        for (Residencia r : dao.read()) {
+            modelo.addRow(new Object[]{
+                r.getCepRes(),
+                r.getRuaRes()
+            });
+        }
     }
 
     /**
@@ -81,19 +99,12 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Data da Solicitação", "Valor da Solicitação"
+                "CEP", "Endereço"
             }
         ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -101,6 +112,11 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         });
         listaDeSolicitacoes.setColumnSelectionAllowed(true);
         listaDeSolicitacoes.getTableHeader().setReorderingAllowed(false);
+        listaDeSolicitacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaDeSolicitacoesMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(listaDeSolicitacoes);
         listaDeSolicitacoes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
@@ -123,6 +139,12 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         painel.setVisible(true);
         dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
+
+    private void listaDeSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesMouseClicked
+        Tela_DadosResidencia telaDados = new Tela_DadosResidencia();
+        telaDados.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_listaDeSolicitacoesMouseClicked
 
     /**
      * @param args the command line arguments
