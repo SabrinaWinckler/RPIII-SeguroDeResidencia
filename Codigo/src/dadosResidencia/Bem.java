@@ -43,5 +43,5 @@ public class Bem {
     public void setDescricaoBem(String descricaoBem) {
         this.descricaoBem = descricaoBem;
     }
-
+    
 }

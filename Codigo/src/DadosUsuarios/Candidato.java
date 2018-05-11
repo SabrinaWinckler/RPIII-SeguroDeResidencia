@@ -26,6 +26,9 @@ public class Candidato extends Pessoa {
         this.sexo = sexo;
         this.cep = cep;
         this.dataNescimento = dataNescimento;
+        this.uf = uf;
+        this.cidade = cidade;
+        this.bairro = bairro;
     }
 
     /**
@@ -76,6 +79,48 @@ public class Candidato extends Pessoa {
     }
 
     public void enviarSolicitacaoSeguro(SolicitacaoSeguro solicitacao) throws Exception {
-       
+
+    }
+
+    /**
+     * @return the uf
+     */
+    public String getUf() {
+        return uf;
+    }
+
+    /**
+     * @param uf the uf to set
+     */
+    public void setUf(String uf) {
+        this.uf = uf;
+    }
+
+    /**
+     * @return the cidade
+     */
+    public String getCidade() {
+        return cidade;
+    }
+
+    /**
+     * @param cidade the cidade to set
+     */
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    /**
+     * @return the bairro
+     */
+    public String getBairro() {
+        return bairro;
+    }
+
+    /**
+     * @param bairro the bairro to set
+     */
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 }

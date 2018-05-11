@@ -6,9 +6,12 @@
 package Principal;
 
 import DAO.BemDAO;
+import DAO.CandidatoDAO;
+import DAO.PessoaDAO;
 import DAO.ResidenciaDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
+import DadosUsuarios.Pessoa;
 import View.Tela_Login;
 import dadosResidencia.Bem;
 import dadosResidencia.Residencia;
@@ -58,7 +61,7 @@ public class Teste {
 
         ResidenciaDAO dao = new ResidenciaDAO();
         dao.create(residencia);
-
+         */
         //CANDIDATO
         String sexo = "Masculino";
         long cep = 97547590;
@@ -67,16 +70,22 @@ public class Teste {
         String cidade = "Alegrete";
         String bairro = "Centro";
         //pessoa atributo
-        String nomePessoa = "Matheus Montanha";
+        String nomePessoa = "Joaquina Paulina";
         long cpf = 0345;
         String endereco = "Joaquim Rodrigues Paim, 410";
         String telefone = "034565236";
         String email = "estranho@gmail.com";
-        String usuarioCliente = "joaoRoberto";
+        String usuarioCliente = "jojoPaulin";
         String senhaCliente = "0352635";
 
+        Pessoa pessoa = new Pessoa(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+        PessoaDAO pesDAO = new PessoaDAO();
+        pesDAO.create(pessoa);
+        
         Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
-
+        CandidatoDAO canDAO = new CandidatoDAO();
+        canDAO.create(candidato);
+        /*
         //SOLICITACAO
         String dataSolicitacao = "06/06/2018";
         float valorSolicitacao = 250;

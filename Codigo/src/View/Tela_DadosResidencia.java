@@ -22,7 +22,7 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     public Tela_DadosResidencia() {
         initComponents();
         ResidenciaDAO dao = new ResidenciaDAO();
-        List<Residencia> listaDeResidencias = new ArrayList<>();
+        List<Residencia> listaDeResidencias;
         listaDeResidencias = dao.read();
         String cep = "" + listaDeResidencias.get(0).getCepRes();
         String rua = "" + listaDeResidencias.get(0).getRuaRes();

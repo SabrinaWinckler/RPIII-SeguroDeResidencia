@@ -29,6 +29,10 @@ public class Pessoa {
         this.senhaCliente = senhaCliente;
     }
 
+    public Pessoa() {
+
+    }
+
     /**
      * @return the nomePessoa
      */

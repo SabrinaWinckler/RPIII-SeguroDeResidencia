@@ -7,7 +7,7 @@ package View;
 
 import Motor.Solicitacao;
 import dadosResidencia.Bem;
-import dadosResidencia.Local;
+//import dadosResidencia.Local;
 import dadosResidencia.Residencia;
 import excecao.ExceptionEmptySpace;
 import java.util.Date;
@@ -744,16 +744,16 @@ public class Painel_Candidato extends javax.swing.JFrame {
             if(descBem.getText() != null || descBem.getText().startsWith(" ") || descBem.getText().equals("") && valor.getText() != null || valor.getText().startsWith(" ") || valor.getText().equals("")){
                 ExceptionEmptySpace.informaDado(valor.getText());///parse int
                 float valorBem = Float.parseFloat(valor.getText());
-                bem.resgitraBem(descBem.getText(), valorBem);
+                //bem.resgitraBem(descBem.getText(), valorBem);
             }
 
-            Local local = new Local(uf.getText(),cidade.getText(), bairro.getText());
+            //Local local = new Local(uf.getText(),cidade.getText(), bairro.getText());
 
 
             //Residencia residencia = new Residencia(descRes.getText(), numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, andaresCandidato, anoConstrucao, rua.getText(), local, localizacao, terreno, estrutura);
 
             Date dataSolicitacao = new Date();
-            this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
+            //this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
 
             JOptionPane.showMessageDialog(painelP,"\n Sua solicitação foi enviada para avaliação!");
 

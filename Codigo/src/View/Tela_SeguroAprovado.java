@@ -5,6 +5,12 @@
  */
 package View;
 
+import DAO.CandidatoDAO;
+import DAO.PessoaDAO;
+import DadosUsuarios.Candidato;
+import DadosUsuarios.Pessoa;
+import java.util.List;
+
 /**
  *
  * @author Débora Siqueira
@@ -16,6 +22,21 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
      */
     public Tela_SeguroAprovado() {
         initComponents();
+        String observacao = "Sua residência foi considerada apta para o serviço";
+        double valor = 241;
+        CandidatoDAO candidatoDAO = new CandidatoDAO();
+        List<Candidato> listaCandidato;
+        listaCandidato = candidatoDAO.read();
+        PessoaDAO pesDAO = new PessoaDAO();
+        List<Pessoa> listaPessoa = pesDAO.read();
+        textNome.setText(listaPessoa.get(0).getNomePessoa());
+        textCPF.setText("" + listaPessoa.get(0).getCpf());
+        textB.setText(listaCandidato.get(0).getBairro());
+        textCidade.setText(listaCandidato.get(0).getCidade());
+        textEnd.setText(listaPessoa.get(0).getEndereco());
+        textCep.setText("" + listaCandidato.get(0).getCep());
+        textValorSeguro.setText("" + valor);
+        textObs.setText(observacao);
     }
 
     /**
@@ -36,27 +57,27 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
-        jTextPane3 = new javax.swing.JTextPane();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTextPane4 = new javax.swing.JTextPane();
+        textCidade = new javax.swing.JTextPane();
+        textBairro = new javax.swing.JScrollPane();
+        textB = new javax.swing.JTextPane();
         jScrollPane5 = new javax.swing.JScrollPane();
-        jTextPane5 = new javax.swing.JTextPane();
+        textCPF = new javax.swing.JTextPane();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextPane6 = new javax.swing.JTextPane();
+        textEnd = new javax.swing.JTextPane();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextPane7 = new javax.swing.JTextPane();
+        textObs = new javax.swing.JTextPane();
         jLabel6 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextPane8 = new javax.swing.JTextPane();
+        textValorSeguro = new javax.swing.JTextPane();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextPane10 = new javax.swing.JTextPane();
+        textCep = new javax.swing.JTextPane();
         jScrollPane11 = new javax.swing.JScrollPane();
-        jTextPane11 = new javax.swing.JTextPane();
+        textNome = new javax.swing.JTextPane();
         ButtonContratarSeguro = new javax.swing.JButton();
         buttonRecusarSeguro = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        buttonVoltar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -69,12 +90,12 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
         jLabel4.setText("CEP:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 270, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
 
         jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Seguro de Residência");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -30, 270, 130));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, -30, 270, 130));
 
         iconUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icone.jpg"))); // NOI18N
         getContentPane().add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 60, 50));
@@ -94,28 +115,28 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
         jLabel9.setText("Cidade:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
 
-        jTextPane3.setEditable(false);
-        jScrollPane3.setViewportView(jTextPane3);
+        textCidade.setEditable(false);
+        jScrollPane3.setViewportView(textCidade);
 
         getContentPane().add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 160, -1));
 
-        jTextPane4.setEditable(false);
-        jScrollPane4.setViewportView(jTextPane4);
+        textB.setEditable(false);
+        textBairro.setViewportView(textB);
 
-        getContentPane().add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 160, -1));
+        getContentPane().add(textBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 160, -1));
 
-        jTextPane5.setEditable(false);
-        jScrollPane5.setViewportView(jTextPane5);
+        textCPF.setEditable(false);
+        jScrollPane5.setViewportView(textCPF);
 
         getContentPane().add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 160, -1));
 
-        jTextPane6.setEditable(false);
-        jScrollPane6.setViewportView(jTextPane6);
+        textEnd.setEditable(false);
+        jScrollPane6.setViewportView(textEnd);
 
-        getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 160, -1));
+        getContentPane().add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 160, 40));
 
-        jTextPane7.setEditable(false);
-        jScrollPane7.setViewportView(jTextPane7);
+        textObs.setEditable(false);
+        jScrollPane7.setViewportView(textObs);
 
         getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 210, 200, 80));
 
@@ -131,18 +152,18 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
         jLabel11.setText("Valor do Seguro:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
 
-        jTextPane8.setEditable(false);
-        jScrollPane8.setViewportView(jTextPane8);
+        textValorSeguro.setEditable(false);
+        jScrollPane8.setViewportView(textValorSeguro);
 
         getContentPane().add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 140, 60, -1));
 
-        jTextPane10.setEditable(false);
-        jScrollPane10.setViewportView(jTextPane10);
+        textCep.setEditable(false);
+        jScrollPane10.setViewportView(textCep);
 
-        getContentPane().add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, 160, -1));
+        getContentPane().add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 160, -1));
 
-        jTextPane11.setEditable(false);
-        jScrollPane11.setViewportView(jTextPane11);
+        textNome.setEditable(false);
+        jScrollPane11.setViewportView(textNome);
 
         getContentPane().add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 160, -1));
 
@@ -168,11 +189,16 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
         });
         getContentPane().add(buttonRecusarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 80, -1));
 
-        jButton1.setBackground(new java.awt.Color(0, 51, 51));
-        jButton1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Voltar");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        buttonVoltar.setBackground(new java.awt.Color(0, 51, 51));
+        buttonVoltar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        buttonVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        buttonVoltar.setText("Voltar");
+        buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVoltarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
@@ -182,12 +208,22 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonContratarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonContratarSeguroActionPerformed
-        // TODO add your handling code here:
+        Tela_Pagamento pagamento = new Tela_Pagamento();
+        pagamento.setVisible(true);
+        dispose();
     }//GEN-LAST:event_ButtonContratarSeguroActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
-        // TODO add your handling code here:
+        Painel_Candidato painel = new Painel_Candidato();
+        painel.setVisible(true);
+        dispose();
     }//GEN-LAST:event_buttonRecusarSeguroActionPerformed
+
+    private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
+        Painel_Candidato painel = new Painel_Candidato();
+        painel.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_buttonVoltarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -227,8 +263,8 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonContratarSeguro;
     private javax.swing.JButton buttonRecusarSeguro;
+    private javax.swing.JButton buttonVoltar;
     private javax.swing.JButton iconUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -243,18 +279,18 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
-    private javax.swing.JTextPane jTextPane10;
-    private javax.swing.JTextPane jTextPane11;
-    private javax.swing.JTextPane jTextPane3;
-    private javax.swing.JTextPane jTextPane4;
-    private javax.swing.JTextPane jTextPane5;
-    private javax.swing.JTextPane jTextPane6;
-    private javax.swing.JTextPane jTextPane7;
-    private javax.swing.JTextPane jTextPane8;
+    private javax.swing.JTextPane textB;
+    private javax.swing.JScrollPane textBairro;
+    private javax.swing.JTextPane textCPF;
+    private javax.swing.JTextPane textCep;
+    private javax.swing.JTextPane textCidade;
+    private javax.swing.JTextPane textEnd;
+    private javax.swing.JTextPane textNome;
+    private javax.swing.JTextPane textObs;
+    private javax.swing.JTextPane textValorSeguro;
     // End of variables declaration//GEN-END:variables
 }
