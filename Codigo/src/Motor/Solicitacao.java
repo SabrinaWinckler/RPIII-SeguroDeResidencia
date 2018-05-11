@@ -20,6 +20,19 @@ public class Solicitacao {
 
 	private ArrayList<Residencia> residencias;
 
+    @Override
+    public String toString() {
+        return "Solicitacao{" + "dataSolicitacao=" + dataSolicitacao + ", residencias=" + residencias.toString() + '}';
+    }
+
+    public Date getDataSolicitacao() {
+        return dataSolicitacao;
+    }
+
+    public ArrayList<Residencia> getResidencias() {
+        return residencias;
+    }
+
     public Solicitacao() {
         this.dataSolicitacao = null;
         this.residencias = new ArrayList<>();

@@ -6,15 +6,17 @@ public class Bem {
 
     private String descricaoBem;
 
-    public Bem() {
-        this.valorEstimadoBem = 0;
-        this.descricaoBem = null;
+    @Override
+    public String toString() {
+        return "Bem{" + "valorEstimadoBem=" + valorEstimadoBem + ", descricaoBem=" + descricaoBem + '}';
     }
 
-    public Bem(String descricao, float valor) {
+    public Bem(String desc, float valor) {
         this.valorEstimadoBem = valor;
-        this.descricaoBem = descricao;
+        this.descricaoBem = desc;
     }
+
+   
 
     /**
      * @return the valorEstimadoBem
