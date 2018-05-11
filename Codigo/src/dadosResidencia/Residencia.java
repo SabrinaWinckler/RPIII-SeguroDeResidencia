@@ -255,6 +255,10 @@ public class Residencia {
 
     }
 
+    public List<Bem> getBens() {
+        return bens;
+    }
+
     /**
      * @param bens the bens to set
      */

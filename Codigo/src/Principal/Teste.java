@@ -47,13 +47,13 @@ public class Teste {
         Bem bem = new Bem(descricaoBem, valorBem);
         bens.add(bem);
         
-        //Residencia residencia = new Residencia(descricaoRes, numRes, cepRes, qntComodos, numAndares, qntGaragens, areaTotal, numAndares, anoConstrucao, bens, ruaRes, ufResidencia, areaConstruida, localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
+        Residencia residencia = new Residencia(descricaoRes, numRes, cepRes, qntComodos, numAndares, qntGaragens, areaTotal, numAndares, anoConstrucao, bens, ruaRes, ufResidencia, areaConstruida, localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
         
         BemDAO bemDAO = new BemDAO();
         bemDAO.create(bem);
         
         ResidenciaDAO dao = new ResidenciaDAO();
-//        dao.create(residencia);
+        dao.create(residencia);
         
         Tela_Login telaLogin = new Tela_Login();
         

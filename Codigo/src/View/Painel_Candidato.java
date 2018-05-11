@@ -5,6 +5,7 @@
  */
 package View;
 
+import DAO.BemDAO;
 import DAO.ResidenciaDAO;
 import Motor.Solicitacao;
 import dadosResidencia.Bem;
@@ -23,6 +24,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
      Solicitacao solicitacao;
      List bem;
      ResidenciaDAO residenciaDados;
+     BemDAO bemDao;
     /**
      * Creates new form Painel_Corretor
      */
@@ -35,6 +37,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(false);
         bem = new ArrayList();
         residenciaDados = new ResidenciaDAO();
+        bemDao = new BemDAO();
         
     }
 
@@ -767,18 +770,22 @@ public class Painel_Candidato extends javax.swing.JFrame {
             List bens = new ArrayList<Bem>();
             for(int i = 0; i<this.bem.size(); i++){
                 bens.add(bem.get(i));
+       
             }
 
 
-
+            
             Residencia residencia = new Residencia(uf.getText(),cidade.getText(), bairro.getText(), descRes.getText(), bens, numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato, anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
 
             Date dataSolicitacao = new Date();
-            
+//            for(int i = 0; i<residencia.getBens().size(); i++){
+  //              bemDao.create(residencia.getBens().get(i));
+    //        }
             this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
             this.residenciaDados.create(residencia);
+            
             JOptionPane.showMessageDialog(painelP,"\n Sua solicitação foi enviada para avaliação!");
-            JOptionPane.showMessageDialog(painelP, dataSolicitacao.toString() + solicitacao.toString());
+            JOptionPane.showMessageDialog(painelP, dataSolicitacao.toString() + "/n" + solicitacao.toString());
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");

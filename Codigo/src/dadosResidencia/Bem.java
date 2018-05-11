@@ -8,7 +8,7 @@ public class Bem {
 
     @Override
     public String toString() {
-        return "Bem{" + "valorEstimadoBem=" + valorEstimadoBem + ", descricaoBem=" + descricaoBem + '}';
+        return "Bem:" + "/n Valor Estimado do Bem=" + valorEstimadoBem + "/n Descricao do Bem: " + descricaoBem;
     }
 
     public Bem(String desc, float valor) {
