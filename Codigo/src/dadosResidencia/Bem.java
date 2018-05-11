@@ -2,17 +2,18 @@ package dadosResidencia;
 
 public class Bem {
 
-	private float valorEstimadoBem;
+    private float valorEstimadoBem;
 
-	private String descricaoBem;
+    private String descricaoBem;
 
     public Bem() {
         this.valorEstimadoBem = 0;
         this.descricaoBem = null;
     }
-    public void resgitraBem(String descricao, float valor){
-        this.setValorEstimadoBem(valor);
-        this.setDescricaoBem(descricao);
+
+    public Bem(String descricao, float valor) {
+        this.valorEstimadoBem = valor;
+        this.descricaoBem = descricao;
     }
 
     /**
@@ -42,5 +43,5 @@ public class Bem {
     public void setDescricaoBem(String descricaoBem) {
         this.descricaoBem = descricaoBem;
     }
-    
+
 }

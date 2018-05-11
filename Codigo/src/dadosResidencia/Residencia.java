@@ -12,7 +12,8 @@ public class Residencia {
 
     private int qntComodos;
 
-    //private int qntBanheiros;
+    private int qntBanheiros;
+
     private int qntGaragens;
 
     private float areaTotal;
@@ -26,27 +27,27 @@ public class Residencia {
     private String ufResidencia;
 
     private double areaConstruida;
-    //private List<Bem> bens;
-    //private Local local;
+
+    private List<Bem> bens;
+
     private int localizacaoPerigosa;
 
     private int terrenoPerigoso;
 
     private int estruturaAmeacada;
 
-    public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, String ufResidencia, double areaConstruida, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
+    public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, List bem, String ruaRes, String ufResidencia, double areaConstruida, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
         this.descricaoRes = descricaoRes;
         this.numRes = numRes;
         this.cepRes = cepRes;
         this.qntComodos = qntComodos;
-        //this.qntBanheiros = qntBanheiros;
+        this.qntBanheiros = qntBanheiros;
         this.qntGaragens = qntGaragens;
         this.areaTotal = areaTotal;
         this.numAndares = numAndares;
         this.anoConstrucao = anoConstrucao;
         this.ruaRes = ruaRes;
-        // this.local = local;
-        //this.bens = null;
+        this.bens = bem;
         this.ufResidencia = ufResidencia;
         this.areaConstruida = areaConstruida;
         this.localizacaoPerigosa = localizacaoPerigosa;
@@ -58,30 +59,6 @@ public class Residencia {
 
     }
 
-    /**
-     * @return the bem
-     */
-    /*
-    public List<Bem> getBem() {
-        return bens;
-    }
-
-    /**
-     * @param bem the bem to set
-     */
- /*
-    public void setBem(List<Bem> bem) {
-        this.setBens(bem);
-    }
-
-    public void setLocal(Local local) {
-        this.local = local;
-    }
-
-    public Local getLocal() {
-        return local;
-    }
-     */
     /**
      * @return the descricaoRes
      */
@@ -141,7 +118,6 @@ public class Residencia {
     /**
      * @return the qntBanheiros
      */
-    /*
     public int getQntBanheiros() {
         return qntBanheiros;
     }
@@ -149,11 +125,10 @@ public class Residencia {
     /**
      * @param qntBanheiros the qntBanheiros to set
      */
- /*
     public void setQntBanheiros(int qntBanheiros) {
         this.qntBanheiros = qntBanheiros;
     }
-     */
+
     /**
      * @return the qntGaragens
      */

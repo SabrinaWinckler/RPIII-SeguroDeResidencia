@@ -29,8 +29,8 @@ public class ResidenciaDAO {
         try {
             stm = conexao.prepareStatement("INSERT INTO residência(quantidadeGaragens, anoConstrucao, ufResidencia,"
                     + "quantidadeComodos, descricaoResidencia, areaTotal, cepResidencia, areaConstruida,"
-                    + "numeroAndares, enderecoResidencia, terrenoPerigoso, estruturaAmeacada, localizaçãoPerigosa)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+                    + "numeroAndares, enderecoResidencia, terrenoPerigoso, estruturaAmeacada, localizaçãoPerigosa, quantidadeBanheiros)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stm.setInt(1, residencia.getQntGaragens());
             stm.setInt(2, residencia.getAnoConstrucao());
             stm.setString(3, residencia.getufResidencia());
@@ -44,7 +44,7 @@ public class ResidenciaDAO {
             stm.setInt(11, residencia.getTerrenoPerigoso());
             stm.setInt(12, residencia.getEstruturaAmeacada());
             stm.setInt(13, residencia.getLocalizacaoPerigosa());
-
+            stm.setInt(14, residencia.getQntBanheiros());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -80,8 +80,8 @@ public class ResidenciaDAO {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ResidenciaDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }finally{
-            ConnectionFactory.fecharConexao(conexao, stmt, rs); 
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
         return listaDeResidecias;
     }

@@ -11,6 +11,7 @@ import View.Tela_Login;
 import dadosResidencia.Bem;
 import dadosResidencia.Local;
 import dadosResidencia.Residencia;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,8 +24,7 @@ public class Teste {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
-        /*
+        
         String descricaoRes = "Casa verde";
         int numRes = 410;
         long cepRes = 97547590;
@@ -38,13 +38,26 @@ public class Teste {
         int localizacaoPerigosa = 4;
         int terrenoPerigoso = 5;
         int estruturaAmeacada = 5;
-        Residencia residencia = new Residencia(descricaoRes, numRes, cepRes, qntComodos, numAndares, qntGaragens, areaTotal, numAndares, anoConstrucao, ruaRes, ufResidencia, areaConstruida, localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
+        int quantidadeDeBanheiros = 2;
+        
+        ArrayList<Bem> bens = new ArrayList<>();
+        
+        String descricaoBem = "Sofa";
+        float valorBem = 540;
+        Bem bem = new Bem(descricaoBem, valorBem);
+        bens.add(bem);
+        
+        Residencia residencia = new Residencia(descricaoRes, numRes, cepRes, qntComodos, numAndares, qntGaragens, areaTotal, numAndares, anoConstrucao, bens, ruaRes, ufResidencia, areaConstruida, localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
+        
+        BemDAO bemDAO = new BemDAO();
+        bemDAO.create(bem);
+        
         ResidenciaDAO dao = new ResidenciaDAO();
         dao.create(residencia);
-         */
+        
         Tela_Login telaLogin = new Tela_Login();
-
+        
         telaLogin.setVisible(true);
     }
-
+    
 }

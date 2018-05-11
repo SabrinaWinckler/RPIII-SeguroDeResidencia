@@ -24,7 +24,7 @@ public class BemDAO {
         PreparedStatement stm = null;
         
         try {
-            stm = conexao.prepareStatement("INSERT INTO bem(valorEstimadoBem, descricaoBem)VALUES(?,?)");
+            stm = conexao.prepareStatement("INSERT INTO bem(valorBem, descricaoBem)VALUES(?,?)");
             stm.setFloat(1, bem.getValorEstimadoBem());
             stm.setString(2, bem.getDescricaoBem());
             stm.executeUpdate();
