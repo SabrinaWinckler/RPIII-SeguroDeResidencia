@@ -29,7 +29,7 @@ public class Teste {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
+
         //RESIDENCIA
         String descricaoRes = "Casa verde";
         int numRes = 410;
@@ -55,13 +55,13 @@ public class Teste {
         bens.add(bem);
 
         Residencia residencia = new Residencia(descricaoRes, numRes, cepRes, qntComodos, numAndares, qntGaragens, areaTotal, numAndares, anoConstrucao, bens, ruaRes, ufResidencia, areaConstruida, localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
+        ResidenciaDAO dao = new ResidenciaDAO();
+        dao.create(residencia);
 
         BemDAO bemDAO = new BemDAO();
         bemDAO.create(bem);
 
-        ResidenciaDAO dao = new ResidenciaDAO();
-        dao.create(residencia);
-         */
+        /*
         //CANDIDATO
         String sexo = "Masculino";
         long cep = 97547590;

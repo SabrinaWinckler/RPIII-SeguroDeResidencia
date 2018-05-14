@@ -7,8 +7,6 @@ public class Bem {
     private String descricaoBem;
 
     public Bem() {
-        this.valorEstimadoBem = 0;
-        this.descricaoBem = null;
     }
 
     public Bem(String descricao, float valor) {
@@ -43,5 +41,5 @@ public class Bem {
     public void setDescricaoBem(String descricaoBem) {
         this.descricaoBem = descricaoBem;
     }
-    
+
 }
