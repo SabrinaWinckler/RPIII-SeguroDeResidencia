@@ -60,7 +60,7 @@ public class Residencia {
         this.ufResidencia = uf;
         this.cidade = cidade;
         this.bairro = bairro;
-        this.areaConstruida = areaConstruida;
+        this.areaConstruida = areaC;
         this.localizacaoPerigosa = localizacaoPerigosa;
         this.terrenoPerigoso = terrenoPerigoso;
         this.estruturaAmeacada = estruturaAmeacada;

@@ -14,6 +14,7 @@ import excecao.ExceptionEmptySpace;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -65,12 +66,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         solicitarSeguro = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
         minhasResidencias = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        iconUsuario = new javax.swing.JButton();
         contratarServico = new javax.swing.JButton();
         relatarSinistro = new javax.swing.JButton();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         painelP = new javax.swing.JPanel();
         nivel = new javax.swing.JPanel();
         cep = new javax.swing.JTextField();
@@ -127,6 +124,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         editar = new javax.swing.JButton();
         cancelarSolicitacao = new javax.swing.JButton();
         nova = new javax.swing.JButton();
+        bg = new javax.swing.JLabel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -186,15 +184,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 minhasResidenciasActionPerformed(evt);
             }
         });
-        getContentPane().add(minhasResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 210, 40));
-
-        jLabel4.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel4.setText("Seguro de Residência");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 240, 140));
-
-        iconUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icone.jpg"))); // NOI18N
-        getContentPane().add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 60, 60));
+        getContentPane().add(minhasResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 220, 40));
 
         contratarServico.setBackground(new java.awt.Color(0, 51, 51));
         contratarServico.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
@@ -206,7 +196,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 contratarServicoActionPerformed(evt);
             }
         });
-        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 210, 40));
+        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 220, 40));
 
         relatarSinistro.setBackground(new java.awt.Color(0, 51, 51));
         relatarSinistro.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
@@ -218,13 +208,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 relatarSinistroActionPerformed(evt);
             }
         });
-        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 210, 40));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 490));
-
-        jLabel6.setText("jLabel6");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, 230, 320));
+        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 220, 40));
 
         painelP.setBackground(new java.awt.Color(204, 204, 255));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -314,16 +298,13 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel6Layout.createSequentialGroup()
                         .addGap(85, 85, 85)
-                        .addComponent(jLabel19)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                        .addComponent(jLabel19))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel20)
-                            .addGroup(jPanel6Layout.createSequentialGroup()
-                                .addComponent(descBem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 0, Short.MAX_VALUE)))
-                        .addGap(18, 18, 18)))
+                            .addComponent(descBem, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(18, 18, Short.MAX_VALUE)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel21)
                     .addGroup(jPanel6Layout.createSequentialGroup()
@@ -662,7 +643,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        painelP.add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 690, 440));
+        painelP.add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 690, 440));
 
         editar.setText("Editar Solicitação");
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -670,7 +651,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 120, -1, -1));
+        painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 190, -1, -1));
 
         cancelarSolicitacao.setText("Cancelar Solicitação");
         cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
@@ -678,7 +659,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 cancelarSolicitacaoActionPerformed(evt);
             }
         });
-        painelP.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, -1, -1));
+        painelP.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
 
         nova.setText("Nova Solicitação");
         nova.addActionListener(new java.awt.event.ActionListener() {
@@ -686,9 +667,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 novaActionPerformed(evt);
             }
         });
-        painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
+        painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
-        getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 60, 750, 500));
+        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
+        painelP.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
 
         pack();
         setLocationRelativeTo(null);
@@ -720,11 +704,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_contratarServicoActionPerformed
 
-    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        //recuperar dados da solicitação que el deseja editar
-        nivel.setVisible(true);
-    }//GEN-LAST:event_editarActionPerformed
-
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
         nivel.setVisible(true);
     }//GEN-LAST:event_novaActionPerformed
@@ -732,6 +711,15 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarSolicitacaoActionPerformed
+
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        //recuperar dados da solicitação que el deseja editar
+        nivel.setVisible(true);
+    }//GEN-LAST:event_editarActionPerformed
+
+    private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_areaConstruidaActionPerformed
 
     private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
         try {
@@ -749,7 +737,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(anoC.getText());///parse int
             ExceptionEmptySpace.informaDado(descRes.getText());
             ExceptionEmptySpace.informaDado(areaConstruida.getText());
-            
+
             int numeroCandidato = Integer.parseInt(numero.getText());
             long cepCandidato = Long.parseLong(cep.getText());
 
@@ -760,7 +748,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
             float areaT = Float.parseFloat(areat.getText());
             float areaC = Float.parseFloat(areaConstruida.getText());
 
-
             int anoConstrucao = Integer.parseInt(anoC.getText());
 
             int localizacao = localizacaoP.getValue();
@@ -770,27 +757,25 @@ public class Painel_Candidato extends javax.swing.JFrame {
             List bens = new ArrayList<Bem>();
             for(int i = 0; i<this.bem.size(); i++){
                 bens.add(bem.get(i));
-       
+
             }
 
-
-            
             Residencia residencia = new Residencia(uf.getText(),cidade.getText(), bairro.getText(), descRes.getText(), bens, numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato, anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
 
             Date dataSolicitacao = new Date();
-//            for(int i = 0; i<residencia.getBens().size(); i++){
-  //              bemDao.create(residencia.getBens().get(i));
-    //        }
+            //            for(int i = 0; i<residencia.getBens().size(); i++){
+                //              bemDao.create(residencia.getBens().get(i));
+                //        }
             this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
             this.residenciaDados.create(residencia);
-            
+
             JOptionPane.showMessageDialog(painelP,"\n Sua solicitação foi enviada para avaliação!");
             JOptionPane.showMessageDialog(painelP, dataSolicitacao.toString() + "/n" + solicitacao.toString());
 
         } catch (Exception e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
-       
+
         nivel.setVisible(false);
     }//GEN-LAST:event_enviarActionPerformed
 
@@ -818,8 +803,28 @@ public class Painel_Candidato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_areatActionPerformed
 
+    private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
+
+        JOptionPane.showMessageDialog(rootPane, "Bens: \n" + this.bem.toString());        // TODO add your handling code here:
+    }//GEN-LAST:event_exibirActionPerformed
+
+    private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
+        try {
+            if (bem.remove(descBem.getText())) {
+                JOptionPane.showMessageDialog(null, "Bem: " + descBem.getText() + " Removido!");
+                descBem.setText("");
+                valor.setText("");
+
+            }
+        } catch (NullPointerException e) {
+            JOptionPane.showMessageDialog(null, "Este ator não foi adicionado!");
+        } catch (IndexOutOfBoundsException e) {
+            JOptionPane.showMessageDialog(null, "Nenhum ator foi adicionado!");
+        }        // TODO add your handling code here:
+    }//GEN-LAST:event_removerActionPerformed
+
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
-     try {
+        try {
             ExceptionEmptySpace.informaDado(descBem.getText());
             ExceptionEmptySpace.informaDado(valor.getText());
             Bem bem1 = new Bem(descBem.getText(), Integer.parseInt(valor.getText()));
@@ -830,9 +835,13 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(rootPane, e.getMessage());
         }
-                                                    // TODO add your handling code here:
+        // TODO add your handling code here:
     }//GEN-LAST:event_addActionPerformed
+ public void gerarBackground() {
+        String pasta = System.getProperty("user.dir");
+        bg.setIcon(new ImageIcon(pasta + "/imagens/Sem Título-1.jpg"));
 
+    }
     private void numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numeroActionPerformed
@@ -856,30 +865,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void cepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cepActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cepActionPerformed
-
-    private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
-        try {
-            if (bem.remove(descBem.getText())) {
-                JOptionPane.showMessageDialog(null, "Bem: " + descBem.getText() + " Removido!");
-                descBem.setText("");
-                valor.setText("");
-
-            }
-        } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Este ator não foi adicionado!");
-        } catch (IndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Nenhum ator foi adicionado!");
-        }        // TODO add your handling code here:
-    }//GEN-LAST:event_removerActionPerformed
-
-    private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
-
-        JOptionPane.showMessageDialog(rootPane, "Bens: \n" + this.bem.toString());        // TODO add your handling code here:
-    }//GEN-LAST:event_exibirActionPerformed
-
-    private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_areaConstruidaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -927,6 +912,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField areat;
     private javax.swing.JTextField bairro;
     private javax.swing.JTextField banheiro;
+    private javax.swing.JLabel bg;
     private javax.swing.JButton cancelar;
     private javax.swing.JButton cancelarSolicitacao;
     private javax.swing.JTextField cep;
@@ -941,7 +927,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JSlider estruturaA;
     private javax.swing.JButton exibir;
     private javax.swing.JTextField garagem;
-    private javax.swing.JButton iconUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -960,10 +945,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
