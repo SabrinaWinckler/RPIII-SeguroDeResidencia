@@ -15,7 +15,7 @@ import DadosUsuarios.Pessoa;
 import View.Tela_Login;
 import dadosResidencia.Bem;
 import dadosResidencia.Residencia;
-import dadosResidencia.SolicitacaoSeguro;
+import SevicosSeguradora.SolicitacaoSeguro;
 import java.util.ArrayList;
 import java.util.List;
 

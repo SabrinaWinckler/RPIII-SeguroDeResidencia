@@ -9,7 +9,7 @@ import DAO.ResidenciaDAO;
 import DAO.SolicitacaoDAO;
 import Motor.Solicitacao;
 import dadosResidencia.Residencia;
-import dadosResidencia.SolicitacaoSeguro;
+import SevicosSeguradora.SolicitacaoSeguro;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -58,7 +58,7 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         voltarButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelSeguroDeResidencia = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaDeSolicitacoes = new javax.swing.JTable();
@@ -87,10 +87,10 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         });
         getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 70, 30));
 
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Seguro de Residência");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 240, 130));
+        jLabelSeguroDeResidencia.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
+        jLabelSeguroDeResidencia.setForeground(new java.awt.Color(255, 255, 255));
+        jLabelSeguroDeResidencia.setText("Seguro de Residência");
+        getContentPane().add(jLabelSeguroDeResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 220, 30));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagem-de-fundo-preta-wallpaper-pc-computador-tela-gratis-ambiente-de-trabalho.jpg"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 50));
@@ -196,8 +196,8 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabelSeguroDeResidencia;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable listaDeSolicitacoes;

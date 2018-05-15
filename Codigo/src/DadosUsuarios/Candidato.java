@@ -6,7 +6,7 @@
 package DadosUsuarios;
 
 import dadosResidencia.Residencia;
-import dadosResidencia.SolicitacaoSeguro;
+import SevicosSeguradora.SolicitacaoSeguro;
 
 /**
  *

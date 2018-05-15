@@ -7,7 +7,7 @@ package DAO;
 
 import DB.ConnectionFactory;
 import dadosResidencia.Residencia;
-import dadosResidencia.SolicitacaoSeguro;
+import SevicosSeguradora.SolicitacaoSeguro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
