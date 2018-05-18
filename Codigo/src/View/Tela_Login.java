@@ -64,7 +64,7 @@ public class Tela_Login extends javax.swing.JFrame {
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 50, 20));
 
         entrarButton.setBackground(new java.awt.Color(153, 51, 255));
-        entrarButton.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        entrarButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         entrarButton.setForeground(new java.awt.Color(255, 255, 255));
         entrarButton.setText("Entrar");
         entrarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -75,7 +75,7 @@ public class Tela_Login extends javax.swing.JFrame {
         getContentPane().add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
 
         cadastrarButton.setBackground(new java.awt.Color(0, 153, 255));
-        cadastrarButton.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        cadastrarButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cadastrarButton.setForeground(new java.awt.Color(255, 255, 255));
         cadastrarButton.setText("Cadastrar-se");
         cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -83,10 +83,9 @@ public class Tela_Login extends javax.swing.JFrame {
                 cadastrarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(cadastrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, 110, -1));
+        getContentPane().add(cadastrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/login.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
 
         pack();

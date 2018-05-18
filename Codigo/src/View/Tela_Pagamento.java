@@ -27,9 +27,6 @@ public class Tela_Pagamento extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        iconUsuario = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         campoNome = new javax.swing.JTextField();
         campoNome1 = new javax.swing.JTextField();
@@ -45,63 +42,53 @@ public class Tela_Pagamento extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         buttonConfirmar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        iconUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icone.jpg"))); // NOI18N
-        getContentPane().add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 60, 50));
-
-        jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Seguro de Residência");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -30, 270, 130));
-
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagem-de-fundo-preta-wallpaper-pc-computador-tela-gratis-ambiente-de-trabalho.jpg"))); // NOI18N
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 50));
-
-        jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 24)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 51, 255));
         jLabel1.setText("Informe seus Dados:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
-        getContentPane().add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 200, 30));
-        getContentPane().add(campoNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, 200, 30));
-        getContentPane().add(campoNome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 240, 50, 20));
-        getContentPane().add(campoNome2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 60, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
+        getContentPane().add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 250, 30));
+        getContentPane().add(campoNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 250, 30));
+        getContentPane().add(campoNome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 50, 20));
+        getContentPane().add(campoNome2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 60, 30));
 
-        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel3.setText("Número Cartão:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, 110, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 120, -1));
 
-        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel4.setText("Nome impresso no cartão:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 190, 180, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 290, 190, -1));
 
-        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel6.setText("Código de Segurança:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, 170, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 170, -1));
 
-        jLabel8.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel8.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel8.setText("Validade:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 240, 70, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 70, -1));
 
         mesComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         mesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" }));
-        getContentPane().add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 240, 60, -1));
+        getContentPane().add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 60, -1));
 
         anoComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         anoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", " " }));
-        getContentPane().add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 240, -1, -1));
+        getContentPane().add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, -1));
 
-        jLabel9.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel9.setText("Parcelar em:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 240, 90, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, 90, -1));
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1x", "2x", "3x", "4x", "5x", "6x", "7x", "8x", "9x", "10x", "12x" }));
-        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, -1, 20));
+        getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, -1, 20));
 
-        buttonConfirmar.setBackground(new java.awt.Color(0, 102, 0));
-        buttonConfirmar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        buttonConfirmar.setBackground(new java.awt.Color(153, 51, 255));
+        buttonConfirmar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         buttonConfirmar.setForeground(new java.awt.Color(255, 255, 255));
         buttonConfirmar.setText("Confirmar");
         buttonConfirmar.addActionListener(new java.awt.event.ActionListener() {
@@ -109,10 +96,10 @@ public class Tela_Pagamento extends javax.swing.JFrame {
                 buttonConfirmarActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, -1, -1));
+        getContentPane().add(buttonConfirmar, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 480, -1, -1));
 
-        buttonCancelar.setBackground(new java.awt.Color(204, 0, 0));
-        buttonCancelar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        buttonCancelar.setBackground(new java.awt.Color(153, 51, 255));
+        buttonCancelar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
         buttonCancelar.setForeground(new java.awt.Color(255, 255, 255));
         buttonCancelar.setText("Cancelar");
         buttonCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -120,12 +107,10 @@ public class Tela_Pagamento extends javax.swing.JFrame {
                 buttonCancelarActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, -1, -1));
+        getContentPane().add(buttonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 480, -1, -1));
 
-        jLabel2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 610, 350));
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -185,15 +170,12 @@ public class Tela_Pagamento extends javax.swing.JFrame {
     private javax.swing.JTextField campoNome1;
     private javax.swing.JTextField campoNome2;
     private javax.swing.JTextField campoNome3;
-    private javax.swing.JButton iconUsuario;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JComboBox<String> mesComboBox;

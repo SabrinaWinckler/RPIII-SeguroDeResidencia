@@ -46,9 +46,6 @@ public class Tela_SeguroReprovado extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        iconUsuario = new javax.swing.JButton();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane11 = new javax.swing.JScrollPane();
         textCpf = new javax.swing.JTextPane();
         jScrollPane12 = new javax.swing.JScrollPane();
@@ -71,99 +68,90 @@ public class Tela_SeguroReprovado extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
         textMotivo = new javax.swing.JTextPane();
-        jLabel2 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        iconUsuario.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/icone.jpg"))); // NOI18N
-        getContentPane().add(iconUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 0, 60, 50));
-
-        jLabel7.setFont(new java.awt.Font("Yu Gothic", 1, 24)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Seguro de Residência");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -30, 270, 130));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagem-de-fundo-preta-wallpaper-pc-computador-tela-gratis-ambiente-de-trabalho.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 50));
-
         textCpf.setEditable(false);
         jScrollPane11.setViewportView(textCpf);
 
-        getContentPane().add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 150, 160, -1));
+        getContentPane().add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 210, 200, 30));
 
         textB.setEditable(false);
         jScrollPane12.setViewportView(textB);
 
-        getContentPane().add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 180, 160, -1));
+        getContentPane().add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 250, 200, 30));
 
         textCidade.setEditable(false);
         jScrollPane13.setViewportView(textCidade);
 
-        getContentPane().add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 210, 160, -1));
+        getContentPane().add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 290, 200, 30));
 
         textEnd.setEditable(false);
         jScrollPane14.setViewportView(textEnd);
 
-        getContentPane().add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, 160, 40));
+        getContentPane().add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 370, 200, 40));
 
         textCep.setEditable(false);
         jScrollPane15.setViewportView(textCep);
 
-        getContentPane().add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 290, 160, -1));
+        getContentPane().add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 330, 200, 30));
 
         textNome.setEditable(false);
         jScrollPane16.setViewportView(textNome);
 
-        getContentPane().add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 120, 160, -1));
+        getContentPane().add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 200, 30));
 
-        jLabel10.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel10.setText("CPF:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 150, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel11.setText("Bairro:");
-        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 180, -1, -1));
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 250, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel12.setText("Endereço:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, -1, -1));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 370, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel13.setText("CEP:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 290, -1, -1));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 330, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel14.setText("Cidade:");
-        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 210, -1, -1));
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 290, -1, -1));
 
-        jLabel15.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel15.setText("Nome:");
-        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 170, -1, -1));
 
-        buttonVoltar.setBackground(new java.awt.Color(0, 51, 51));
-        buttonVoltar.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        buttonVoltar.setBackground(new java.awt.Color(153, 51, 255));
+        buttonVoltar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         buttonVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        buttonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
         buttonVoltar.setText("Voltar");
         buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonVoltarActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, -1, -1));
+        getContentPane().add(buttonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, -1, 30));
 
-        jLabel6.setFont(new java.awt.Font("Sylfaen", 0, 16)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel6.setText("Motivo da Reprovação:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 160, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, -1, -1));
 
         textMotivo.setEditable(false);
         jScrollPane7.setViewportView(textMotivo);
 
-        getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 180, 220, 100));
+        getContentPane().add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 260, 140));
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
-        jLabel2.setText("jLabel2");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 610, 400));
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -211,7 +199,6 @@ public class Tela_SeguroReprovado extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton buttonVoltar;
-    private javax.swing.JButton iconUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -219,9 +206,7 @@ public class Tela_SeguroReprovado extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
