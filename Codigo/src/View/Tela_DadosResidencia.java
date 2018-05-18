@@ -1,4 +1,4 @@
-    /*
+/*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -45,18 +45,18 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     private void initComponents() {
 
         campoCepResidencia = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        jLabelCep = new javax.swing.JLabel();
+        jLabelRua = new javax.swing.JLabel();
         campoRuaResidencia = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
+        jLabelLocaliPerigosa = new javax.swing.JLabel();
+        jLabelTerrenoPerigo = new javax.swing.JLabel();
+        jLabelEstruturaAmea = new javax.swing.JLabel();
         campoLocalizacaoPerigosa = new javax.swing.JTextField();
         campoTerrenoPerigoso = new javax.swing.JTextField();
         campoEstruturaAmeacada = new javax.swing.JTextField();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelDescr = new javax.swing.JLabel();
         campoDescricaoResidencia = new javax.swing.JTextField();
-        jLabel7 = new javax.swing.JLabel();
+        jLabelUF = new javax.swing.JLabel();
         campoUFResidencia = new javax.swing.JTextField();
         ButtonContratarSeguro = new javax.swing.JButton();
         buttonRecusarSeguro = new javax.swing.JButton();
@@ -69,28 +69,28 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         campoCepResidencia.setEditable(false);
         getContentPane().add(campoCepResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 200, 30));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel2.setText("Cep:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 30, -1));
+        jLabelCep.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelCep.setText("Cep:");
+        getContentPane().add(jLabelCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 200, 30, -1));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel4.setText("Rua:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
+        jLabelRua.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelRua.setText("Rua:");
+        getContentPane().add(jLabelRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 250, -1, -1));
 
         campoRuaResidencia.setEditable(false);
         getContentPane().add(campoRuaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 200, 30));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel3.setText("Localização Perigosa:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, 30));
+        jLabelLocaliPerigosa.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelLocaliPerigosa.setText("Localização Perigosa:");
+        getContentPane().add(jLabelLocaliPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 300, -1, 30));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel5.setText("Terreno Perigoso:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 110, 30));
+        jLabelTerrenoPerigo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelTerrenoPerigo.setText("Terreno Perigoso:");
+        getContentPane().add(jLabelTerrenoPerigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 360, 110, 30));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel6.setText("Estrutura Ameaçada:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, 30));
+        jLabelEstruturaAmea.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelEstruturaAmea.setText("Estrutura Ameaçada:");
+        getContentPane().add(jLabelEstruturaAmea, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 420, -1, 30));
 
         campoLocalizacaoPerigosa.setEditable(false);
         getContentPane().add(campoLocalizacaoPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 30, 30));
@@ -101,16 +101,16 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         campoEstruturaAmeacada.setEditable(false);
         getContentPane().add(campoEstruturaAmeacada, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 420, 30, 30));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel1.setText("Descrição:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 70, 20));
+        jLabelDescr.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelDescr.setText("Descrição:");
+        getContentPane().add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 70, 20));
 
         campoDescricaoResidencia.setEditable(false);
         getContentPane().add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 120, 30));
 
-        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel7.setText("UF:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, -1));
+        jLabelUF.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelUF.setText("UF:");
+        getContentPane().add(jLabelUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, -1));
 
         campoUFResidencia.setEditable(false);
         getContentPane().add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 120, 30));
@@ -165,8 +165,8 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRecusarSeguroActionPerformed
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
-        Painel_Corretor painel = new Painel_Corretor();
-        painel.setVisible(true);
+        Tela_ListaSolicitacoes telaLista = new Tela_ListaSolicitacoes();
+        telaLista.setVisible(true);
         dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
 
@@ -208,21 +208,21 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonContratarSeguro;
     private javax.swing.JButton buttonRecusarSeguro;
-    private javax.swing.JTextField campoCepResidencia;
-    private javax.swing.JTextField campoDescricaoResidencia;
-    private javax.swing.JTextField campoEstruturaAmeacada;
-    private javax.swing.JTextField campoLocalizacaoPerigosa;
-    private javax.swing.JTextField campoRuaResidencia;
-    private javax.swing.JTextField campoTerrenoPerigoso;
-    private javax.swing.JTextField campoUFResidencia;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    public javax.swing.JTextField campoCepResidencia;
+    public javax.swing.JTextField campoDescricaoResidencia;
+    public javax.swing.JTextField campoEstruturaAmeacada;
+    public javax.swing.JTextField campoLocalizacaoPerigosa;
+    public javax.swing.JTextField campoRuaResidencia;
+    public javax.swing.JTextField campoTerrenoPerigoso;
+    public javax.swing.JTextField campoUFResidencia;
     private javax.swing.JLabel jLabel8;
+    public javax.swing.JLabel jLabelCep;
+    public javax.swing.JLabel jLabelDescr;
+    public javax.swing.JLabel jLabelEstruturaAmea;
+    public javax.swing.JLabel jLabelLocaliPerigosa;
+    public javax.swing.JLabel jLabelRua;
+    public javax.swing.JLabel jLabelTerrenoPerigo;
+    public javax.swing.JLabel jLabelUF;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }
