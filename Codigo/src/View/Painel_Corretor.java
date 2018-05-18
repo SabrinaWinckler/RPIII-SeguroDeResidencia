@@ -174,11 +174,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jComboBoxOpcoesCorretor.setForeground(new java.awt.Color(110, 48, 110));
         jComboBoxOpcoesCorretor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visualizar Perfil", "Alterar minha senha" }));
         jComboBoxOpcoesCorretor.setToolTipText("");
-        jComboBoxOpcoesCorretor.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jComboBoxOpcoesCorretorMouseClicked(evt);
-            }
-        });
         jComboBoxOpcoesCorretor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxOpcoesCorretorActionPerformed(evt);
@@ -226,7 +221,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jComboBoxOpcoesCorretor.setVisible(true);
     }//GEN-LAST:event_buttonConfiguracaoActionPerformed
 
-    private void jComboBoxOpcoesCorretorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOpcoesCorretorMouseClicked
+    private void jComboBoxOpcoesCorretorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOpcoesCorretorActionPerformed
         String opcaoEscolhida;
         opcaoEscolhida = jComboBoxOpcoesCorretor.getSelectedItem().toString();
         if (opcaoEscolhida.equals("Visualizar Perfil")) {
@@ -234,9 +229,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
             telaCadastro.setVisible(true);
             dispose();
         }
-    }//GEN-LAST:event_jComboBoxOpcoesCorretorMouseClicked
-
-    private void jComboBoxOpcoesCorretorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOpcoesCorretorActionPerformed
     }//GEN-LAST:event_jComboBoxOpcoesCorretorActionPerformed
 
     /**
