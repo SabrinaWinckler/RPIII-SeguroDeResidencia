@@ -19,6 +19,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
         Tela_ListaSolicitacoes telaLista = new Tela_ListaSolicitacoes();
         telaLista.listaDeSolicitacoes.setVisible(false);
         jLabel2.setVisible(true);
+        buttonConfiguracao.setVisible(true);
+        jComboBoxOpcoesCorretor.setVisible(false);
         mostrarCamposDados(false);
     }
 
@@ -53,8 +55,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
         avaliarSinistroButton = new javax.swing.JButton();
         gerenciarServicosButton = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
-        jLabel6 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jComboBoxOpcoesCorretor = new javax.swing.JComboBox<>();
+        buttonConfiguracao = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
         menu1.setLabel("File");
@@ -83,11 +87,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        avaliarSolicitacaoButton.setBackground(new java.awt.Color(0, 153, 255));
+        avaliarSolicitacaoButton.setBackground(new java.awt.Color(255, 255, 255));
         avaliarSolicitacaoButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        avaliarSolicitacaoButton.setForeground(new java.awt.Color(255, 255, 255));
-        avaliarSolicitacaoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/approve-invoice.png"))); // NOI18N
-        avaliarSolicitacaoButton.setText("    Avaliar Solicitação        ");
+        avaliarSolicitacaoButton.setForeground(new java.awt.Color(110, 48, 110));
+        avaliarSolicitacaoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/contract.png"))); // NOI18N
+        avaliarSolicitacaoButton.setText("Avaliar Solicitação        ");
         avaliarSolicitacaoButton.setBorder(null);
         avaliarSolicitacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         avaliarSolicitacaoButton.addActionListener(new java.awt.event.ActionListener() {
@@ -95,13 +99,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 avaliarSolicitacaoButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarSolicitacaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 210, 180, 50));
+        getContentPane().add(avaliarSolicitacaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
         avaliarSolicitacaoButton.getAccessibleContext().setAccessibleDescription("");
 
-        visualizarSolicitacoesButton.setBackground(new java.awt.Color(0, 153, 255));
+        visualizarSolicitacoesButton.setBackground(new java.awt.Color(255, 255, 255));
         visualizarSolicitacoesButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        visualizarSolicitacoesButton.setForeground(new java.awt.Color(255, 255, 255));
-        visualizarSolicitacoesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/visible-opened-eye-interface-option.png"))); // NOI18N
+        visualizarSolicitacoesButton.setForeground(new java.awt.Color(110, 48, 110));
+        visualizarSolicitacoesButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/study.png"))); // NOI18N
         visualizarSolicitacoesButton.setText("Visualizar Solicitações");
         visualizarSolicitacoesButton.setToolTipText("");
         visualizarSolicitacoesButton.setBorder(null);
@@ -110,63 +114,88 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 visualizarSolicitacoesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 370, 180, 50));
+        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 180, 40));
 
-        sairButton.setBackground(new java.awt.Color(0, 153, 255));
+        sairButton.setBackground(new java.awt.Color(255, 255, 255));
         sairButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        sairButton.setForeground(new java.awt.Color(255, 255, 255));
-        sairButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/logout.png"))); // NOI18N
-        sairButton.setText("      Sair                     ");
+        sairButton.setForeground(new java.awt.Color(153, 0, 0));
+        sairButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit.png"))); // NOI18N
+        sairButton.setText("Sair                     ");
         sairButton.setBorder(null);
         sairButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 510, 180, 40));
+        getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 180, 40));
 
-        avaliarSinistroButton.setBackground(new java.awt.Color(0, 153, 255));
+        avaliarSinistroButton.setBackground(new java.awt.Color(255, 255, 255));
         avaliarSinistroButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        avaliarSinistroButton.setForeground(new java.awt.Color(255, 255, 255));
-        avaliarSinistroButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fire.png"))); // NOI18N
-        avaliarSinistroButton.setText("     Avaliar Sinistro            ");
+        avaliarSinistroButton.setForeground(new java.awt.Color(110, 48, 110));
+        avaliarSinistroButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/danger.png"))); // NOI18N
+        avaliarSinistroButton.setText("Avaliar Sinistro            ");
         avaliarSinistroButton.setBorder(null);
         avaliarSinistroButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 avaliarSinistroButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 180, 50));
+        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 180, 40));
 
-        gerenciarServicosButton.setBackground(new java.awt.Color(0, 153, 255));
+        gerenciarServicosButton.setBackground(new java.awt.Color(255, 255, 255));
         gerenciarServicosButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        gerenciarServicosButton.setForeground(new java.awt.Color(255, 255, 255));
-        gerenciarServicosButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/settings-symbol-of-a-cross-of-tools.png"))); // NOI18N
+        gerenciarServicosButton.setForeground(new java.awt.Color(110, 48, 110));
+        gerenciarServicosButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tools.png"))); // NOI18N
         gerenciarServicosButton.setText("Gerenciar Serviços ");
-        getContentPane().add(gerenciarServicosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 440, 180, 50));
+        getContentPane().add(gerenciarServicosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 180, 40));
 
-        homeButton.setBackground(new java.awt.Color(0, 153, 255));
+        homeButton.setBackground(new java.awt.Color(255, 255, 255));
         homeButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        homeButton.setForeground(new java.awt.Color(255, 255, 255));
-        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/home-icon-silhouette.png"))); // NOI18N
-        homeButton.setText("          Home               ");
+        homeButton.setForeground(new java.awt.Color(110, 48, 110));
+        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/home.png"))); // NOI18N
+        homeButton.setText("Home      ");
         homeButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 homeButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 130, 180, 50));
-
-        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Papel_Chumbo_roxo.jpg"))); // NOI18N
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 250, 500));
+        getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 180, 40));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel2.setText("Bem-Vindo ao Painel do Corretor");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 150, 410, 130));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 400, 30));
+
+        jLabel6.setBackground(new java.awt.Color(255, 255, 255));
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-roxoMenu.jpg"))); // NOI18N
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 250, 490));
+
+        jComboBoxOpcoesCorretor.setBackground(new java.awt.Color(0, 153, 255));
+        jComboBoxOpcoesCorretor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jComboBoxOpcoesCorretor.setForeground(new java.awt.Color(110, 48, 110));
+        jComboBoxOpcoesCorretor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visualizar Perfil", "Alterar minha senha" }));
+        jComboBoxOpcoesCorretor.setToolTipText("");
+        jComboBoxOpcoesCorretor.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jComboBoxOpcoesCorretorMouseClicked(evt);
+            }
+        });
+        jComboBoxOpcoesCorretor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxOpcoesCorretorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jComboBoxOpcoesCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 40, 130, 30));
+
+        buttonConfiguracao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/setting.png"))); // NOI18N
+        buttonConfiguracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonConfiguracaoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonConfiguracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 40, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -192,6 +221,23 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_homeButtonActionPerformed
+
+    private void buttonConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfiguracaoActionPerformed
+        jComboBoxOpcoesCorretor.setVisible(true);
+    }//GEN-LAST:event_buttonConfiguracaoActionPerformed
+
+    private void jComboBoxOpcoesCorretorMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jComboBoxOpcoesCorretorMouseClicked
+        String opcaoEscolhida;
+        opcaoEscolhida = jComboBoxOpcoesCorretor.getSelectedItem().toString();
+        if (opcaoEscolhida.equals("Visualizar Perfil")) {
+            Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
+            telaCadastro.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_jComboBoxOpcoesCorretorMouseClicked
+
+    private void jComboBoxOpcoesCorretorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOpcoesCorretorActionPerformed
+    }//GEN-LAST:event_jComboBoxOpcoesCorretorActionPerformed
 
     /**
      * @param args the command line arguments
@@ -232,8 +278,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton avaliarSinistroButton;
     private javax.swing.JButton avaliarSolicitacaoButton;
+    private javax.swing.JButton buttonConfiguracao;
     private javax.swing.JButton gerenciarServicosButton;
     private javax.swing.JButton homeButton;
+    private javax.swing.JComboBox<String> jComboBoxOpcoesCorretor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
