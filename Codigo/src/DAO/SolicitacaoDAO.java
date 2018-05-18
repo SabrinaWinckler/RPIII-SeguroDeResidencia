@@ -20,21 +20,19 @@ import java.util.logging.Logger;
  *
  * @author SABRINA
  */
-public class ResidenciaDAO {
-
+public class SolicitacaoDAO {
     public void create(Residencia residencia) {
-        System.out.println(residencia.toString());
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
 
-        try {//falta bairro, uf e cidade
-            stm = conexao.prepareStatement("INSERT INTO residencia(quantidadeGaragens, anoConstrucao, ufResidencia,"
+        try {
+            stm = conexao.prepareStatement("INSERT INTO residência(quantidadeGaragens, anoConstrucao, ufResidencia,"
                     + "quantidadeComodos, descricaoResidencia, areaTotal, cepResidencia, areaConstruida,"
-                    + "numeroAndares, enderecoResidencia, terrenoPerigoso, estruturaAmeacada, localizacaoPerigosa, quantidadeBanheiros)"
+                    + "numeroAndares, enderecoResidencia, terrenoPerigoso, estruturaAmeacada, localizaçãoPerigosa, quantidadeBanheiros)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             stm.setInt(1, residencia.getQntGaragens());
             stm.setInt(2, residencia.getAnoConstrucao());
-            stm.setString(3, residencia.getUfResidencia());
+            stm.setString(3, residencia.getufResidencia());
             stm.setLong(4, residencia.getQntComodos());
             stm.setString(5, residencia.getDescricaoRes());
             stm.setDouble(6, residencia.getAreaTotal());
@@ -76,7 +74,7 @@ public class ResidenciaDAO {
                 residencia.setRuaRes(rs.getString("enderecoResidencia"));
                 residencia.setTerrenoPerigoso(rs.getInt("terrenoPerigoso"));
                 residencia.setEstruturaAmeacada(rs.getInt("estruturaAmeacada"));
-                residencia.setLocalizacaoPerigosa(rs.getInt("localizacaoPerigosa"));
+                residencia.setLocalizacaoPerigosa(rs.getInt("localizaçãoPerigosa"));
                 listaDeResidecias.add(residencia);
             }
         } catch (SQLException ex) {

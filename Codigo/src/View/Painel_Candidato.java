@@ -668,8 +668,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         });
         painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
-
-        bg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
         painelP.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
@@ -763,11 +761,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
             Residencia residencia = new Residencia(uf.getText(),cidade.getText(), bairro.getText(), descRes.getText(), bens, numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato, anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
 
             Date dataSolicitacao = new Date();
-            //            for(int i = 0; i<residencia.getBens().size(); i++){
-                //              bemDao.create(residencia.getBens().get(i));
-                //        }
+            
+            System.out.println(residencia.toString());
             this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
-            this.residenciaDados.create(residencia);
 
             JOptionPane.showMessageDialog(painelP,"\n Sua solicitação foi enviada para avaliação!");
             JOptionPane.showMessageDialog(painelP, dataSolicitacao.toString() + "/n" + solicitacao.toString());
@@ -839,7 +835,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_addActionPerformed
  public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
-        bg.setIcon(new ImageIcon(pasta + "/imagens/Sem Título-1.jpg"));
+        bg.setIcon(new ImageIcon(pasta + "/imagens/barraSup.jpg"));
 
     }
     private void numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroActionPerformed
@@ -899,7 +895,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Painel_Candidato().setVisible(true);
+                
+                Painel_Candidato painel = new Painel_Candidato();
+                painel.gerarBackground();
+                painel.setVisible(true);
             }
         });
     }

@@ -1,6 +1,6 @@
 package dadosResidencia;
 
-import java.util.ArrayList;
+import DAO.ResidenciaDAO;
 import java.util.List;
 
 public class Residencia {
@@ -235,24 +235,20 @@ public class Residencia {
         this.areaConstruida = areaConstruida;
     }
 
-    public void registraResidencia() {
-
+    public String getUfResidencia() {
+        return ufResidencia;
     }
 
-    public void registraLocalizacao(String endereco, long cep) {
-
+    public String getCidade() {
+        return cidade;
     }
 
-    public void registraInfo(String descricao, int anoConstrucao) {
-
+    public String getBairro() {
+        return bairro;
     }
 
-    public void registraTamanho(float areaT, int numAndares, int qntGaragem, int qntComodo, int qntBanheiro) {
-
-    }
-
-    public void calculaNivelPericulosidade() {
-
+    public double getAreaConstruida() {
+        return areaConstruida;
     }
 
     public List<Bem> getBens() {
@@ -295,5 +291,18 @@ public class Residencia {
     public void setufResidencia(String ufResidencia) {
         this.ufResidencia = ufResidencia;
     }
+    public void registraResidencia(Residencia residencia, ResidenciaDAO dao) {
+        System.out.println(residencia.toString());
+        dao.create(residencia);
+    }
 
+    public void calculaNivelPericulosidade() {
+
+    }
+
+    @Override
+    public String toString() {
+        return "Residencia{" + "descricaoRes=" + descricaoRes + ", numRes=" + numRes + ", cepRes=" + cepRes + ", qntComodos=" + qntComodos + ", qntBanheiros=" + qntBanheiros + ", qntGaragens=" + qntGaragens + ", areaTotal=" + areaTotal + ", numAndares=" + numAndares + ", anoConstrucao=" + anoConstrucao + ", ruaRes=" + ruaRes + ", ufResidencia=" + ufResidencia + ", cidade=" + cidade + ", bairro=" + bairro + ", areaConstruida=" + areaConstruida + ", bens=" + bens + ", localizacaoPerigosa=" + localizacaoPerigosa + ", terrenoPerigoso=" + terrenoPerigoso + ", estruturaAmeacada=" + estruturaAmeacada + '}';
+    }
+    
 }
