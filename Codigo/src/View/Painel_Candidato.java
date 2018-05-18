@@ -668,6 +668,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         });
         painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
+
+        bg.setText("jLabel3");
         painelP.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
@@ -835,7 +837,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_addActionPerformed
  public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
-        bg.setIcon(new ImageIcon(pasta + "/imagens/barraSup.jpg"));
+        bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
 
     }
     private void numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroActionPerformed
