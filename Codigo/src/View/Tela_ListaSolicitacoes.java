@@ -6,8 +6,10 @@
 package View;
 
 import DAO.ResidenciaDAO;
+import DAO.SolicitacaoDAO;
 import Motor.Solicitacao;
 import dadosResidencia.Residencia;
+import SevicosSeguradora.SolicitacaoSeguro;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -33,8 +35,8 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     public void readTable() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
         modelo.setNumRows(0);
-        ResidenciaDAO dao = new ResidenciaDAO();
-        for (Residencia r : dao.read()) {
+        ResidenciaDAO daoResidencia = new ResidenciaDAO();
+        for (Residencia r : daoResidencia.read()) {
             modelo.addRow(new Object[]{
                 r.getCepRes(),
                 r.getRuaRes()
@@ -56,12 +58,9 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         jMenu1 = new javax.swing.JMenu();
         jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         voltarButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaDeSolicitacoes = new javax.swing.JTable();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         popupMenu1.setLabel("popupMenu1");
 
@@ -74,24 +73,18 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltarButton.setBackground(new java.awt.Color(0, 51, 51));
-        voltarButton.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        voltarButton.setBackground(new java.awt.Color(0, 153, 255));
+        voltarButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         voltarButton.setForeground(new java.awt.Color(255, 255, 255));
-        voltarButton.setText("Voltar");
+        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back.png"))); // NOI18N
+        voltarButton.setText("      Voltar");
+        voltarButton.setToolTipText("");
         voltarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 60, 70, 30));
-
-        jLabel4.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Seguro de Residência");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 240, 130));
-
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/imagem-de-fundo-preta-wallpaper-pc-computador-tela-gratis-ambiente-de-trabalho.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 550, 50));
+        getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 30));
 
         listaDeSolicitacoes.setBackground(new java.awt.Color(0, 153, 153));
         listaDeSolicitacoes.setModel(new javax.swing.table.DefaultTableModel(
@@ -99,12 +92,19 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
 
             },
             new String [] {
-                "CEP", "Endereço"
+                "Proprietário", "Data"
             }
         ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
             boolean[] canEdit = new boolean [] {
                 false, false
             };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
@@ -120,16 +120,10 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaDeSolicitacoes);
         listaDeSolicitacoes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, 530, 270));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 680, 400));
 
-        jLabel5.setFont(new java.awt.Font("Calibri", 1, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Seguro de Residência");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, -40, 240, 130));
-
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
-        jLabel3.setText("jLabel3");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 50, 550, 330));
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -186,9 +180,6 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
     private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable listaDeSolicitacoes;

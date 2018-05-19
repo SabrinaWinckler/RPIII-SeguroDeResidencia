@@ -7,6 +7,7 @@ package DAO;
 
 import DB.ConnectionFactory;
 import dadosResidencia.Residencia;
+import SevicosSeguradora.SolicitacaoSeguro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -18,70 +19,54 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author SABRINA
+ * @author Matheus Montanha
  */
 public class SolicitacaoDAO {
-    public void create(Residencia residencia) {
+
+    public void create(SolicitacaoSeguro solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-
         try {
-            stm = conexao.prepareStatement("INSERT INTO residência(quantidadeGaragens, anoConstrucao, ufResidencia,"
-                    + "quantidadeComodos, descricaoResidencia, areaTotal, cepResidencia, areaConstruida,"
-                    + "numeroAndares, enderecoResidencia, terrenoPerigoso, estruturaAmeacada, localizaçãoPerigosa, quantidadeBanheiros)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            stm.setInt(1, residencia.getQntGaragens());
-            stm.setInt(2, residencia.getAnoConstrucao());
-            stm.setString(3, residencia.getufResidencia());
-            stm.setLong(4, residencia.getQntComodos());
-            stm.setString(5, residencia.getDescricaoRes());
-            stm.setDouble(6, residencia.getAreaTotal());
-            stm.setLong(7, residencia.getCepRes());
-            stm.setDouble(8, residencia.getAreaConstrucao());
-            stm.setInt(9, residencia.getNumAndares());
-            stm.setString(10, residencia.getRuaRes());
-            stm.setInt(11, residencia.getTerrenoPerigoso());
-            stm.setInt(12, residencia.getEstruturaAmeacada());
-            stm.setInt(13, residencia.getLocalizacaoPerigosa());
-            stm.setInt(14, residencia.getQntBanheiros());
+            stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, valorSolicitacao, "
+                    + "dataVisitaResidencia, "
+                    + "aprovadaSolicitacao, motivoReprovacao, motivoAlteracao)VALUES(?,?,?,?,?,?)");
+            stm.setString(1, solicitacao.getDataSolicitacao());
+            stm.setFloat(2, solicitacao.getValorSolicitacao());
+            stm.setString(3, solicitacao.getDataVisitaResidencia());
+            stm.setString(4, solicitacao.getAprovadaSolicitacao());
+            stm.setString(5, solicitacao.getMotivoReprovacao());
+            stm.setString(6, solicitacao.getMotivoAlteracao());
             stm.executeUpdate();
-        } catch (SQLException ex) {
-            Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
 
-    public List<Residencia> read() {
+    public List<SolicitacaoSeguro> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Residencia> listaDeResidecias = new ArrayList<>();
+        ArrayList<SolicitacaoSeguro> listDeSolicitacoes = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM residência");
+            stmt = conexao.prepareStatement("SELECT * FROM solicitacaoseguro");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Residencia residencia = new Residencia();
-                residencia.setQntGaragens(rs.getInt("quantidadeGaragens"));
-                residencia.setAnoConstrucao(rs.getInt("anoConstrucao"));
-                residencia.setufResidencia(rs.getString("ufResidencia"));
-                residencia.setQntGaragens(rs.getInt("quantidadeComodos"));
-                residencia.setDescricaoRes(rs.getString("descricaoResidencia"));
-                residencia.setAreaTotal(rs.getFloat("areaTotal"));
-                residencia.setCepRes(rs.getLong("cepResidencia"));
-                residencia.setAreaConstruida(rs.getDouble("areaConstruida"));
-                residencia.setNumAndares(rs.getInt("numeroAndares"));
-                residencia.setRuaRes(rs.getString("enderecoResidencia"));
-                residencia.setTerrenoPerigoso(rs.getInt("terrenoPerigoso"));
-                residencia.setEstruturaAmeacada(rs.getInt("estruturaAmeacada"));
-                residencia.setLocalizacaoPerigosa(rs.getInt("localizaçãoPerigosa"));
-                listaDeResidecias.add(residencia);
+                SolicitacaoSeguro solicitacao = new SolicitacaoSeguro();
+                solicitacao.setDataSolicitacao(rs.getString("dataSolicitacao"));
+                solicitacao.setValorSolicitacao(rs.getFloat("valorSolicitacao"));
+                solicitacao.setDataVisitaResidencia(rs.getString("dataVisitaResidencia"));
+                solicitacao.setAprovadaSolicitacao(rs.getString("aprovadaSolicitacao"));
+                solicitacao.setMotivoReprovacao(rs.getString("motivoReprovacao"));
+                solicitacao.setMotivoAlteracao(rs.getString("motivoAlteracao"));
+                listDeSolicitacoes.add(solicitacao);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(ResidenciaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (SQLException e) {
+            Logger.getLogger(ResidenciaDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
-        return listaDeResidecias;
+        return listDeSolicitacoes;
     }
 }

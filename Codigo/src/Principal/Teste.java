@@ -6,11 +6,16 @@
 package Principal;
 
 import DAO.BemDAO;
+import DAO.CandidatoDAO;
+import DAO.PessoaDAO;
 import DAO.ResidenciaDAO;
+import DAO.SolicitacaoDAO;
+import DadosUsuarios.Candidato;
+import DadosUsuarios.Pessoa;
 import View.Tela_Login;
 import dadosResidencia.Bem;
-import dadosResidencia.Local;
 import dadosResidencia.Residencia;
+import SevicosSeguradora.SolicitacaoSeguro;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +29,8 @@ public class Teste {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        
+
+        //RESIDENCIA
         String descricaoRes = "Casa verde";
         int numRes = 410;
         long cepRes = 97547590;
@@ -39,25 +45,64 @@ public class Teste {
         int terrenoPerigoso = 5;
         int estruturaAmeacada = 5;
         int quantidadeDeBanheiros = 2;
-        
+
         ArrayList<Bem> bens = new ArrayList<>();
-        
+
+        //BEM
         String descricaoBem = "Sofa";
         float valorBem = 540;
         Bem bem = new Bem(descricaoBem, valorBem);
         bens.add(bem);
-        
+
         Residencia residencia = new Residencia(descricaoRes, numRes, cepRes, qntComodos, numAndares, qntGaragens, areaTotal, numAndares, anoConstrucao, bens, ruaRes, ufResidencia, areaConstruida, localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
-        
-        BemDAO bemDAO = new BemDAO();
-        bemDAO.create(bem);
-        
         ResidenciaDAO dao = new ResidenciaDAO();
         dao.create(residencia);
+
+        BemDAO bemDAO = new BemDAO();
+        bemDAO.create(bem);
+
+        /*
+        //CANDIDATO
+        String sexo = "Masculino";
+        long cep = 97547590;
+        String dataNescimento = "06/09/1998";
+        String uf = "RS";
+        String cidade = "Alegrete";
+        String bairro = "Centro";
+        //pessoa atributo
+        String nomePessoa = "Joaquina Paulina";
+        long cpf = 0345;
+        String endereco = "Joaquim Rodrigues Paim, 410";
+        String telefone = "034565236";
+        String email = "estranho@gmail.com";
+        String usuarioCliente = "jojoPaulin";
+        String senhaCliente = "0352635";
+
+        Pessoa pessoa = new Pessoa(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+        PessoaDAO pesDAO = new PessoaDAO();
+        pesDAO.create(pessoa);
         
+        Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
+        CandidatoDAO canDAO = new CandidatoDAO();
+        canDAO.create(candidato);
+        /*
+        //SOLICITACAO
+        String dataSolicitacao = "06/06/2018";
+        float valorSolicitacao = 250;
+        String dataVisitaResidencia = "09/08/2018";
+        String aprovadaSolicitacao = "Sim";
+        String motivoReprovacao = "Reprovada por ser perigosa";
+        String motivoAlteracao = "Sem alterações";
+
+        SolicitacaoSeguro solicitacao = new SolicitacaoSeguro(dataSolicitacao, valorSolicitacao, dataVisitaResidencia, aprovadaSolicitacao, motivoReprovacao, motivoAlteracao);
+
+        SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
+        solicitacaoDAO.create(solicitacao);
+        
+         */
         Tela_Login telaLogin = new Tela_Login();
-        
+
         telaLogin.setVisible(true);
     }
-    
+
 }
