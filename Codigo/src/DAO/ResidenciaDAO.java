@@ -27,7 +27,7 @@ public class ResidenciaDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
 
-        try {//falta bairro, uf e cidade
+        try {//falta bairro e cidade
             stm = conexao.prepareStatement("INSERT INTO residencia(quantidadeGaragens, anoConstrucao, ufResidencia,"
                     + "quantidadeComodos, descricaoResidencia, areaTotal, cepResidencia, areaConstruida,"
                     + "numeroAndares, enderecoResidencia, terrenoPerigoso, estruturaAmeacada, localizacaoPerigosa, quantidadeBanheiros)"
