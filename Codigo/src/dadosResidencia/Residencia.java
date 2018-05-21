@@ -26,9 +26,9 @@ public class Residencia {
     private String ruaRes;
 
     private String ufResidencia;
-    
+
     private String cidade;
-    
+
     private String bairro;
 
     private double areaConstruida;
@@ -44,7 +44,7 @@ public class Residencia {
     public Residencia() {
     }
 
-    public Residencia(String uf, String cidade, String bairro, String descricaoRes, List bem, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal,double areaC, int numAndares, int anoConstrucao, String ruaRes, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
+    public Residencia(String uf, String cidade, String bairro, String descricaoRes, List bem, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares, int anoConstrucao, String ruaRes, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
         this.descricaoRes = descricaoRes;
         this.numRes = numRes;
         this.cepRes = cepRes;
@@ -65,10 +65,6 @@ public class Residencia {
         this.terrenoPerigoso = terrenoPerigoso;
         this.estruturaAmeacada = estruturaAmeacada;
     }
-
-    
-
-   
 
     /**
      * @return the descricaoRes
@@ -291,9 +287,18 @@ public class Residencia {
     public void setufResidencia(String ufResidencia) {
         this.ufResidencia = ufResidencia;
     }
+
     public void registraResidencia(Residencia residencia, ResidenciaDAO dao) {
         System.out.println(residencia.toString());
         dao.create(residencia);
+    }
+
+    public void setCidade(String cidade) {
+        this.cidade = cidade;
+    }
+
+    public void setBairro(String bairro) {
+        this.bairro = bairro;
     }
 
     public void calculaNivelPericulosidade() {
@@ -304,5 +309,5 @@ public class Residencia {
     public String toString() {
         return "Residencia{" + "descricaoRes=" + descricaoRes + ", numRes=" + numRes + ", cepRes=" + cepRes + ", qntComodos=" + qntComodos + ", qntBanheiros=" + qntBanheiros + ", qntGaragens=" + qntGaragens + ", areaTotal=" + areaTotal + ", numAndares=" + numAndares + ", anoConstrucao=" + anoConstrucao + ", ruaRes=" + ruaRes + ", ufResidencia=" + ufResidencia + ", cidade=" + cidade + ", bairro=" + bairro + ", areaConstruida=" + areaConstruida + ", bens=" + bens + ", localizacaoPerigosa=" + localizacaoPerigosa + ", terrenoPerigoso=" + terrenoPerigoso + ", estruturaAmeacada=" + estruturaAmeacada + '}';
     }
-    
+
 }

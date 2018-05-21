@@ -5,27 +5,24 @@
  */
 package View;
 
+import javax.swing.ImageIcon;
+
 /**
  *
  * @author Matheus Montanha
  */
 public class Painel_Corretor extends javax.swing.JFrame {
 
+    int numero = 0;
+
     /**
      * Creates new form Painel_Corretor
      */
     public Painel_Corretor() {
         initComponents();
-        Tela_ListaSolicitacoes telaLista = new Tela_ListaSolicitacoes();
-        telaLista.listaDeSolicitacoes.setVisible(false);
-        jLabel2.setVisible(true);
+        jLabelBemVindoCorretor.setVisible(true);
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
-        mostrarCamposDados(false);
-    }
-
-    public void mostrarCamposDados(boolean condicao) {
-
     }
 
     /**
@@ -55,11 +52,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         avaliarSinistroButton = new javax.swing.JButton();
         gerenciarServicosButton = new javax.swing.JButton();
         homeButton = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
+        jLabelBemVindoCorretor = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxOpcoesCorretor = new javax.swing.JComboBox<>();
         buttonConfiguracao = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jLabelBarraSup = new javax.swing.JLabel();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -161,15 +158,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 180, 40));
 
-        jLabel2.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel2.setText("Bem-Vindo ao Painel do Corretor");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 400, 30));
+        jLabelBemVindoCorretor.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabelBemVindoCorretor.setText("Bem-Vindo ao Painel do Corretor");
+        getContentPane().add(jLabelBemVindoCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 400, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-roxoMenu.jpg"))); // NOI18N
         getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 70, 250, 490));
 
-        jComboBoxOpcoesCorretor.setBackground(new java.awt.Color(0, 153, 255));
+        jComboBoxOpcoesCorretor.setBackground(new java.awt.Color(110, 48, 110));
         jComboBoxOpcoesCorretor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jComboBoxOpcoesCorretor.setForeground(new java.awt.Color(110, 48, 110));
         jComboBoxOpcoesCorretor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visualizar Perfil", "Alterar minha senha" }));
@@ -189,14 +186,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         getContentPane().add(buttonConfiguracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(920, 0, 40, -1));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
+        jLabelBarraSup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
+        getContentPane().add(jLabelBarraSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void visualizarSolicitacoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarSolicitacoesButtonActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_visualizarSolicitacoesButtonActionPerformed
 
     private void avaliarSinistroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSinistroButtonActionPerformed
@@ -208,8 +205,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void avaliarSolicitacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSolicitacaoButtonActionPerformed
-        Tela_ListaSolicitacoes listaDeSolicitacoes = new Tela_ListaSolicitacoes();
-        listaDeSolicitacoes.setVisible(true);
+        jLabelBemVindoCorretor.setVisible(false);
+        Tela_ListaSolicitacoes telSolicitacao = new Tela_ListaSolicitacoes();
+        telSolicitacao.setVisible(true);
         dispose();
     }//GEN-LAST:event_avaliarSolicitacaoButtonActionPerformed
 
@@ -219,6 +217,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
     private void buttonConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfiguracaoActionPerformed
         jComboBoxOpcoesCorretor.setVisible(true);
+        if (numero == 1) {
+            jComboBoxOpcoesCorretor.setVisible(false);
+            numero = 0;
+        } else {
+            numero++;
+        }
     }//GEN-LAST:event_buttonConfiguracaoActionPerformed
 
     private void jComboBoxOpcoesCorretorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOpcoesCorretorActionPerformed
@@ -226,10 +230,16 @@ public class Painel_Corretor extends javax.swing.JFrame {
         opcaoEscolhida = jComboBoxOpcoesCorretor.getSelectedItem().toString();
         if (opcaoEscolhida.equals("Visualizar Perfil")) {
             Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
+            jComboBoxOpcoesCorretor.setVisible(false);
             telaCadastro.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_jComboBoxOpcoesCorretorActionPerformed
+
+    public void gerarBackground() {
+        String pasta = System.getProperty("user.dir");
+        jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));
+    }
 
     /**
      * @param args the command line arguments
@@ -262,7 +272,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Painel_Corretor().setVisible(true);
+                Painel_Corretor painelCorretor = new Painel_Corretor();
+                painelCorretor.setVisible(true);
             }
         });
     }
@@ -274,9 +285,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton gerenciarServicosButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JComboBox<String> jComboBoxOpcoesCorretor;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabelBarraSup;
+    private javax.swing.JLabel jLabelBemVindoCorretor;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu4;
     private javax.swing.JMenu jMenu5;

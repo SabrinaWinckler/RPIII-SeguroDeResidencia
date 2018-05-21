@@ -6,7 +6,6 @@
 package DadosUsuarios;
 
 import dadosResidencia.Residencia;
-import SevicosSeguradora.SolicitacaoSeguro;
 
 /**
  *
@@ -21,7 +20,10 @@ public class Candidato extends Pessoa {
     private String cidade;
     private String bairro;
 
-    public Candidato(String sexo, long cep, String dataNescimento, String nomePessoa, long cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente, String uf, String cidade, String bairro) {
+    public Candidato(String sexo, long cep, String dataNescimento, String nomePessoa,
+            long cpf, String endereco, String telefone, String email,
+            String usuarioCliente, String senhaCliente, String uf, String cidade,
+            String bairro) {
         super(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         this.sexo = sexo;
         this.cep = cep;
@@ -76,10 +78,6 @@ public class Candidato extends Pessoa {
     @Override
     public String toString() {
         return "Candidato{" + "sexo=" + sexo + ", cep=" + cep + ", dataNescimento=" + dataNescimento + '}';
-    }
-
-    public void enviarSolicitacaoSeguro(SolicitacaoSeguro solicitacao) throws Exception {
-
     }
 
     /**

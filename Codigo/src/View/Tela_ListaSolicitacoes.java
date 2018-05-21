@@ -7,9 +7,9 @@ package View;
 
 import DAO.ResidenciaDAO;
 import DAO.SolicitacaoDAO;
+import Motor.Gerenciador;
 import Motor.Solicitacao;
 import dadosResidencia.Residencia;
-import SevicosSeguradora.SolicitacaoSeguro;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
@@ -35,13 +35,18 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     public void readTable() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
         modelo.setNumRows(0);
-        ResidenciaDAO daoResidencia = new ResidenciaDAO();
+        Gerenciador motor = new Gerenciador();
+        for (Residencia residencia : motor.listaDeResidenciasPendentes()) {
+            modelo.addRow(new Object[]{});
+        }
+        /*
         for (Residencia r : daoResidencia.read()) {
             modelo.addRow(new Object[]{
                 r.getCepRes(),
                 r.getRuaRes()
             });
         }
+         */
     }
 
     /**

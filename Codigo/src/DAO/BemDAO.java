@@ -29,7 +29,7 @@ public class BemDAO {
         int idResidencia = -1;
         ResultSet rs;
         try {
-            stm = conexao.prepareStatement("SELECT idResidencia FROM residência");
+            stm = conexao.prepareStatement("SELECT idResidencia FROM residencia");
             rs = stm.executeQuery();
             while (rs.next()) {
                 idResidencia = rs.getInt("idResidencia");
@@ -58,7 +58,6 @@ public class BemDAO {
                 Bem bem = new Bem();
                 bem.setDescricaoBem(rs.getString("descricaoBem"));
                 bem.setValorEstimadoBem(rs.getFloat("valorBem"));
-
                 listaDeBens.add(bem);
             }
         } catch (SQLException e) {

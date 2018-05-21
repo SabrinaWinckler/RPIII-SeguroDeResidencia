@@ -5,7 +5,7 @@
  */
 package View;
 
-import Motor.Motor;
+import Motor.Gerenciador;
 import Motor.Solicitacao;
 //import com.sun.xml.internal.ws.api.streaming.XMLStreamReaderFactory;
 import javax.swing.JFrame;
@@ -18,7 +18,7 @@ import sun.awt.im.InputMethodJFrame;
  */
 public class Tela_EnviarSolicitacao extends javax.swing.JFrame {
 
-    Motor motor = new Motor();
+    Gerenciador motor = new Gerenciador();
 
     /**
      * Creates new form Tela_EnviarSolicitacao

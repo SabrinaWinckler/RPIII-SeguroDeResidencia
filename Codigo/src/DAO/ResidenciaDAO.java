@@ -26,26 +26,34 @@ public class ResidenciaDAO {
         System.out.println(residencia.toString());
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-
-        try {//falta bairro e cidade
-            stm = conexao.prepareStatement("INSERT INTO residencia(quantidadeGaragens, anoConstrucao, ufResidencia,"
-                    + "quantidadeComodos, descricaoResidencia, areaTotal, cepResidencia, areaConstruida,"
-                    + "numeroAndares, enderecoResidencia, terrenoPerigoso, estruturaAmeacada, localizacaoPerigosa, quantidadeBanheiros)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
-            stm.setInt(1, residencia.getQntGaragens());
-            stm.setInt(2, residencia.getAnoConstrucao());
-            stm.setString(3, residencia.getUfResidencia());
-            stm.setLong(4, residencia.getQntComodos());
+        ResultSet rs = null;
+        int idCandidato = 12;
+        try {
+            stm = conexao.prepareStatement("SELECT idPessoa from candidato");
+            //idCandidato = rs.getInt("idPessoa");
+            stm = conexao.prepareStatement("INSERT INTO residencia(idProprietario,ufResidencia,"
+                    + " cidade, bairro, descricaoResidencia, "
+                    + "cepResidencia, enderecoResidencia, areaTotal,"
+                    + " areaConstruida, anoConstrucao, estruturaAmeacada, localizacaoPerigosa, "
+                    + "terrenoPerigoso, quantidadeComodos, quantidadeBanheiros, quantidadeGaragens, "
+                    + "numeroAndares)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            stm.setInt(1, idCandidato);
+            stm.setString(2, residencia.getUfResidencia());
+            stm.setString(3, residencia.getCidade());
+            stm.setString(4, residencia.getBairro());
             stm.setString(5, residencia.getDescricaoRes());
-            stm.setDouble(6, residencia.getAreaTotal());
-            stm.setLong(7, residencia.getCepRes());
-            stm.setDouble(8, residencia.getAreaConstrucao());
-            stm.setInt(9, residencia.getNumAndares());
-            stm.setString(10, residencia.getRuaRes());
-            stm.setInt(11, residencia.getTerrenoPerigoso());
-            stm.setInt(12, residencia.getEstruturaAmeacada());
-            stm.setInt(13, residencia.getLocalizacaoPerigosa());
-            stm.setInt(14, residencia.getQntBanheiros());
+            stm.setLong(6, residencia.getCepRes());
+            stm.setString(7, residencia.getRuaRes());
+            stm.setFloat(8, residencia.getAreaTotal());
+            stm.setDouble(9, residencia.getAreaConstruida());
+            stm.setInt(10, residencia.getAnoConstrucao());
+            stm.setInt(11, residencia.getEstruturaAmeacada());
+            stm.setInt(12, residencia.getLocalizacaoPerigosa());
+            stm.setInt(13, residencia.getTerrenoPerigoso());
+            stm.setInt(14, residencia.getQntComodos());
+            stm.setInt(15, residencia.getQntBanheiros());
+            stm.setInt(16, residencia.getQntGaragens());
+            stm.setInt(17, residencia.getNumAndares());
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -60,7 +68,7 @@ public class ResidenciaDAO {
         ResultSet rs = null;
         ArrayList<Residencia> listaDeResidecias = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM residência");
+            stmt = conexao.prepareStatement("SELECT * FROM residencia");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Residencia residencia = new Residencia();
@@ -77,6 +85,9 @@ public class ResidenciaDAO {
                 residencia.setTerrenoPerigoso(rs.getInt("terrenoPerigoso"));
                 residencia.setEstruturaAmeacada(rs.getInt("estruturaAmeacada"));
                 residencia.setLocalizacaoPerigosa(rs.getInt("localizacaoPerigosa"));
+                residencia.setCidade(rs.getString("cidade"));
+                residencia.setBairro(rs.getString("bairro"));
+                residencia.setQntBanheiros(rs.getInt("quantidadeBanheiros"));
                 listaDeResidecias.add(residencia);
             }
         } catch (SQLException ex) {

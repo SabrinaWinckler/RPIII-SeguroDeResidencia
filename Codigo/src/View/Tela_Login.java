@@ -6,7 +6,7 @@
 package View;
 
 import DadosUsuarios.Candidato;
-import Motor.Motor;
+import Motor.Gerenciador;
 import javax.swing.JOptionPane;
 
 /**
@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
  */
 public class Tela_Login extends javax.swing.JFrame {
 
-    Motor motor = new Motor();
+    Gerenciador motor = new Gerenciador();
 
     /**
      * Creates new form Tela_Login

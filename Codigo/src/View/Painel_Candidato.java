@@ -22,10 +22,12 @@ import javax.swing.JOptionPane;
  * @author Matheus Montanha
  */
 public class Painel_Candidato extends javax.swing.JFrame {
-     Solicitacao solicitacao;
-     List bem;
-     ResidenciaDAO residenciaDados;
-     BemDAO bemDao;
+
+    Solicitacao solicitacao;
+    List bem;
+    ResidenciaDAO residenciaDados;
+    BemDAO bemDao;
+
     /**
      * Creates new form Painel_Corretor
      */
@@ -39,7 +41,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         bem = new ArrayList();
         residenciaDados = new ResidenciaDAO();
         bemDao = new BemDAO();
-        
+
     }
 
     /**
@@ -755,19 +757,19 @@ public class Painel_Candidato extends javax.swing.JFrame {
             int estrutura = estruturaA.getValue();
 
             List bens = new ArrayList<Bem>();
-            for(int i = 0; i<this.bem.size(); i++){
+            for (int i = 0; i < this.bem.size(); i++) {
                 bens.add(bem.get(i));
 
             }
 
-            Residencia residencia = new Residencia(uf.getText(),cidade.getText(), bairro.getText(), descRes.getText(), bens, numeroCandidato , cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato, anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
+            Residencia residencia = new Residencia(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(), bens, numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato, anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
 
             Date dataSolicitacao = new Date();
-            
-            System.out.println(residencia.toString());
-            this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
 
-            JOptionPane.showMessageDialog(painelP,"\n Sua solicitação foi enviada para avaliação!");
+            System.out.println(residencia.toString());
+            // this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
+
+            JOptionPane.showMessageDialog(painelP, "\n Sua solicitação foi enviada para avaliação!");
             JOptionPane.showMessageDialog(painelP, dataSolicitacao.toString() + "/n" + solicitacao.toString());
 
         } catch (Exception e) {
@@ -835,7 +837,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_addActionPerformed
- public void gerarBackground() {
+    public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
 
@@ -897,7 +899,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                
+
                 Painel_Candidato painel = new Painel_Candidato();
                 painel.gerarBackground();
                 painel.setVisible(true);

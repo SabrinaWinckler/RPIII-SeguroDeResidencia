@@ -61,6 +61,8 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         ButtonContratarSeguro = new javax.swing.JButton();
         buttonRecusarSeguro = new javax.swing.JButton();
         voltarButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,14 +105,14 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
 
         jLabelDescr.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelDescr.setText("Descrição:");
-        getContentPane().add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 190, 70, 20));
+        getContentPane().add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 300, 70, 20));
 
         campoDescricaoResidencia.setEditable(false);
-        getContentPane().add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 120, 30));
+        getContentPane().add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 290, 120, 30));
 
         jLabelUF.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelUF.setText("UF:");
-        getContentPane().add(jLabelUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 250, -1, -1));
+        getContentPane().add(jLabelUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 20, -1));
 
         campoUFResidencia.setEditable(false);
         getContentPane().add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 240, 120, 30));
@@ -149,6 +151,13 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
             }
         });
         getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 30));
+
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setText("Cidade:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
+
+        jTextField1.setEditable(false);
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 190, 120, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
@@ -215,6 +224,7 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     public javax.swing.JTextField campoRuaResidencia;
     public javax.swing.JTextField campoTerrenoPerigoso;
     public javax.swing.JTextField campoUFResidencia;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
     public javax.swing.JLabel jLabelCep;
     public javax.swing.JLabel jLabelDescr;
@@ -223,6 +233,7 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelRua;
     public javax.swing.JLabel jLabelTerrenoPerigo;
     public javax.swing.JLabel jLabelUF;
+    private javax.swing.JTextField jTextField1;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

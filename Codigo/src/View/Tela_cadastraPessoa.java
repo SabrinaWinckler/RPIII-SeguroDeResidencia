@@ -6,7 +6,7 @@
 package View;
 
 import DadosUsuarios.Candidato;
-import Motor.Motor;
+import Motor.Gerenciador;
 
 /**
  *
@@ -27,7 +27,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private String uf;
     private String cidade;
     private String bairro;
-    Motor motor = new Motor();
+    Gerenciador motor = new Gerenciador();
 
     /**
      * Creates new form Tela_cadastraPessoa
@@ -236,7 +236,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         uf = ufComboBox.getSelectedItem().toString();
 
         Candidato candidato = new Candidato(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
-        motor.cadastrarCliente(candidato);
+        //motor.cadastrarCliente(candidato);
         Tela_Login telaLogin = new Tela_Login();
         telaLogin.setVisible(true);
         dispose();

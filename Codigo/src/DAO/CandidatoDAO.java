@@ -29,13 +29,16 @@ public class CandidatoDAO {
         PreparedStatement stm = null;
 
         try {
-            stm = conexao.prepareStatement("INSERT INTO candidato(cep, sexo, uf, bairro, cidade, dataNascimento)VALUES(?,?,?,?,?,?)");
+            stm = conexao.prepareStatement("INSERT INTO candidato(cep, sexo, idPessoa, "
+                    + "ufCandidato, cidadeCandidato,"
+                    + " bairroCandidato, dataNascimento)VALUES(?,?,?,?,?,?,?)");
             stm.setLong(1, candidato.getCep());
             stm.setString(2, candidato.getSexo());
-            stm.setString(3, candidato.getUf());
-            stm.setString(4, candidato.getBairro());
+            stm.setInt(3, 27);
+            stm.setString(4, candidato.getUf());
             stm.setString(5, candidato.getCidade());
-            stm.setString(6, candidato.getDataNescimento());
+            stm.setString(6, candidato.getBairro());
+            stm.setString(7, candidato.getDataNescimento());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -56,6 +59,7 @@ public class CandidatoDAO {
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Candidato> listaDeCandidato = new ArrayList<>();
+        int i = 0;
         try {
             stmt = conexao.prepareStatement("SELECT * FROM candidato");
             rs = stmt.executeQuery();
@@ -66,8 +70,15 @@ public class CandidatoDAO {
                 bairro = rs.getString("bairro");
                 cidade = rs.getString("cidade");
                 dataNescimento = rs.getString("dataNascimento");
-                Candidato candidato = new Candidato(sexo, cep, dataNescimento, listaDePessoas.get(0).getNomePessoa(), listaDePessoas.get(0).getCpf(), listaDePessoas.get(0).getEndereco(),
-                        listaDePessoas.get(0).getTelefone(), listaDePessoas.get(0).getEmail(), listaDePessoas.get(0).getUsuarioCliente(), listaDePessoas.get(0).getSenhaCliente(), uf, cidade, bairro);
+                Candidato candidato = new Candidato(sexo, cep, dataNescimento,
+                        listaDePessoas.get(i).getNomePessoa(),
+                        listaDePessoas.get(i).getCpf(),
+                        listaDePessoas.get(i).getEndereco(),
+                        listaDePessoas.get(i).getTelefone(),
+                        listaDePessoas.get(i).getEmail(),
+                        listaDePessoas.get(i).getUsuarioCliente(),
+                        listaDePessoas.get(i).getSenhaCliente(), uf, cidade, bairro);
+                i++;
                 listaDeCandidato.add(candidato);
 
             }
