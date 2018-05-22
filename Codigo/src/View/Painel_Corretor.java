@@ -88,7 +88,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         avaliarSolicitacaoButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         avaliarSolicitacaoButton.setForeground(new java.awt.Color(110, 48, 110));
         avaliarSolicitacaoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/contract.png"))); // NOI18N
-        avaliarSolicitacaoButton.setText("Avaliar Solicitação        ");
+        avaliarSolicitacaoButton.setText("Avaliar Residência        ");
         avaliarSolicitacaoButton.setBorder(null);
         avaliarSolicitacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         avaliarSolicitacaoButton.addActionListener(new java.awt.event.ActionListener() {

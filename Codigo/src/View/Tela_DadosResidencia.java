@@ -11,6 +11,7 @@ import Motor.Solicitacao;
 import dadosResidencia.Residencia;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -39,6 +40,12 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         campoCPFCandidato.setText("" + listaDeSolicitacao.get(0).getResidencia().getCandidato().getCpf());
         campoEmailCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getEmail());
         campoTelefoneCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getTelefone());
+        campoQuantidadeComodos.setText("" + listaDeSolicitacao.get(0).getResidencia().getQntComodos());
+        campoQuantidadeDeBanheiros.setText("" + listaDeSolicitacao.get(0).getResidencia().getQntBanheiros());
+        campoQuantidadeDeGaragens.setText("" + listaDeSolicitacao.get(0).getResidencia().getQntGaragens());
+        campoAreaConstruida.setText("" + listaDeSolicitacao.get(0).getResidencia().getAreaConstruida());
+        campoAnoConstrucao.setText("" + listaDeSolicitacao.get(0).getResidencia().getAnoConstrucao());
+        campoAreaTotal.setText("" + listaDeSolicitacao.get(0).getResidencia().getAreaTotal());
     }
 
     /**
@@ -64,7 +71,7 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         campoDescricaoResidencia = new javax.swing.JTextField();
         jLabelUF = new javax.swing.JLabel();
         campoUFResidencia = new javax.swing.JTextField();
-        ButtonContratarSeguro = new javax.swing.JButton();
+        ButtonAprovarSolicitacao = new javax.swing.JButton();
         buttonRecusarSeguro = new javax.swing.JButton();
         voltarButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -80,12 +87,29 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         campoCPFCandidato = new javax.swing.JTextField();
         campoEmailCandidato = new javax.swing.JTextField();
         campoTelefoneCandidato = new javax.swing.JTextField();
+        buttonEditarSolicitacao = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator4 = new javax.swing.JSeparator();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        campoQuantidadeComodos = new javax.swing.JTextField();
+        campoQuantidadeDeBanheiros = new javax.swing.JTextField();
+        campoQuantidadeDeGaragens = new javax.swing.JTextField();
+        campoAnoConstrucao = new javax.swing.JTextField();
+        campoAreaConstruida = new javax.swing.JTextField();
+        campoAreaTotal = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         campoCepResidencia.setEditable(false);
+        campoCepResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         getContentPane().add(campoCepResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 180, 200, 30));
 
         jLabelCep.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -97,53 +121,59 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         getContentPane().add(jLabelRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 240, -1, -1));
 
         campoRuaResidencia.setEditable(false);
+        campoRuaResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         getContentPane().add(campoRuaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 230, 200, 30));
 
         jLabelLocaliPerigosa.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelLocaliPerigosa.setText("Localização Perigosa:");
-        getContentPane().add(jLabelLocaliPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 290, -1, 30));
+        getContentPane().add(jLabelLocaliPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(15, 290, 130, 30));
 
         jLabelTerrenoPerigo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelTerrenoPerigo.setText("Terreno Perigoso:");
-        getContentPane().add(jLabelTerrenoPerigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 110, 30));
+        getContentPane().add(jLabelTerrenoPerigo, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 110, 30));
 
         jLabelEstruturaAmea.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelEstruturaAmea.setText("Estrutura Ameaçada:");
-        getContentPane().add(jLabelEstruturaAmea, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 410, -1, 30));
+        getContentPane().add(jLabelEstruturaAmea, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 390, -1, 30));
 
         campoLocalizacaoPerigosa.setEditable(false);
+        campoLocalizacaoPerigosa.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         getContentPane().add(campoLocalizacaoPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 290, 30, 30));
 
         campoTerrenoPerigoso.setEditable(false);
-        getContentPane().add(campoTerrenoPerigoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 350, 30, 30));
+        campoTerrenoPerigoso.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoTerrenoPerigoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 340, 30, 30));
 
         campoEstruturaAmeacada.setEditable(false);
-        getContentPane().add(campoEstruturaAmeacada, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 410, 30, 30));
+        campoEstruturaAmeacada.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoEstruturaAmeacada, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 390, 30, 30));
 
         jLabelDescr.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelDescr.setText("Descrição:");
-        getContentPane().add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 290, 70, 20));
+        getContentPane().add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 70, 20));
 
         campoDescricaoResidencia.setEditable(false);
-        getContentPane().add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, 190, 50));
+        campoDescricaoResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 260, 190, 50));
 
         jLabelUF.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelUF.setText("UF:");
-        getContentPane().add(jLabelUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 230, 20, -1));
+        getContentPane().add(jLabelUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 230, 20, -1));
 
         campoUFResidencia.setEditable(false);
-        getContentPane().add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 90, 30));
+        campoUFResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 220, 90, 30));
 
-        ButtonContratarSeguro.setBackground(new java.awt.Color(0, 153, 255));
-        ButtonContratarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        ButtonContratarSeguro.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonContratarSeguro.setText("Aprovada");
-        ButtonContratarSeguro.addActionListener(new java.awt.event.ActionListener() {
+        ButtonAprovarSolicitacao.setBackground(new java.awt.Color(0, 153, 255));
+        ButtonAprovarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ButtonAprovarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonAprovarSolicitacao.setText("Aprovada");
+        ButtonAprovarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonContratarSeguroActionPerformed(evt);
+                ButtonAprovarSolicitacaoActionPerformed(evt);
             }
         });
-        getContentPane().add(ButtonContratarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 520, 100, 30));
+        getContentPane().add(ButtonAprovarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(730, 520, 100, 30));
 
         buttonRecusarSeguro.setBackground(new java.awt.Color(204, 0, 0));
         buttonRecusarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -171,50 +201,115 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Cidade:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, -1, -1));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 190, -1, -1));
 
         campoCidadeResidencia.setEditable(false);
-        getContentPane().add(campoCidadeResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 180, 120, 30));
+        campoCidadeResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoCidadeResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 180, 120, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("Dados Residência: ");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, -1, -1));
 
         jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 150, 10, 360));
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 10, 200));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel3.setText("Dados Candidato:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 140, -1, -1));
+        jLabel3.setText("Dados Proprietário:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 210, -1, 20));
 
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Nome:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 190, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 250, 40, 20));
 
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel5.setText("CPF:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 230, -1, -1));
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(780, 290, -1, 20));
 
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel6.setText("Email: ");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 270, -1, -1));
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(770, 330, 40, 20));
 
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Telefone:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(750, 370, 60, 20));
 
         campoNomeCandidato.setEditable(false);
-        getContentPane().add(campoNomeCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 180, 160, 30));
+        campoNomeCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoNomeCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 240, 160, 30));
 
         campoCPFCandidato.setEditable(false);
-        getContentPane().add(campoCPFCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 220, 160, 30));
+        campoCPFCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoCPFCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 280, 160, 30));
 
         campoEmailCandidato.setEditable(false);
-        campoEmailCandidato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoEmailCandidatoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(campoEmailCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 260, 160, 30));
+        campoEmailCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoEmailCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 320, 160, 30));
 
         campoTelefoneCandidato.setEditable(false);
-        getContentPane().add(campoTelefoneCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 300, 160, 30));
+        campoTelefoneCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoTelefoneCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 360, 160, 30));
+
+        buttonEditarSolicitacao.setBackground(new java.awt.Color(0, 0, 102));
+        buttonEditarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonEditarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
+        buttonEditarSolicitacao.setText("Editar");
+        buttonEditarSolicitacao.setMaximumSize(new java.awt.Dimension(87, 23));
+        buttonEditarSolicitacao.setMinimumSize(new java.awt.Dimension(84, 23));
+        getContentPane().add(buttonEditarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, 100, 30));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, -1, -1));
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 280, 10));
+        getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 280, 10));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setText("Quantidade de Comodos:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, -1, -1));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel11.setText("Quantidade de Banheiros:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel12.setText("Quantidade de Garagens:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 420, -1, -1));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel13.setText("Area Construida:");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 450, -1, -1));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel14.setText("Area Total:");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 500, 70, -1));
+
+        jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel15.setText("Ano de Construção:");
+        getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 460, -1, -1));
+
+        campoQuantidadeComodos.setEditable(false);
+        campoQuantidadeComodos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        campoQuantidadeComodos.setPreferredSize(new java.awt.Dimension(6, 21));
+        getContentPane().add(campoQuantidadeComodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 330, 30, 30));
+
+        campoQuantidadeDeBanheiros.setEditable(false);
+        campoQuantidadeDeBanheiros.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        campoQuantidadeDeBanheiros.setPreferredSize(new java.awt.Dimension(6, 21));
+        getContentPane().add(campoQuantidadeDeBanheiros, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 370, 30, 30));
+
+        campoQuantidadeDeGaragens.setEditable(false);
+        campoQuantidadeDeGaragens.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoQuantidadeDeGaragens, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 410, 30, 30));
+
+        campoAnoConstrucao.setEditable(false);
+        campoAnoConstrucao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoAnoConstrucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 450, 40, 30));
+
+        campoAreaConstruida.setEditable(false);
+        campoAreaConstruida.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoAreaConstruida, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 440, 60, 30));
+
+        campoAreaTotal.setEditable(false);
+        campoAreaTotal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoAreaTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 490, 60, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
@@ -222,23 +317,31 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void ButtonContratarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonContratarSeguroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ButtonContratarSeguroActionPerformed
+    private void ButtonAprovarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacaoActionPerformed
+
+    }//GEN-LAST:event_ButtonAprovarSolicitacaoActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
-        // TODO add your handling code here:
+        int controle = 0;
+        while (controle == 0) {
+            String motivo = JOptionPane.showInputDialog(rootPane, "Digite o motivo da reprovação, por favor:");
+            if (motivo.equalsIgnoreCase("") || motivo.equalsIgnoreCase(" ")) {
+                JOptionPane.showConfirmDialog(rootPane, "O campo de texto não ser deixado em branco."
+                        + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
+            } else {
+                controle = 1;
+            }
+        }
     }//GEN-LAST:event_buttonRecusarSeguroActionPerformed
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
-        Tela_ListaSolicitacoes telaLista = new Tela_ListaSolicitacoes();
-        telaLista.setVisible(true);
-        dispose();
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja retornar a lista de solicitações?");
+        if (resposta == 0) {
+            Tela_ListaSolicitacoes telaLista = new Tela_ListaSolicitacoes();
+            telaLista.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_voltarButtonActionPerformed
-
-    private void campoEmailCandidatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoEmailCandidatoActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoEmailCandidatoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -276,8 +379,12 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ButtonContratarSeguro;
+    private javax.swing.JButton ButtonAprovarSolicitacao;
+    private javax.swing.JButton buttonEditarSolicitacao;
     private javax.swing.JButton buttonRecusarSeguro;
+    private javax.swing.JTextField campoAnoConstrucao;
+    private javax.swing.JTextField campoAreaConstruida;
+    private javax.swing.JTextField campoAreaTotal;
     private javax.swing.JTextField campoCPFCandidato;
     public javax.swing.JTextField campoCepResidencia;
     private javax.swing.JTextField campoCidadeResidencia;
@@ -286,11 +393,20 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     public javax.swing.JTextField campoEstruturaAmeacada;
     public javax.swing.JTextField campoLocalizacaoPerigosa;
     private javax.swing.JTextField campoNomeCandidato;
+    private javax.swing.JTextField campoQuantidadeComodos;
+    private javax.swing.JTextField campoQuantidadeDeBanheiros;
+    private javax.swing.JTextField campoQuantidadeDeGaragens;
     public javax.swing.JTextField campoRuaResidencia;
     private javax.swing.JTextField campoTelefoneCandidato;
     public javax.swing.JTextField campoTerrenoPerigoso;
     public javax.swing.JTextField campoUFResidencia;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -306,6 +422,9 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     public javax.swing.JLabel jLabelTerrenoPerigo;
     public javax.swing.JLabel jLabelUF;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JSeparator jSeparator4;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }
