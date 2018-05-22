@@ -34,7 +34,7 @@ public class CandidatoDAO {
                     + " bairroCandidato, dataNascimento)VALUES(?,?,?,?,?,?,?)");
             stm.setLong(1, candidato.getCep());
             stm.setString(2, candidato.getSexo());
-            stm.setInt(3, 27);
+            stm.setInt(3, 33);
             stm.setString(4, candidato.getUf());
             stm.setString(5, candidato.getCidade());
             stm.setString(6, candidato.getBairro());

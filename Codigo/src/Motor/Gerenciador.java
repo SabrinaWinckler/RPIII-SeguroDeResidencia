@@ -10,6 +10,7 @@ import DAO.ResidenciaDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
 import dadosResidencia.Residencia;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -79,5 +80,39 @@ public class Gerenciador {
     public List<Solicitacao> listaDeResidenciasPendentes() {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         return daoSolicitacao.read();
+    }
+
+    public List<Solicitacao> organizarListaDeSolicitacoes() {
+        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+        List<Solicitacao> listaDeSolicitacoes;
+        listaDeSolicitacoes = daoSolicitacao.read();
+        boolean houveTroca;
+        if (listaDeSolicitacoes.size() >= 2) {
+            do {
+                houveTroca = false;
+                for (int i = 0; i < listaDeSolicitacoes.size() - 2; i++) {
+                    if (listaDeSolicitacoes.get(i).getDataSolicitacao().after(listaDeSolicitacoes.get(i + 1).getDataVisitaResidencia())) {
+                        Solicitacao temp = listaDeSolicitacoes.get(i);
+                        listaDeSolicitacoes.set(i, listaDeSolicitacoes.get(i + 1));
+                        listaDeSolicitacoes.set(i + 1, temp);
+                        houveTroca = true;
+                    }
+                }
+                if (!houveTroca) {
+                    break;
+                }
+                for (int i = listaDeSolicitacoes.size() - 2; i >= 0; i--) {
+                    if (listaDeSolicitacoes.get(i).getDataSolicitacao().after(listaDeSolicitacoes.get(i + 1).getDataVisitaResidencia())) {
+                        Solicitacao temp = listaDeSolicitacoes.get(i);
+                        listaDeSolicitacoes.set(i, listaDeSolicitacoes.get(i + 1));
+                        listaDeSolicitacoes.set(i + 1, temp);
+                        houveTroca = true;
+                    }
+                }
+            } while (houveTroca);
+            return listaDeSolicitacoes;
+        } else {
+            return listaDeSolicitacoes;
+        }
     }
 }

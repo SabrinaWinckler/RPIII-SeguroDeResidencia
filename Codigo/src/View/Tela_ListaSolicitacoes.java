@@ -36,7 +36,7 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
         modelo.setNumRows(0);
         Gerenciador motor = new Gerenciador();
-        for (Solicitacao solicitacao : motor.listaDeResidenciasPendentes()) {
+        for (Solicitacao solicitacao : motor.organizarListaDeSolicitacoes()) {
             modelo.addRow(new Object[]{
                 solicitacao.getResidencia().getCandidato().getNomePessoa(),
                 solicitacao.getDataSolicitacao()
