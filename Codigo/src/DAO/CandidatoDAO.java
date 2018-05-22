@@ -48,20 +48,16 @@ public class CandidatoDAO {
     }
 
     public List<Candidato> read() {
-        String sexo;
-        long cep;
-        String dataNescimento;
-        String uf, cidade, bairro;
-        PessoaDAO pessoaDAO = new PessoaDAO();
-        List<Pessoa> listaDePessoas;
-        listaDePessoas = pessoaDAO.read();
+        long cep, cpf;
+        String dataNescimento, endereco, sexo;
+        String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Candidato> listaDeCandidato = new ArrayList<>();
-        int i = 0;
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM candidato");
+            stmt = conexao.prepareStatement("SELECT * FROM candidato inner join pessoa on "
+                    + "candidato.idPessoa = pessoa.idPessoa");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 cep = rs.getLong("cep");
@@ -70,17 +66,16 @@ public class CandidatoDAO {
                 bairro = rs.getString("bairro");
                 cidade = rs.getString("cidade");
                 dataNescimento = rs.getString("dataNascimento");
+                cpf = rs.getLong("Cpf");
+                endereco = rs.getString("Endereco");
+                telefone = rs.getString("Telefone");
+                email = rs.getString("email");
+                usuarioCliente = rs.getString("nomeLogin");
+                senhaCliente = rs.getString("senhas");
                 Candidato candidato = new Candidato(sexo, cep, dataNescimento,
-                        listaDePessoas.get(i).getNomePessoa(),
-                        listaDePessoas.get(i).getCpf(),
-                        listaDePessoas.get(i).getEndereco(),
-                        listaDePessoas.get(i).getTelefone(),
-                        listaDePessoas.get(i).getEmail(),
-                        listaDePessoas.get(i).getUsuarioCliente(),
-                        listaDePessoas.get(i).getSenhaCliente(), uf, cidade, bairro);
-                i++;
+                        endereco, cpf, endereco, telefone, email, usuarioCliente,
+                        senhaCliente, uf, cidade, bairro);
                 listaDeCandidato.add(candidato);
-
             }
         } catch (SQLException e) {
             Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);

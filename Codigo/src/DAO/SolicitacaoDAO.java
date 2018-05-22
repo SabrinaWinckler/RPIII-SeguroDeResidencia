@@ -7,8 +7,6 @@ package DAO;
 
 import DB.ConnectionFactory;
 import Motor.Solicitacao;
-import com.mysql.jdbc.SQLError;
-import dadosResidencia.Residencia;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -56,23 +54,21 @@ public class SolicitacaoDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Solicitacao> listDeSolicitacoes = new ArrayList<>();
+        List<Solicitacao> listDeSolicitacoes = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM solicitacaoseguro");
+            stmt = conexao.prepareStatement("SELECT * FROM solicitacaoseguro inner join residencia on "
+                    + "solicitacaoseguro.idResidencia = residencia.idResidencia inner join pessoa on "
+                    + "pessoa.idPessoa = solicitacaoseguro.idPessoa inner join candidato on "
+                    + "candidato.idPessoa = pessoa.idPessoa");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao();
                 solicitacao.setDataSolicitacao(rs.getDate("dataSolicitacao"));
                 solicitacao.setValorSolicitacao(rs.getFloat("valorSolicitacao"));
-                solicitacao.setDataVisitaResidencia(rs.getDate("dataVisitaResidencia"));
-                solicitacao.setAprovadaSolicitacao(rs.getString("aprovadaSolicitacao"));
+                solicitacao.setDataVisitaResidencia(rs.getDate("dataVisitaResidenciia"));
+                solicitacao.setAprovadaSolicitacao(rs.getString("aprovada"));
                 solicitacao.setMotivoReprovacao(rs.getString("motivoReprovacao"));
-                solicitacao.setMotivoAlteracao(rs.getString("motivoAlteracao"));
-
-                stmt = conexao.prepareStatement("SELECT * FROM residencia inner join solicitacaoseguro on "
-                        + "residencia.idResidencia=solicitacaoseguro.idResidencia");
-                rs = stmt.executeQuery();
-
+                solicitacao.setMotivoAlteracao(rs.getString("motivoAlterecao"));
                 solicitacao.getResidencia().setufResidencia(rs.getString("ufResidencia"));
                 solicitacao.getResidencia().setCidade(rs.getString("cidade"));
                 solicitacao.getResidencia().setBairro(rs.getString("bairro"));
@@ -89,6 +85,19 @@ public class SolicitacaoDAO {
                 solicitacao.getResidencia().setQntBanheiros(rs.getInt("quantidadeBanheiros"));
                 solicitacao.getResidencia().setQntGaragens(rs.getInt("quantidadeGaragens"));
                 solicitacao.getResidencia().setNumAndares(rs.getInt("numeroAndares"));
+                solicitacao.getResidencia().getCandidato().setCep(rs.getLong("cep"));
+                solicitacao.getResidencia().getCandidato().setSexo(rs.getString("sexo"));
+                solicitacao.getResidencia().getCandidato().setUf(rs.getString("ufCandidato"));
+                solicitacao.getResidencia().getCandidato().setCidade(rs.getString("cidadeCandidato"));
+                solicitacao.getResidencia().getCandidato().setBairro(rs.getString("bairroCandidato"));
+                solicitacao.getResidencia().getCandidato().setDataNescimento(rs.getString("dataNascimento"));
+                solicitacao.getResidencia().getCandidato().setNomePessoa(rs.getString("Nome"));
+                solicitacao.getResidencia().getCandidato().setEndereco(rs.getString("Endereco"));
+                solicitacao.getResidencia().getCandidato().setTelefone(rs.getString("Telefone"));
+                solicitacao.getResidencia().getCandidato().setCpf(rs.getLong("Cpf"));
+                solicitacao.getResidencia().getCandidato().setUsuarioCliente(rs.getString("nomeLogin"));
+                solicitacao.getResidencia().getCandidato().setSenhaCliente(rs.getString("senha"));
+                solicitacao.getResidencia().getCandidato().setEmail(rs.getString("email"));
                 listDeSolicitacoes.add(solicitacao);
             }
         } catch (SQLException e) {

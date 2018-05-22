@@ -36,9 +36,7 @@ public class Solicitacao {
     }
 
     public Solicitacao() {
-        //this.dataSolicitacao = null;
-        //this.residencia = new Residencia();
-        //this.daoResidencia = new ResidenciaDAO();
+        this.residencia = new Residencia();
     }
 
     @Override
@@ -62,7 +60,6 @@ public class Solicitacao {
         return daoResidencia;
     }
 
-    
     public void registrarSolicitacao(Residencia residencia, Date dataSolicitacao) {
         this.setResidencia(residencia);
         System.out.println(residencia.toString());

@@ -205,7 +205,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void avaliarSolicitacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSolicitacaoButtonActionPerformed
-        jLabelBemVindoCorretor.setVisible(false);
         Tela_ListaSolicitacoes telSolicitacao = new Tela_ListaSolicitacoes();
         telSolicitacao.setVisible(true);
         dispose();

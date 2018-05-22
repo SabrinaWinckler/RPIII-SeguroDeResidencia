@@ -1,6 +1,7 @@
 package dadosResidencia;
 
 import DAO.ResidenciaDAO;
+import DadosUsuarios.Candidato;
 import java.util.List;
 
 public class Residencia {
@@ -41,10 +42,17 @@ public class Residencia {
 
     private int estruturaAmeacada;
 
+    private Candidato candidato;
+
     public Residencia() {
+        this.candidato = new Candidato();
     }
 
-    public Residencia(String uf, String cidade, String bairro, String descricaoRes, List bem, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares, int anoConstrucao, String ruaRes, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
+    public Residencia(String uf, String cidade, String bairro, String descricaoRes,
+            List bem, int numRes, long cepRes, int qntComodos, int qntBanheiros,
+            int qntGaragens, float areaTotal, double areaC, int numAndares,
+            int anoConstrucao, String ruaRes, int localizacaoPerigosa,
+            int terrenoPerigoso, int estruturaAmeacada) {
         this.descricaoRes = descricaoRes;
         this.numRes = numRes;
         this.cepRes = cepRes;
@@ -308,6 +316,20 @@ public class Residencia {
     @Override
     public String toString() {
         return "Residencia{" + "descricaoRes=" + descricaoRes + ", numRes=" + numRes + ", cepRes=" + cepRes + ", qntComodos=" + qntComodos + ", qntBanheiros=" + qntBanheiros + ", qntGaragens=" + qntGaragens + ", areaTotal=" + areaTotal + ", numAndares=" + numAndares + ", anoConstrucao=" + anoConstrucao + ", ruaRes=" + ruaRes + ", ufResidencia=" + ufResidencia + ", cidade=" + cidade + ", bairro=" + bairro + ", areaConstruida=" + areaConstruida + ", bens=" + bens + ", localizacaoPerigosa=" + localizacaoPerigosa + ", terrenoPerigoso=" + terrenoPerigoso + ", estruturaAmeacada=" + estruturaAmeacada + '}';
+    }
+
+    /**
+     * @return the candidato
+     */
+    public Candidato getCandidato() {
+        return candidato;
+    }
+
+    /**
+     * @param candidato the candidato to set
+     */
+    public void setCandidato(Candidato candidato) {
+        this.candidato = candidato;
     }
 
 }

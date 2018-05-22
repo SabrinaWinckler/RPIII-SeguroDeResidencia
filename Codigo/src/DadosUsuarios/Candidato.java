@@ -33,6 +33,9 @@ public class Candidato extends Pessoa {
         this.bairro = bairro;
     }
 
+    public Candidato() {
+    }
+
     /**
      * @return the sexo
      */

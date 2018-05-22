@@ -36,8 +36,11 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
         modelo.setNumRows(0);
         Gerenciador motor = new Gerenciador();
-        for (Residencia residencia : motor.listaDeResidenciasPendentes()) {
-            modelo.addRow(new Object[]{});
+        for (Solicitacao solicitacao : motor.listaDeResidenciasPendentes()) {
+            modelo.addRow(new Object[]{
+                solicitacao.getResidencia().getCandidato().getNomePessoa(),
+                solicitacao.getDataSolicitacao()
+            });
         }
         /*
         for (Residencia r : daoResidencia.read()) {
@@ -101,7 +104,7 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
                 false, false

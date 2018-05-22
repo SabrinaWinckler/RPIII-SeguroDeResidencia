@@ -7,9 +7,10 @@ package Motor;
 
 import DAO.CandidatoDAO;
 import DAO.ResidenciaDAO;
+import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
 import dadosResidencia.Residencia;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -28,9 +29,39 @@ public class Gerenciador {
             String nomePessoa, long cpf, String endereco, String telefone,
             String email, String usuarioCliente, String senhaCliente, String uf,
             String cidade, String bairro) throws NullPointerException {
-        Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
+
+        Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa,
+                cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf,
+                cidade, bairro);
         CandidatoDAO daoCandidato = new CandidatoDAO();
         daoCandidato.create(candidato);
+    }
+
+    public void registrarSolicitacao(Date dataSolicitacao, double valorSolicitacao,
+            Date dataVisitaResidencia, String aprovadaSolicitacao,
+            String motivoReprovacao, String motivoAlteracao, Residencia residencia,
+            ResidenciaDAO daoResidencia) throws NullPointerException {
+
+        Solicitacao solicitacao = new Solicitacao(dataSolicitacao, valorSolicitacao,
+                dataVisitaResidencia, aprovadaSolicitacao, motivoReprovacao,
+                motivoAlteracao, residencia, daoResidencia);
+        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+        daoSolicitacao.create(solicitacao);
+    }
+
+    public void registrarResidencia(String uf, String cidade, String bairro,
+            String descricaoRes, List bem, int numRes, long cepRes,
+            int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal,
+            double areaC, int numAndares, int anoConstrucao, String ruaRes,
+            int localizacaoPerigosa, int terrenoPerigoso,
+            int estruturaAmeacada) throws NullPointerException {
+
+        Residencia residencia = new Residencia(uf, cidade, bairro, descricaoRes,
+                bem, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens,
+                areaTotal, areaC, numAndares, anoConstrucao, ruaRes,
+                localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
+        ResidenciaDAO daoResidencia = new ResidenciaDAO();
+        daoResidencia.create(residencia);
     }
 
     public Object retornaCliente() {
@@ -45,8 +76,8 @@ public class Gerenciador {
         }
     }
 
-    public List<Residencia> listaDeResidenciasPendentes() {
-        ResidenciaDAO daoResidencia = new ResidenciaDAO();
-        return daoResidencia.read();
+    public List<Solicitacao> listaDeResidenciasPendentes() {
+        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+        return daoSolicitacao.read();
     }
 }

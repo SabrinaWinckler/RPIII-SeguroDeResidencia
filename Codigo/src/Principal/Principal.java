@@ -18,7 +18,6 @@ import dadosResidencia.Bem;
 import dadosResidencia.Residencia;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 
 /**
  *
@@ -30,6 +29,7 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        /*
         //CANDIDATO
         String sexo = "Masculino";
         long cep = 97547590;
@@ -101,9 +101,10 @@ public class Principal {
                 motivoAlteracao, residencia, dao);
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         daoSolicitacao.create(solicitacao);
+         */
         Tela_Login telaLogin = new Tela_Login();
-        
+
         telaLogin.setVisible(true);
     }
-    
+
 }
