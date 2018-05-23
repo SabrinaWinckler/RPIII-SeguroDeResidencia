@@ -234,11 +234,10 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         usuarioCliente = usuarioCampo.getText();
         senhaCliente = senhaCampo.getText();
         uf = ufComboBox.getSelectedItem().toString();
+        motor.cadastrarCliente(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
 
-        Candidato candidato = new Candidato(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
-        //motor.cadastrarCliente(candidato);
-        Tela_Login telaLogin = new Tela_Login();
-        telaLogin.setVisible(true);
+        Painel_Candidato candidatoPainel = new Painel_Candidato();
+        candidatoPainel.setVisible(rootPaneCheckingEnabled);
         dispose();
     }//GEN-LAST:event_confirmarButtonActionPerformed
 

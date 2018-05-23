@@ -7,6 +7,8 @@ package View;
 
 import DadosUsuarios.Candidato;
 import Motor.Gerenciador;
+import java.util.Arrays;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -98,11 +100,23 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarButtonActionPerformed
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
-        Candidato pessoa = (Candidato) motor.retornaCliente();
-        if (campoUsuario.getText().equals(pessoa.getUsuarioCliente()) && campoSenha.getPassword().equals(pessoa.getSenhaCliente())) {
-            JOptionPane.showMessageDialog(rootPane, "Senha e Usuário correto.");
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Não existe.");
+
+        List<Candidato> listPessoas = motor.retornaCliente();
+        for (Candidato pessoa : listPessoas) {
+            String usuario = campoUsuario.getText();
+            char[] senha = campoSenha.getPassword();
+            String senhaJunta = "";
+            for (int i = 0; i < campoSenha.getPassword().length; i++) {
+                senhaJunta += senha[i];
+            }
+            if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
+                Painel_Candidato painelCandidato = new Painel_Candidato();
+                painelCandidato.setVisible(true);
+                dispose();
+            } else {
+                JOptionPane.showConfirmDialog(rootPane, "Usuário ou senha inválidos. "
+                        + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
+            }
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
 

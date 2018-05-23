@@ -42,6 +42,7 @@ public class Principal {
         String uf = "RS";
         String cidade = "Alegrete";
         String bairro = "Centro";
+        
         //pessoa atributo
         String nomePessoa = "Matheus Montanha";
         long cpf = 0345;
@@ -111,7 +112,6 @@ public class Principal {
         TipoSinistro tipoSinistro = new TipoSinistro(tipoSinistroRoubo);
         TipoSinistroDAO daoTipoSinistro = new TipoSinistroDAO();
         daoTipoSinistro.create(tipoSinistro);
-         */
 
         //SINISTRO
         Date dataSinistro = new Date();
@@ -123,6 +123,7 @@ public class Principal {
 
         SinistroDAO daoSinistro = new SinistroDAO();
         daoSinistro.create(sinistro);
+         */
         Tela_Login telaLogin = new Tela_Login();
 
         telaLogin.setVisible(true);

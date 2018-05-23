@@ -65,8 +65,9 @@ public class Gerenciador {
         daoResidencia.create(residencia);
     }
 
-    public Object retornaCliente() {
-        return listaCliente.get(0);
+    public List<Candidato> retornaCliente() {
+        CandidatoDAO daoCandidato = new CandidatoDAO();
+        return daoCandidato.read();
     }
 
     public boolean enviarSoliciacao(Solicitacao solicitacao) {

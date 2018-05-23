@@ -27,14 +27,20 @@ public class CandidatoDAO {
     public void create(Candidato candidato) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-
+        ResultSet rs;
+        int idPessoa = -1;
         try {
+            stm = conexao.prepareStatement("select max(pessoa.idPessoa) from pessoa");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                idPessoa = rs.getInt(1);
+            }
             stm = conexao.prepareStatement("INSERT INTO candidato(cep, sexo, idPessoa, "
                     + "ufCandidato, cidadeCandidato,"
                     + " bairroCandidato, dataNascimento)VALUES(?,?,?,?,?,?,?)");
             stm.setLong(1, candidato.getCep());
             stm.setString(2, candidato.getSexo());
-            stm.setInt(3, 33);
+            stm.setInt(3, idPessoa);
             stm.setString(4, candidato.getUf());
             stm.setString(5, candidato.getCidade());
             stm.setString(6, candidato.getBairro());
@@ -62,16 +68,16 @@ public class CandidatoDAO {
             while (rs.next()) {
                 cep = rs.getLong("cep");
                 sexo = rs.getString("sexo");
-                uf = rs.getString("uf");
-                bairro = rs.getString("bairro");
-                cidade = rs.getString("cidade");
+                uf = rs.getString("ufCandidato");
+                bairro = rs.getString("bairroCandidato");
+                cidade = rs.getString("cidadeCandidato");
                 dataNescimento = rs.getString("dataNascimento");
                 cpf = rs.getLong("Cpf");
                 endereco = rs.getString("Endereco");
                 telefone = rs.getString("Telefone");
                 email = rs.getString("email");
                 usuarioCliente = rs.getString("nomeLogin");
-                senhaCliente = rs.getString("senhas");
+                senhaCliente = rs.getString("senha");
                 Candidato candidato = new Candidato(sexo, cep, dataNescimento,
                         endereco, cpf, endereco, telefone, email, usuarioCliente,
                         senhaCliente, uf, cidade, bairro);
