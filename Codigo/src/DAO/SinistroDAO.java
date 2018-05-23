@@ -27,13 +27,21 @@ public class SinistroDAO {
     public void create(Sinistro sinistro) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
+        ResultSet rs;
+        int idTipo = -1;
         try {
-            stm = conexao.prepareStatement("INSERTO INTO sinistro(parecerAvaliador, dateSinistro, descricaoSinistro,"
-                    + "autorizadoSinistro, valorSinistro)VALUES(?,?,?,?,?)");
+            stm = conexao.prepareStatement("SELECT MAX(tiposinistro.idTipo) from tiposinistro");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                idTipo = rs.getInt("idTipo");
+            }
+            stm = conexao.prepareStatement("INSERTO INTO sinistro(parecerAvaliador, dataSinistro, descricaoSinistro,"
+                    + "autorizadoSinistro, valorSinistro, idTipo)VALUES(?,?,?,?,?,?)");
             stm.setString(1, sinistro.getParecerAvaliador());
             stm.setDate(2, (Date) sinistro.getDataSinistro());
             stm.setString(3, sinistro.getDescricaoSinistro());
             stm.setFloat(4, sinistro.getValorSinistro());
+            stm.setInt(5, idTipo);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);

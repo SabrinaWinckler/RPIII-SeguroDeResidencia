@@ -81,18 +81,18 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltarButton.setBackground(new java.awt.Color(0, 153, 255));
+        voltarButton.setBackground(new java.awt.Color(153, 51, 255));
         voltarButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         voltarButton.setForeground(new java.awt.Color(255, 255, 255));
-        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back.png"))); // NOI18N
-        voltarButton.setText("      Voltar");
+        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
+        voltarButton.setText("Voltar");
         voltarButton.setToolTipText("");
         voltarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 30));
+        getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 100, 30));
 
         listaDeSolicitacoes.setBackground(new java.awt.Color(0, 153, 153));
         listaDeSolicitacoes.setModel(new javax.swing.table.DefaultTableModel(

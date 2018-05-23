@@ -9,10 +9,14 @@ import DAO.BemDAO;
 import DAO.CandidatoDAO;
 import DAO.PessoaDAO;
 import DAO.ResidenciaDAO;
+import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
+import DAO.TipoSinistroDAO;
 import DadosUsuarios.Candidato;
 import DadosUsuarios.Pessoa;
 import Motor.Solicitacao;
+import SevicosSeguradora.Sinistro;
+import SevicosSeguradora.TipoSinistro;
 import View.Tela_Login;
 import dadosResidencia.Bem;
 import dadosResidencia.Residencia;
@@ -102,7 +106,23 @@ public class Principal {
                 motivoAlteracao, residencia, dao);
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         daoSolicitacao.create(solicitacao);
+        //TIPO DE SINISTRO
+        String tipoSinistroRoubo = "Roubo";
+        TipoSinistro tipoSinistro = new TipoSinistro(tipoSinistroRoubo);
+        TipoSinistroDAO daoTipoSinistro = new TipoSinistroDAO();
+        daoTipoSinistro.create(tipoSinistro);
          */
+
+        //SINISTRO
+        Date dataSinistro = new Date();
+        String descricaoSinistro = "Dois homens com mascara.";
+        float valorSinistro = 250;
+        String autorizadoSinistro = "Autorizado";
+        String parecerAvaliador = "Sinistro muito louco";
+        Sinistro sinistro = new Sinistro(dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador);
+
+        SinistroDAO daoSinistro = new SinistroDAO();
+        daoSinistro.create(sinistro);
         Tela_Login telaLogin = new Tela_Login();
 
         telaLogin.setVisible(true);

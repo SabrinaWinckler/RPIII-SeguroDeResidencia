@@ -13,11 +13,11 @@ import java.util.Date;
  */
 public class Sinistro {
 
-    Date dataSinistro;
-    String descricaoSinistro;
-    float valorSinistro;
-    String autorizadoSinistro;
-    String parecerAvaliador;
+    private Date dataSinistro;
+    private String descricaoSinistro;
+    private float valorSinistro;
+    private String autorizadoSinistro;
+    private String parecerAvaliador;
 
     public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String autorizadoSinistro, String parecerAvaliador) {
         this.dataSinistro = dataSinistro;

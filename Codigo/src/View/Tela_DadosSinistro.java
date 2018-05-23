@@ -37,10 +37,29 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jTextFieldValorSinistro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTextAreaDescricao = new javax.swing.JTextArea();
+        campoNomeSolicitante = new javax.swing.JTextField();
+        campoCPFSolicitante = new javax.swing.JTextField();
+        campoEmailSolicitante = new javax.swing.JTextField();
+        jTextField5 = new javax.swing.JTextField();
+        jSeparator2 = new javax.swing.JSeparator();
+        jSeparator3 = new javax.swing.JSeparator();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jTextArea1 = new javax.swing.JTextArea();
+        jLabel14 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
 
         jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
@@ -49,19 +68,20 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        voltarButton.setBackground(new java.awt.Color(0, 51, 51));
-        voltarButton.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        voltarButton.setBackground(new java.awt.Color(0, 153, 255));
+        voltarButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         voltarButton.setForeground(new java.awt.Color(255, 255, 255));
+        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
         voltarButton.setText("Voltar");
         voltarButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 voltarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 70, 30));
+        getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 110, 100, 30));
 
-        ButtonAutorizarPagamento.setBackground(new java.awt.Color(0, 102, 0));
-        ButtonAutorizarPagamento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        ButtonAutorizarPagamento.setBackground(new java.awt.Color(0, 153, 255));
+        ButtonAutorizarPagamento.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ButtonAutorizarPagamento.setForeground(new java.awt.Color(255, 255, 255));
         ButtonAutorizarPagamento.setText("Autorizar Pagamento");
         ButtonAutorizarPagamento.addActionListener(new java.awt.event.ActionListener() {
@@ -69,10 +89,10 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
                 ButtonAutorizarPagamentoActionPerformed(evt);
             }
         });
-        getContentPane().add(ButtonAutorizarPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 140, -1));
+        getContentPane().add(ButtonAutorizarPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 530, 160, 30));
 
-        buttonNegarPagamento.setBackground(new java.awt.Color(204, 0, 0));
-        buttonNegarPagamento.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        buttonNegarPagamento.setBackground(new java.awt.Color(153, 51, 255));
+        buttonNegarPagamento.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         buttonNegarPagamento.setForeground(new java.awt.Color(255, 255, 255));
         buttonNegarPagamento.setText("Negar Pagamento");
         buttonNegarPagamento.addActionListener(new java.awt.event.ActionListener() {
@@ -80,50 +100,131 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
                 buttonNegarPagamentoActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonNegarPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 360, 120, -1));
+        getContentPane().add(buttonNegarPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(830, 530, 140, 30));
 
-        jLabel1.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel1.setText("Descrição:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 150, 60, 30));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 360, 70, 30));
 
-        jLabel2.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel2.setText("Data:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 30, 20));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 30, 20));
 
         jTextFieldDataSinistro.setEditable(false);
+        jTextFieldDataSinistro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jTextFieldDataSinistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextFieldDataSinistroActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldDataSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 80, 30));
+        getContentPane().add(jTextFieldDataSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 90, 30));
 
-        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setText("Valor:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 240, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 80, 50));
 
         jTextFieldValorSinistro.setEditable(false);
-        getContentPane().add(jTextFieldValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 230, 80, 30));
+        jTextFieldValorSinistro.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jTextFieldValorSinistro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(jTextFieldValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 150, 40));
 
-        jLabel4.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Tipo do Sinistro:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 280, -1, -1));
-
-        jLabel5.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
-        jLabel5.setText("Parecer do Avaliador:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, -1, -1));
-
-        jTextField1.setEditable(false);
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 150, 80, 30));
-
-        jTextField2.setEditable(false);
-        getContentPane().add(jTextField2, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 190, 80, 30));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
         jTextField3.setEditable(false);
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 270, 80, 30));
+        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 130, 30));
 
-        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/esse sim.jpg"))); // NOI18N
-        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 650, 410));
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel5.setText("Dados do Sinistro:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 180, -1, -1));
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 180, 10, 340));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel6.setText("Dados do Solicitante:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 180, -1, -1));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel7.setText("Nome:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setText("CPF:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel9.setText("Email:");
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 40, -1));
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setText("Telefone:");
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, -1, -1));
+
+        jTextAreaDescricao.setEditable(false);
+        jTextAreaDescricao.setColumns(20);
+        jTextAreaDescricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextAreaDescricao.setRows(5);
+        jScrollPane1.setViewportView(jTextAreaDescricao);
+
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
+
+        campoNomeSolicitante.setEditable(false);
+        campoNomeSolicitante.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoNomeSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 90, 30));
+
+        campoCPFSolicitante.setEditable(false);
+        campoCPFSolicitante.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoCPFSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 90, 30));
+
+        campoEmailSolicitante.setEditable(false);
+        campoEmailSolicitante.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoEmailSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 90, 30));
+
+        jTextField5.setEditable(false);
+        jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, 90, 30));
+        getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 270, -1, -1));
+
+        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 10, 330));
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel11.setText("Avaliador:");
+        getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, -1, -1));
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel12.setText("Endereço da Residência:");
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, -1, -1));
+
+        jTextField1.setEditable(false);
+        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 140, 30));
+
+        jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel13.setText("Parecer:");
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 370, -1, -1));
+
+        jTextArea1.setColumns(20);
+        jTextArea1.setRows(5);
+        jScrollPane2.setViewportView(jTextArea1);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 296, 210, 90));
+
+        jLabel14.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel14.setText("Preencha o campo abaixo.");
+        getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 230, -1, -1));
+
+        jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
+        getContentPane().add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -145,6 +246,10 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     private void jTextFieldDataSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDataSinistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextFieldDataSinistroActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -184,16 +289,35 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonAutorizarPagamento;
     private javax.swing.JButton buttonNegarPagamento;
+    private javax.swing.JTextField campoCPFSolicitante;
+    private javax.swing.JTextField campoEmailSolicitante;
+    private javax.swing.JTextField campoNomeSolicitante;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
+    private javax.swing.JSeparator jSeparator3;
+    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea jTextAreaDescricao;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
+    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextFieldDataSinistro;
     private javax.swing.JTextField jTextFieldValorSinistro;
     private javax.swing.JButton voltarButton;
