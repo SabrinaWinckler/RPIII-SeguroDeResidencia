@@ -8,9 +8,11 @@ package Motor;
 import DAO.CandidatoDAO;
 import DAO.PessoaDAO;
 import DAO.ResidenciaDAO;
+import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
 import DadosUsuarios.Pessoa;
+import SevicosSeguradora.Sinistro;
 import dadosResidencia.Residencia;
 import java.util.ArrayList;
 import java.util.Date;
@@ -118,5 +120,10 @@ public class Gerenciador {
     public void updateSituacaoSolicitacao() {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         daoSolicitacao.solicitacaoAprovada();
+    }
+
+    public List<Sinistro> listaDeSinistrosPendentes() {
+        SinistroDAO daoSinistro = new SinistroDAO();
+        return daoSinistro.read();
     }
 }

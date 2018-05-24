@@ -5,6 +5,11 @@
  */
 package View;
 
+import Motor.Gerenciador;
+import Motor.Solicitacao;
+import SevicosSeguradora.Sinistro;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Matheus Montanha
@@ -16,6 +21,25 @@ public class Tela_ListaDeSinistro extends javax.swing.JFrame {
      */
     public Tela_ListaDeSinistro() {
         initComponents();
+        readTable();
+    }
+
+    public int readTable() {
+        DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
+        modelo.setNumRows(0);
+        Gerenciador motor = new Gerenciador();
+        int tamanhoLista = motor.listaDeSinistrosPendentes().size();
+        if (tamanhoLista > 0) {
+            for (Sinistro sinistro : motor.listaDeSinistrosPendentes()) {
+                modelo.addRow(new Object[]{
+                    sinistro.getTipoSinistro(),
+                    sinistro.getDataSinistro().toString()
+                });
+            }
+            return 1;
+        } else {
+            return 0;
+        }
     }
 
     /**
@@ -84,7 +108,9 @@ public class Tela_ListaDeSinistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaSinistrosPendentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSinistrosPendentesMouseClicked
-        // TODO add your handling code here:
+        Tela_DadosSinistro telaDadosSinistro = new Tela_DadosSinistro();
+        telaDadosSinistro.setVisible(true);
+        dispose();
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked
 
     /**

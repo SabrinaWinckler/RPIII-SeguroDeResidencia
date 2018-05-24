@@ -11,7 +11,7 @@ import java.util.Date;
  *
  * @author Matheus Montanha
  */
-public class Sinistro {
+public class Sinistro extends TipoSinistro {
 
     private Date dataSinistro;
     private String descricaoSinistro;
@@ -19,7 +19,8 @@ public class Sinistro {
     private String autorizadoSinistro;
     private String parecerAvaliador;
 
-    public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String autorizadoSinistro, String parecerAvaliador) {
+    public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String autorizadoSinistro, String parecerAvaliador, String tipoSinistro) {
+        super(tipoSinistro);
         this.dataSinistro = dataSinistro;
         this.descricaoSinistro = descricaoSinistro;
         this.valorSinistro = valorSinistro;

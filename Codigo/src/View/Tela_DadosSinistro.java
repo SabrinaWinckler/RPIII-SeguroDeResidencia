@@ -5,6 +5,11 @@
  */
 package View;
 
+import Motor.Gerenciador;
+import SevicosSeguradora.Sinistro;
+import java.util.List;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Matheus Montanha
@@ -16,6 +21,12 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
      */
     public Tela_DadosSinistro() {
         initComponents();
+        Gerenciador motor = new Gerenciador();
+        List<Sinistro> listaSinistro = motor.listaDeSinistrosPendentes();
+        campoDataSinistro.setText("" + listaSinistro.get(0).getDataSinistro());
+        campoDescricaoSinistro.setText(listaSinistro.get(0).getDescricaoSinistro());
+        campoTipoSinistro.setText(listaSinistro.get(0).getTipoSinistro());
+        campoValorSinistro.setText("" + listaSinistro.get(0).getValorSinistro());
     }
 
     /**
@@ -33,11 +44,11 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         buttonNegarPagamento = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jTextFieldDataSinistro = new javax.swing.JTextField();
+        campoDataSinistro = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        jTextFieldValorSinistro = new javax.swing.JTextField();
+        campoValorSinistro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
+        campoTipoSinistro = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
         jLabel6 = new javax.swing.JLabel();
@@ -46,7 +57,7 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextAreaDescricao = new javax.swing.JTextArea();
+        campoDescricaoSinistro = new javax.swing.JTextArea();
         campoNomeSolicitante = new javax.swing.JTextField();
         campoCPFSolicitante = new javax.swing.JTextField();
         campoEmailSolicitante = new javax.swing.JTextField();
@@ -110,31 +121,31 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         jLabel2.setText("Data:");
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 250, 30, 20));
 
-        jTextFieldDataSinistro.setEditable(false);
-        jTextFieldDataSinistro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextFieldDataSinistro.addActionListener(new java.awt.event.ActionListener() {
+        campoDataSinistro.setEditable(false);
+        campoDataSinistro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        campoDataSinistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextFieldDataSinistroActionPerformed(evt);
+                campoDataSinistroActionPerformed(evt);
             }
         });
-        getContentPane().add(jTextFieldDataSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 90, 30));
+        getContentPane().add(campoDataSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 90, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel3.setText("Valor:");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 80, 50));
 
-        jTextFieldValorSinistro.setEditable(false);
-        jTextFieldValorSinistro.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jTextFieldValorSinistro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(jTextFieldValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 150, 40));
+        campoValorSinistro.setEditable(false);
+        campoValorSinistro.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        campoValorSinistro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        getContentPane().add(campoValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 150, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Tipo do Sinistro:");
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 420, -1, -1));
 
-        jTextField3.setEditable(false);
-        jTextField3.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(jTextField3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 130, 30));
+        campoTipoSinistro.setEditable(false);
+        campoTipoSinistro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoTipoSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 410, 130, 30));
 
         jLabel5.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel5.setText("Dados do Sinistro:");
@@ -163,11 +174,11 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         jLabel10.setText("Telefone:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, -1, -1));
 
-        jTextAreaDescricao.setEditable(false);
-        jTextAreaDescricao.setColumns(20);
-        jTextAreaDescricao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextAreaDescricao.setRows(5);
-        jScrollPane1.setViewportView(jTextAreaDescricao);
+        campoDescricaoSinistro.setEditable(false);
+        campoDescricaoSinistro.setColumns(20);
+        campoDescricaoSinistro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        campoDescricaoSinistro.setRows(5);
+        jScrollPane1.setViewportView(campoDescricaoSinistro);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 300, -1, -1));
 
@@ -240,12 +251,21 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonAutorizarPagamentoActionPerformed
 
     private void buttonNegarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNegarPagamentoActionPerformed
-        // TODO add your handling code here:
+        int controle = 0;
+        while (controle == 0) {
+            String motivo = JOptionPane.showInputDialog(rootPane, "Digite o motivo da rejeição do sinistro, por favor:");
+            if (motivo.equalsIgnoreCase("") || motivo.equalsIgnoreCase(" ")) {
+                JOptionPane.showConfirmDialog(rootPane, "O campo de texto não deve ser deixado em branco."
+                        + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
+            } else {
+                controle = 1;
+            }
+        }
     }//GEN-LAST:event_buttonNegarPagamentoActionPerformed
 
-    private void jTextFieldDataSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDataSinistroActionPerformed
+    private void campoDataSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataSinistroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextFieldDataSinistroActionPerformed
+    }//GEN-LAST:event_campoDataSinistroActionPerformed
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
@@ -290,8 +310,12 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     private javax.swing.JButton ButtonAutorizarPagamento;
     private javax.swing.JButton buttonNegarPagamento;
     private javax.swing.JTextField campoCPFSolicitante;
+    private javax.swing.JTextField campoDataSinistro;
+    private javax.swing.JTextArea campoDescricaoSinistro;
     private javax.swing.JTextField campoEmailSolicitante;
     private javax.swing.JTextField campoNomeSolicitante;
+    private javax.swing.JTextField campoTipoSinistro;
+    private javax.swing.JTextField campoValorSinistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -314,12 +338,8 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextArea jTextAreaDescricao;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextFieldDataSinistro;
-    private javax.swing.JTextField jTextFieldValorSinistro;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

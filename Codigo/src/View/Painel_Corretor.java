@@ -204,7 +204,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_visualizarSolicitacoesButtonActionPerformed
 
     private void avaliarSinistroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSinistroButtonActionPerformed
-        // TODO add your handling code here:
+        Tela_ListaDeSinistro telaListaSinistro = new Tela_ListaDeSinistro();
+        if (telaListaSinistro.readTable() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Não possui sinistros para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
+        } else {
+            telaListaSinistro.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_avaliarSinistroButtonActionPerformed
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed

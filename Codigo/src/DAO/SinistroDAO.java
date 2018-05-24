@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  * @author Matheus Montanha
  */
 public class SinistroDAO {
-    
+
     public void create(Sinistro sinistro) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -51,21 +51,29 @@ public class SinistroDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-    
+
     public List<Sinistro> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
+        String tipoSinistro;
+        java.util.Date dataSinistro;
+        String descricaoSinistro;
+        float valorSinistro;
+        String autorizadoSinistro = "";
+        String parecerAvaliador;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Sinistro> listaDeSinistros = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM sinistro");
+            stmt = conexao.prepareStatement("select * from sinistro inner join tiposinistro on"
+                    + " sinistro.idTipo = tiposinistro.idTipo");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Sinistro sinistro = new Sinistro();
-                sinistro.setParecerAvaliador(rs.getString("parecerAvaliador"));
-                sinistro.setDataSinistro(rs.getDate("dataSinistro"));
-                sinistro.setDescricaoSinistro(rs.getString("descricaoSinistro"));
-                sinistro.setValorSinistro(rs.getFloat("valorSinistro"));
+                parecerAvaliador = rs.getString("parecerAvaliador");
+                dataSinistro = rs.getDate("dataSinistro");
+                descricaoSinistro = rs.getString("descricaoSinistro");
+                valorSinistro = rs.getFloat("valorSinistro");
+                tipoSinistro = rs.getString("descricaoTipoSinistro");
+                Sinistro sinistro = new Sinistro(dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador, tipoSinistro);
                 listaDeSinistros.add(sinistro);
             }
         } catch (SQLException e) {
