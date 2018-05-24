@@ -66,7 +66,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jMenu6 = new javax.swing.JMenu();
         popupMenu1 = new java.awt.PopupMenu();
         solicitarSeguro = new javax.swing.JButton();
-        sairButton = new javax.swing.JButton();
         minhasResidencias = new javax.swing.JButton();
         contratarServico = new javax.swing.JButton();
         relatarSinistro = new javax.swing.JButton();
@@ -127,6 +126,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao = new javax.swing.JButton();
         nova = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
+        sairButton = new javax.swing.JButton();
+        buttonVisualizarSolicitacao = new javax.swing.JButton();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -165,17 +166,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         });
         getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 40));
         solicitarSeguro.getAccessibleContext().setAccessibleDescription("");
-
-        sairButton.setBackground(new java.awt.Color(153, 0, 0));
-        sairButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
-        sairButton.setForeground(new java.awt.Color(255, 255, 255));
-        sairButton.setText("Sair");
-        sairButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                sairButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 320, 80, 30));
 
         minhasResidencias.setBackground(new java.awt.Color(0, 51, 51));
         minhasResidencias.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
@@ -674,6 +664,28 @@ public class Painel_Candidato extends javax.swing.JFrame {
         bg.setText("jLabel3");
         painelP.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
+        sairButton.setBackground(new java.awt.Color(153, 0, 0));
+        sairButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
+        sairButton.setForeground(new java.awt.Color(255, 255, 255));
+        sairButton.setText("Sair");
+        sairButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairButtonActionPerformed(evt);
+            }
+        });
+        painelP.add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 80, 30));
+
+        buttonVisualizarSolicitacao.setBackground(new java.awt.Color(151, 53, 255));
+        buttonVisualizarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonVisualizarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
+        buttonVisualizarSolicitacao.setText("Visualizar Solicitações");
+        buttonVisualizarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVisualizarSolicitacaoActionPerformed(evt);
+            }
+        });
+        painelP.add(buttonVisualizarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 220, 40));
+
         getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
 
         pack();
@@ -866,6 +878,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cepActionPerformed
 
+    private void buttonVisualizarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVisualizarSolicitacaoActionPerformed
+        Tela_ListaSolicitacaoCandidato listaSolicitacaoCandidato = new Tela_ListaSolicitacaoCandidato();
+        listaSolicitacaoCandidato.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_buttonVisualizarSolicitacaoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -916,6 +934,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField bairro;
     private javax.swing.JTextField banheiro;
     private javax.swing.JLabel bg;
+    private javax.swing.JButton buttonVisualizarSolicitacao;
     private javax.swing.JButton cancelar;
     private javax.swing.JButton cancelarSolicitacao;
     private javax.swing.JTextField cep;

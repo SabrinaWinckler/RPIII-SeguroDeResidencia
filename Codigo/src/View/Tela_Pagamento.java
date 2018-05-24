@@ -53,7 +53,7 @@ public class Tela_Pagamento extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, -1, -1));
         getContentPane().add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 250, 30));
         getContentPane().add(campoNome1, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 290, 250, 30));
-        getContentPane().add(campoNome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(800, 250, 50, 20));
+        getContentPane().add(campoNome3, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 250, 50, 20));
         getContentPane().add(campoNome2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 400, 60, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
@@ -72,11 +72,11 @@ public class Tela_Pagamento extends javax.swing.JFrame {
         jLabel8.setText("Validade:");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, 70, -1));
 
-        mesComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        mesComboBox.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         mesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" }));
         getContentPane().add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 350, 60, -1));
 
-        anoComboBox.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        anoComboBox.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         anoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", " " }));
         getContentPane().add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 350, -1, -1));
 
@@ -84,6 +84,7 @@ public class Tela_Pagamento extends javax.swing.JFrame {
         jLabel9.setText("Parcelar em:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 250, 90, -1));
 
+        jComboBox1.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1x", "2x", "3x", "4x", "5x", "6x", "7x", "8x", "9x", "10x", "12x" }));
         getContentPane().add(jComboBox1, new org.netbeans.lib.awtextra.AbsoluteConstraints(760, 250, -1, 20));
 

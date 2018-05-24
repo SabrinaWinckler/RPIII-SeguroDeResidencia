@@ -9,6 +9,7 @@ import DadosUsuarios.Candidato;
 import Motor.Gerenciador;
 import java.util.Arrays;
 import java.util.List;
+import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -128,7 +129,11 @@ public class Tela_Login extends javax.swing.JFrame {
                     + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
+ public void gerarBackground() {
+        String pasta = System.getProperty("user.dir");
+        //bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
 
+    }
     /**
      * @param args the command line arguments
      */
