@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 4.7.9
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: 19-Maio-2018 às 00:53
--- Versão do servidor: 5.7.14
--- PHP Version: 5.6.25
+-- Host: 127.0.0.1:3306
+-- Generation Time: 24-Maio-2018 às 18:34
+-- Versão do servidor: 5.7.21
+-- PHP Version: 5.6.35
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -26,10 +28,14 @@ SET time_zone = "+00:00";
 -- Estrutura da tabela `analisesolicitacao`
 --
 
-CREATE TABLE `analisesolicitacao` (
+DROP TABLE IF EXISTS `analisesolicitacao`;
+CREATE TABLE IF NOT EXISTS `analisesolicitacao` (
   `idCorretor` int(11) NOT NULL,
   `idSolicitacao` int(11) NOT NULL,
-  `data` date DEFAULT NULL
+  `data` date DEFAULT NULL,
+  UNIQUE KEY `idSolicitacao_UNIQUE` (`idSolicitacao`),
+  UNIQUE KEY `idCorretor_UNIQUE` (`idCorretor`),
+  KEY `fk_solicitacao` (`idSolicitacao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -38,8 +44,9 @@ CREATE TABLE `analisesolicitacao` (
 -- Estrutura da tabela `apolice`
 --
 
-CREATE TABLE `apolice` (
-  `idApolice` int(11) NOT NULL,
+DROP TABLE IF EXISTS `apolice`;
+CREATE TABLE IF NOT EXISTS `apolice` (
+  `idApolice` int(11) NOT NULL AUTO_INCREMENT,
   `bandeiraCartao` char(10) DEFAULT NULL,
   `numeroApolice` float DEFAULT NULL,
   `premioApolice` decimal(45,0) DEFAULT NULL,
@@ -47,7 +54,9 @@ CREATE TABLE `apolice` (
   `cartaoCreditoPgto` bigint(45) DEFAULT NULL,
   `vencimentoCartao` datetime DEFAULT NULL,
   `codSegurancaCartao` decimal(10,0) DEFAULT NULL,
-  `nomeNoCartao` varchar(45) DEFAULT NULL
+  `nomeNoCartao` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`idApolice`),
+  UNIQUE KEY `idApolice_UNIQUE` (`idApolice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -56,22 +65,62 @@ CREATE TABLE `apolice` (
 -- Estrutura da tabela `apoliceparcela`
 --
 
-CREATE TABLE `apoliceparcela` (
+DROP TABLE IF EXISTS `apoliceparcela`;
+CREATE TABLE IF NOT EXISTS `apoliceparcela` (
   `idApolice` int(11) DEFAULT NULL,
-  `idParcela` int(11) DEFAULT NULL
+  `idParcela` int(11) DEFAULT NULL,
+  KEY `fk_parecla_idx` (`idParcela`),
+  KEY `fk_apolice_idx` (`idApolice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `avaliasinistro`
+-- Estrutura da tabela `bem`
 --
 
-CREATE TABLE `avaliasinistro` (
-  `idSinistro` int(11) DEFAULT NULL,
-  `dataAvalicao` date DEFAULT NULL,
-  `observacaoSinistro` varchar(45) DEFAULT NULL
+DROP TABLE IF EXISTS `bem`;
+CREATE TABLE IF NOT EXISTS `bem` (
+  `idBem` int(11) NOT NULL AUTO_INCREMENT,
+  `descricaoBem` varchar(60) DEFAULT NULL,
+  `valorBem` float DEFAULT NULL,
+  `idResidenciaPertencente` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idBem`),
+  KEY `idResidenciaPertencente` (`idResidenciaPertencente`)
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `bem`
+--
+
+INSERT INTO `bem` (`idBem`, `descricaoBem`, `valorBem`, `idResidenciaPertencente`) VALUES
+(41, 'Sofa', 540, 24);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `candidato`
+--
+
+DROP TABLE IF EXISTS `candidato`;
+CREATE TABLE IF NOT EXISTS `candidato` (
+  `cep` varchar(10) DEFAULT NULL,
+  `sexo` varchar(10) DEFAULT NULL,
+  `idPessoa` int(11) NOT NULL,
+  `ufCandidato` varchar(2) DEFAULT NULL,
+  `cidadeCandidato` varchar(30) DEFAULT NULL,
+  `bairroCandidato` varchar(30) DEFAULT NULL,
+  `dataNascimento` varchar(10) DEFAULT NULL,
+  UNIQUE KEY `idPessoa_UNIQUE` (`idPessoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `candidato`
+--
+
+INSERT INTO `candidato` (`cep`, `sexo`, `idPessoa`, `ufCandidato`, `cidadeCandidato`, `bairroCandidato`, `dataNascimento`) VALUES
+('97547590', 'Masculino', 40, 'RS', 'Alegrete', 'Centro', '06/09/1998'),
+('97547590', NULL, 41, 'RS', 'Alegrete', 'NS conceição aparecida', '06Jul1997');
 
 -- --------------------------------------------------------
 
@@ -79,10 +128,12 @@ CREATE TABLE `avaliasinistro` (
 -- Estrutura da tabela `corretor`
 --
 
-CREATE TABLE `corretor` (
+DROP TABLE IF EXISTS `corretor`;
+CREATE TABLE IF NOT EXISTS `corretor` (
   `ativoCorretor` varchar(10) DEFAULT NULL,
   `dataContratacao` datetime DEFAULT NULL,
-  `idPessoa` int(11) NOT NULL
+  `idPessoa` int(11) NOT NULL,
+  KEY `fk_corretorPessoa_idx` (`idPessoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -91,7 +142,8 @@ CREATE TABLE `corretor` (
 -- Estrutura da tabela `itemservico`
 --
 
-CREATE TABLE `itemservico` (
+DROP TABLE IF EXISTS `itemservico`;
+CREATE TABLE IF NOT EXISTS `itemservico` (
   `descricaoRecusa` varchar(145) DEFAULT NULL,
   `descricaoAtendimento` varchar(145) DEFAULT NULL,
   `dataAtendimento` datetime DEFAULT NULL,
@@ -99,8 +151,10 @@ CREATE TABLE `itemservico` (
   `aceitaSolicitacao` varchar(10) DEFAULT NULL,
   `descricaoSolicitacao` varchar(145) DEFAULT NULL,
   `dataSolicitacao` datetime DEFAULT NULL,
-  `idItemServiço` int(11) NOT NULL,
-  `idServico` int(11) DEFAULT NULL
+  `idItemServiço` int(11) NOT NULL AUTO_INCREMENT,
+  `idServico` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idItemServiço`),
+  UNIQUE KEY `idItemServiço_UNIQUE` (`idItemServiço`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -109,10 +163,13 @@ CREATE TABLE `itemservico` (
 -- Estrutura da tabela `parcelaapolice`
 --
 
-CREATE TABLE `parcelaapolice` (
+DROP TABLE IF EXISTS `parcelaapolice`;
+CREATE TABLE IF NOT EXISTS `parcelaapolice` (
   `valorParcela` decimal(45,0) DEFAULT NULL,
-  `idParcela` int(11) NOT NULL,
-  `dataPagntParcela` datetime DEFAULT NULL
+  `idParcela` int(11) NOT NULL AUTO_INCREMENT,
+  `dataPagntParcela` datetime DEFAULT NULL,
+  PRIMARY KEY (`idParcela`),
+  UNIQUE KEY `idParcela_UNIQUE` (`idParcela`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -121,11 +178,27 @@ CREATE TABLE `parcelaapolice` (
 -- Estrutura da tabela `pessoa`
 --
 
-CREATE TABLE `pessoa` (
-  `idpessoa` int(11) NOT NULL,
-  `email` varchar(45) NOT NULL,
-  `senha` varchar(45) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+DROP TABLE IF EXISTS `pessoa`;
+CREATE TABLE IF NOT EXISTS `pessoa` (
+  `Nome` varchar(45) DEFAULT NULL,
+  `Endereco` varchar(45) DEFAULT NULL,
+  `Telefone` bigint(12) DEFAULT NULL,
+  `Cpf` varchar(14) DEFAULT NULL,
+  `nomeLogin` varchar(10) DEFAULT NULL,
+  `senha` varchar(45) DEFAULT NULL,
+  `email` varchar(45) DEFAULT NULL,
+  `idPessoa` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`idPessoa`),
+  UNIQUE KEY `idPessoa_UNIQUE` (`idPessoa`)
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `pessoa`
+--
+
+INSERT INTO `pessoa` (`Nome`, `Endereco`, `Telefone`, `Cpf`, `nomeLogin`, `senha`, `email`, `idPessoa`) VALUES
+('Matheus Montanha', 'Joaquim Rodrigues Paim, 410', 34565236, '229', 'jojoPaulin', '0352635', 'estranho@gmail.com', 40),
+('Matheus Montanha Paulon', 'Joaquim Rodrigues Paim, 410', 984564630, '3457088063', 'mathmont', '742617', 'matheusmontanha@gmail.com', 41);
 
 -- --------------------------------------------------------
 
@@ -133,9 +206,11 @@ CREATE TABLE `pessoa` (
 -- Estrutura da tabela `relatasinistro`
 --
 
-CREATE TABLE `relatasinistro` (
+DROP TABLE IF EXISTS `relatasinistro`;
+CREATE TABLE IF NOT EXISTS `relatasinistro` (
   `idSinistro` int(11) DEFAULT NULL,
-  `idPessoa` int(11) DEFAULT NULL
+  `idPessoa` int(11) DEFAULT NULL,
+  KEY `idSinistro` (`idSinistro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -144,8 +219,10 @@ CREATE TABLE `relatasinistro` (
 -- Estrutura da tabela `residencia`
 --
 
-CREATE TABLE `residencia` (
-  `idResidencia` int(11) NOT NULL,
+DROP TABLE IF EXISTS `residencia`;
+CREATE TABLE IF NOT EXISTS `residencia` (
+  `idResidencia` int(11) NOT NULL AUTO_INCREMENT,
+  `idProprietario` int(11) NOT NULL,
   `ufResidencia` varchar(2) DEFAULT NULL,
   `cidade` varchar(45) DEFAULT NULL,
   `bairro` varchar(45) DEFAULT NULL,
@@ -161,18 +238,29 @@ CREATE TABLE `residencia` (
   `quantidadeComodos` decimal(45,0) DEFAULT NULL,
   `quantidadeBanheiros` int(11) DEFAULT NULL,
   `quantidadeGaragens` decimal(45,0) DEFAULT NULL,
-  `numeroAndares` decimal(45,0) DEFAULT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  `numeroAndares` decimal(45,0) DEFAULT NULL,
+  PRIMARY KEY (`idResidencia`),
+  KEY `idProprietario` (`idProprietario`)
+) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
 
 --
 -- Extraindo dados da tabela `residencia`
 --
 
-INSERT INTO `residencia` (`idResidencia`, `ufResidencia`, `cidade`, `bairro`, `descricaoResidencia`, `cepResidencia`, `enderecoResidencia`, `areaTotal`, `areaConstruida`, `anoConstrucao`, `estruturaAmeacada`, `localizacaoPerigosa`, `terrenoPerigoso`, `quantidadeComodos`, `quantidadeBanheiros`, `quantidadeGaragens`, `numeroAndares`) VALUES
-(1, 'rs', NULL, NULL, 'kaoihagybajk', '457841', 'huih', '60.0', '56.0', 2000, 4, 6, 6, '5', 2, '1', '1'),
-(2, 'RS', NULL, NULL, 'njcknkjbdkds', '565656', 'jikhiii', '56.0', '56.0', 2000, 4, 6, 3, '5', 4, '4', '1'),
-(3, 'ti', NULL, NULL, 'gcgfccghj', '44684', 'hho', '56.0', '45.0', 2000, 5, 5, 5, '5', 4, '5', '4'),
-(4, 'rs', NULL, NULL, 'nklbvctiv', '4564564', 'vjhvjh', '89.0', '89.0', 2000, 5, 7, 5, '4', 4, '4', '1');
+INSERT INTO `residencia` (`idResidencia`, `idProprietario`, `ufResidencia`, `cidade`, `bairro`, `descricaoResidencia`, `cepResidencia`, `enderecoResidencia`, `areaTotal`, `areaConstruida`, `anoConstrucao`, `estruturaAmeacada`, `localizacaoPerigosa`, `terrenoPerigoso`, `quantidadeComodos`, `quantidadeBanheiros`, `quantidadeGaragens`, `numeroAndares`) VALUES
+(24, 40, 'RS', 'Alegrete', 'Centro', 'Casa verde', '97547590', 'Joaquim Rodrigues Paim, 410', '5285.0', '510.0', 2011, 5, 4, 5, '7', 1, '1', '3');
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `segurado`
+--
+
+DROP TABLE IF EXISTS `segurado`;
+CREATE TABLE IF NOT EXISTS `segurado` (
+  `idPessoa` int(11) NOT NULL AUTO_INCREMENT,
+  KEY `idPessoa` (`idPessoa`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -180,10 +268,13 @@ INSERT INTO `residencia` (`idResidencia`, `ufResidencia`, `cidade`, `bairro`, `d
 -- Estrutura da tabela `servico`
 --
 
-CREATE TABLE `servico` (
+DROP TABLE IF EXISTS `servico`;
+CREATE TABLE IF NOT EXISTS `servico` (
   `descricaoServico` varchar(145) DEFAULT NULL,
-  `idServico` int(11) NOT NULL,
-  `quantidadeServico` decimal(10,0) DEFAULT NULL
+  `idServico` int(11) NOT NULL AUTO_INCREMENT,
+  `quantidadeServico` decimal(10,0) DEFAULT NULL,
+  PRIMARY KEY (`idServico`),
+  UNIQUE KEY `idServico_UNIQUE` (`idServico`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -192,32 +283,55 @@ CREATE TABLE `servico` (
 -- Estrutura da tabela `sinistro`
 --
 
-CREATE TABLE `sinistro` (
+DROP TABLE IF EXISTS `sinistro`;
+CREATE TABLE IF NOT EXISTS `sinistro` (
   `parecerAvaliador` varchar(145) DEFAULT NULL,
-  `dataSinistro` datetime DEFAULT NULL,
+  `dataSinistro` date DEFAULT NULL,
   `descricaoSinistro` varchar(145) DEFAULT NULL,
   `autorizadoSinistro` varchar(10) DEFAULT NULL,
   `valorSinistro` decimal(45,0) DEFAULT NULL,
-  `idSinistro` int(11) NOT NULL,
-  `idTipo` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idSinistro` int(11) NOT NULL AUTO_INCREMENT,
+  `idTipo` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idSinistro`),
+  UNIQUE KEY `idSinistro_UNIQUE` (`idSinistro`),
+  KEY `fk_tipoSinistro` (`idTipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `sinistro`
+--
+
+INSERT INTO `sinistro` (`parecerAvaliador`, `dataSinistro`, `descricaoSinistro`, `autorizadoSinistro`, `valorSinistro`, `idSinistro`, `idTipo`) VALUES
+('Sinistro muito louco', '2018-05-23', 'Dois homens com mascara.', 'Autorizado', '250', 4, 4);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `solicitacaocandidato`
+-- Estrutura da tabela `solicitacaoseguro`
 --
 
-CREATE TABLE `solicitacaocandidato` (
-  `idSolicitacao` int(11) NOT NULL,
-  `dataSolicitacao` datetime DEFAULT NULL,
-  `dataVisitaResidenciia` datetime DEFAULT NULL,
+DROP TABLE IF EXISTS `solicitacaoseguro`;
+CREATE TABLE IF NOT EXISTS `solicitacaoseguro` (
+  `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT,
+  `dataSolicitacao` date DEFAULT NULL,
+  `dataVisitaResidenciia` date DEFAULT NULL,
   `valorSolicitacao` float DEFAULT NULL,
   `aprovada` varchar(10) DEFAULT NULL,
   `motivoReprovacao` varchar(150) DEFAULT NULL,
-  `idResidencia` int(11) NOT NULL,
-  `idPessoa` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `motivoAlterecao` varchar(150) DEFAULT NULL,
+  `idResidencia` int(11) DEFAULT NULL,
+  `idPessoa` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idSolicitacao`),
+  KEY `idResidencia` (`idResidencia`),
+  KEY `idPessoa` (`idPessoa`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+--
+-- Extraindo dados da tabela `solicitacaoseguro`
+--
+
+INSERT INTO `solicitacaoseguro` (`idSolicitacao`, `dataSolicitacao`, `dataVisitaResidenciia`, `valorSolicitacao`, `aprovada`, `motivoReprovacao`, `motivoAlterecao`, `idResidencia`, `idPessoa`) VALUES
+(4, '2018-06-20', '2018-06-20', 250, 'aprovada', '', 'Sem alterações', 24, 40);
 
 -- --------------------------------------------------------
 
@@ -225,158 +339,31 @@ CREATE TABLE `solicitacaocandidato` (
 -- Estrutura da tabela `tiposinistro`
 --
 
-CREATE TABLE `tiposinistro` (
+DROP TABLE IF EXISTS `tiposinistro`;
+CREATE TABLE IF NOT EXISTS `tiposinistro` (
   `descricaoTipoSinistro` varchar(45) DEFAULT NULL,
-  `idTipo` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `idTipo` int(11) NOT NULL AUTO_INCREMENT,
+  PRIMARY KEY (`idTipo`),
+  UNIQUE KEY `idTipo_UNIQUE` (`idTipo`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 --
--- Indexes for dumped tables
+-- Extraindo dados da tabela `tiposinistro`
 --
 
---
--- Indexes for table `analisesolicitacao`
---
-ALTER TABLE `analisesolicitacao`
-  ADD UNIQUE KEY `idSolicitacao_UNIQUE` (`idSolicitacao`),
-  ADD UNIQUE KEY `idCorretor_UNIQUE` (`idCorretor`);
+INSERT INTO `tiposinistro` (`descricaoTipoSinistro`, `idTipo`) VALUES
+('Roubo', 4);
 
---
--- Indexes for table `apolice`
---
-ALTER TABLE `apolice`
-  ADD PRIMARY KEY (`idApolice`),
-  ADD UNIQUE KEY `idApolice_UNIQUE` (`idApolice`);
-
---
--- Indexes for table `apoliceparcela`
---
-ALTER TABLE `apoliceparcela`
-  ADD KEY `fk_parecla_idx` (`idParcela`),
-  ADD KEY `fk_apolice_idx` (`idApolice`);
-
---
--- Indexes for table `avaliasinistro`
---
-ALTER TABLE `avaliasinistro`
-  ADD KEY `fk_avaliacaoSinistro` (`idSinistro`);
-
---
--- Indexes for table `corretor`
---
-ALTER TABLE `corretor`
-  ADD KEY `fk_corretorPessoa_idx` (`idPessoa`);
-
---
--- Indexes for table `itemservico`
---
-ALTER TABLE `itemservico`
-  ADD PRIMARY KEY (`idItemServiço`),
-  ADD UNIQUE KEY `idItemServiço_UNIQUE` (`idItemServiço`);
-
---
--- Indexes for table `parcelaapolice`
---
-ALTER TABLE `parcelaapolice`
-  ADD PRIMARY KEY (`idParcela`),
-  ADD UNIQUE KEY `idParcela_UNIQUE` (`idParcela`);
-
---
--- Indexes for table `pessoa`
---
-ALTER TABLE `pessoa`
-  ADD PRIMARY KEY (`idpessoa`);
-
---
--- Indexes for table `relatasinistro`
---
-ALTER TABLE `relatasinistro`
-  ADD KEY `idSinistro` (`idSinistro`);
-
---
--- Indexes for table `residencia`
---
-ALTER TABLE `residencia`
-  ADD PRIMARY KEY (`idResidencia`),
-  ADD UNIQUE KEY `idResidencia_UNIQUE` (`idResidencia`);
-
---
--- Indexes for table `servico`
---
-ALTER TABLE `servico`
-  ADD PRIMARY KEY (`idServico`),
-  ADD UNIQUE KEY `idServico_UNIQUE` (`idServico`);
-
---
--- Indexes for table `sinistro`
---
-ALTER TABLE `sinistro`
-  ADD PRIMARY KEY (`idSinistro`),
-  ADD UNIQUE KEY `idSinistro_UNIQUE` (`idSinistro`),
-  ADD KEY `fk_tipoSinistro` (`idTipo`);
-
---
--- Indexes for table `solicitacaocandidato`
---
-ALTER TABLE `solicitacaocandidato`
-  ADD PRIMARY KEY (`idSolicitacao`),
-  ADD KEY `fk_solicitacaoResidencia` (`idResidencia`),
-  ADD KEY `fk_solicitacaoPessoa_idx` (`idPessoa`);
-
---
--- Indexes for table `tiposinistro`
---
-ALTER TABLE `tiposinistro`
-  ADD PRIMARY KEY (`idTipo`),
-  ADD UNIQUE KEY `idTipo_UNIQUE` (`idTipo`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `apolice`
---
-ALTER TABLE `apolice`
-  MODIFY `idApolice` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `itemservico`
---
-ALTER TABLE `itemservico`
-  MODIFY `idItemServiço` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `parcelaapolice`
---
-ALTER TABLE `parcelaapolice`
-  MODIFY `idParcela` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `residencia`
---
-ALTER TABLE `residencia`
-  MODIFY `idResidencia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
---
--- AUTO_INCREMENT for table `servico`
---
-ALTER TABLE `servico`
-  MODIFY `idServico` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `sinistro`
---
-ALTER TABLE `sinistro`
-  MODIFY `idSinistro` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `solicitacaocandidato`
---
-ALTER TABLE `solicitacaocandidato`
-  MODIFY `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT;
---
--- AUTO_INCREMENT for table `tiposinistro`
---
-ALTER TABLE `tiposinistro`
-  MODIFY `idTipo` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Limitadores para a tabela `analisesolicitacao`
+--
+ALTER TABLE `analisesolicitacao`
+  ADD CONSTRAINT `fk_corretor` FOREIGN KEY (`idCorretor`) REFERENCES `corretor` (`idPessoa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `fk_solicitacao` FOREIGN KEY (`idSolicitacao`) REFERENCES `solicitacao` (`idSolicitacao`);
 
 --
 -- Limitadores para a tabela `apoliceparcela`
@@ -384,12 +371,6 @@ ALTER TABLE `tiposinistro`
 ALTER TABLE `apoliceparcela`
   ADD CONSTRAINT `fk_apolice` FOREIGN KEY (`idApolice`) REFERENCES `apolice` (`idApolice`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `fk_parecla` FOREIGN KEY (`idParcela`) REFERENCES `parcelaapolice` (`idParcela`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `avaliasinistro`
---
-ALTER TABLE `avaliasinistro`
-  ADD CONSTRAINT `fk_avaliacaoSinistro` FOREIGN KEY (`idSinistro`) REFERENCES `sinistro` (`idSinistro`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Limitadores para a tabela `corretor`
@@ -404,17 +385,17 @@ ALTER TABLE `relatasinistro`
   ADD CONSTRAINT FOREIGN KEY (`idSinistro`) REFERENCES `sinistro` (`idSinistro`);
 
 --
+-- Limitadores para a tabela `segurado`
+--
+ALTER TABLE `segurado`
+  ADD CONSTRAINT `fk_candidato` FOREIGN KEY (`idPessoa`) REFERENCES `candidato` (`idPessoa`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
 -- Limitadores para a tabela `sinistro`
 --
 ALTER TABLE `sinistro`
   ADD CONSTRAINT `fk_tipoSinistro` FOREIGN KEY (`idTipo`) REFERENCES `tiposinistro` (`idTipo`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `solicitacaocandidato`
---
-ALTER TABLE `solicitacaocandidato`
-  ADD CONSTRAINT `fk_solicitacaoPessoa` FOREIGN KEY (`idPessoa`) REFERENCES `pessoa` (`idPessoa`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_solicitacaoResidencia` FOREIGN KEY (`idResidencia`) REFERENCES `residencia` (`idResidencia`) ON DELETE CASCADE ON UPDATE CASCADE;
+COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
