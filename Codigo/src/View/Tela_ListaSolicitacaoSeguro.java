@@ -5,13 +5,8 @@
  */
 package View;
 
-import DAO.ResidenciaDAO;
-import DAO.SolicitacaoDAO;
 import Motor.Gerenciador;
 import Motor.Solicitacao;
-import dadosResidencia.Residencia;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -19,26 +14,24 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Matheus Montanha
  */
-public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
-
-    Solicitacao solicitacaoGuardar;
+public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
 
     /**
-     * Creates new form Tela_ListaSolicitacoes
+     * Creates new form Tela_DadosSolicitacao
      */
-    public Tela_ListaSolicitacoes() {
+    public Tela_ListaSolicitacaoSeguro() {
         initComponents();
-        DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
-        listaDeSolicitacoes.setRowSorter(new TableRowSorter(modelo));
+        DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
+        listaDeSolicitacoesSeguro.setRowSorter(new TableRowSorter(modelo));
         readTable();
     }
-
+    
     public int readTable() {
-        DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
         Gerenciador motor = new Gerenciador();
-        int tamanhoLista = motor.listaDeResidenciasPendentes().size();
-        if (tamanhoLista > 0) {
+        int tamanho = motor.listaDeResidenciasPendentes().size();
+        if (tamanho > 0) {
             for (Solicitacao solicitacao : motor.listaDeResidenciasPendentes()) {
                 modelo.addRow(new Object[]{
                     solicitacao.getResidencia().getCandidato().getNomePessoa(),
@@ -60,24 +53,17 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jFileChooser1 = new javax.swing.JFileChooser();
-        popupMenu1 = new java.awt.PopupMenu();
-        jMenu1 = new javax.swing.JMenu();
-        jCheckBoxMenuItem1 = new javax.swing.JCheckBoxMenuItem();
         voltarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        listaDeSolicitacoes = new javax.swing.JTable();
+        listaDeSolicitacoesSeguro = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
 
-        popupMenu1.setLabel("popupMenu1");
-
-        jMenu1.setText("jMenu1");
-
-        jCheckBoxMenuItem1.setSelected(true);
-        jCheckBoxMenuItem1.setText("jCheckBoxMenuItem1");
-
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         voltarButton.setBackground(new java.awt.Color(153, 51, 255));
@@ -93,8 +79,8 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         });
         getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 100, 30));
 
-        listaDeSolicitacoes.setBackground(new java.awt.Color(0, 153, 153));
-        listaDeSolicitacoes.setModel(new javax.swing.table.DefaultTableModel(
+        listaDeSolicitacoesSeguro.setBackground(new java.awt.Color(0, 153, 153));
+        listaDeSolicitacoesSeguro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -117,23 +103,26 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        listaDeSolicitacoes.setColumnSelectionAllowed(true);
-        listaDeSolicitacoes.getTableHeader().setReorderingAllowed(false);
-        listaDeSolicitacoes.addMouseListener(new java.awt.event.MouseAdapter() {
+        listaDeSolicitacoesSeguro.setColumnSelectionAllowed(true);
+        listaDeSolicitacoesSeguro.getTableHeader().setReorderingAllowed(false);
+        listaDeSolicitacoesSeguro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaDeSolicitacoesMouseClicked(evt);
+                listaDeSolicitacoesSeguroMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(listaDeSolicitacoes);
-        listaDeSolicitacoes.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_SELECTION);
+        jScrollPane1.setViewportView(listaDeSolicitacoesSeguro);
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 680, 400));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        // TODO add your handling code here:
+    }//GEN-LAST:event_formWindowActivated
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
         Painel_Corretor painel = new Painel_Corretor();
@@ -141,11 +130,11 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
 
-    private void listaDeSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesMouseClicked
-        Tela_DadosResidencia telaDados = new Tela_DadosResidencia();
-        telaDados.setVisible(true);
+    private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
+        Tela_DadosSolicitacao dadosSolicitacao = new Tela_DadosSolicitacao();
+        dadosSolicitacao.setVisible(true);
         dispose();
-    }//GEN-LAST:event_listaDeSolicitacoesMouseClicked
+    }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseClicked
 
     /**
      * @param args the command line arguments
@@ -164,13 +153,13 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaSolicitacaoSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaSolicitacaoSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaSolicitacaoSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaSolicitacaoSeguro.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -178,19 +167,15 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_ListaSolicitacoes().setVisible(true);
+                new Tela_ListaSolicitacaoSeguro().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBoxMenuItem jCheckBoxMenuItem1;
-    private javax.swing.JFileChooser jFileChooser1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JMenu jMenu1;
     private javax.swing.JScrollPane jScrollPane1;
-    public javax.swing.JTable listaDeSolicitacoes;
-    private java.awt.PopupMenu popupMenu1;
+    public javax.swing.JTable listaDeSolicitacoesSeguro;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

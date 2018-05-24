@@ -103,11 +103,11 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         campoCepResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         getContentPane().add(campoCepResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 210, 200, 30));
 
-        jLabelCep.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelCep.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabelCep.setText("Cep:");
         getContentPane().add(jLabelCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 220, 30, -1));
 
-        jLabelRua.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelRua.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabelRua.setText("Rua:");
         getContentPane().add(jLabelRua, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 30, -1));
 
@@ -115,21 +115,21 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         campoRuaResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         getContentPane().add(campoRuaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 260, 200, 30));
 
-        jLabelDescr.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelDescr.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabelDescr.setText("Descrição:");
-        getContentPane().add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 430, 70, 20));
+        getContentPane().add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 410, 70, 20));
 
         campoDescricaoResidencia.setEditable(false);
         campoDescricaoResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         getContentPane().add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 410, 190, 50));
 
-        jLabelUF.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabelUF.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabelUF.setText("UF:");
         getContentPane().add(jLabelUF, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 370, 30, -1));
 
         campoUFResidencia.setEditable(false);
         campoUFResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 90, 30));
+        getContentPane().add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 50, 30));
 
         ButtonAprovarSolicitacao.setBackground(new java.awt.Color(0, 153, 255));
         ButtonAprovarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -156,7 +156,7 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         voltarButton.setBackground(new java.awt.Color(0, 153, 255));
         voltarButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         voltarButton.setForeground(new java.awt.Color(255, 255, 255));
-        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back.png"))); // NOI18N
+        voltarButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
         voltarButton.setText("      Voltar");
         voltarButton.setToolTipText("");
         voltarButton.addActionListener(new java.awt.event.ActionListener() {
@@ -166,13 +166,13 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         });
         getContentPane().add(voltarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 90, 130, 30));
 
-        jLabel1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel1.setText("Cidade:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 50, -1));
 
         campoCidadeResidencia.setEditable(false);
         campoCidadeResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoCidadeResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 120, 30));
+        getContentPane().add(campoCidadeResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 310, 200, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel2.setText("Dados Residência: ");
@@ -228,53 +228,53 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 280, 10));
         getContentPane().add(jSeparator4, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 280, 10));
 
-        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel10.setText("Quantidade de Comodos:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, -1, -1));
 
-        jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel11.setText("Quantidade de Banheiros:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
 
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel12.setText("Quantidade de Garagens:");
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 300, -1, -1));
 
-        jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setText("Area Construida:");
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 380, -1, -1));
 
-        jLabel14.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel14.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel14.setText("Area Total:");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 420, 70, -1));
 
-        jLabel15.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel15.setText("Ano de Construção:");
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 340, -1, -1));
 
         campoQuantidadeComodos.setEditable(false);
         campoQuantidadeComodos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoQuantidadeComodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 210, 40, 30));
+        getContentPane().add(campoQuantidadeComodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 210, 50, 30));
 
         campoQuantidadeDeBanheiros.setEditable(false);
         campoQuantidadeDeBanheiros.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoQuantidadeDeBanheiros, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 250, 40, 30));
+        getContentPane().add(campoQuantidadeDeBanheiros, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 250, 50, 30));
 
         campoQuantidadeDeGaragens.setEditable(false);
         campoQuantidadeDeGaragens.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoQuantidadeDeGaragens, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 290, 40, 30));
+        getContentPane().add(campoQuantidadeDeGaragens, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 290, 50, 30));
 
         campoAnoConstrucao.setEditable(false);
         campoAnoConstrucao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoAnoConstrucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, 40, 30));
+        getContentPane().add(campoAnoConstrucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 330, 50, 30));
 
         campoAreaConstruida.setEditable(false);
         campoAreaConstruida.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoAreaConstruida, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 50, 30));
+        getContentPane().add(campoAreaConstruida, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 370, 50, 30));
 
         campoAreaTotal.setEditable(false);
         campoAreaTotal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoAreaTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 410, 50, 30));
+        getContentPane().add(campoAreaTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 410, 50, 30));
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 570));
@@ -283,7 +283,7 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAprovarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacaoActionPerformed
-
+        
     }//GEN-LAST:event_ButtonAprovarSolicitacaoActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed

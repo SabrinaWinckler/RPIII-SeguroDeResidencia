@@ -70,17 +70,10 @@ public class Gerenciador {
         return daoCandidato.read();
     }
 
-    public boolean enviarSoliciacao(Solicitacao solicitacao) {
-        if (listaDeSolicitacao.add(solicitacao)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
     public List<Solicitacao> listaDeResidenciasPendentes() {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        return daoSolicitacao.read();
+        List<Solicitacao> lista = daoSolicitacao.read();
+        return lista;
     }
 
     public List<Solicitacao> organizarListaDeSolicitacoes() {
@@ -115,5 +108,10 @@ public class Gerenciador {
         } else {
             return listaDeSolicitacoes;
         }
+    }
+
+    public void updateSituacaoSolicitacao() {
+        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+        daoSolicitacao.solicitacaoAprovada();
     }
 }

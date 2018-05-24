@@ -42,6 +42,8 @@ public class Tela_Login extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         entrarButton = new javax.swing.JButton();
         cadastrarButton = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -52,18 +54,18 @@ public class Tela_Login extends javax.swing.JFrame {
 
         getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 128, -1));
 
-        identificadorUsuario.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        identificadorUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         identificadorUsuario.setForeground(new java.awt.Color(255, 255, 255));
         identificadorUsuario.setText("Usuário:");
-        getContentPane().add(identificadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 270, 50, 20));
+        getContentPane().add(identificadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 60, 20));
 
         campoSenha.setText("jPasswordField1");
         getContentPane().add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 128, -1));
 
-        jLabel3.setFont(new java.awt.Font("Sylfaen", 0, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Senha:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 300, 50, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 60, 20));
 
         entrarButton.setBackground(new java.awt.Color(153, 51, 255));
         entrarButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -87,8 +89,14 @@ public class Tela_Login extends javax.swing.JFrame {
         });
         getContentPane().add(cadastrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user-silhouette.png"))); // NOI18N
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 30, 40));
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/locked-padlock.png"))); // NOI18N
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
+
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/login.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 980, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -161,8 +169,10 @@ public class Tela_Login extends javax.swing.JFrame {
     private javax.swing.JTextPane campoUsuario;
     private javax.swing.JButton entrarButton;
     private javax.swing.JLabel identificadorUsuario;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

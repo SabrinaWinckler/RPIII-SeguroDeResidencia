@@ -26,11 +26,14 @@ public class ResidenciaDAO {
         System.out.println(residencia.toString());
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-        ResultSet rs = null;
-        int idCandidato = 12;
+        ResultSet rs;
+        int idCandidato = -1;
         try {
-            stm = conexao.prepareStatement("SELECT idPessoa from candidato");
-            //idCandidato = rs.getInt("idPessoa");
+            stm = conexao.prepareStatement("SELECT max(candidato.idPessoa) from candidato");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                idCandidato = rs.getInt(1);
+            }
             stm = conexao.prepareStatement("INSERT INTO residencia(idProprietario,ufResidencia,"
                     + " cidade, bairro, descricaoResidencia, "
                     + "cepResidencia, enderecoResidencia, areaTotal,"

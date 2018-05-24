@@ -26,11 +26,20 @@ public class SolicitacaoDAO {
     public void create(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-        ResultSet rs = null;
-        int idResidencia = 27;
+        ResultSet rs;
+        int idResidencia = -1;
+        int idPessoa = -1;
         try {
-            stm = conexao.prepareStatement("SELECT idResidencia from residencia");
-            //idResidencia = rs.getInt("idResidencia");
+            stm = conexao.prepareStatement("SELECT max(residencia.idResidencia) from residencia");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                idResidencia = rs.getInt(1);
+            }
+            stm = conexao.prepareStatement("SELECT max(pessoa.idPessoa) from pessoa");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                idPessoa = rs.getInt(1);
+            }
             stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, dataVisitaResidenciia,"
                     + "valorSolicitacao, "
                     + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?,?)");
@@ -41,7 +50,7 @@ public class SolicitacaoDAO {
             stm.setString(5, solicitacao.getMotivoReprovacao());
             stm.setString(6, solicitacao.getMotivoAlteracao());
             stm.setInt(7, idResidencia);
-            stm.setInt(8, 24);
+            stm.setInt(8, idPessoa);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -101,10 +110,21 @@ public class SolicitacaoDAO {
                 listDeSolicitacoes.add(solicitacao);
             }
         } catch (SQLException e) {
-            Logger.getLogger(ResidenciaDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
         return listDeSolicitacoes;
+    }
+
+    public void solicitacaoAprovada() {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm;
+        try {
+            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = 'aprovada'");
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
     }
 }

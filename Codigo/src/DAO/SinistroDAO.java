@@ -24,22 +24,22 @@ import java.util.logging.Logger;
  * @author Matheus Montanha
  */
 public class SinistroDAO {
-
+    
     public void create(Sinistro sinistro) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
         int idTipo = -1;
         try {
-            stm = conexao.prepareStatement("select max(tiposinistro.idTipo) from tiposinistro");
+            stm = conexao.prepareStatement("SELECT max(tiposinistro.idTipo) from tiposinistro");
             rs = stm.executeQuery();
             while (rs.next()) {
                 idTipo = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("INSERTO INTO sinistro(parecerAvaliador, dataSinistro, descricaoSinistro,"
+            stm = conexao.prepareStatement("INSERT INTO sinistro(parecerAvaliador, dataSinistro, descricaoSinistro,"
                     + "autorizadoSinistro, valorSinistro, idTipo)VALUES(?,?,?,?,?,?)");
             stm.setString(1, sinistro.getParecerAvaliador());
-            stm.setDate(2, Date.valueOf(LocalDate.MAX));
+            stm.setDate(2, Date.valueOf("2018-05-23"));
             stm.setString(3, sinistro.getDescricaoSinistro());
             stm.setString(4, sinistro.getAutorizadoSinistro());
             stm.setFloat(5, sinistro.getValorSinistro());
@@ -51,7 +51,7 @@ public class SinistroDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-
+    
     public List<Sinistro> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;

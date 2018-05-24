@@ -94,7 +94,7 @@ public class Principal {
         
         BemDAO bemDAO = new BemDAO();
         bemDAO.create(bem);
-
+         
         //SOLICITACAO
         Date dataSolicitacao = new Date();
         float valorSolicitacao = 250;
@@ -107,6 +107,7 @@ public class Principal {
                 motivoAlteracao, residencia, dao);
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         daoSolicitacao.create(solicitacao);
+        
         //TIPO DE SINISTRO
         String tipoSinistroRoubo = "Roubo";
         TipoSinistro tipoSinistro = new TipoSinistro(tipoSinistroRoubo);

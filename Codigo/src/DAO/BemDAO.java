@@ -29,10 +29,10 @@ public class BemDAO {
         int idResidencia = -1;
         ResultSet rs;
         try {
-            stm = conexao.prepareStatement("SELECT idResidencia FROM residencia");
+            stm = conexao.prepareStatement("SELECT max(residencia.idResidencia) FROM residencia");
             rs = stm.executeQuery();
             while (rs.next()) {
-                idResidencia = rs.getInt("idResidencia");
+                idResidencia = rs.getInt(1);
             }
             stm = conexao.prepareStatement("INSERT INTO bem(valorBem, descricaoBem, idResidenciaPertencente)VALUES(?,?,?)");
             stm.setFloat(1, bem.getValorEstimadoBem());

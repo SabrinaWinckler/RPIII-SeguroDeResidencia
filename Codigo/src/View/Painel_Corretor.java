@@ -6,6 +6,7 @@
 package View;
 
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -193,7 +194,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void visualizarSolicitacoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarSolicitacoesButtonActionPerformed
-
+        Tela_ListaSolicitacaoSeguro telaListaSeguro = new Tela_ListaSolicitacaoSeguro();
+        if (telaListaSeguro.readTable() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Não possui solicitações para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
+        } else {
+            telaListaSeguro.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_visualizarSolicitacoesButtonActionPerformed
 
     private void avaliarSinistroButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSinistroButtonActionPerformed
@@ -206,8 +213,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
     private void avaliarSolicitacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSolicitacaoButtonActionPerformed
         Tela_ListaSolicitacoes telSolicitacao = new Tela_ListaSolicitacoes();
-        telSolicitacao.setVisible(true);
-        dispose();
+        if (telSolicitacao.readTable() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Não possui residencias para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
+        } else {
+            telSolicitacao.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_avaliarSolicitacaoButtonActionPerformed
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
