@@ -7,6 +7,7 @@ package View;
 
 import DadosUsuarios.Candidato;
 import Motor.Gerenciador;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -226,7 +227,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         nomePessoa = campoNome.getText();
         cpf = Long.parseLong(cpfCampo.getText());
-        dataNascimento = diaComboBox.getSelectedItem().toString() + "/" + mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
+        dataNascimento = diaComboBox.getSelectedItem().toString() + mesComboBox.getSelectedItem().toString() + anoComboBox.getSelectedItem().toString();
         cep = Long.parseLong(campoCep.getText());
         endereco = campoEndereço.getText();
         email = emailCampo.getText();
@@ -234,10 +235,12 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         usuarioCliente = usuarioCampo.getText();
         senhaCliente = senhaCampo.getText();
         uf = ufComboBox.getSelectedItem().toString();
+        cidade = campoCidade.getText();
+        bairro = campoBairro.getText();
         motor.cadastrarCliente(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
-
+        JOptionPane.showConfirmDialog(rootPane, "Cadastrado com sucesso!", "Aviso", JOptionPane.CLOSED_OPTION);
         Painel_Candidato candidatoPainel = new Painel_Candidato();
-        candidatoPainel.setVisible(rootPaneCheckingEnabled);
+        candidatoPainel.setVisible(true);
         dispose();
     }//GEN-LAST:event_confirmarButtonActionPerformed
 

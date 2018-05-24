@@ -108,23 +108,24 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_cadastrarButtonActionPerformed
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
-
+        boolean usuarioExiste = false;
         List<Candidato> listPessoas = motor.retornaCliente();
         for (Candidato pessoa : listPessoas) {
-            String usuario = campoUsuario.getText();
             char[] senha = campoSenha.getPassword();
             String senhaJunta = "";
             for (int i = 0; i < campoSenha.getPassword().length; i++) {
                 senhaJunta += senha[i];
             }
             if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
+                usuarioExiste = true;
                 Painel_Candidato painelCandidato = new Painel_Candidato();
                 painelCandidato.setVisible(true);
                 dispose();
-            } else {
-                JOptionPane.showConfirmDialog(rootPane, "Usuário ou senha inválidos. "
-                        + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
             }
+        }
+        if (!usuarioExiste) {
+            JOptionPane.showConfirmDialog(rootPane, "Usuário ou senha inválidos. "
+                    + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
 

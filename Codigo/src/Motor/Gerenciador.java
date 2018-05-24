@@ -6,9 +6,11 @@
 package Motor;
 
 import DAO.CandidatoDAO;
+import DAO.PessoaDAO;
 import DAO.ResidenciaDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
+import DadosUsuarios.Pessoa;
 import dadosResidencia.Residencia;
 import java.util.ArrayList;
 import java.util.Date;
@@ -31,6 +33,9 @@ public class Gerenciador {
             String email, String usuarioCliente, String senhaCliente, String uf,
             String cidade, String bairro) throws NullPointerException {
 
+        Pessoa pessoa = new Pessoa(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+        PessoaDAO daoPessoa = new PessoaDAO();
+        daoPessoa.create(pessoa);
         Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa,
                 cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf,
                 cidade, bairro);
