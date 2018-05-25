@@ -142,7 +142,8 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void listaDeSolicitacoesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesMouseClicked
-        Tela_DadosResidencia telaDados = new Tela_DadosResidencia();
+        int linhaSelecionada = listaDeSolicitacoes.getSelectedRow();
+        Tela_DadosResidencia telaDados = new Tela_DadosResidencia(linhaSelecionada);
         telaDados.setVisible(true);
         dispose();
     }//GEN-LAST:event_listaDeSolicitacoesMouseClicked

@@ -117,9 +117,9 @@ public class Gerenciador {
         }
     }
 
-    public void updateSituacaoSolicitacao() {
+    public void updateSituacaoSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        daoSolicitacao.solicitacaoAprovada();
+        daoSolicitacao.updateStatusSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
     }
 
     public List<Sinistro> listaDeSinistrosPendentes() {

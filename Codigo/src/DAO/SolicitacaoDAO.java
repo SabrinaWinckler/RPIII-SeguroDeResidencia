@@ -117,11 +117,13 @@ public class SolicitacaoDAO {
         return listDeSolicitacoes;
     }
 
-    public void solicitacaoAprovada() {
+    public void updateStatusSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = 'aprovada'");
+            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = " + resultado + ";"
+                    + "update solicitacaoseguro set motivoReprovacao = " + motivoReprovacao + ";"
+                    + "update solicitacaoseguro set motivoAlteracao = " + motivoAlteracao + ";");
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);

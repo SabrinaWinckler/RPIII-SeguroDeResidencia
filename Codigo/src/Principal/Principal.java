@@ -42,7 +42,7 @@ public class Principal {
         String uf = "RS";
         String cidade = "Alegrete";
         String bairro = "Centro";
-        
+
         //pessoa atributo
         String nomePessoa = "Matheus Montanha";
         long cpf = 0345;
@@ -51,11 +51,11 @@ public class Principal {
         String email = "estranho@gmail.com";
         String usuarioCliente = "jojoPaulin";
         String senhaCliente = "0352635";
-        
+
         Pessoa pessoa = new Pessoa(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         PessoaDAO pesDAO = new PessoaDAO();
         pesDAO.create(pessoa);
-        
+
         Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
         CandidatoDAO canDAO = new CandidatoDAO();
         canDAO.create(candidato);
@@ -76,7 +76,7 @@ public class Principal {
         int estruturaAmeacada = 5;
         int quantidadeBanheiros = 1;
         int quantidadeGaragens = 1;
-        
+
         ArrayList<Bem> bens = new ArrayList<>();
 
         //BEM
@@ -84,17 +84,17 @@ public class Principal {
         float valorBem = 540;
         Bem bem = new Bem(descricaoBem, valorBem);
         bens.add(bem);
-        
+
         Residencia residencia = new Residencia(uf, cidade, bairro, descricaoRes, bens, numRes,
                 cepRes, qntComodos, quantidadeBanheiros, quantidadeGaragens, areaTotal,
                 areaConstruida, numAndares, anoConstrucao, endereco, localizacaoPerigosa, terrenoPerigoso,
                 estruturaAmeacada);
         ResidenciaDAO dao = new ResidenciaDAO();
         dao.create(residencia);
-        
+
         BemDAO bemDAO = new BemDAO();
         bemDAO.create(bem);
-         
+
         //SOLICITACAO
         Date dataSolicitacao = new Date();
         float valorSolicitacao = 250;
@@ -107,7 +107,7 @@ public class Principal {
                 motivoAlteracao, residencia, dao);
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         daoSolicitacao.create(solicitacao);
-        
+
         //TIPO DE SINISTRO
         String tipoSinistroRoubo = "Roubo";
         TipoSinistro tipoSinistro = new TipoSinistro(tipoSinistroRoubo);
@@ -120,7 +120,7 @@ public class Principal {
         float valorSinistro = 250;
         String autorizadoSinistro = "Autorizado";
         String parecerAvaliador = "Sinistro muito louco";
-        Sinistro sinistro = new Sinistro(dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador);
+        Sinistro sinistro = new Sinistro(dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador, tipoSinistroRoubo);
 
         SinistroDAO daoSinistro = new SinistroDAO();
         daoSinistro.create(sinistro);

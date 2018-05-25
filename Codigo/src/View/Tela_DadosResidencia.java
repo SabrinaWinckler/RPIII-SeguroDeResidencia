@@ -19,30 +19,34 @@ import javax.swing.JOptionPane;
  */
 public class Tela_DadosResidencia extends javax.swing.JFrame {
 
+    Gerenciador gerenciador = new Gerenciador();
+    String motivoReprovacao, motivoAlteracao, resultado;
+
     /**
      * Creates new form Tela_DadosResidencia
+     *
+     * @param numeroLinha
      */
-    public Tela_DadosResidencia() {
+    public Tela_DadosResidencia(int numeroLinha) {
         initComponents();
-        Gerenciador gerenciador = new Gerenciador();
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
-        String cep = "" + listaDeSolicitacao.get(0).getResidencia().getCepRes();
+        String cep = "" + listaDeSolicitacao.get(numeroLinha).getResidencia().getCepRes();
         campoCepResidencia.setText(cep);
-        campoCidadeResidencia.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getCidade());
-        campoRuaResidencia.setText(listaDeSolicitacao.get(0).getResidencia().getRuaRes());
-        campoDescricaoResidencia.setText(listaDeSolicitacao.get(0).getResidencia().getDescricaoRes());
-        campoUFResidencia.setText(listaDeSolicitacao.get(0).getResidencia().getUfResidencia());
-        campoNomeCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getNomePessoa());
-        campoCPFCandidato.setText("" + listaDeSolicitacao.get(0).getResidencia().getCandidato().getCpf());
-        campoEmailCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getEmail());
-        campoTelefoneCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getTelefone());
-        campoQuantidadeComodos.setText("" + listaDeSolicitacao.get(0).getResidencia().getQntComodos());
-        campoQuantidadeDeBanheiros.setText("" + listaDeSolicitacao.get(0).getResidencia().getQntBanheiros());
-        campoQuantidadeDeGaragens.setText("" + listaDeSolicitacao.get(0).getResidencia().getQntGaragens());
-        campoAreaConstruida.setText("" + listaDeSolicitacao.get(0).getResidencia().getAreaConstruida());
-        campoAnoConstrucao.setText("" + listaDeSolicitacao.get(0).getResidencia().getAnoConstrucao());
-        campoAreaTotal.setText("" + listaDeSolicitacao.get(0).getResidencia().getAreaTotal());
+        campoCidadeResidencia.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getCandidato().getCidade());
+        campoRuaResidencia.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getRuaRes());
+        campoDescricaoResidencia.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getDescricaoRes());
+        campoUFResidencia.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getUfResidencia());
+        campoNomeCandidato.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getCandidato().getNomePessoa());
+        campoCPFCandidato.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getCandidato().getCpf());
+        campoEmailCandidato.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getCandidato().getEmail());
+        campoTelefoneCandidato.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getCandidato().getTelefone());
+        campoQuantidadeComodos.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getQntComodos());
+        campoQuantidadeDeBanheiros.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getQntBanheiros());
+        campoQuantidadeDeGaragens.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getQntGaragens());
+        campoAreaConstruida.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaConstruida());
+        campoAnoConstrucao.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAnoConstrucao());
+        campoAreaTotal.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaTotal());
     }
 
     /**
@@ -223,6 +227,11 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
         buttonEditarSolicitacao.setText("Editar");
         buttonEditarSolicitacao.setMaximumSize(new java.awt.Dimension(87, 23));
         buttonEditarSolicitacao.setMinimumSize(new java.awt.Dimension(84, 23));
+        buttonEditarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonEditarSolicitacaoActionPerformed(evt);
+            }
+        });
         getContentPane().add(buttonEditarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 520, 100, 30));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 360, -1, -1));
         getContentPane().add(jSeparator3, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 400, 280, 10));
@@ -283,14 +292,18 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ButtonAprovarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacaoActionPerformed
-        
+        JOptionPane.showInputDialog(rootPane, "Solicitação aprovada com sucesso!");
+        resultado = "aprovada";
+        gerenciador.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
     }//GEN-LAST:event_ButtonAprovarSolicitacaoActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
         int controle = 0;
         while (controle == 0) {
-            String motivo = JOptionPane.showInputDialog(rootPane, "Digite o motivo da reprovação, por favor:");
-            if (motivo.equalsIgnoreCase("") || motivo.equalsIgnoreCase(" ")) {
+            resultado = "reprovada";
+            motivoReprovacao = JOptionPane.showInputDialog(rootPane, "Digite o motivo da reprovação, por favor:");
+            gerenciador.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
+            if (motivoReprovacao.equalsIgnoreCase("") || motivoReprovacao.equalsIgnoreCase(" ")) {
                 JOptionPane.showConfirmDialog(rootPane, "O campo de texto não deve ser deixado em branco."
                         + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
             } else {
@@ -307,6 +320,10 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_voltarButtonActionPerformed
+
+    private void buttonEditarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarSolicitacaoActionPerformed
+
+    }//GEN-LAST:event_buttonEditarSolicitacaoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -337,8 +354,10 @@ public class Tela_DadosResidencia extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
-                new Tela_DadosResidencia().setVisible(true);
+                int numeroLinha = -1;
+                new Tela_DadosResidencia(numeroLinha).setVisible(true);
             }
         });
     }
