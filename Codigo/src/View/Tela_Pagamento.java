@@ -5,6 +5,8 @@
  */
 package View;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Débora Siqueira
@@ -117,6 +119,7 @@ public class Tela_Pagamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
+         JOptionPane.showConfirmDialog(rootPane, "A solicitação foi contrada com sucesso!", "Alerta", JOptionPane.CLOSED_OPTION);
         Painel_Candidato painel = new Painel_Candidato();
         painel.setVisible(true);
         dispose();

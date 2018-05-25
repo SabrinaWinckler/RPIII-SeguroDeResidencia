@@ -17,8 +17,9 @@ import javax.swing.JOptionPane;
  * @author Débora Siqueira
  */
 public class Tela_Login extends javax.swing.JFrame {
-
+    
     Gerenciador motor = new Gerenciador();
+    Candidato usuario;
 
     /**
      * Creates new form Tela_Login
@@ -119,6 +120,8 @@ public class Tela_Login extends javax.swing.JFrame {
             }
             if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                 usuarioExiste = true;
+                
+                usuario = pessoa;
                 Painel_Candidato painelCandidato = new Painel_Candidato();
                 painelCandidato.setVisible(true);
                 dispose();
@@ -129,11 +132,17 @@ public class Tela_Login extends javax.swing.JFrame {
                     + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
- public void gerarBackground() {
+    
+    public Candidato usuarioIdenficacao() {
+        return usuario = motor.retornaCliente().get(0);
+    }
+    
+    public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         //bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
 
     }
+
     /**
      * @param args the command line arguments
      */

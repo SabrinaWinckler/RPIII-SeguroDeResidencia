@@ -55,7 +55,7 @@ public class CandidatoDAO {
 
     public List<Candidato> read() {
         long cep, cpf;
-        String dataNescimento, endereco, sexo;
+        String dataNescimento, endereco, sexo, nome;
         String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -78,8 +78,9 @@ public class CandidatoDAO {
                 email = rs.getString("email");
                 usuarioCliente = rs.getString("nomeLogin");
                 senhaCliente = rs.getString("senha");
+                nome = rs.getString("Nome");
                 Candidato candidato = new Candidato(sexo, cep, dataNescimento,
-                        endereco, cpf, endereco, telefone, email, usuarioCliente,
+                        nome, cpf, endereco, telefone, email, usuarioCliente,
                         senhaCliente, uf, cidade, bairro);
                 listaDeCandidato.add(candidato);
             }

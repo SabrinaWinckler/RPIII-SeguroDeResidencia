@@ -52,7 +52,7 @@ public class Gerenciador {
 
         Solicitacao solicitacao = new Solicitacao(dataSolicitacao, valorSolicitacao,
                 dataVisitaResidencia, aprovadaSolicitacao, motivoReprovacao,
-                motivoAlteracao, residencia, daoResidencia);
+                motivoAlteracao, residencia);
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         daoSolicitacao.create(solicitacao);
     }

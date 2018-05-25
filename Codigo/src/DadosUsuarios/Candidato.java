@@ -20,6 +20,9 @@ public class Candidato extends Pessoa {
     private String cidade;
     private String bairro;
 
+    public Candidato() {
+    }
+
     public Candidato(String sexo, long cep, String dataNescimento, String nomePessoa,
             long cpf, String endereco, String telefone, String email,
             String usuarioCliente, String senhaCliente, String uf, String cidade,
@@ -31,9 +34,6 @@ public class Candidato extends Pessoa {
         this.uf = uf;
         this.cidade = cidade;
         this.bairro = bairro;
-    }
-
-    public Candidato() {
     }
 
     /**
