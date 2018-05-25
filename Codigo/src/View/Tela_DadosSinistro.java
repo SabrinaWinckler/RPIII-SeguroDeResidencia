@@ -5,8 +5,8 @@
  */
 package View;
 
+import DadosUsuarios.Segurado;
 import Motor.Gerenciador;
-import SevicosSeguradora.Sinistro;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -18,15 +18,21 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
 
     /**
      * Creates new form Tela_DadosSinistro
+     *
+     * @param selecionado
      */
-    public Tela_DadosSinistro() {
+    public Tela_DadosSinistro(int selecionado) {
         initComponents();
         Gerenciador motor = new Gerenciador();
-        List<Sinistro> listaSinistro = motor.listaDeSinistrosPendentes();
-        campoDataSinistro.setText("" + listaSinistro.get(0).getDataSinistro());
-        campoDescricaoSinistro.setText(listaSinistro.get(0).getDescricaoSinistro());
-        campoTipoSinistro.setText(listaSinistro.get(0).getTipoSinistro());
-        campoValorSinistro.setText("" + listaSinistro.get(0).getValorSinistro());
+        List<Segurado> listaSinistro = motor.listaDeSinistrosPendentes();
+        campoDataSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getDataSinistro());
+        campoDescricaoSinistro.setText(listaSinistro.get(selecionado).getSinistros().get(selecionado).getDescricaoSinistro());
+        campoTipoSinistro.setText(listaSinistro.get(selecionado).getSinistros().get(selecionado).getTipoSinistro());
+        campoValorSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getValorSinistro());
+        campoNomeSolicitante.setText(listaSinistro.get(selecionado).getNomePessoa());
+        campoCPFSolicitante.setText("" + listaSinistro.get(selecionado).getCpf());
+        campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
+        campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
 
     /**
@@ -61,12 +67,10 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         campoNomeSolicitante = new javax.swing.JTextField();
         campoCPFSolicitante = new javax.swing.JTextField();
         campoEmailSolicitante = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
+        campoTelefone = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jSeparator3 = new javax.swing.JSeparator();
         jLabel11 = new javax.swing.JLabel();
-        jLabel12 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
@@ -160,19 +164,19 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setText("Nome:");
-        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 260, -1, -1));
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 260, -1, -1));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel8.setText("CPF:");
-        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 310, -1, -1));
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 310, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel9.setText("Email:");
-        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, 40, -1));
+        getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 360, 40, -1));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel10.setText("Telefone:");
-        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 410, -1, -1));
+        getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 410, 60, -1));
 
         campoDescricaoSinistro.setEditable(false);
         campoDescricaoSinistro.setColumns(20);
@@ -184,19 +188,19 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
 
         campoNomeSolicitante.setEditable(false);
         campoNomeSolicitante.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoNomeSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 250, 90, 30));
+        getContentPane().add(campoNomeSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 200, 30));
 
         campoCPFSolicitante.setEditable(false);
         campoCPFSolicitante.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoCPFSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 300, 90, 30));
+        getContentPane().add(campoCPFSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 300, 200, 30));
 
         campoEmailSolicitante.setEditable(false);
         campoEmailSolicitante.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(campoEmailSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 350, 90, 30));
+        getContentPane().add(campoEmailSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 200, 30));
 
-        jTextField5.setEditable(false);
-        jTextField5.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        getContentPane().add(jTextField5, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 400, 90, 30));
+        campoTelefone.setEditable(false);
+        campoTelefone.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        getContentPane().add(campoTelefone, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 400, 200, 30));
         getContentPane().add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 270, -1, -1));
 
         jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -205,19 +209,6 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel11.setText("Avaliador:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 180, -1, -1));
-
-        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jLabel12.setText("Endereço da Residência:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 460, -1, -1));
-
-        jTextField1.setEditable(false);
-        jTextField1.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTextField1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField1ActionPerformed(evt);
-            }
-        });
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 450, 140, 30));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel13.setText("Parecer:");
@@ -241,13 +232,19 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
-        Painel_Corretor painel = new Painel_Corretor();
-        painel.setVisible(true);
-        dispose();
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja retornar a lista de solicitações de sinistro?");
+        if (resposta == 0) {
+            Tela_ListaSolicitacoes telaLista = new Tela_ListaSolicitacoes();
+            telaLista.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void ButtonAutorizarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAutorizarPagamentoActionPerformed
-        // TODO add your handling code here:
+        JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro autorizado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
+        Tela_ListaDeSinistro listSinistros = new Tela_ListaDeSinistro();
+        listSinistros.setVisible(true);
+        dispose();
     }//GEN-LAST:event_ButtonAutorizarPagamentoActionPerformed
 
     private void buttonNegarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNegarPagamentoActionPerformed
@@ -266,10 +263,6 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     private void campoDataSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataSinistroActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoDataSinistroActionPerformed
-
-    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -301,7 +294,8 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_DadosSinistro().setVisible(true);
+                int selecionado = 0;
+                new Tela_DadosSinistro(selecionado).setVisible(true);
             }
         });
     }
@@ -314,12 +308,12 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     private javax.swing.JTextArea campoDescricaoSinistro;
     private javax.swing.JTextField campoEmailSolicitante;
     private javax.swing.JTextField campoNomeSolicitante;
+    private javax.swing.JTextField campoTelefone;
     private javax.swing.JTextField campoTipoSinistro;
     private javax.swing.JTextField campoValorSinistro;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
-    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
@@ -338,8 +332,6 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTextArea jTextArea1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JButton voltarButton;
     // End of variables declaration//GEN-END:variables
 }

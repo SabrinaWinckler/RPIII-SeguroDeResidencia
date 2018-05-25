@@ -7,11 +7,13 @@ package Motor;
 
 import DAO.CandidatoDAO;
 import DAO.PessoaDAO;
+import DAO.RelataSinistroDAO;
 import DAO.ResidenciaDAO;
 import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
 import DadosUsuarios.Pessoa;
+import DadosUsuarios.Segurado;
 import Operacoes.Solicitacao;
 import SevicosSeguradora.Sinistro;
 import dadosResidencia.Residencia;
@@ -122,8 +124,8 @@ public class Gerenciador {
         daoSolicitacao.updateStatusSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
     }
 
-    public List<Sinistro> listaDeSinistrosPendentes() {
-        SinistroDAO daoSinistro = new SinistroDAO();
+    public List<Segurado> listaDeSinistrosPendentes() {
+        RelataSinistroDAO daoSinistro = new RelataSinistroDAO();
         return daoSinistro.read();
     }
 }
