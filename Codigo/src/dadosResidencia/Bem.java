@@ -8,7 +8,6 @@ public class Bem {
 
     private String descricaoBem;
     
-    private BemDAO dao;
 
     public Bem(float valorEstimadoBem, String descricaoBem) {
         this.valorEstimadoBem = valorEstimadoBem;
@@ -17,7 +16,6 @@ public class Bem {
     }
 
     public Bem() {
-        this.dao = new BemDAO();
     }
 
     @Override
@@ -29,9 +27,7 @@ public class Bem {
         this.valorEstimadoBem = valor;
         this.descricaoBem = desc;
     }
-    public void registraBem(Bem bem){
-        dao.create(bem);
-    }
+  
 
    
 

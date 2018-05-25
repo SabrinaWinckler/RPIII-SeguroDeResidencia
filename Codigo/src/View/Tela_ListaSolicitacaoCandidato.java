@@ -6,8 +6,8 @@
 package View;
 
 import Motor.Gerenciador;
-import Motor.Solicitacao;
-import SevicosSeguradora.Sinistro;
+import Motor.ControleSolicitacao;
+import Operacoes.Solicitacao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

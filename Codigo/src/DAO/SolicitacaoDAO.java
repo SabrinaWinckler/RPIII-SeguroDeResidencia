@@ -6,7 +6,7 @@
 package DAO;
 
 import DB.ConnectionFactory;
-import Motor.Solicitacao;
+import Operacoes.Solicitacao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

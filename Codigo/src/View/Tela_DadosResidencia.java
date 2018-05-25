@@ -5,11 +5,8 @@
  */
 package View;
 
-import DAO.ResidenciaDAO;
 import Motor.Gerenciador;
-import Motor.Solicitacao;
-import dadosResidencia.Residencia;
-import java.util.ArrayList;
+import Operacoes.Solicitacao;
 import java.util.List;
 import javax.swing.JOptionPane;
 

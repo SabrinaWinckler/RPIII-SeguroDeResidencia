@@ -6,7 +6,7 @@
 package View;
 
 import Motor.Gerenciador;
-import Motor.Solicitacao;
+import Motor.ControleSolicitacao;
 import SevicosSeguradora.Sinistro;
 import javax.swing.table.DefaultTableModel;
 

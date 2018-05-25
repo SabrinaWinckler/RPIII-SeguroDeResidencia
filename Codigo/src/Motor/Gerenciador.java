@@ -12,9 +12,9 @@ import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
 import DadosUsuarios.Pessoa;
+import Operacoes.Solicitacao;
 import SevicosSeguradora.Sinistro;
 import dadosResidencia.Residencia;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 

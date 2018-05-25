@@ -6,8 +6,7 @@
 package View;
 
 import Motor.Gerenciador;
-import Motor.Solicitacao;
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
+import Operacoes.Solicitacao;
 import java.util.List;
 import javax.swing.JOptionPane;
 

@@ -296,11 +296,6 @@ public class Residencia {
         this.ufResidencia = ufResidencia;
     }
 
-    public void registraResidencia(Residencia residencia, ResidenciaDAO dao) {
-        System.out.println(residencia.toString());
-        dao.create(residencia);
-    }
-
     public void setCidade(String cidade) {
         this.cidade = cidade;
     }

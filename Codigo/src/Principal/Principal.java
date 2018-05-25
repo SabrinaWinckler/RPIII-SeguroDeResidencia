@@ -14,7 +14,7 @@ import DAO.SolicitacaoDAO;
 import DAO.TipoSinistroDAO;
 import DadosUsuarios.Candidato;
 import DadosUsuarios.Pessoa;
-import Motor.Solicitacao;
+import Motor.ControleSolicitacao;
 import SevicosSeguradora.Sinistro;
 import SevicosSeguradora.TipoSinistro;
 import View.Tela_Login;
@@ -102,7 +102,7 @@ public class Principal {
         String aprovadaSolicitacao = "Não";
         String motivoReprovacao = "Reprovada por ser perigosa";
         String motivoAlteracao = "Sem alterações";
-        Solicitacao solicitacao = new Solicitacao(dataSolicitacao, valorSolicitacao,
+        ControleSolicitacao solicitacao = new ControleSolicitacao(dataSolicitacao, valorSolicitacao,
                 dataVisitaResidencia, aprovadaSolicitacao, motivoReprovacao,
                 motivoAlteracao, residencia, dao);
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();

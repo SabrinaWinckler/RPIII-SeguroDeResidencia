@@ -6,7 +6,7 @@
 package View;
 
 import Motor.Gerenciador;
-import Motor.Solicitacao;
+import Operacoes.Solicitacao;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 

@@ -5,13 +5,9 @@
  */
 package View;
 
-import DAO.ResidenciaDAO;
-import DAO.SolicitacaoDAO;
 import Motor.Gerenciador;
-import Motor.Solicitacao;
-import dadosResidencia.Residencia;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
+import Motor.ControleSolicitacao;
+import Operacoes.Solicitacao;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 

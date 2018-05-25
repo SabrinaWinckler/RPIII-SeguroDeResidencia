@@ -7,7 +7,7 @@ package View;
 
 import DAO.BemDAO;
 import DAO.ResidenciaDAO;
-import Motor.Solicitacao;
+import Motor.ControleSolicitacao;
 import dadosResidencia.Bem;
 import dadosResidencia.Residencia;
 import excecao.ExceptionEmptySpace;
@@ -23,25 +23,18 @@ import javax.swing.JOptionPane;
  */
 public class Painel_Candidato extends javax.swing.JFrame {
 
-    Solicitacao solicitacao;
-    List bem;
-    ResidenciaDAO residenciaDados;
-    BemDAO bemDao;
+    ControleSolicitacao controlador;
 
     /**
      * Creates new form Painel_Corretor
      */
     public Painel_Candidato() {
         initComponents();
-        this.solicitacao = new Solicitacao();
-        nivel.setVisible(false);
+        painelSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
         cancelarSolicitacao.setVisible(false);
-        bem = new ArrayList();
-        residenciaDados = new ResidenciaDAO();
-        bemDao = new BemDAO();
-
+        
     }
 
     /**
@@ -70,7 +63,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         contratarServico = new javax.swing.JButton();
         relatarSinistro = new javax.swing.JButton();
         painelP = new javax.swing.JPanel();
-        nivel = new javax.swing.JPanel();
+        painelSolicitacao = new javax.swing.JPanel();
         cep = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -481,142 +474,142 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         jLabel22.setText("Área Construida:");
 
-        javax.swing.GroupLayout nivelLayout = new javax.swing.GroupLayout(nivel);
-        nivel.setLayout(nivelLayout);
-        nivelLayout.setHorizontalGroup(
-            nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nivelLayout.createSequentialGroup()
+        javax.swing.GroupLayout painelSolicitacaoLayout = new javax.swing.GroupLayout(painelSolicitacao);
+        painelSolicitacao.setLayout(painelSolicitacaoLayout);
+        painelSolicitacaoLayout.setHorizontalGroup(
+            painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                 .addGap(39, 39, 39)
-                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(nivelLayout.createSequentialGroup()
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(descRes, javax.swing.GroupLayout.PREFERRED_SIZE, 289, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(nivelLayout.createSequentialGroup()
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jLabel16)
                                     .addComponent(anoC, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(areaConstruida, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel22))
                                 .addGap(30, 30, 30)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(areat, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel17)))
-                            .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(jLabel10)))
                         .addGap(46, 46, 46))
-                    .addGroup(nivelLayout.createSequentialGroup()
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(nivelLayout.createSequentialGroup()
+                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                                 .addComponent(jLabel24)
                                 .addGap(82, 82, 82)
                                 .addComponent(jLabel25)
                                 .addGap(100, 100, 100)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(nivelLayout.createSequentialGroup()
+                                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                                         .addGap(0, 0, Short.MAX_VALUE)
                                         .addComponent(cancelar)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(enviar))
-                                    .addGroup(nivelLayout.createSequentialGroup()
+                                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                                         .addComponent(estruturaA, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(e))))
                             .addComponent(jLabel18)
-                            .addGroup(nivelLayout.createSequentialGroup()
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel2)
                                     .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel1))
                                 .addGap(30, 30, 30)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel5)
                                     .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(23, 23, 23)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel7))
                                 .addGap(18, 18, 18)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel8)
                                     .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(18, 18, 18)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jLabel9)
                                     .addComponent(rua, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(nivelLayout.createSequentialGroup()
+                            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                                 .addComponent(localizacaoP, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(l))
-                            .addGroup(nivelLayout.createSequentialGroup()
+                            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                                 .addGap(192, 192, 192)
                                 .addComponent(terrenoP, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(t)))
                         .addContainerGap())))
         );
-        nivelLayout.setVerticalGroup(
-            nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(nivelLayout.createSequentialGroup()
+        painelSolicitacaoLayout.setVerticalGroup(
+            painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                 .addGap(9, 9, 9)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(nivelLayout.createSequentialGroup()
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                 .addComponent(jLabel2)
                                 .addComponent(jLabel5)
                                 .addComponent(jLabel7))
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(uf, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(cidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(bairro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(nivelLayout.createSequentialGroup()
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel10))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(rua, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(numero, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addGap(18, 18, 18)
-                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(nivelLayout.createSequentialGroup()
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(nivelLayout.createSequentialGroup()
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(jLabel18)
                                     .addComponent(jLabel16))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                     .addComponent(descRes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(anoC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(nivelLayout.createSequentialGroup()
+                            .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                                 .addComponent(jLabel17)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(areat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(77, 77, 77)
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel24)
                             .addComponent(jLabel25)
                             .addComponent(jLabel26))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(localizacaoP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(l)
                             .addComponent(terrenoP, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -624,18 +617,18 @@ public class Painel_Candidato extends javax.swing.JFrame {
                             .addComponent(estruturaA, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(e))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
-                        .addGroup(nivelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addGroup(painelSolicitacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(enviar)
                             .addComponent(cancelar))
                         .addGap(44, 44, 44))
-                    .addGroup(nivelLayout.createSequentialGroup()
+                    .addGroup(painelSolicitacaoLayout.createSequentialGroup()
                         .addComponent(jLabel22)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(areaConstruida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
-        painelP.add(nivel, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 690, 440));
+        painelP.add(painelSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 120, 690, 440));
 
         editar.setText("Editar Solicitação");
         editar.addActionListener(new java.awt.event.ActionListener() {
@@ -704,10 +697,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         /*Tela_ListaSolicitacoes telaSolicitacoes = new Tela_ListaSolicitacoes();
         telaSolicitacoes.setVisible(true);
         dispose();*/
+        this.controlador = new ControleSolicitacao();
         editar.setVisible(true);
         nova.setVisible(true);
         cancelarSolicitacao.setVisible(true);
-        nivel.setVisible(true);
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
@@ -719,7 +712,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_contratarServicoActionPerformed
 
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
-        nivel.setVisible(true);
+        painelSolicitacao.setVisible(true);
     }//GEN-LAST:event_novaActionPerformed
 
     private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
@@ -728,7 +721,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         //recuperar dados da solicitação que el deseja editar
-        nivel.setVisible(true);
+        painelSolicitacao.setVisible(true);
     }//GEN-LAST:event_editarActionPerformed
 
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
@@ -760,7 +753,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             int garagemCandidato = Integer.parseInt(garagem.getText());
             int andaresCandidato = Integer.parseInt(andares.getText());
             float areaT = Float.parseFloat(areat.getText());
-            float areaC = Float.parseFloat(areaConstruida.getText());
+            double areaC = Float.parseFloat(areaConstruida.getText());
 
             int anoConstrucao = Integer.parseInt(anoC.getText());
 
@@ -768,31 +761,24 @@ public class Painel_Candidato extends javax.swing.JFrame {
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
 
-            List bens = new ArrayList<Bem>();
-            for (int i = 0; i < this.bem.size(); i++) {
-                bens.add(bem.get(i));
-
-            }
-
-            Residencia residencia = new Residencia(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(), bens, numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato, anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
-
-            Date dataSolicitacao = new Date();
-
-            System.out.println(residencia.toString());
-            // this.solicitacao.registrarSolicitacao(residencia, dataSolicitacao);
+            controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
+                    numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
+                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
 
             JOptionPane.showMessageDialog(painelP, "\n Sua solicitação foi enviada para avaliação!");
-            JOptionPane.showMessageDialog(painelP, dataSolicitacao.toString() + "/n" + solicitacao.toString());
-
+            //JOptionPane.showMessageDialog(painelP, "/n" + controlador.getSolicitacao().toString());//ler do banco 
+            painelSolicitacao.setVisible(false);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
-
-        nivel.setVisible(false);
+        
     }//GEN-LAST:event_enviarActionPerformed
-
+    public void esvaziarCampos(){
+        
+    }
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-        nivel.setVisible(false);
+        this.esvaziarCampos();
+        painelSolicitacao.setVisible(false);
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void estruturaAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_estruturaAStateChanged
@@ -817,21 +803,23 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
 
-        JOptionPane.showMessageDialog(rootPane, "Bens: \n" + this.bem.toString());        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "Bens: \n" + controlador.getBens().toString());        // TODO add your handling code here:
     }//GEN-LAST:event_exibirActionPerformed
 
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
         try {
-            if (bem.remove(descBem.getText())) {
+            JOptionPane.showMessageDialog(rootPane, "Bens: \n" + controlador.getBens().toString());
+            //gerar campo para texto ou tabela com seleção para escolha do bem a ser removido
+            if (controlador.getBens().remove(descBem.getText())) {
                 JOptionPane.showMessageDialog(null, "Bem: " + descBem.getText() + " Removido!");
                 descBem.setText("");
                 valor.setText("");
 
             }
         } catch (NullPointerException e) {
-            JOptionPane.showMessageDialog(null, "Este ator não foi adicionado!");
+            JOptionPane.showMessageDialog(null, "Este bem não foi adicionado!");
         } catch (IndexOutOfBoundsException e) {
-            JOptionPane.showMessageDialog(null, "Nenhum ator foi adicionado!");
+            JOptionPane.showMessageDialog(null, "Nenhum bem foi encontrado!");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_removerActionPerformed
 
@@ -839,8 +827,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         try {
             ExceptionEmptySpace.informaDado(descBem.getText());
             ExceptionEmptySpace.informaDado(valor.getText());
-            Bem bem1 = new Bem(descBem.getText(), Integer.parseInt(valor.getText()));
-            if (bem.add(bem1)) {
+            if (controlador.registraBemLista(Float.parseFloat(valor.getText()), descBem.getText())) {
                 descBem.setText("");
                 valor.setText("");
             }
@@ -987,10 +974,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private java.awt.MenuBar menuBar1;
     private java.awt.MenuBar menuBar2;
     private javax.swing.JButton minhasResidencias;
-    private javax.swing.JPanel nivel;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
     private javax.swing.JPanel painelP;
+    private javax.swing.JPanel painelSolicitacao;
     private java.awt.PopupMenu popupMenu1;
     private javax.swing.JButton relatarSinistro;
     private javax.swing.JButton remover;
