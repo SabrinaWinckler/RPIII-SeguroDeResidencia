@@ -803,17 +803,21 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void exibirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exibirActionPerformed
 
-        JOptionPane.showMessageDialog(rootPane, "Bens: \n" + controlador.getBens().toString());        // TODO add your handling code here:
+        JOptionPane.showMessageDialog(rootPane, "Bens: \r\n" + controlador.getBens().toString());        // TODO add your handling code here:
     }//GEN-LAST:event_exibirActionPerformed
 
     private void removerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removerActionPerformed
         try {
-            JOptionPane.showMessageDialog(rootPane, "Bens: \n" + controlador.getBens().toString());
-            //gerar campo para texto ou tabela com seleção para escolha do bem a ser removido
-            if (controlador.getBens().remove(descBem.getText())) {
-                JOptionPane.showMessageDialog(null, "Bem: " + descBem.getText() + " Removido!");
-                descBem.setText("");
-                valor.setText("");
+            String removido = JOptionPane.showInputDialog(painelP, "Digite o nome do Bem que deseja Remover! \r\n" + controlador.getBens().toString());
+            Bem temp = null;
+            for(int i = 0; i<controlador.getBens().size(); i++){
+                if(controlador.getBens().get(i).getDescricaoBem().equalsIgnoreCase(removido)){
+                    temp = controlador.getBens().get(i);
+                    break;
+                }
+            }
+            if (controlador.getBens().remove(temp)) {
+                JOptionPane.showMessageDialog(null, "Bem: \r\n" + removido + " Removido!");
 
             }
         } catch (NullPointerException e) {

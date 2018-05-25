@@ -30,16 +30,33 @@ public class Solicitacao {
 
     private Residencia residencia;
 
+    private ResidenciaDAO daoRes; // remover este atributo
+    
     public Solicitacao(Date dataSolicitacao, Residencia residencia) {
         this.dataSolicitacao = dataSolicitacao;
         this.residencia = residencia;
+        this.valorSolicitacao = 0;
+        this.aprovadaSolicitacao = null;
+        this.dataVisitaResidencia = null;
+        this.motivoAlteracao = null;
+        this.motivoReprovacao = null;
+        this.valorSolicitacao = 0;
+        
     }
     public Solicitacao(){
     
     }
 
     public Solicitacao(Date dataSolicitacao, double valorSolicitacao, Date dataVisitaResidencia, String aprovadaSolicitacao, String motivoReprovacao, String motivoAlteracao, Residencia residencia, ResidenciaDAO daoResidencia) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.valorSolicitacao = valorSolicitacao;
+        this.dataSolicitacao = dataSolicitacao;
+        this.residencia = residencia;
+        this.aprovadaSolicitacao = aprovadaSolicitacao; 
+        this.motivoAlteracao = motivoAlteracao; 
+        this.motivoReprovacao = motivoReprovacao; 
+        this.dataVisitaResidencia = dataVisitaResidencia;
+        this.daoRes = daoResidencia;
+        
     }
 
     public void setDataSolicitacao(Date dataSolicitacao) {

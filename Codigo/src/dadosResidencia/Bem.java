@@ -20,7 +20,7 @@ public class Bem {
 
     @Override
     public String toString() {
-        return "Bem:" + "\n Valor Estimado do Bem=" + valorEstimadoBem + "\n Descricao do Bem: " + descricaoBem;
+        return "Bem:" + "\r\n Valor Estimado do Bem=" + valorEstimadoBem + "\r\n Descricao do Bem: " + descricaoBem;
     }
 
     public Bem(String desc, float valor) {

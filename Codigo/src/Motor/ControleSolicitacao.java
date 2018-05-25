@@ -80,7 +80,8 @@ public class ControleSolicitacao {
         for(int i = 0; i< bens.size(); i++ ){ 
             daoBem.create((Bem)bens.get(i));
         }
-       // geraDAOSolicitacao().create(construirSolicitacao());
+        Solicitacao tempS = this.construirSolicitacao();
+        geraDAOSolicitacao().create(tempS);
     }
 
     @Override
