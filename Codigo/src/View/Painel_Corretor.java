@@ -170,7 +170,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jComboBoxOpcoesCorretor.setBackground(new java.awt.Color(110, 48, 110));
         jComboBoxOpcoesCorretor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jComboBoxOpcoesCorretor.setForeground(new java.awt.Color(110, 48, 110));
-        jComboBoxOpcoesCorretor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visualizar Perfil", "Alterar minha senha" }));
+        jComboBoxOpcoesCorretor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Minha conta", "Sair" }));
         jComboBoxOpcoesCorretor.setToolTipText("");
         jComboBoxOpcoesCorretor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -244,10 +244,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void jComboBoxOpcoesCorretorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxOpcoesCorretorActionPerformed
         String opcaoEscolhida;
         opcaoEscolhida = jComboBoxOpcoesCorretor.getSelectedItem().toString();
-        if (opcaoEscolhida.equals("Visualizar Perfil")) {
+        if (opcaoEscolhida.equalsIgnoreCase("Minha conta")) {
             Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
             jComboBoxOpcoesCorretor.setVisible(false);
             telaCadastro.setVisible(true);
+            dispose();
+        } else if (opcaoEscolhida.equalsIgnoreCase("Sair")) {
+            Tela_Login telaLogin = new Tela_Login();
+            telaLogin.setVisible(true);
             dispose();
         }
     }//GEN-LAST:event_jComboBoxOpcoesCorretorActionPerformed

@@ -310,8 +310,8 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="2">
-            <StringItem index="0" value="Visualizar Perfil"/>
-            <StringItem index="1" value="Alterar minha senha"/>
+            <StringItem index="0" value="Minha conta"/>
+            <StringItem index="1" value="Sair"/>
           </StringArray>
         </Property>
         <Property name="toolTipText" type="java.lang.String" value=""/>
