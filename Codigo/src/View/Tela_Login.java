@@ -6,6 +6,8 @@
 package View;
 
 import DadosUsuarios.Candidato;
+import DadosUsuarios.Corretor;
+import DadosUsuarios.Pessoa;
 import Motor.Gerenciador;
 import java.util.Arrays;
 import java.util.List;
@@ -17,9 +19,10 @@ import javax.swing.JOptionPane;
  * @author Débora Siqueira
  */
 public class Tela_Login extends javax.swing.JFrame {
-    
+
     Gerenciador motor = new Gerenciador();
     Candidato usuario;
+    Corretor corretor;
 
     /**
      * Creates new form Tela_Login
@@ -112,6 +115,7 @@ public class Tela_Login extends javax.swing.JFrame {
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
         boolean usuarioExiste = false;
         List<Candidato> listPessoas = motor.retornaCliente();
+        List<Corretor> listCorretores = motor.retornarCorretor();
         for (Candidato pessoa : listPessoas) {
             char[] senha = campoSenha.getPassword();
             String senhaJunta = "";
@@ -120,10 +124,23 @@ public class Tela_Login extends javax.swing.JFrame {
             }
             if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                 usuarioExiste = true;
-                
                 usuario = pessoa;
                 Painel_Candidato painelCandidato = new Painel_Candidato();
                 painelCandidato.setVisible(true);
+                dispose();
+            }
+        }
+        for (Corretor certoCorretor : listCorretores) {
+            char[] senha = campoSenha.getPassword();
+            String senhaJunta = "";
+            for (int i = 0; i < campoSenha.getPassword().length; i++) {
+                senhaJunta += senha[i];
+            }
+            if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
+                usuarioExiste = true;
+                corretor = certoCorretor;
+                Painel_Corretor painelCorretor = new Painel_Corretor();
+                painelCorretor.setVisible(usuarioExiste);
                 dispose();
             }
         }
@@ -132,11 +149,11 @@ public class Tela_Login extends javax.swing.JFrame {
                     + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
-    
+
     public Candidato usuarioIdenficacao() {
         return usuario = motor.retornaCliente().get(0);
     }
-    
+
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         //bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));

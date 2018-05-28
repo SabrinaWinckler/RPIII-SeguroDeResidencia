@@ -6,12 +6,14 @@
 package Motor;
 
 import DAO.CandidatoDAO;
+import DAO.CorretorDAO;
 import DAO.PessoaDAO;
 import DAO.RelataSinistroDAO;
 import DAO.ResidenciaDAO;
 import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
+import DadosUsuarios.Corretor;
 import DadosUsuarios.Pessoa;
 import DadosUsuarios.Segurado;
 import Operacoes.Solicitacao;
@@ -77,6 +79,11 @@ public class Gerenciador {
     public List<Candidato> retornaCliente() {
         CandidatoDAO daoCandidato = new CandidatoDAO();
         return daoCandidato.read();
+    }
+
+    public List<Corretor> retornarCorretor() {
+        CorretorDAO daoCorretor = new CorretorDAO();
+        return daoCorretor.read();
     }
 
     public List<Solicitacao> listaDeResidenciasPendentes() {
