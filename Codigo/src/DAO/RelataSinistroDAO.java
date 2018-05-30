@@ -56,7 +56,7 @@ public class RelataSinistroDAO {
         try {
             stmt = conexao.prepareStatement("select * from pessoa, sinistro, relatasinistro, tiposinistro "
                     + "where pessoa.idPessoa = relatasinistro.idPessoa \n"
-                    + "and sinistro.idSinistro = relatasinistro.idSinistro and sinistro.idTipo = tiposinistro.idTipo;");
+                    + "and sinistro.idSinistro = relatasinistro.idSinistro and sinistro.idTipo = tiposinistro.idTipo");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Segurado pessoa = new Segurado();

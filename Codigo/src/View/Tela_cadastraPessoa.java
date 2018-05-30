@@ -5,8 +5,15 @@
  */
 package View;
 
+import DAO.BemDAO;
 import DadosUsuarios.Candidato;
+import DadosUsuarios.Pessoa;
 import Motor.Gerenciador;
+import excecao.ExceptionEmailInvalid;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -185,12 +192,29 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("CPF:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+
+        cpfCampo.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                cpfCampoCaretUpdate(evt);
+            }
+        });
         getContentPane().add(cpfCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 240, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("e-mail:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
+
+        emailCampo.addCaretListener(new javax.swing.event.CaretListener() {
+            public void caretUpdate(javax.swing.event.CaretEvent evt) {
+                emailCampoCaretUpdate(evt);
+            }
+        });
+        emailCampo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailCampoFocusLost(evt);
+            }
+        });
         getContentPane().add(emailCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 230, 30));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -226,11 +250,9 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         nomePessoa = campoNome.getText();
-        cpf = Long.parseLong(cpfCampo.getText());
         dataNascimento = diaComboBox.getSelectedItem().toString() + mesComboBox.getSelectedItem().toString() + anoComboBox.getSelectedItem().toString();
         cep = Long.parseLong(campoCep.getText());
         endereco = campoEndereço.getText();
-        email = emailCampo.getText();
         telefone = telefoneCampo.getText();
         usuarioCliente = usuarioCampo.getText();
         senhaCliente = senhaCampo.getText();
@@ -242,6 +264,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         Painel_Candidato candidatoPainel = new Painel_Candidato();
         candidatoPainel.setVisible(true);
         dispose();
+
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
@@ -249,6 +272,77 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         login.setVisible(true);
         dispose();
     }//GEN-LAST:event_cancelarButtonActionPerformed
+
+    private void cpfCampoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_cpfCampoCaretUpdate
+        List<Candidato> listaDeClientesCadastrados;
+        listaDeClientesCadastrados = motor.retornaCliente();
+        boolean existe = false;
+        if (cpfCampo.getText().length() == 10) {
+            for (Candidato candidato : listaDeClientesCadastrados) {
+                if (cpfCampo.getText().equalsIgnoreCase("" + candidato.getCpf())) {
+                    existe = true;
+                    JOptionPane.showConfirmDialog(rootPane, "CPF informado já foi cadastrado no sistema!",
+                            "Aviso", JOptionPane.CLOSED_OPTION);
+                }
+            }
+            if (!existe) {
+                cpf = Long.parseLong(cpfCampo.getText());
+            }
+        }
+    }//GEN-LAST:event_cpfCampoCaretUpdate
+
+    private void emailCampoCaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_emailCampoCaretUpdate
+        /*List<Candidato> listaDeClientesCadastrados;
+        listaDeClientesCadastrados = motor.retornaCliente();
+        boolean existe = false;
+        //email = emailCampo.getText();
+        try {
+            if (!emailCampo.hasFocus()) {
+                if (ExceptionEmailInvalid.informaEmail(emailCampo.getText()).equals("E-mail válido")) {
+                    for (Candidato candidato : listaDeClientesCadastrados) {
+                        if (emailCampo.getText().equalsIgnoreCase(candidato.getEmail())) {
+                            existe = true;
+                            email = "";
+                            JOptionPane.showConfirmDialog(rootPane, "Email informado já foi cadastrado no sistema!",
+                                    "Aviso", JOptionPane.CLOSED_OPTION);
+                        }
+                    }
+                    if (!existe) {
+                        email = emailCampo.getText();
+                    }
+                }
+            }
+        } catch (RuntimeException e) {
+            Logger.getLogger(Tela_cadastraPessoa.class.getName()).log(Level.SEVERE, null, e);
+        }
+         */
+    }//GEN-LAST:event_emailCampoCaretUpdate
+
+    private void emailCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailCampoFocusLost
+        List<Candidato> listaDeClientesCadastrados;
+        listaDeClientesCadastrados = motor.retornaCliente();
+        boolean existe = false;
+        try {
+            if (ExceptionEmailInvalid.informaEmail(emailCampo.getText()).equals("E-mail válido")) {
+                for (Candidato candidato : listaDeClientesCadastrados) {
+                    if (emailCampo.getText().equalsIgnoreCase(candidato.getEmail())) {
+                        existe = true;
+                        email = "";
+                        JOptionPane.showConfirmDialog(rootPane, "Email informado já foi cadastrado no sistema!",
+                                "Aviso", JOptionPane.CLOSED_OPTION);
+                    }
+                }
+                if (!existe) {
+                    email = emailCampo.getText();
+                }
+            } else {
+                JOptionPane.showConfirmDialog(rootPane, "Email informado é inválido!",
+                        "Aviso", JOptionPane.CLOSED_OPTION);
+            }
+        } catch (RuntimeException e) {
+            Logger.getLogger(Tela_cadastraPessoa.class.getName()).log(Level.SEVERE, null, e);
+        }
+    }//GEN-LAST:event_emailCampoFocusLost
 
     /**
      * @param args the command line arguments

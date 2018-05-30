@@ -135,13 +135,13 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
         getContentPane().add(campoDataSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 240, 90, 30));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel3.setText("Valor:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 80, 50));
+        jLabel3.setText("Valor: R$");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 460, 110, 50));
 
         campoValorSinistro.setEditable(false);
         campoValorSinistro.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         campoValorSinistro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        getContentPane().add(campoValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 460, 150, 40));
+        getContentPane().add(campoValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 460, 90, 40));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Tipo do Sinistro:");
