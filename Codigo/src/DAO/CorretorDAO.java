@@ -63,7 +63,7 @@ public class CorretorDAO {
                 corretor.setNomePessoa(rs.getString("Nome"));
                 corretor.setEndereco(rs.getString("Endereco"));
                 corretor.setTelefone(rs.getString("Telefone"));
-                corretor.setCpf(rs.getLong("Cpf"));
+                corretor.setCpf(rs.getString("Cpf"));
                 corretor.setUsuarioCliente(rs.getString("nomeLogin"));
                 corretor.setSenhaCliente(rs.getString("senha"));
                 corretor.setEmail(rs.getString("email"));

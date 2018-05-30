@@ -12,14 +12,14 @@ package DadosUsuarios;
 public class Pessoa {
 
     private String nomePessoa;
-    private long cpf;
+    private String cpf;
     private String endereco;
     private String telefone;
     private String email;
     private String usuarioCliente;
     private String senhaCliente;
 
-    public Pessoa(String nomePessoa, long cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+    public Pessoa(String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
         this.nomePessoa = nomePessoa;
         this.cpf = cpf;
         this.endereco = endereco;
@@ -50,14 +50,14 @@ public class Pessoa {
     /**
      * @return the cpf
      */
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

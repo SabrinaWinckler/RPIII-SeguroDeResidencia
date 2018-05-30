@@ -35,7 +35,7 @@ public class Gerenciador {
     }
 
     public void cadastrarCliente(String sexo, long cep, String dataNescimento,
-            String nomePessoa, long cpf, String endereco, String telefone,
+            String nomePessoa, String cpf, String endereco, String telefone,
             String email, String usuarioCliente, String senhaCliente, String uf,
             String cidade, String bairro) throws NullPointerException {
 

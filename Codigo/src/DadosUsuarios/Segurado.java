@@ -24,7 +24,7 @@ public class Segurado extends Pessoa {
     public Segurado() {
         sinistros = new ArrayList<>();
     }
-    public Segurado(List<Sinistro> sinistros, List<ItemServico> servicos, List<Residencia> residencias, String nomePessoa, long cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+    public Segurado(List<Sinistro> sinistros, List<ItemServico> servicos, List<Residencia> residencias, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
         super(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         this.sinistros = sinistros;
         this.servicos = servicos;
@@ -32,7 +32,7 @@ public class Segurado extends Pessoa {
     }
 
 
-    public Segurado(List<Sinistro> sinistros, String nomePessoa, long cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+    public Segurado(List<Sinistro> sinistros, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
         super(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         this.sinistros = sinistros;
     }

@@ -63,7 +63,7 @@ public class RelataSinistroDAO {
                 pessoa.setNomePessoa(rs.getString("Nome"));
                 pessoa.setEndereco(rs.getString("Endereco"));
                 pessoa.setTelefone(rs.getString("Telefone"));
-                pessoa.setCpf(rs.getLong("Cpf"));
+                pessoa.setCpf(rs.getString("Cpf"));
                 pessoa.setUsuarioCliente(rs.getString("NomeLogin"));
                 pessoa.setSenhaCliente(rs.getString("senha"));
                 pessoa.setEmail(rs.getString("email"));

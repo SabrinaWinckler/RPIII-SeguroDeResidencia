@@ -43,7 +43,7 @@ public class SolicitacaoDAO {
             stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, dataVisitaResidenciia,"
                     + "valorSolicitacao, "
                     + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?,?)");
-            stm.setDate(1, (Date.valueOf("2018-06-20")));
+            stm.setDate(1, (Date.valueOf(solicitacao.getDataSolicitacao().toString())));
             stm.setDate(2, (Date.valueOf("2018-06-20")));
             stm.setDouble(3, solicitacao.getValorSolicitacao());
             stm.setString(4, solicitacao.getAprovadaSolicitacao());
@@ -103,7 +103,7 @@ public class SolicitacaoDAO {
                 solicitacao.getResidencia().getCandidato().setNomePessoa(rs.getString("Nome"));
                 solicitacao.getResidencia().getCandidato().setEndereco(rs.getString("Endereco"));
                 solicitacao.getResidencia().getCandidato().setTelefone(rs.getString("Telefone"));
-                solicitacao.getResidencia().getCandidato().setCpf(rs.getLong("Cpf"));
+                solicitacao.getResidencia().getCandidato().setCpf(rs.getString("Cpf"));
                 solicitacao.getResidencia().getCandidato().setUsuarioCliente(rs.getString("nomeLogin"));
                 solicitacao.getResidencia().getCandidato().setSenhaCliente(rs.getString("senha"));
                 solicitacao.getResidencia().getCandidato().setEmail(rs.getString("email"));

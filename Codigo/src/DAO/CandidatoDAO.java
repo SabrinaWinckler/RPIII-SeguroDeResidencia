@@ -54,8 +54,8 @@ public class CandidatoDAO {
     }
 
     public List<Candidato> read() {
-        long cep, cpf;
-        String dataNescimento, endereco, sexo, nome;
+        long cep;
+        String dataNescimento, endereco, sexo, nome, cpf;
         String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -72,7 +72,7 @@ public class CandidatoDAO {
                 bairro = rs.getString("bairroCandidato");
                 cidade = rs.getString("cidadeCandidato");
                 dataNescimento = rs.getString("dataNascimento");
-                cpf = rs.getLong("Cpf");
+                cpf = rs.getString("Cpf");
                 endereco = rs.getString("Endereco");
                 telefone = rs.getString("Telefone");
                 email = rs.getString("email");

@@ -24,7 +24,7 @@ public class Candidato extends Pessoa {
     }
 
     public Candidato(String sexo, long cep, String dataNescimento, String nomePessoa,
-            long cpf, String endereco, String telefone, String email,
+            String cpf, String endereco, String telefone, String email,
             String usuarioCliente, String senhaCliente, String uf, String cidade,
             String bairro) {
         super(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);

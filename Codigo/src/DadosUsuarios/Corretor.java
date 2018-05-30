@@ -20,7 +20,7 @@ public class Corretor extends Pessoa {
 
     }
 
-    public Corretor(String ativoCorretor, Date dataConstratacao, String nomePessoa, long cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+    public Corretor(String ativoCorretor, Date dataConstratacao, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
         super(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         this.ativoCorretor = ativoCorretor;
         this.dataConstratacao = dataConstratacao;
