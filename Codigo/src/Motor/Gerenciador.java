@@ -66,14 +66,14 @@ public class Gerenciador {
             int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal,
             double areaC, int numAndares, int anoConstrucao, String ruaRes,
             int localizacaoPerigosa, int terrenoPerigoso,
-            int estruturaAmeacada) throws NullPointerException {
+            int estruturaAmeacada, Candidato candidato) throws NullPointerException {
 
         Residencia residencia = new Residencia(uf, cidade, bairro, descricaoRes,
                 bem, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens,
                 areaTotal, areaC, numAndares, anoConstrucao, ruaRes,
-                localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
+                localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada, candidato);
         ResidenciaDAO daoResidencia = new ResidenciaDAO();
-        daoResidencia.create(residencia);
+        daoResidencia.create(residencia, candidato.getCpf());
     }
 
     public List<Candidato> retornaCliente() {
@@ -126,9 +126,9 @@ public class Gerenciador {
         }
     }
 
-    public void updateSituacaoSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao) {
+    public void updateSituacaoSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, String cpf) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        daoSolicitacao.updateStatusSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
+        daoSolicitacao.updateStatusSolicitacao(resultado, motivoReprovacao, motivoAlteracao, data, cpf);
     }
 
     public List<Segurado> listaDeSinistrosPendentes() {

@@ -238,7 +238,7 @@ public class Tela_DadosSinistro extends javax.swing.JFrame {
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
         int resposta = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja retornar a lista de solicitações de sinistro?");
         if (resposta == 0) {
-            Tela_ListaSolicitacoes telaLista = new Tela_ListaSolicitacoes();
+            Tela_ListaDeResidencias telaLista = new Tela_ListaDeResidencias();
             telaLista.setVisible(true);
             dispose();
         }

@@ -13,7 +13,7 @@ import javax.swing.JOptionPane;
  * @author Matheus Montanha
  */
 public class Painel_Corretor extends javax.swing.JFrame {
-
+    
     int visivel = 0;
 
     /**
@@ -100,7 +100,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
         jLabelBemVindoCorretor.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabelBemVindoCorretor.setText("Bem-Vindo ao Painel do Corretor");
-        getContentPane().add(jLabelBemVindoCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 160, 400, 30));
+        getContentPane().add(jLabelBemVindoCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 100, 400, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-roxoMenu.jpg"))); // NOI18N
@@ -153,7 +153,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_avaliarSinistroButtonActionPerformed
 
     private void avaliarSolicitacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSolicitacaoButtonActionPerformed
-        Tela_ListaSolicitacoes telSolicitacao = new Tela_ListaSolicitacoes();
+        Tela_ListaDeResidencias telSolicitacao = new Tela_ListaDeResidencias();
         if (telSolicitacao.readTable() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Não possui residencias para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
@@ -186,7 +186,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_jComboBoxOpcoesCorretorActionPerformed
-
+    
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));
@@ -238,6 +238,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabelBarraSup;
     private javax.swing.JLabel jLabelBemVindoCorretor;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    public javax.swing.JTable listaDeSolicitacoes;
+    public javax.swing.JTable listaDeSolicitacoes1;
     private javax.swing.JButton visualizarSolicitacoesButton;
     // End of variables declaration//GEN-END:variables
 }

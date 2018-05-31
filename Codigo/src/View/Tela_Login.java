@@ -46,9 +46,12 @@ public class Tela_Login extends javax.swing.JFrame {
         campoSenha = new javax.swing.JPasswordField();
         jLabel3 = new javax.swing.JLabel();
         entrarButton = new javax.swing.JButton();
-        cadastrarButton = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        perguntaPrimeiroAcesso = new javax.swing.JLabel();
+        cadastro = new javax.swing.JLabel();
+        perguntaEsqueceuSenha = new javax.swing.JLabel();
+        recuperarSenha = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -63,8 +66,6 @@ public class Tela_Login extends javax.swing.JFrame {
         identificadorUsuario.setForeground(new java.awt.Color(255, 255, 255));
         identificadorUsuario.setText("Usuário:");
         getContentPane().add(identificadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 60, 20));
-
-        campoSenha.setText("jPasswordField1");
         getContentPane().add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 128, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -81,18 +82,7 @@ public class Tela_Login extends javax.swing.JFrame {
                 entrarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 330, -1, -1));
-
-        cadastrarButton.setBackground(new java.awt.Color(0, 153, 255));
-        cadastrarButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        cadastrarButton.setForeground(new java.awt.Color(255, 255, 255));
-        cadastrarButton.setText("Cadastrar-se");
-        cadastrarButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cadastrarButtonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(cadastrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 360, -1, -1));
+        getContentPane().add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user-silhouette.png"))); // NOI18N
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 30, 40));
@@ -100,17 +90,40 @@ public class Tela_Login extends javax.swing.JFrame {
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/locked-padlock.png"))); // NOI18N
         getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
 
+        perguntaPrimeiroAcesso.setBackground(new java.awt.Color(255, 255, 255));
+        perguntaPrimeiroAcesso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        perguntaPrimeiroAcesso.setForeground(new java.awt.Color(255, 255, 255));
+        perguntaPrimeiroAcesso.setText("Seu primeiro acesso? ");
+        perguntaPrimeiroAcesso.setToolTipText("");
+        perguntaPrimeiroAcesso.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                perguntaPrimeiroAcessoMouseClicked(evt);
+            }
+        });
+        getContentPane().add(perguntaPrimeiroAcesso, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 130, 30));
+
+        cadastro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cadastro.setForeground(new java.awt.Color(68, 122, 221));
+        cadastro.setText("Cadastre-se aqui");
+        getContentPane().add(cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, 30));
+
+        perguntaEsqueceuSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        perguntaEsqueceuSenha.setForeground(new java.awt.Color(255, 255, 255));
+        perguntaEsqueceuSenha.setText("Esqueceu sua senha?");
+        getContentPane().add(perguntaEsqueceuSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 130, 20));
+
+        recuperarSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        recuperarSenha.setForeground(new java.awt.Color(68, 122, 221));
+        recuperarSenha.setText("Recuperar senha");
+        getContentPane().add(recuperarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 100, 20));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/login.png"))); // NOI18N
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 980, 560));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void cadastrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarButtonActionPerformed
-        Tela_cadastraPessoa cadastro = new Tela_cadastraPessoa();
-        cadastro.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_cadastrarButtonActionPerformed
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
         boolean usuarioExiste = false;
@@ -150,8 +163,16 @@ public class Tela_Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_entrarButtonActionPerformed
 
+    private void perguntaPrimeiroAcessoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perguntaPrimeiroAcessoMouseClicked
+        
+    }//GEN-LAST:event_perguntaPrimeiroAcessoMouseClicked
+
     public Candidato usuarioIdenficacao() {
-        return usuario = motor.retornaCliente().get(0);
+        return usuario;
+    }
+
+    public Corretor corretorIdentificacao() {
+        return corretor;
     }
 
     public void gerarBackground() {
@@ -196,7 +217,7 @@ public class Tela_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton cadastrarButton;
+    private javax.swing.JLabel cadastro;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextPane campoUsuario;
     private javax.swing.JButton entrarButton;
@@ -206,5 +227,8 @@ public class Tela_Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel perguntaEsqueceuSenha;
+    private javax.swing.JLabel perguntaPrimeiroAcesso;
+    private javax.swing.JLabel recuperarSenha;
     // End of variables declaration//GEN-END:variables
 }

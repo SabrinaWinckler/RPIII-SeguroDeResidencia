@@ -52,7 +52,7 @@ public class Residencia {
             List bem, int numRes, long cepRes, int qntComodos, int qntBanheiros,
             int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacaoPerigosa,
-            int terrenoPerigoso, int estruturaAmeacada) {
+            int terrenoPerigoso, int estruturaAmeacada, Candidato candidato) {
         this.descricaoRes = descricaoRes;
         this.numRes = numRes;
         this.cepRes = cepRes;
@@ -72,6 +72,7 @@ public class Residencia {
         this.localizacaoPerigosa = localizacaoPerigosa;
         this.terrenoPerigoso = terrenoPerigoso;
         this.estruturaAmeacada = estruturaAmeacada;
+        this.candidato = candidato;
     }
 
     /**

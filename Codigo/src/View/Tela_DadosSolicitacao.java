@@ -258,7 +258,7 @@ public class Tela_DadosSolicitacao extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void ButtonAprovarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacaoActionPerformed
-        motor.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
+        //motor.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
         JOptionPane.showConfirmDialog(rootPane, "A solicitação foi aprovada com sucesso!", "Alerta", JOptionPane.CLOSED_OPTION);
         Tela_ListaSolicitacaoSeguro telaLista = new Tela_ListaSolicitacaoSeguro();
         telaLista.setVisible(true);

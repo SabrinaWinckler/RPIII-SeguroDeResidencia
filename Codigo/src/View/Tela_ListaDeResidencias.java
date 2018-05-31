@@ -17,7 +17,7 @@ import javax.swing.table.TableRowSorter;
  *
  * @author Matheus Montanha
  */
-public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
+public class Tela_ListaDeResidencias extends javax.swing.JFrame {
 
     Solicitacao solicitacaoGuardar;
     Gerenciador gerenciador = new Gerenciador();
@@ -27,7 +27,7 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     /**
      * Creates new form Tela_ListaSolicitacoes
      */
-    public Tela_ListaSolicitacoes() {
+    public Tela_ListaDeResidencias() {
         initComponents();
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoes.getModel();
         listaDeSolicitacoes.setRowSorter(new TableRowSorter(modelo));
@@ -349,7 +349,7 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
     private void ButtonAprovarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacaoActionPerformed
         JOptionPane.showInputDialog(rootPane, "Solicitação aprovada com sucesso!");
         resultado = "aprovada";
-        gerenciador.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
+        //gerenciador.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
     }//GEN-LAST:event_ButtonAprovarSolicitacaoActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
@@ -357,7 +357,7 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
         while (controle == 0) {
             resultado = "reprovada";
             motivoReprovacao = JOptionPane.showInputDialog(rootPane, "Digite o motivo da reprovação, por favor:");
-            gerenciador.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
+            //gerenciador.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
             if (motivoReprovacao.equalsIgnoreCase("") || motivoReprovacao.equalsIgnoreCase(" ")) {
                 JOptionPane.showConfirmDialog(rootPane, "O campo de texto não deve ser deixado em branco."
                         + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
@@ -415,21 +415,23 @@ public class Tela_ListaSolicitacoes extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaDeResidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaDeResidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaDeResidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_ListaSolicitacoes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Tela_ListaDeResidencias.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Tela_ListaSolicitacoes().setVisible(true);
+                new Tela_ListaDeResidencias().setVisible(true);
             }
         });
     }

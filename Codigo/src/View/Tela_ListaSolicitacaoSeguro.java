@@ -7,6 +7,14 @@ package View;
 
 import Motor.Gerenciador;
 import Operacoes.Solicitacao;
+import excecao.ExceptionDateInvalid;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 
@@ -15,6 +23,9 @@ import javax.swing.table.TableRowSorter;
  * @author Matheus Montanha
  */
 public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
+
+    Gerenciador motor = new Gerenciador();
+    String resultado, motivoReprovacao, motivoAlteracao;
 
     /**
      * Creates new form Tela_DadosSolicitacao
@@ -25,7 +36,7 @@ public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
         listaDeSolicitacoesSeguro.setRowSorter(new TableRowSorter(modelo));
         readTable();
     }
-    
+
     public int readTable() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
@@ -56,6 +67,29 @@ public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
         voltarButton = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         listaDeSolicitacoesSeguro = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        campoLocalizacaoPerigosa = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        campoTerrenoPerigoso = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        campoEstruturaAmeacada = new javax.swing.JTextField();
+        campoDataSolicitacao = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        campoValorSolicitacao = new javax.swing.JTextField();
+        ButtonAgendaVisita = new javax.swing.JButton();
+        buttonRecusarSeguro = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
+        campoNomeCandidato = new javax.swing.JTextField();
+        jLabel10 = new javax.swing.JLabel();
+        campoCPFCandidato = new javax.swing.JTextField();
+        campoEmailCandidato = new javax.swing.JTextField();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        campoTelefoneCandidato = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -85,7 +119,7 @@ public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Proprietário", "Data"
+                "Nome", "Data"
             }
         ) {
             Class[] types = new Class [] {
@@ -111,11 +145,168 @@ public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(listaDeSolicitacoesSeguro);
+        listaDeSolicitacoesSeguro.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.SINGLE_INTERVAL_SELECTION);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 680, 400));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 140, 250, 410));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel7.setText("Dados da Solicitação:");
+        getContentPane().add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 140, -1, -1));
+
+        jLabel2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel2.setText("Localização Perigosa:");
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 200, -1, -1));
+
+        campoLocalizacaoPerigosa.setEditable(false);
+        getContentPane().add(campoLocalizacaoPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 190, 30, 30));
+
+        jLabel3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel3.setText("Terreno Perigoso:");
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 250, -1, -1));
+
+        campoTerrenoPerigoso.setEditable(false);
+        getContentPane().add(campoTerrenoPerigoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 30, 30));
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel4.setText("Estrutura Ameaçada:");
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, 10));
+
+        campoEstruturaAmeacada.setEditable(false);
+        getContentPane().add(campoEstruturaAmeacada, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 30, 30));
+
+        campoDataSolicitacao.setEditable(false);
+        getContentPane().add(campoDataSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 340, 80, 30));
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel5.setText("Data da Solicitação:");
+        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 350, -1, -1));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel6.setText("Valor da Solicitação:");
+        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 400, 130, -1));
+
+        campoValorSolicitacao.setEditable(false);
+        getContentPane().add(campoValorSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 390, 60, 30));
+
+        ButtonAgendaVisita.setBackground(new java.awt.Color(0, 153, 255));
+        ButtonAgendaVisita.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ButtonAgendaVisita.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonAgendaVisita.setText("Agendar Visita ");
+        ButtonAgendaVisita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonAgendaVisitaActionPerformed(evt);
+            }
+        });
+        getContentPane().add(ButtonAgendaVisita, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 520, 120, 30));
+
+        buttonRecusarSeguro.setBackground(new java.awt.Color(153, 51, 255));
+        buttonRecusarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonRecusarSeguro.setForeground(new java.awt.Color(255, 255, 255));
+        buttonRecusarSeguro.setText("Recusada");
+        buttonRecusarSeguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRecusarSeguroActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonRecusarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(840, 520, 100, 30));
+
+        jLabel8.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel8.setText("Dados do Solicitante:");
+        getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 140, -1, -1));
+
+        jPanel1.setBackground(new java.awt.Color(204, 204, 255));
+        jPanel1.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+
+        jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel9.setText("Nome:");
+
+        campoNomeCandidato.setEditable(false);
+        campoNomeCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel10.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel10.setText("CPF:");
+
+        campoCPFCandidato.setEditable(false);
+        campoCPFCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        campoEmailCandidato.setEditable(false);
+        campoEmailCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        jLabel11.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel11.setText("Email: ");
+
+        jLabel12.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel12.setText("Telefone:");
+
+        campoTelefoneCandidato.setEditable(false);
+        campoTelefoneCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 234, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 7, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(campoNomeCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(30, 30, 30)
+                            .addComponent(jLabel10)
+                            .addGap(5, 5, 5)
+                            .addComponent(campoCPFCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(20, 20, 20)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(campoEmailCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(0, 0, 0)
+                            .addComponent(campoTelefoneCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGap(0, 7, Short.MAX_VALUE)))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 184, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoNomeCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoCPFCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoEmailCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(10, 10, 10)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(jPanel1Layout.createSequentialGroup()
+                            .addGap(10, 10, 10)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(campoTelefoneCandidato, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        getContentPane().add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 180, 240, 190));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/Sem Título-1.jpg"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 580));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 580));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -131,10 +322,58 @@ public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
     }//GEN-LAST:event_voltarButtonActionPerformed
 
     private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
-        Tela_DadosSolicitacao dadosSolicitacao = new Tela_DadosSolicitacao();
-        dadosSolicitacao.setVisible(true);
-        dispose();
+        int selecionado = listaDeSolicitacoesSeguro.getSelectedRow();
+        preencherCampos(selecionado);
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseClicked
+
+    private void ButtonAgendaVisitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgendaVisitaActionPerformed
+        String data = JOptionPane.showInputDialog(rootPane, "Digite a data marcada para a visita, por favor:\n"
+                + "(dd/mm/aaaa)");
+        //AINDA NÃO TERMINADO
+        boolean dataValida = false;
+        while (!dataValida) {
+            dataValida = true;
+            try {
+                ExceptionDateInvalid.isValido(data);
+                JOptionPane.showConfirmDialog(rootPane, "Data registrada com sucesso!", "Alerta", JOptionPane.CLOSED_OPTION);
+            } catch (Exception ex) {
+                Logger.getLogger(Tela_ListaSolicitacaoSeguro.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showConfirmDialog(rootPane, "Data informada incorreta. Por favor, digite uma data válida.", "Alerta", JOptionPane.CLOSED_OPTION);
+                dataValida = false;
+            }
+        }
+        Tela_ListaSolicitacaoSeguro telaLista = new Tela_ListaSolicitacaoSeguro();
+        telaLista.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_ButtonAgendaVisitaActionPerformed
+
+    private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
+        int controle = 0;
+        while (controle == 0) {
+            String motivo = JOptionPane.showInputDialog(rootPane, "Digite o motivo da reprovação, por favor:");
+            if (motivo.equalsIgnoreCase("") || motivo.equalsIgnoreCase(" ")) {
+                JOptionPane.showConfirmDialog(rootPane, "O campo de texto não deve ser deixado em branco."
+                        + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
+            } else {
+                controle = 1;
+            }
+        }
+    }//GEN-LAST:event_buttonRecusarSeguroActionPerformed
+
+    public void preencherCampos(int selecionado) {
+        Gerenciador gerenciador = new Gerenciador();
+        List<Solicitacao> listaDeSolicitacao;
+        listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
+        //campoNomeCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getNomePessoa());
+        //campoCPFCandidato.setText("" + listaDeSolicitacao.get(0).getResidencia().getCandidato().getCpf());
+        //campoEmailCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getEmail());
+        //campoTelefoneCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getTelefone());
+        campoLocalizacaoPerigosa.setText("" + listaDeSolicitacao.get(selecionado).getResidencia().getLocalizacaoPerigosa());
+        campoTerrenoPerigoso.setText("" + listaDeSolicitacao.get(selecionado).getResidencia().getTerrenoPerigoso());
+        campoEstruturaAmeacada.setText("" + listaDeSolicitacao.get(selecionado).getResidencia().getEstruturaAmeacada());
+        campoDataSolicitacao.setText("" + listaDeSolicitacao.get(selecionado).getDataSolicitacao());
+        campoValorSolicitacao.setText("" + listaDeSolicitacao.get(selecionado).getValorSolicitacao());
+    }
 
     /**
      * @param args the command line arguments
@@ -173,7 +412,30 @@ public class Tela_ListaSolicitacaoSeguro extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton ButtonAgendaVisita;
+    private javax.swing.JButton buttonRecusarSeguro;
+    private javax.swing.JTextField campoCPFCandidato;
+    private javax.swing.JTextField campoDataSolicitacao;
+    private javax.swing.JTextField campoEmailCandidato;
+    private javax.swing.JTextField campoEstruturaAmeacada;
+    private javax.swing.JTextField campoLocalizacaoPerigosa;
+    private javax.swing.JTextField campoNomeCandidato;
+    private javax.swing.JTextField campoTelefoneCandidato;
+    private javax.swing.JTextField campoTerrenoPerigoso;
+    private javax.swing.JTextField campoValorSolicitacao;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     public javax.swing.JTable listaDeSolicitacoesSeguro;
     private javax.swing.JButton voltarButton;
