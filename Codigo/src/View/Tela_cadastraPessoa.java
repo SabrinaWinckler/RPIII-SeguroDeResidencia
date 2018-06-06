@@ -239,7 +239,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         bairro = campoBairro.getText();
         motor.cadastrarCliente(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
         JOptionPane.showConfirmDialog(rootPane, "Cadastrado com sucesso!", "Aviso", JOptionPane.CLOSED_OPTION);
-        Painel_Candidato candidatoPainel = new Painel_Candidato();
+        PainelCandidato candidatoPainel = new PainelCandidato();
         candidatoPainel.setVisible(true);
         dispose();
     }//GEN-LAST:event_confirmarButtonActionPerformed
