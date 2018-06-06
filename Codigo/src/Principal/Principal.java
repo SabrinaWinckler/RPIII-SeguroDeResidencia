@@ -42,7 +42,7 @@ public class Principal {
         String uf = "RS";
         String cidade = "Alegrete";
         String bairro = "Centro";
-
+         
         //pessoa atributo
         String nomePessoa = "Matheus Montanha";
         long cpf = 0345;
@@ -55,7 +55,7 @@ public class Principal {
         Pessoa pessoa = new Pessoa(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         PessoaDAO pesDAO = new PessoaDAO();
         pesDAO.create(pessoa);
-
+        /*
         Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
         CandidatoDAO canDAO = new CandidatoDAO();
         canDAO.create(candidato);

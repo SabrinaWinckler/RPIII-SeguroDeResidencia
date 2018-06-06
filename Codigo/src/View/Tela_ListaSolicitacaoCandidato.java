@@ -27,6 +27,7 @@ public class Tela_ListaSolicitacaoCandidato extends javax.swing.JFrame {
         initComponents();
         Gerenciador motor = new Gerenciador();
         listaSolicitacao = motor.listaDeResidenciasPendentes();
+        readTable();
     }
 
     public int readTable() {
@@ -121,21 +122,18 @@ public class Tela_ListaSolicitacaoCandidato extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
-    String status = listaSolicitacao.get(0).getAprovadaSolicitacao();
-    if(status.equalsIgnoreCase("aprovada")){
-        Tela_SeguroAprovado telaSeguroAprovado = new Tela_SeguroAprovado();
-        telaSeguroAprovado.setVisible(true);
-        dispose();
-    } else{
-        Tela_SeguroReprovado telaSeguroReprovado = new Tela_SeguroReprovado();
-        telaSeguroReprovado.setVisible(true);
-        dispose();
-    }
+        int selecionado = listaSolicitacaoCandidato.getSelectedRow();
+        String resultado = listaSolicitacao.get(selecionado).getAprovadaSolicitacao();
+        if (resultado.equalsIgnoreCase("aprovada")) {
+            Tela_SeguroAprovado telaAprovado = new Tela_SeguroAprovado();
+            telaAprovado.setVisible(true);
+            dispose();
+        } else {
+            Tela_SeguroReprovado telaReprovado = new Tela_SeguroReprovado();
+            telaReprovado.setVisible(true);
+            dispose();
+        }
 
-
-//Tela_DadosSinistro telaDadosSinistro = new Tela_DadosSinistro();
-        //telaDadosSinistro.setVisible(true);
-        //dispose();
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed

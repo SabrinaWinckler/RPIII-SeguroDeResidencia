@@ -5,6 +5,7 @@
  */
 package View;
 
+import DadosUsuarios.Segurado;
 import Motor.Gerenciador;
 import Motor.ControleSolicitacao;
 import SevicosSeguradora.Sinistro;
@@ -29,12 +30,14 @@ public class Tela_ListaDeSinistro extends javax.swing.JFrame {
         modelo.setNumRows(0);
         Gerenciador motor = new Gerenciador();
         int tamanhoLista = motor.listaDeSinistrosPendentes().size();
+        int i = 0;
         if (tamanhoLista > 0) {
-            for (Sinistro sinistro : motor.listaDeSinistrosPendentes()) {
+            for (Segurado segurado : motor.listaDeSinistrosPendentes()) {
                 modelo.addRow(new Object[]{
-                    sinistro.getTipoSinistro(),
-                    sinistro.getDataSinistro().toString()
+                    segurado.getSinistros().get(i).getTipoSinistro(),
+                    segurado.getSinistros().get(i).getDataSinistro().toString()
                 });
+                i++;
             }
             return 1;
         } else {
@@ -108,7 +111,8 @@ public class Tela_ListaDeSinistro extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void listaSinistrosPendentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSinistrosPendentesMouseClicked
-        Tela_DadosSinistro telaDadosSinistro = new Tela_DadosSinistro();
+        int selecionado = listaSinistrosPendentes.getSelectedRow();
+        Tela_DadosSinistro telaDadosSinistro = new Tela_DadosSinistro(selecionado);
         telaDadosSinistro.setVisible(true);
         dispose();
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked

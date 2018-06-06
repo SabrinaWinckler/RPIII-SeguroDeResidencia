@@ -34,7 +34,7 @@ public class PessoaDAO {
             stm.setString(1, pessoa.getNomePessoa());
             stm.setString(2, pessoa.getEndereco());
             stm.setString(3, pessoa.getTelefone());
-            stm.setLong(4, pessoa.getCpf());
+            stm.setString(4, pessoa.getCpf());
             stm.setString(5, pessoa.getUsuarioCliente());
             stm.setString(6, pessoa.getSenhaCliente());
             stm.setString(7, pessoa.getEmail());
@@ -59,7 +59,7 @@ public class PessoaDAO {
                 pessoa.setNomePessoa(rs.getString("Nome"));
                 pessoa.setEndereco(rs.getString("Endereco"));
                 pessoa.setTelefone(rs.getString("Telefone"));
-                pessoa.setCpf(rs.getLong("Cpf"));
+                pessoa.setCpf(rs.getString("Cpf"));
                 pessoa.setUsuarioCliente(rs.getString("NomeLogin"));
                 pessoa.setSenhaCliente(rs.getString("senha"));
                 pessoa.setEmail(rs.getString("email"));

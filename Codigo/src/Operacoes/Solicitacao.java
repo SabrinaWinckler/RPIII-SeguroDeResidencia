@@ -16,6 +16,7 @@ import java.util.Date;
  * @author SABRINA
  */
 public class Solicitacao {
+
     private Date dataSolicitacao;
 
     private double valorSolicitacao;
@@ -30,8 +31,10 @@ public class Solicitacao {
 
     private Residencia residencia;
 
-    private ResidenciaDAO daoRes; // remover este atributo
-    
+    public Solicitacao() {
+        this.residencia = new Residencia();
+    }
+
     public Solicitacao(Date dataSolicitacao, Residencia residencia) {
         this.dataSolicitacao = dataSolicitacao;
         this.residencia = residencia;
@@ -41,22 +44,17 @@ public class Solicitacao {
         this.motivoAlteracao = null;
         this.motivoReprovacao = null;
         this.valorSolicitacao = 0;
-        
-    }
-    public Solicitacao(){
-    
     }
 
-    public Solicitacao(Date dataSolicitacao, double valorSolicitacao, Date dataVisitaResidencia, String aprovadaSolicitacao, String motivoReprovacao, String motivoAlteracao, Residencia residencia, ResidenciaDAO daoResidencia) {
+    public Solicitacao(Date dataSolicitacao, double valorSolicitacao, Date dataVisitaResidencia, String aprovadaSolicitacao, String motivoReprovacao, String motivoAlteracao, Residencia residencia) {
         this.valorSolicitacao = valorSolicitacao;
         this.dataSolicitacao = dataSolicitacao;
         this.residencia = residencia;
-        this.aprovadaSolicitacao = aprovadaSolicitacao; 
-        this.motivoAlteracao = motivoAlteracao; 
-        this.motivoReprovacao = motivoReprovacao; 
+        this.aprovadaSolicitacao = aprovadaSolicitacao;
+        this.motivoAlteracao = motivoAlteracao;
+        this.motivoReprovacao = motivoReprovacao;
         this.dataVisitaResidencia = dataVisitaResidencia;
-        this.daoRes = daoResidencia;
-        
+
     }
 
     public void setDataSolicitacao(Date dataSolicitacao) {
@@ -119,7 +117,5 @@ public class Solicitacao {
     public String toString() {
         return "Solicitacao{" + "dataSolicitacao=" + dataSolicitacao + ", residencia=" + residencia.toString() + '}';
     }
-    
-   
-}
 
+}

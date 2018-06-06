@@ -9,6 +9,7 @@ import DAO.CandidatoDAO;
 import DAO.PessoaDAO;
 import DadosUsuarios.Candidato;
 import DadosUsuarios.Pessoa;
+import Motor.Gerenciador;
 import java.util.List;
 
 /**
@@ -17,24 +18,25 @@ import java.util.List;
  */
 public class Tela_SeguroAprovado extends javax.swing.JFrame {
 
+    Gerenciador motor = new Gerenciador();
+
     /**
      * Creates new form Tela_SeguroAprovado
+     *
+     * @param escolhido
      */
     public Tela_SeguroAprovado() {
         initComponents();
         String observacao = "Sua residência foi considerada apta para o serviço";
         double valor = 241;
-        CandidatoDAO candidatoDAO = new CandidatoDAO();
-        List<Candidato> listaCandidato;
-        listaCandidato = candidatoDAO.read();
-        PessoaDAO pesDAO = new PessoaDAO();
-        List<Pessoa> listaPessoa = pesDAO.read();
-        textNome.setText(listaPessoa.get(0).getNomePessoa());
-        textCPF.setText("" + listaPessoa.get(0).getCpf());
-        textB.setText(listaCandidato.get(0).getBairro());
-        textCidade.setText(listaCandidato.get(0).getCidade());
-        textEnd.setText(listaPessoa.get(0).getEndereco());
-        textCep.setText("" + listaCandidato.get(0).getCep());
+        Tela_Login telalogin = new Tela_Login();
+        Candidato candidato = telalogin.usuarioIdenficacao();
+        textNome.setText(candidato.getNomePessoa());
+        textCPF.setText("" + candidato.getCpf());
+        textB.setText(candidato.getBairro());
+        textCidade.setText(candidato.getCidade());
+        textEnd.setText(candidato.getEndereco());
+        textCep.setText("" + candidato.getCep());
         textValorSeguro.setText("" + valor);
         textObs.setText(observacao);
     }

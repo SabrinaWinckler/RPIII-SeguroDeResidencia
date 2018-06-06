@@ -19,6 +19,10 @@ public class Sinistro extends TipoSinistro {
     private String autorizadoSinistro;
     private String parecerAvaliador;
 
+    public Sinistro() {
+
+    }
+
     public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String autorizadoSinistro, String parecerAvaliador, String tipoSinistro) {
         super(tipoSinistro);
         this.dataSinistro = dataSinistro;
@@ -26,10 +30,6 @@ public class Sinistro extends TipoSinistro {
         this.valorSinistro = valorSinistro;
         this.autorizadoSinistro = autorizadoSinistro;
         this.parecerAvaliador = parecerAvaliador;
-    }
-
-    public Sinistro() {
-
     }
 
     public Date getDataSinistro() {

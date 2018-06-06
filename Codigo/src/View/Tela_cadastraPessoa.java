@@ -7,6 +7,9 @@ package View;
 
 import DadosUsuarios.Candidato;
 import Motor.Gerenciador;
+import excecao.ExceptionCPFInvalid;
+import excecao.ExceptionEmailInvalid;
+import java.util.List;
 import javax.swing.JOptionPane;
 
 /**
@@ -19,7 +22,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private long cep;
     private String dataNascimento;
     private String nomePessoa;
-    private long cpf;
+    private String cpf;
     private String endereco;
     private String telefone;
     private String email;
@@ -32,6 +35,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
     /**
      * Creates new form Tela_cadastraPessoa
+     *
      */
     public Tela_cadastraPessoa() {
         initComponents();
@@ -185,12 +189,24 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("CPF:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
+
+        cpfCampo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                cpfCampoFocusLost(evt);
+            }
+        });
         getContentPane().add(cpfCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 190, 240, 30));
 
         jLabel10.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("e-mail:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
+
+        emailCampo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                emailCampoFocusLost(evt);
+            }
+        });
         getContentPane().add(emailCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 360, 230, 30));
 
         jLabel11.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -226,11 +242,9 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
         nomePessoa = campoNome.getText();
-        cpf = Long.parseLong(cpfCampo.getText());
         dataNascimento = diaComboBox.getSelectedItem().toString() + mesComboBox.getSelectedItem().toString() + anoComboBox.getSelectedItem().toString();
         cep = Long.parseLong(campoCep.getText());
         endereco = campoEndereço.getText();
-        email = emailCampo.getText();
         telefone = telefoneCampo.getText();
         usuarioCliente = usuarioCampo.getText();
         senhaCliente = senhaCampo.getText();
@@ -242,13 +256,65 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         PainelCandidato candidatoPainel = new PainelCandidato();
         candidatoPainel.setVisible(true);
         dispose();
+
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
-        Tela_Login login = new Tela_Login();
-        login.setVisible(true);
-        dispose();
+        int resposta = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja cancelar seu cadastro?");
+        if (resposta == 0) {
+            Tela_Login telaLogin = new Tela_Login();
+            telaLogin.setVisible(true);
+            dispose();
+        }
     }//GEN-LAST:event_cancelarButtonActionPerformed
+
+    private void emailCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailCampoFocusLost
+        List<Candidato> listaDeClientesCadastrados;
+        listaDeClientesCadastrados = motor.retornaCliente();
+        boolean existe = false;
+        if (ExceptionEmailInvalid.informaEmail(emailCampo.getText()).equals("E-mail válido")) {
+            for (Candidato candidato : listaDeClientesCadastrados) {
+                if (emailCampo.getText().equalsIgnoreCase(candidato.getEmail())) {
+                    existe = true;
+                    email = "";
+                    JOptionPane.showConfirmDialog(rootPane, "Email informado já foi cadastrado no sistema!",
+                            "Aviso", JOptionPane.CLOSED_OPTION);
+                }
+            }
+            if (!existe) {
+                email = emailCampo.getText();
+            }
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "Email informado é inválido!",
+                    "Aviso", JOptionPane.CLOSED_OPTION);
+        }
+    }//GEN-LAST:event_emailCampoFocusLost
+
+    private void cpfCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cpfCampoFocusLost
+        List<Candidato> listaDeClientesCadastrados;
+        listaDeClientesCadastrados = motor.retornaCliente();
+        boolean existe = false;
+        if (!cpfCampo.getText().isEmpty()) {
+            if (ExceptionCPFInvalid.isValido(cpfCampo.getText())) {
+                for (Candidato candidato : listaDeClientesCadastrados) {
+                    if (cpfCampo.getText().equalsIgnoreCase("" + candidato.getCpf())) {
+                        existe = true;
+                        JOptionPane.showConfirmDialog(rootPane, "CPF informado já foi cadastrado no sistema!",
+                                "Aviso", JOptionPane.CLOSED_OPTION);
+                    }
+                }
+                if (!existe) {
+                    cpf = cpfCampo.getText();
+                }
+            } else {
+                JOptionPane.showConfirmDialog(rootPane, "CPF informado é inválido!",
+                        "Aviso", JOptionPane.CLOSED_OPTION);
+            }
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "O campo CPF não pode ser deixado em branco!",
+                    "Aviso", JOptionPane.CLOSED_OPTION);
+        }
+    }//GEN-LAST:event_cpfCampoFocusLost
 
     /**
      * @param args the command line arguments

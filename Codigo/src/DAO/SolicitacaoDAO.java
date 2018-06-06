@@ -12,6 +12,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,6 +28,7 @@ public class SolicitacaoDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
         int idResidencia = -1;
         int idPessoa = -1;
         try {
@@ -43,8 +45,8 @@ public class SolicitacaoDAO {
             stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, dataVisitaResidenciia,"
                     + "valorSolicitacao, "
                     + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?,?)");
-            stm.setDate(1, (Date.valueOf("2018-06-20")));
-            stm.setDate(2, (Date.valueOf("2018-06-20")));
+            stm.setDate(1, (Date.valueOf(dataFormatada.format(solicitacao.getDataSolicitacao()))));
+            stm.setDate(2, (Date.valueOf(dataFormatada.format(solicitacao.getDataSolicitacao()))));
             stm.setDouble(3, solicitacao.getValorSolicitacao());
             stm.setString(4, solicitacao.getAprovadaSolicitacao());
             stm.setString(5, solicitacao.getMotivoReprovacao());
@@ -103,7 +105,7 @@ public class SolicitacaoDAO {
                 solicitacao.getResidencia().getCandidato().setNomePessoa(rs.getString("Nome"));
                 solicitacao.getResidencia().getCandidato().setEndereco(rs.getString("Endereco"));
                 solicitacao.getResidencia().getCandidato().setTelefone(rs.getString("Telefone"));
-                solicitacao.getResidencia().getCandidato().setCpf(rs.getLong("Cpf"));
+                solicitacao.getResidencia().getCandidato().setCpf(rs.getString("Cpf"));
                 solicitacao.getResidencia().getCandidato().setUsuarioCliente(rs.getString("nomeLogin"));
                 solicitacao.getResidencia().getCandidato().setSenhaCliente(rs.getString("senha"));
                 solicitacao.getResidencia().getCandidato().setEmail(rs.getString("email"));
@@ -117,13 +119,14 @@ public class SolicitacaoDAO {
         return listDeSolicitacoes;
     }
 
-    public void updateStatusSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao) {
+    public void updateStatusSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, String cpf) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = " + resultado + ";"
-                    + "update solicitacaoseguro set motivoReprovacao = " + motivoReprovacao + ";"
-                    + "update solicitacaoseguro set motivoAlteracao = " + motivoAlteracao + ";");
+            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada=" + resultado + ","
+                    + " motivoReprovacao=" + motivoReprovacao + ", motivoAlterecao =" + motivoAlteracao + ","
+                    + "dataVisitaResidencia =" + data + "where solicitacaoseguro.idPessoa = pessoa.idPessoa and "
+                    + "pessoa.Cpf =" + cpf);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);

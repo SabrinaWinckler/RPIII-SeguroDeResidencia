@@ -22,18 +22,17 @@ import java.util.logging.Logger;
  */
 public class ResidenciaDAO {
 
-    public void create(Residencia residencia) {
+    public void create(Residencia residencia, String cpf) {
         System.out.println(residencia.toString());
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
-        int idCandidato = -1;
+        int idCandidato;
         try {
-            stm = conexao.prepareStatement("SELECT max(candidato.idPessoa) from candidato");
+            stm = conexao.prepareStatement("select idPessoa from pessoa where pessoa.Cpf =" + cpf);
             rs = stm.executeQuery();
-            while (rs.next()) {
-                idCandidato = rs.getInt(1);
-            }
+            idCandidato = rs.getInt(1);
+
             stm = conexao.prepareStatement("INSERT INTO residencia(idProprietario,ufResidencia,"
                     + " cidade, bairro, descricaoResidencia, "
                     + "cepResidencia, enderecoResidencia, areaTotal,"

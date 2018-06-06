@@ -49,8 +49,8 @@ public class ControleSolicitacao {
             int anoConstrucao, String ruaRes, int localizacao,
             int terreno, int estrutura){
         
-      Residencia residencia = new Residencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
-              areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
+      //Residencia residencia = new Residencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
+              //areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
       return residencia;
     }
     public Bem construirBem(float valorEstimado, String desc){
@@ -71,7 +71,7 @@ public class ControleSolicitacao {
         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
               areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
         this.setResidencia(temp);
-         geraDAOResidencia().create(temp);
+         //geraDAOResidencia().create(temp);
          
         Date data = new Date();
         this.setDataSolicitacao(data);
