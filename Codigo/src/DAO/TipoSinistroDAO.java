@@ -6,7 +6,6 @@
 package DAO;
 
 import DB.ConnectionFactory;
-import SevicosSeguradora.Sinistro;
 import SevicosSeguradora.TipoSinistro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -22,7 +21,7 @@ import java.util.logging.Logger;
  * @author Matheus Montanha
  */
 public class TipoSinistroDAO {
-
+    
     public void create(TipoSinistro tipoSinistro) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -36,7 +35,7 @@ public class TipoSinistroDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-
+    
     public List<TipoSinistro> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -47,6 +46,7 @@ public class TipoSinistroDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 TipoSinistro tipoSinistro = new TipoSinistro();
+                tipoSinistro.setCodTipo(rs.getInt("idTipo"));
                 tipoSinistro.setTipoSinistro(rs.getString("descricaoTipoSinistro"));
                 listaDeTipoSinistro.add(tipoSinistro);
             }

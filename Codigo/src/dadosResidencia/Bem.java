@@ -1,18 +1,23 @@
 package dadosResidencia;
 
-import DAO.BemDAO;
-
 public class Bem {
 
+    private int codBem;
+    private int codResidenciaPertencente;
     private float valorEstimadoBem;
-
     private String descricaoBem;
-    
 
     public Bem(float valorEstimadoBem, String descricaoBem) {
         this.valorEstimadoBem = valorEstimadoBem;
         this.descricaoBem = descricaoBem;
-        
+
+    }
+
+    public Bem(int codBem, int codResidenciaPertencente, float valorEstimadoBem, String descricaoBem) {
+        this.codBem = codBem;
+        this.codResidenciaPertencente = codResidenciaPertencente;
+        this.valorEstimadoBem = valorEstimadoBem;
+        this.descricaoBem = descricaoBem;
     }
 
     public Bem() {
@@ -27,9 +32,6 @@ public class Bem {
         this.valorEstimadoBem = valor;
         this.descricaoBem = desc;
     }
-  
-
-   
 
     /**
      * @return the valorEstimadoBem
@@ -57,6 +59,34 @@ public class Bem {
      */
     public void setDescricaoBem(String descricaoBem) {
         this.descricaoBem = descricaoBem;
+    }
+
+    /**
+     * @return the codBem
+     */
+    public int getCodBem() {
+        return codBem;
+    }
+
+    /**
+     * @param codBem the codBem to set
+     */
+    public void setCodBem(int codBem) {
+        this.codBem = codBem;
+    }
+
+    /**
+     * @return the codResidenciaPertencente
+     */
+    public int getCodResidenciaPertencente() {
+        return codResidenciaPertencente;
+    }
+
+    /**
+     * @param codResidenciaPertencente the codResidenciaPertencente to set
+     */
+    public void setCodResidenciaPertencente(int codResidenciaPertencente) {
+        this.codResidenciaPertencente = codResidenciaPertencente;
     }
 
 }

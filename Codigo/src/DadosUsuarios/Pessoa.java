@@ -11,6 +11,7 @@ package DadosUsuarios;
  */
 public class Pessoa {
 
+    private int codPessoa;
     private String nomePessoa;
     private String cpf;
     private String endereco;
@@ -18,6 +19,17 @@ public class Pessoa {
     private String email;
     private String usuarioCliente;
     private String senhaCliente;
+
+    public Pessoa(int codPessoa, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+        this.codPessoa = codPessoa;
+        this.nomePessoa = nomePessoa;
+        this.cpf = cpf;
+        this.endereco = endereco;
+        this.telefone = telefone;
+        this.email = email;
+        this.usuarioCliente = usuarioCliente;
+        this.senhaCliente = senhaCliente;
+    }
 
     public Pessoa(String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
         this.nomePessoa = nomePessoa;
@@ -31,6 +43,20 @@ public class Pessoa {
 
     public Pessoa() {
 
+    }
+
+    /**
+     * @return the codPessoa
+     */
+    public int getCodPessoa() {
+        return this.codPessoa;
+    }
+
+    /**
+     * @param codPessoa the codPessoa to set
+     */
+    public void setCodPessoa(int codPessoa) {
+        this.codPessoa = codPessoa;
     }
 
     /**

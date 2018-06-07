@@ -13,6 +13,7 @@ import java.util.Date;
  */
 public class Sinistro extends TipoSinistro {
 
+    private int codSinistro;
     private Date dataSinistro;
     private String descricaoSinistro;
     private float valorSinistro;
@@ -25,6 +26,16 @@ public class Sinistro extends TipoSinistro {
 
     public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String autorizadoSinistro, String parecerAvaliador, String tipoSinistro) {
         super(tipoSinistro);
+        this.dataSinistro = dataSinistro;
+        this.descricaoSinistro = descricaoSinistro;
+        this.valorSinistro = valorSinistro;
+        this.autorizadoSinistro = autorizadoSinistro;
+        this.parecerAvaliador = parecerAvaliador;
+    }
+
+    public Sinistro(int codSinistro, Date dataSinistro, String descricaoSinistro, float valorSinistro, String autorizadoSinistro, String parecerAvaliador, int codTipo, String tipoSinistro) {
+        super(codTipo, tipoSinistro);
+        this.codSinistro = codSinistro;
         this.dataSinistro = dataSinistro;
         this.descricaoSinistro = descricaoSinistro;
         this.valorSinistro = valorSinistro;
@@ -70,6 +81,20 @@ public class Sinistro extends TipoSinistro {
 
     public void setParecerAvaliador(String parecerAvaliador) {
         this.parecerAvaliador = parecerAvaliador;
+    }
+
+    /**
+     * @return the codSinistro
+     */
+    public int getCodSinistro() {
+        return codSinistro;
+    }
+
+    /**
+     * @param codSinistro the codSinistro to set
+     */
+    public void setCodSinistro(int codSinistro) {
+        this.codSinistro = codSinistro;
     }
 
 }

@@ -1,10 +1,11 @@
 package dadosResidencia;
 
-import DAO.ResidenciaDAO;
 import DadosUsuarios.Candidato;
 import java.util.List;
 
 public class Residencia {
+
+    private int codResidencia;
 
     private String descricaoRes;
 
@@ -69,6 +70,29 @@ public class Residencia {
         this.cidade = cidade;
         this.bairro = bairro;
         this.areaConstruida = areaC;
+        this.localizacaoPerigosa = localizacaoPerigosa;
+        this.terrenoPerigoso = terrenoPerigoso;
+        this.estruturaAmeacada = estruturaAmeacada;
+        this.candidato = candidato;
+    }
+
+    public Residencia(int codResidencia, String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, String ufResidencia, String cidade, String bairro, double areaConstruida, List<Bem> bens, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada, Candidato candidato) {
+        this.codResidencia = codResidencia;
+        this.descricaoRes = descricaoRes;
+        this.numRes = numRes;
+        this.cepRes = cepRes;
+        this.qntComodos = qntComodos;
+        this.qntBanheiros = qntBanheiros;
+        this.qntGaragens = qntGaragens;
+        this.areaTotal = areaTotal;
+        this.numAndares = numAndares;
+        this.anoConstrucao = anoConstrucao;
+        this.ruaRes = ruaRes;
+        this.ufResidencia = ufResidencia;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.areaConstruida = areaConstruida;
+        this.bens = bens;
         this.localizacaoPerigosa = localizacaoPerigosa;
         this.terrenoPerigoso = terrenoPerigoso;
         this.estruturaAmeacada = estruturaAmeacada;
@@ -326,6 +350,20 @@ public class Residencia {
      */
     public void setCandidato(Candidato candidato) {
         this.candidato = candidato;
+    }
+
+    /**
+     * @return the codResidencia
+     */
+    public int getCodResidencia() {
+        return codResidencia;
+    }
+
+    /**
+     * @param codResidencia the codResidencia to set
+     */
+    public void setCodResidencia(int codResidencia) {
+        this.codResidencia = codResidencia;
     }
 
 }

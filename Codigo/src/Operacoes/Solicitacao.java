@@ -17,6 +17,8 @@ import java.util.Date;
  */
 public class Solicitacao {
 
+    private int codSolicitacao;
+
     private Date dataSolicitacao;
 
     private double valorSolicitacao;
@@ -54,7 +56,17 @@ public class Solicitacao {
         this.motivoAlteracao = motivoAlteracao;
         this.motivoReprovacao = motivoReprovacao;
         this.dataVisitaResidencia = dataVisitaResidencia;
+    }
 
+    public Solicitacao(int codSolicitacao, Date dataSolicitacao, double valorSolicitacao, Date dataVisitaResidencia, String aprovadaSolicitacao, String motivoReprovacao, String motivoAlteracao, Residencia residencia) {
+        this.codSolicitacao = codSolicitacao;
+        this.dataSolicitacao = dataSolicitacao;
+        this.valorSolicitacao = valorSolicitacao;
+        this.dataVisitaResidencia = dataVisitaResidencia;
+        this.aprovadaSolicitacao = aprovadaSolicitacao;
+        this.motivoReprovacao = motivoReprovacao;
+        this.motivoAlteracao = motivoAlteracao;
+        this.residencia = residencia;
     }
 
     public void setDataSolicitacao(Date dataSolicitacao) {
@@ -116,6 +128,20 @@ public class Solicitacao {
     @Override
     public String toString() {
         return "Solicitacao{" + "dataSolicitacao=" + dataSolicitacao + ", residencia=" + residencia.toString() + '}';
+    }
+
+    /**
+     * @return the codSolicitacao
+     */
+    public int getCodSolicitacao() {
+        return codSolicitacao;
+    }
+
+    /**
+     * @param codSolicitacao the codSolicitacao to set
+     */
+    public void setCodSolicitacao(int codSolicitacao) {
+        this.codSolicitacao = codSolicitacao;
     }
 
 }

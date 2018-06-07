@@ -11,6 +11,7 @@ package SevicosSeguradora;
  */
 public class TipoSinistro {
 
+    private int codTipo;
     private String tipoSinistro;
 
     public TipoSinistro(String tipoSinistro) {
@@ -19,6 +20,11 @@ public class TipoSinistro {
 
     public TipoSinistro() {
 
+    }
+
+    public TipoSinistro(int codTipo, String tipoSinistro) {
+        this.codTipo = codTipo;
+        this.tipoSinistro = tipoSinistro;
     }
 
     /**
@@ -33,6 +39,20 @@ public class TipoSinistro {
      */
     public void setTipoSinistro(String tipoSinistro) {
         this.tipoSinistro = tipoSinistro;
+    }
+
+    /**
+     * @return the codTipo
+     */
+    public int getCodTipo() {
+        return codTipo;
+    }
+
+    /**
+     * @param codTipo the codTipo to set
+     */
+    public void setCodTipo(int codTipo) {
+        this.codTipo = codTipo;
     }
 
 }

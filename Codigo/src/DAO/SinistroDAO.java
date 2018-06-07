@@ -7,13 +7,11 @@ package DAO;
 
 import DB.ConnectionFactory;
 import SevicosSeguradora.Sinistro;
-import dadosResidencia.Residencia;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -60,6 +58,7 @@ public class SinistroDAO {
         float valorSinistro;
         String autorizadoSinistro = "";
         String parecerAvaliador;
+        int codSinistro, codTipoSinitro;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Sinistro> listaDeSinistros = new ArrayList<>();
@@ -68,12 +67,14 @@ public class SinistroDAO {
                     + " sinistro.idTipo = tiposinistro.idTipo");
             rs = stmt.executeQuery();
             while (rs.next()) {
+                codSinistro = rs.getInt("idSinistro");
+                codTipoSinitro = rs.getInt("idTipo");
                 parecerAvaliador = rs.getString("parecerAvaliador");
                 dataSinistro = rs.getDate("dataSinistro");
                 descricaoSinistro = rs.getString("descricaoSinistro");
                 valorSinistro = rs.getFloat("valorSinistro");
                 tipoSinistro = rs.getString("descricaoTipoSinistro");
-                Sinistro sinistro = new Sinistro(dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador, tipoSinistro);
+                Sinistro sinistro = new Sinistro(codSinistro, dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador, codTipoSinitro, tipoSinistro);
                 listaDeSinistros.add(sinistro);
             }
         } catch (SQLException e) {

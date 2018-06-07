@@ -22,7 +22,7 @@ import java.util.logging.Logger;
  * @author Matheus Montanha
  */
 public class CorretorDAO {
-
+    
     public void create(Corretor corretor) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -46,7 +46,7 @@ public class CorretorDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-
+    
     public List<Corretor> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt;
@@ -58,6 +58,7 @@ public class CorretorDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Corretor corretor = new Corretor();
+                corretor.setCodPessoa(rs.getInt("idPessoa"));
                 corretor.setAtivoCorretor(rs.getString("ativoCorretor"));
                 corretor.setDataConstratacao(rs.getDate("dataContratacao"));
                 corretor.setNomePessoa(rs.getString("Nome"));

@@ -6,9 +6,7 @@
 package DAO;
 
 import DB.ConnectionFactory;
-import DadosUsuarios.Candidato;
 import DadosUsuarios.Pessoa;
-import dadosResidencia.Residencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -23,7 +21,7 @@ import java.util.logging.Logger;
  * @author Débora Siqueira
  */
 public class PessoaDAO {
-
+    
     public void create(Pessoa pessoa) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -45,7 +43,7 @@ public class PessoaDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-
+    
     public List<Pessoa> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -56,6 +54,7 @@ public class PessoaDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Pessoa pessoa = new Pessoa();
+                pessoa.setCodPessoa(rs.getInt("idPessoa"));
                 pessoa.setNomePessoa(rs.getString("Nome"));
                 pessoa.setEndereco(rs.getString("Endereco"));
                 pessoa.setTelefone(rs.getString("Telefone"));

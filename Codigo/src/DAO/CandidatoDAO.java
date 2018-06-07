@@ -57,6 +57,7 @@ public class CandidatoDAO {
         long cep;
         String dataNescimento, endereco, sexo, nome, cpf;
         String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
+        int codPessoa;
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -66,6 +67,7 @@ public class CandidatoDAO {
                     + "candidato.idPessoa = pessoa.idPessoa");
             rs = stmt.executeQuery();
             while (rs.next()) {
+                codPessoa = rs.getInt("idPessoa");
                 cep = rs.getLong("cep");
                 sexo = rs.getString("sexo");
                 uf = rs.getString("ufCandidato");
@@ -79,9 +81,8 @@ public class CandidatoDAO {
                 usuarioCliente = rs.getString("nomeLogin");
                 senhaCliente = rs.getString("senha");
                 nome = rs.getString("Nome");
-                Candidato candidato = new Candidato(sexo, cep, dataNescimento,
-                        nome, cpf, endereco, telefone, email, usuarioCliente,
-                        senhaCliente, uf, cidade, bairro);
+                Candidato candidato = new Candidato(sexo, cep, dataNescimento, uf, cidade, bairro,
+                        codPessoa, nome, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
                 listaDeCandidato.add(candidato);
             }
         } catch (SQLException e) {

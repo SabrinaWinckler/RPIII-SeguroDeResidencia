@@ -60,6 +60,7 @@ public class RelataSinistroDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Segurado pessoa = new Segurado();
+                pessoa.setCodPessoa(rs.getInt("idPessoa"));
                 pessoa.setNomePessoa(rs.getString("Nome"));
                 pessoa.setEndereco(rs.getString("Endereco"));
                 pessoa.setTelefone(rs.getString("Telefone"));
