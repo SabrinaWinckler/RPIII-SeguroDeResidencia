@@ -105,6 +105,11 @@ public class Tela_Login extends javax.swing.JFrame {
         cadastro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cadastro.setForeground(new java.awt.Color(68, 122, 221));
         cadastro.setText("Cadastre-se aqui");
+        cadastro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cadastroMouseClicked(evt);
+            }
+        });
         getContentPane().add(cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, 30));
 
         perguntaEsqueceuSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -163,8 +168,14 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_entrarButtonActionPerformed
 
     private void perguntaPrimeiroAcessoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perguntaPrimeiroAcessoMouseClicked
-        
+
     }//GEN-LAST:event_perguntaPrimeiroAcessoMouseClicked
+
+    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
+        Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
+        telaCadastro.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cadastroMouseClicked
 
     public Candidato usuarioIdenficacao() {
         return usuario;

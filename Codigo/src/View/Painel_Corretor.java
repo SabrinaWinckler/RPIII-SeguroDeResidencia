@@ -97,7 +97,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void initComponents() {
 
         homeButton = new javax.swing.JButton();
-        avaliarSolicitacaoButton = new javax.swing.JButton();
+        avaliarResidencia = new javax.swing.JButton();
         visualizarSolicitacoesButton = new javax.swing.JButton();
         avaliarSinistroButton = new javax.swing.JButton();
         gerenciarServicosButton = new javax.swing.JButton();
@@ -210,20 +210,20 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 180, 40));
 
-        avaliarSolicitacaoButton.setBackground(new java.awt.Color(255, 255, 255));
-        avaliarSolicitacaoButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        avaliarSolicitacaoButton.setForeground(new java.awt.Color(110, 48, 110));
-        avaliarSolicitacaoButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/contract.png"))); // NOI18N
-        avaliarSolicitacaoButton.setText("Avaliar Residência        ");
-        avaliarSolicitacaoButton.setBorder(null);
-        avaliarSolicitacaoButton.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        avaliarSolicitacaoButton.addActionListener(new java.awt.event.ActionListener() {
+        avaliarResidencia.setBackground(new java.awt.Color(255, 255, 255));
+        avaliarResidencia.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        avaliarResidencia.setForeground(new java.awt.Color(110, 48, 110));
+        avaliarResidencia.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/contract.png"))); // NOI18N
+        avaliarResidencia.setText("Avaliar Residência        ");
+        avaliarResidencia.setBorder(null);
+        avaliarResidencia.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        avaliarResidencia.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                avaliarSolicitacaoButtonActionPerformed(evt);
+                avaliarResidenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarSolicitacaoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 40));
-        avaliarSolicitacaoButton.getAccessibleContext().setAccessibleDescription("");
+        getContentPane().add(avaliarResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 40));
+        avaliarResidencia.getAccessibleContext().setAccessibleDescription("");
 
         visualizarSolicitacoesButton.setBackground(new java.awt.Color(255, 255, 255));
         visualizarSolicitacoesButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -842,17 +842,17 @@ public class Painel_Corretor extends javax.swing.JFrame {
         if (readTableListaDeSinistros() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Não possui sinistros para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
-            jPanelAvaliarSinistro.setVisible(true);
+            visualizarSinistros();
         }
     }//GEN-LAST:event_avaliarSinistroButtonActionPerformed
 
-    private void avaliarSolicitacaoButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarSolicitacaoButtonActionPerformed
+    private void avaliarResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_avaliarResidenciaActionPerformed
         if (readTableListaDeResidencia() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Não possui residencias para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
-            jPanelAvaliarResidencia.setVisible(true);
+            visualizarResidencias();
         }
-    }//GEN-LAST:event_avaliarSolicitacaoButtonActionPerformed
+    }//GEN-LAST:event_avaliarResidenciaActionPerformed
 
     private void buttonConfiguracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfiguracaoActionPerformed
         jComboBoxOpcoesCorretor.setVisible(true);
@@ -998,15 +998,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
     public void preencherCamposSolicitacaoSeguro(int numero) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
-        campoNomeCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getNomePessoa());
-        campoCPFCandidato.setText("" + listaDeSolicitacao.get(0).getResidencia().getCandidato().getCpf());
-        campoEmailCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getEmail());
-        campoTelefoneCandidato.setText(listaDeSolicitacao.get(0).getResidencia().getCandidato().getTelefone());
-        campoLocalizacaoPerigosa.setText("" + listaDeSolicitacao.get(0).getResidencia().getLocalizacaoPerigosa());
-        campoTerrenoPerigoso.setText("" + listaDeSolicitacao.get(0).getResidencia().getTerrenoPerigoso());
-        campoEstruturaAmeacada.setText("" + listaDeSolicitacao.get(0).getResidencia().getEstruturaAmeacada());
-        campoDataSolicitacao.setText("" + listaDeSolicitacao.get(0).getDataSolicitacao());
-        campoValorSolicitacao.setText("" + listaDeSolicitacao.get(0).getValorSolicitacao());
+        campoNomeCandidato.setText(listaDeSolicitacao.get(numero).getResidencia().getCandidato().getNomePessoa());
+        campoCPFCandidato.setText("" + listaDeSolicitacao.get(numero).getResidencia().getCandidato().getCpf());
+        campoEmailCandidato.setText(listaDeSolicitacao.get(numero).getResidencia().getCandidato().getEmail());
+        campoTelefoneCandidato.setText(listaDeSolicitacao.get(numero).getResidencia().getCandidato().getTelefone());
+        campoLocalizacaoPerigosa.setText("" + listaDeSolicitacao.get(numero).getResidencia().getLocalizacaoPerigosa());
+        campoTerrenoPerigoso.setText("" + listaDeSolicitacao.get(numero).getResidencia().getTerrenoPerigoso());
+        campoEstruturaAmeacada.setText("" + listaDeSolicitacao.get(numero).getResidencia().getEstruturaAmeacada());
+        campoDataSolicitacao.setText("" + listaDeSolicitacao.get(numero).getDataSolicitacao());
+        campoValorSolicitacao.setText("" + listaDeSolicitacao.get(numero).getValorSolicitacao());
     }
 
     public void preencherCamposAvaliarSinistro(int selecionado) {
@@ -1106,8 +1106,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton ButtonAprovarSolicitacao;
     private javax.swing.JButton ButtonAprovarSolicitacao1;
     private javax.swing.JButton ButtonAutorizarPagamento;
+    private javax.swing.JButton avaliarResidencia;
     private javax.swing.JButton avaliarSinistroButton;
-    private javax.swing.JButton avaliarSolicitacaoButton;
     private javax.swing.JButton buttonConfiguracao;
     private javax.swing.JButton buttonEditarSolicitacao;
     private javax.swing.JButton buttonNegarPagamento;
