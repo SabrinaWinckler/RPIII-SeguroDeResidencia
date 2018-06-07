@@ -7,7 +7,6 @@ package DAO;
 
 import DB.ConnectionFactory;
 import dadosResidencia.Bem;
-import dadosResidencia.Residencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -22,7 +21,7 @@ import java.util.logging.Logger;
  * @author Matheus Montanha
  */
 public class BemDAO {
-
+    
     public void create(Bem bem) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -45,7 +44,7 @@ public class BemDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-
+    
     public List<Bem> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -56,6 +55,8 @@ public class BemDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Bem bem = new Bem();
+                bem.setCodBem(rs.getInt("idBem"));
+                bem.setCodResidenciaPertencente(rs.getInt("idResidenciaPertencente"));
                 bem.setDescricaoBem(rs.getString("descricaoBem"));
                 bem.setValorEstimadoBem(rs.getFloat("valorBem"));
                 listaDeBens.add(bem);

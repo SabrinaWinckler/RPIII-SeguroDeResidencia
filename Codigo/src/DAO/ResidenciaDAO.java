@@ -74,6 +74,7 @@ public class ResidenciaDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Residencia residencia = new Residencia();
+                residencia.setCodResidencia(rs.getInt("idResidencia"));
                 residencia.setQntGaragens(rs.getInt("quantidadeGaragens"));
                 residencia.setAnoConstrucao(rs.getInt("anoConstrucao"));
                 residencia.setufResidencia(rs.getString("ufResidencia"));

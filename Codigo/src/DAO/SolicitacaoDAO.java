@@ -74,12 +74,14 @@ public class SolicitacaoDAO {
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao();
+                solicitacao.setCodSolicitacao(rs.getInt("idSolicitacao"));
                 solicitacao.setDataSolicitacao(rs.getDate("dataSolicitacao"));
                 solicitacao.setValorSolicitacao(rs.getFloat("valorSolicitacao"));
                 solicitacao.setDataVisitaResidencia(rs.getDate("dataVisitaResidenciia"));
                 solicitacao.setAprovadaSolicitacao(rs.getString("aprovada"));
                 solicitacao.setMotivoReprovacao(rs.getString("motivoReprovacao"));
                 solicitacao.setMotivoAlteracao(rs.getString("motivoAlterecao"));
+                solicitacao.getResidencia().setCodResidencia(rs.getInt("idResidencia"));
                 solicitacao.getResidencia().setufResidencia(rs.getString("ufResidencia"));
                 solicitacao.getResidencia().setCidade(rs.getString("cidade"));
                 solicitacao.getResidencia().setBairro(rs.getString("bairro"));
@@ -96,6 +98,7 @@ public class SolicitacaoDAO {
                 solicitacao.getResidencia().setQntBanheiros(rs.getInt("quantidadeBanheiros"));
                 solicitacao.getResidencia().setQntGaragens(rs.getInt("quantidadeGaragens"));
                 solicitacao.getResidencia().setNumAndares(rs.getInt("numeroAndares"));
+                solicitacao.getResidencia().getCandidato().setCodPessoa(rs.getInt("idPessoa"));
                 solicitacao.getResidencia().getCandidato().setCep(rs.getLong("cep"));
                 solicitacao.getResidencia().getCandidato().setSexo(rs.getString("sexo"));
                 solicitacao.getResidencia().getCandidato().setUf(rs.getString("ufCandidato"));
@@ -119,14 +122,14 @@ public class SolicitacaoDAO {
         return listDeSolicitacoes;
     }
 
-    public void updateStatusSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, String cpf) {
+    public void updateStatusSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, int codCandidato, int codSolicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
             stm = conexao.prepareStatement("update solicitacaoseguro set aprovada=" + resultado + ","
                     + " motivoReprovacao=" + motivoReprovacao + ", motivoAlterecao =" + motivoAlteracao + ","
-                    + "dataVisitaResidencia =" + data + "where solicitacaoseguro.idPessoa = pessoa.idPessoa and "
-                    + "pessoa.Cpf =" + cpf);
+                    + "dataVisitaResidencia =" + data + "where solicitacaoseguro.idSolicitacao =" + codSolicitacao + "and "
+                    + "solicitacao.idPessoa = " + codCandidato);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);

@@ -23,10 +23,17 @@ public class Candidato extends Pessoa {
     public Candidato() {
     }
 
-    public Candidato(String sexo, long cep, String dataNescimento, String nomePessoa,
-            String cpf, String endereco, String telefone, String email,
-            String usuarioCliente, String senhaCliente, String uf, String cidade,
-            String bairro) {
+    public Candidato(String sexo, long cep, String dataNescimento, String uf, String cidade, String bairro, int codPessoa, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+        super(codPessoa, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+        this.sexo = sexo;
+        this.cep = cep;
+        this.dataNescimento = dataNescimento;
+        this.uf = uf;
+        this.cidade = cidade;
+        this.bairro = bairro;
+    }
+
+    public Candidato(String sexo, long cep, String dataNescimento, String uf, String cidade, String bairro, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
         super(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         this.sexo = sexo;
         this.cep = cep;

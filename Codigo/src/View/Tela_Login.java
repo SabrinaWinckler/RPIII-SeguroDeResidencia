@@ -9,6 +9,7 @@ import DadosUsuarios.Candidato;
 import DadosUsuarios.Corretor;
 import DadosUsuarios.Pessoa;
 import Motor.Gerenciador;
+import java.awt.Color;
 import java.util.Arrays;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -19,7 +20,7 @@ import javax.swing.JOptionPane;
  * @author Débora Siqueira
  */
 public class Tela_Login extends javax.swing.JFrame {
-
+    
     Gerenciador motor = new Gerenciador();
     Candidato usuario;
     Corretor corretor;
@@ -109,6 +110,12 @@ public class Tela_Login extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 cadastroMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                cadastroMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                cadastroMouseExited(evt);
+            }
         });
         getContentPane().add(cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, 30));
 
@@ -128,6 +135,7 @@ public class Tela_Login extends javax.swing.JFrame {
         getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 560));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
@@ -177,14 +185,23 @@ public class Tela_Login extends javax.swing.JFrame {
         dispose();
     }//GEN-LAST:event_cadastroMouseClicked
 
+    private void cadastroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseEntered
+        cadastro.setForeground(Color.white);
+    }//GEN-LAST:event_cadastroMouseEntered
+
+    private void cadastroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseExited
+        //cadastro.setForeground(Color.getColor("[r=68,g=122,b=221]"));
+        //[68,122,221]
+    }//GEN-LAST:event_cadastroMouseExited
+    
     public Candidato usuarioIdenficacao() {
         return usuario;
     }
-
+    
     public Corretor corretorIdentificacao() {
         return corretor;
     }
-
+    
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         //bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));

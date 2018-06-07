@@ -10,14 +10,12 @@ import DAO.CorretorDAO;
 import DAO.PessoaDAO;
 import DAO.RelataSinistroDAO;
 import DAO.ResidenciaDAO;
-import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
 import DadosUsuarios.Candidato;
 import DadosUsuarios.Corretor;
 import DadosUsuarios.Pessoa;
 import DadosUsuarios.Segurado;
 import Operacoes.Solicitacao;
-import SevicosSeguradora.Sinistro;
 import dadosResidencia.Residencia;
 import java.util.Date;
 import java.util.List;
@@ -128,7 +126,7 @@ public class Gerenciador {
 
     public void updateSituacaoSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, String cpf) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        daoSolicitacao.updateStatusSolicitacao(resultado, motivoReprovacao, motivoAlteracao, data, cpf);
+        //daoSolicitacao.updateStatusSolicitacao(resultado, motivoReprovacao, motivoAlteracao, data, cpf);
     }
 
     public List<Segurado> listaDeSinistrosPendentes() {
