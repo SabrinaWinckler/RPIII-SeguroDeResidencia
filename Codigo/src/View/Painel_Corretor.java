@@ -28,10 +28,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
      */
     public Painel_Corretor() {
         initComponents();
-        //jLabelBemVindoCorretor.setVisible(true);
-        jPanelAvaliarResidencia.setVisible(false);
-        buttonConfiguracao.setVisible(true);
-        jComboBoxOpcoesCorretor.setVisible(false);
+        runProgram();
     }
 
     public int readTableListaDeResidencia() {
@@ -99,7 +96,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
+        homeButton = new javax.swing.JButton();
         avaliarSolicitacaoButton = new javax.swing.JButton();
         visualizarSolicitacoesButton = new javax.swing.JButton();
         avaliarSinistroButton = new javax.swing.JButton();
@@ -201,11 +198,17 @@ public class Painel_Corretor extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(110, 48, 110));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/home.png"))); // NOI18N
-        jButton1.setText("Home");
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 180, 40));
+        homeButton.setBackground(new java.awt.Color(255, 255, 255));
+        homeButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        homeButton.setForeground(new java.awt.Color(110, 48, 110));
+        homeButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/home.png"))); // NOI18N
+        homeButton.setText("Home");
+        homeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                homeButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 110, 180, 40));
 
         avaliarSolicitacaoButton.setBackground(new java.awt.Color(255, 255, 255));
         avaliarSolicitacaoButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -830,7 +833,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         if (readTableListaDeSolicitacaoSeguro() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Não possui solicitações para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
-            jPanelSolicitacaoDeSeguro.setVisible(true);
+            visualizarSolicitacao();
         }
     }//GEN-LAST:event_visualizarSolicitacoesButtonActionPerformed
 
@@ -926,7 +929,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
     private void ButtonAutorizarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAutorizarPagamentoActionPerformed
         JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro autorizado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
-        
+
     }//GEN-LAST:event_ButtonAutorizarPagamentoActionPerformed
 
     private void buttonNegarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNegarPagamentoActionPerformed
@@ -958,13 +961,17 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void ButtonAprovarSolicitacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacao1ActionPerformed
         //motor.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
         JOptionPane.showConfirmDialog(rootPane, "A solicitação foi aprovada com sucesso!", "Alerta", JOptionPane.CLOSED_OPTION);
-        
+
     }//GEN-LAST:event_ButtonAprovarSolicitacao1ActionPerformed
 
     private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
         int selecionado = listaDeSolicitacoesSeguro.getSelectedRow();
         //preencherCampos(selecionado);
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseClicked
+
+    private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
+        runProgram();
+    }//GEN-LAST:event_homeButtonActionPerformed
 
     public void preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
@@ -1011,6 +1018,44 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //campoCPFSolicitante.setText("" + listaSinistro.get(selecionado).getCpf());
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
         //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
+    }
+
+    public void runProgram() {
+        jPanelAvaliarResidencia.setVisible(false);
+        jPanelAvaliarSinistro.setVisible(false);
+        jPanelDadosProprietario.setVisible(false);
+        jPanelSolicitacaoDeSeguro.setVisible(false);
+        jPanelCorretor.setVisible(true);
+        jPanelBemVindo.setVisible(true);
+        buttonConfiguracao.setVisible(true);
+        jComboBoxOpcoesCorretor.setVisible(false);
+    }
+
+    public void visualizarSolicitacao() {
+        jPanelCorretor.setVisible(true);
+        jPanelSolicitacaoDeSeguro.setVisible(true);
+        jPanelAvaliarResidencia.setVisible(false);
+        jPanelAvaliarSinistro.setVisible(false);
+        jPanelDadosProprietario.setVisible(false);
+        jPanelBemVindo.setVisible(false);
+    }
+
+    public void visualizarResidencias() {
+        jPanelCorretor.setVisible(true);
+        jPanelAvaliarResidencia.setVisible(true);
+        jPanelSolicitacaoDeSeguro.setVisible(false);
+        jPanelAvaliarSinistro.setVisible(false);
+        jPanelDadosProprietario.setVisible(false);
+        jPanelBemVindo.setVisible(false);
+    }
+
+    public void visualizarSinistros() {
+        jPanelCorretor.setVisible(true);
+        jPanelAvaliarSinistro.setVisible(true);
+        jPanelAvaliarResidencia.setVisible(false);
+        jPanelSolicitacaoDeSeguro.setVisible(false);
+        jPanelDadosProprietario.setVisible(false);
+        jPanelBemVindo.setVisible(false);
     }
 
     public void gerarBackground() {
@@ -1096,7 +1141,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorSinistro;
     private javax.swing.JTextField campoValorSolicitacao;
     private javax.swing.JButton gerenciarServicosButton;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton homeButton;
     private javax.swing.JComboBox<String> jComboBoxOpcoesCorretor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
