@@ -1048,6 +1048,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 Painel_Corretor painelCorretor = new Painel_Corretor();
                 painelCorretor.setVisible(true);
