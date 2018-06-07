@@ -119,7 +119,7 @@ public class Tela_Pagamento extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
-        PainelCandidato painel = new PainelCandidato();
+        Painel_Candidato painel = new Painel_Candidato();
         painel.setVisible(true);
         dispose();
     }//GEN-LAST:event_buttonConfirmarActionPerformed

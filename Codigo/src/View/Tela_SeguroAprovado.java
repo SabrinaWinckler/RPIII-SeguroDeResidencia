@@ -207,13 +207,13 @@ public class Tela_SeguroAprovado extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonContratarSeguroActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
-        PainelCandidato painel = new PainelCandidato();
+        Painel_Candidato painel = new Painel_Candidato();
         painel.setVisible(true);
         dispose();
     }//GEN-LAST:event_buttonRecusarSeguroActionPerformed
 
     private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
-        PainelCandidato painel = new PainelCandidato();
+        Painel_Candidato painel = new Painel_Candidato();
         painel.setVisible(true);
         dispose();
     }//GEN-LAST:event_buttonVoltarActionPerformed

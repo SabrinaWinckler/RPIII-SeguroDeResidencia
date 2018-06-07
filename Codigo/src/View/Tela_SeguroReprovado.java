@@ -157,7 +157,7 @@ public class Tela_SeguroReprovado extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
-       PainelCandidato painel = new PainelCandidato();
+       Painel_Candidato painel = new Painel_Candidato();
         painel.setVisible(true);
         dispose();
     }//GEN-LAST:event_buttonVoltarActionPerformed

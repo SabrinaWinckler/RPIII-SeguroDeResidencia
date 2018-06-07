@@ -137,7 +137,7 @@ public class Tela_Login extends javax.swing.JFrame {
             }
             if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                 usuarioExiste = true;
-                PainelCandidato painelCandidato = new PainelCandidato();
+                Painel_Candidato painelCandidato = new Painel_Candidato();
                 painelCandidato.setVisible(true);
                 dispose();
             }

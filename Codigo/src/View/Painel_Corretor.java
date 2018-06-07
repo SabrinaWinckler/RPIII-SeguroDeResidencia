@@ -827,6 +827,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         getContentPane().add(jLabelBarraSup, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void visualizarSolicitacoesButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_visualizarSolicitacoesButtonActionPerformed

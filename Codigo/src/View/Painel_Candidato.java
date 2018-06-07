@@ -22,14 +22,14 @@ import javax.swing.JOptionPane;
  *
  * @author Matheus Montanha
  */
-public class PainelCandidato extends javax.swing.JFrame {
+public class Painel_Candidato extends javax.swing.JFrame {
 
     ControleSolicitacao controlador;
 
     /**
      * Creates new form Painel_Corretor
      */
-    public PainelCandidato() {
+    public Painel_Candidato() {
         initComponents();
         painelSolicitacao.setVisible(false);
         editar.setVisible(false);
@@ -833,14 +833,22 @@ public class PainelCandidato extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(PainelCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(PainelCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(PainelCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PainelCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -854,7 +862,7 @@ public class PainelCandidato extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
 
-                PainelCandidato painel = new PainelCandidato();
+                Painel_Candidato painel = new Painel_Candidato();
                 painel.gerarBackground();
                 painel.setVisible(true);
             }

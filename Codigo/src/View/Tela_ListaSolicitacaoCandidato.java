@@ -137,7 +137,7 @@ public class Tela_ListaSolicitacaoCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
     private void voltarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_voltarButtonActionPerformed
-        PainelCandidato painelCandidato = new PainelCandidato();
+        Painel_Candidato painelCandidato = new Painel_Candidato();
         painelCandidato.setVisible(true);
         dispose();
     }//GEN-LAST:event_voltarButtonActionPerformed
