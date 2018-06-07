@@ -62,10 +62,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         popupMenu1 = new java.awt.PopupMenu();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
-        solicitarSeguro = new javax.swing.JButton();
-        minhasResidencias = new javax.swing.JButton();
-        contratarServico = new javax.swing.JButton();
-        relatarSinistro = new javax.swing.JButton();
         painelP = new javax.swing.JPanel();
         painelServico = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
@@ -135,6 +131,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
         sairButton = new javax.swing.JButton();
         buttonVisualizarSolicitacao = new javax.swing.JButton();
+        solicitarSeguro = new javax.swing.JButton();
+        contratarServico = new javax.swing.JButton();
+        relatarSinistro = new javax.swing.JButton();
+        minhasResidencias = new javax.swing.JButton();
 
         menu1.setLabel("File");
         menuBar1.add(menu1);
@@ -162,54 +162,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        solicitarSeguro.setBackground(new java.awt.Color(0, 51, 51));
-        solicitarSeguro.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
-        solicitarSeguro.setForeground(new java.awt.Color(255, 255, 255));
-        solicitarSeguro.setText("Solicitação Seguro de Residência");
-        solicitarSeguro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                solicitarSeguroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 100, -1, 40));
-        solicitarSeguro.getAccessibleContext().setAccessibleDescription("");
-
-        minhasResidencias.setBackground(new java.awt.Color(0, 51, 51));
-        minhasResidencias.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
-        minhasResidencias.setForeground(new java.awt.Color(255, 255, 255));
-        minhasResidencias.setText("Minhas Residências");
-        minhasResidencias.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                minhasResidenciasActionPerformed(evt);
-            }
-        });
-        getContentPane().add(minhasResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, 220, 40));
-
-        contratarServico.setBackground(new java.awt.Color(0, 51, 51));
-        contratarServico.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
-        contratarServico.setForeground(new java.awt.Color(255, 255, 255));
-        contratarServico.setText("Contratar Serviço");
-        contratarServico.setToolTipText("");
-        contratarServico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contratarServicoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 250, 220, 40));
-
-        relatarSinistro.setBackground(new java.awt.Color(0, 51, 51));
-        relatarSinistro.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
-        relatarSinistro.setForeground(new java.awt.Color(255, 255, 255));
-        relatarSinistro.setText("Relatar Sinistro");
-        relatarSinistro.setToolTipText("");
-        relatarSinistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                relatarSinistroActionPerformed(evt);
-            }
-        });
-        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 200, 220, 40));
-
         painelP.setBackground(new java.awt.Color(204, 204, 255));
+        painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         painelServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -236,12 +190,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelServico.add(eletricista, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 70, -1, -1));
 
         enviarServico.setBackground(new java.awt.Color(151, 53, 255));
-        enviarServico.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
+        enviarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         enviarServico.setForeground(new java.awt.Color(255, 255, 255));
         enviarServico.setText("Enviar");
         painelServico.add(enviarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 160, -1, -1));
 
-        cancelarServico.setBackground(new java.awt.Color(153, 0, 0));
+        cancelarServico.setBackground(new java.awt.Color(0, 153, 255));
         cancelarServico.setFont(new java.awt.Font("Sylfaen", 0, 12)); // NOI18N
         cancelarServico.setForeground(new java.awt.Color(255, 255, 255));
         cancelarServico.setText("Cancelar");
@@ -344,7 +298,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanel6.add(valor, new org.netbeans.lib.awtextra.AbsoluteConstraints(137, 58, 60, -1));
 
         add.setBackground(new java.awt.Color(151, 53, 255));
-        add.setFont(new java.awt.Font("Sylfaen", 0, 11)); // NOI18N
+        add.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
         add.setText("Adicionar");
         add.addActionListener(new java.awt.event.ActionListener() {
@@ -352,10 +306,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 addActionPerformed(evt);
             }
         });
-        jPanel6.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 11, 80, -1));
+        jPanel6.add(add, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, -1, -1));
 
-        remover.setBackground(new java.awt.Color(153, 0, 0));
-        remover.setFont(new java.awt.Font("Sylfaen", 0, 11)); // NOI18N
+        remover.setBackground(new java.awt.Color(0, 153, 255));
+        remover.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         remover.setForeground(new java.awt.Color(255, 255, 255));
         remover.setText("Remover");
         remover.addActionListener(new java.awt.event.ActionListener() {
@@ -363,10 +317,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 removerActionPerformed(evt);
             }
         });
-        jPanel6.add(remover, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 41, 79, -1));
+        jPanel6.add(remover, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 70, 90, -1));
 
         exibir.setBackground(new java.awt.Color(151, 53, 255));
-        exibir.setFont(new java.awt.Font("Sylfaen", 0, 11)); // NOI18N
+        exibir.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         exibir.setForeground(new java.awt.Color(255, 255, 255));
         exibir.setText("Exibir");
         exibir.addActionListener(new java.awt.event.ActionListener() {
@@ -374,7 +328,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 exibirActionPerformed(evt);
             }
         });
-        jPanel6.add(exibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(215, 70, 79, -1));
+        jPanel6.add(exibir, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 40, 90, -1));
 
         painelSolicitacao.add(jPanel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 130, 310, 100));
 
@@ -501,8 +455,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         e.setText("5");
         painelSolicitacao.add(e, new org.netbeans.lib.awtextra.AbsoluteConstraints(532, 305, -1, -1));
 
-        cancelar.setBackground(new java.awt.Color(153, 0, 0));
-        cancelar.setFont(new java.awt.Font("Sylfaen", 0, 11)); // NOI18N
+        cancelar.setBackground(new java.awt.Color(0, 153, 255));
+        cancelar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cancelar.setForeground(new java.awt.Color(255, 255, 255));
         cancelar.setText("Cancelar");
         cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -510,10 +464,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 cancelarActionPerformed(evt);
             }
         });
-        painelSolicitacao.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(506, 340, -1, -1));
+        painelSolicitacao.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(509, 340, 80, -1));
 
         enviar.setBackground(new java.awt.Color(151, 53, 255));
-        enviar.setFont(new java.awt.Font("Sylfaen", 0, 11)); // NOI18N
+        enviar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         enviar.setForeground(new java.awt.Color(255, 255, 255));
         enviar.setText("Enviar");
         enviar.addActionListener(new java.awt.event.ActionListener() {
@@ -521,7 +475,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 enviarActionPerformed(evt);
             }
         });
-        painelSolicitacao.add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 340, -1, -1));
+        painelSolicitacao.add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 340, 80, -1));
 
         jLabel1.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
         jLabel1.setText("Dados:");
@@ -582,27 +536,74 @@ public class Painel_Candidato extends javax.swing.JFrame {
         bg.setText("jLabel3");
         painelP.add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
-        sairButton.setBackground(new java.awt.Color(153, 0, 0));
-        sairButton.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
-        sairButton.setForeground(new java.awt.Color(255, 255, 255));
+        sairButton.setBackground(new java.awt.Color(255, 255, 255));
+        sairButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        sairButton.setForeground(new java.awt.Color(153, 0, 0));
         sairButton.setText("Sair");
         sairButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 sairButtonActionPerformed(evt);
             }
         });
-        painelP.add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 360, 80, 30));
+        painelP.add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 500, 80, 30));
 
-        buttonVisualizarSolicitacao.setBackground(new java.awt.Color(151, 53, 255));
-        buttonVisualizarSolicitacao.setFont(new java.awt.Font("Sylfaen", 1, 12)); // NOI18N
-        buttonVisualizarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
-        buttonVisualizarSolicitacao.setText("Visualizar Solicitações");
+        buttonVisualizarSolicitacao.setBackground(new java.awt.Color(255, 255, 255));
+        buttonVisualizarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonVisualizarSolicitacao.setForeground(new java.awt.Color(110, 48, 110));
+        buttonVisualizarSolicitacao.setText("Contratar Seguro");
         buttonVisualizarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonVisualizarSolicitacaoActionPerformed(evt);
             }
         });
-        painelP.add(buttonVisualizarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 300, 220, 40));
+        painelP.add(buttonVisualizarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 180, 40));
+
+        solicitarSeguro.setBackground(new java.awt.Color(255, 255, 255));
+        solicitarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        solicitarSeguro.setForeground(new java.awt.Color(110, 48, 110));
+        solicitarSeguro.setText("Solicitação Seguro ");
+        solicitarSeguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                solicitarSeguroActionPerformed(evt);
+            }
+        });
+        painelP.add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 180, 40));
+        solicitarSeguro.getAccessibleContext().setAccessibleDescription("");
+
+        contratarServico.setBackground(new java.awt.Color(255, 255, 255));
+        contratarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        contratarServico.setForeground(new java.awt.Color(110, 48, 110));
+        contratarServico.setText("Contratar Serviços");
+        contratarServico.setToolTipText("");
+        contratarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contratarServicoActionPerformed(evt);
+            }
+        });
+        painelP.add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 180, 40));
+
+        relatarSinistro.setBackground(new java.awt.Color(255, 255, 255));
+        relatarSinistro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        relatarSinistro.setForeground(new java.awt.Color(110, 48, 110));
+        relatarSinistro.setText("Relatar Sinistro");
+        relatarSinistro.setToolTipText("");
+        relatarSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                relatarSinistroActionPerformed(evt);
+            }
+        });
+        painelP.add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 180, 40));
+
+        minhasResidencias.setBackground(new java.awt.Color(255, 255, 255));
+        minhasResidencias.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        minhasResidencias.setForeground(new java.awt.Color(110, 48, 110));
+        minhasResidencias.setText("Minhas Residências");
+        minhasResidencias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minhasResidenciasActionPerformed(evt);
+            }
+        });
+        painelP.add(minhasResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, 40));
 
         getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, -10, 1240, 560));
 
