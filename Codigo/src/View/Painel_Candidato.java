@@ -128,33 +128,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         buttonConfirmar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
-        jPanelListaSeguros = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaSolicitacaoCandidato = new javax.swing.JTable();
-        jPanelSolicitacaoAprovada = new javax.swing.JPanel();
-        buttonRecusarSeguro = new javax.swing.JButton();
-        jLabel30 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        textObs = new javax.swing.JTextPane();
-        jLabel31 = new javax.swing.JLabel();
-        ButtonContratarSeguro = new javax.swing.JButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        textValorSeguro = new javax.swing.JTextPane();
-        buttonVoltar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel47 = new javax.swing.JLabel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        textCep = new javax.swing.JTextPane();
-        jLabel48 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textCidade = new javax.swing.JTextPane();
-        textBairro = new javax.swing.JScrollPane();
-        textB = new javax.swing.JTextPane();
-        jLabel49 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        textEnd = new javax.swing.JTextPane();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
         painelSolicitacao = new javax.swing.JPanel();
         cep = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -210,6 +183,33 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
+        jPanelListaSeguros = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        listaSolicitacaoCandidato = new javax.swing.JTable();
+        jPanelSolicitacaoAprovada = new javax.swing.JPanel();
+        buttonRecusarSeguro = new javax.swing.JButton();
+        jLabel30 = new javax.swing.JLabel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        textObs = new javax.swing.JTextPane();
+        jLabel31 = new javax.swing.JLabel();
+        ButtonContratarSeguro = new javax.swing.JButton();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        textValorSeguro = new javax.swing.JTextPane();
+        buttonVoltar = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        jLabel47 = new javax.swing.JLabel();
+        jScrollPane10 = new javax.swing.JScrollPane();
+        textCep = new javax.swing.JTextPane();
+        jLabel48 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        textCidade = new javax.swing.JTextPane();
+        textBairro = new javax.swing.JScrollPane();
+        textB = new javax.swing.JTextPane();
+        jLabel49 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        textEnd = new javax.swing.JTextPane();
+        jLabel50 = new javax.swing.JLabel();
+        jLabel51 = new javax.swing.JLabel();
         painelServico = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         encanador = new javax.swing.JCheckBox();
@@ -412,153 +412,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelPagamento.add(buttonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 90, 30));
 
         painelP.add(jPanelPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
-
-        jPanelListaSeguros.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelListaSeguros.setMinimumSize(new java.awt.Dimension(730, 490));
-        jPanelListaSeguros.setPreferredSize(new java.awt.Dimension(730, 490));
-        jPanelListaSeguros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        listaSolicitacaoCandidato.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Descrição", "Data", "CEP", "Status"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        listaSolicitacaoCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                listaSolicitacaoCandidatoMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(listaSolicitacaoCandidato);
-
-        jPanelListaSeguros.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 560, 160));
-
-        painelP.add(jPanelListaSeguros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
-
-        jPanelSolicitacaoAprovada.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelSolicitacaoAprovada.setPreferredSize(new java.awt.Dimension(730, 490));
-        jPanelSolicitacaoAprovada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        buttonRecusarSeguro.setBackground(new java.awt.Color(126, 87, 194));
-        buttonRecusarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        buttonRecusarSeguro.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRecusarSeguro.setText("Recusar");
-        buttonRecusarSeguro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRecusarSeguroActionPerformed(evt);
-            }
-        });
-        jPanelSolicitacaoAprovada.add(buttonRecusarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 90, 30));
-
-        jLabel30.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel30.setText("Observações:");
-        jPanelSolicitacaoAprovada.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
-
-        textObs.setEditable(false);
-        jScrollPane7.setViewportView(textObs);
-
-        jPanelSolicitacaoAprovada.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 270, 120));
-
-        jLabel31.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel31.setText("Valor do Seguro:");
-        jPanelSolicitacaoAprovada.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
-
-        ButtonContratarSeguro.setBackground(new java.awt.Color(0, 153, 255));
-        ButtonContratarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        ButtonContratarSeguro.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonContratarSeguro.setText("Contratar ");
-        ButtonContratarSeguro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ButtonContratarSeguroActionPerformed(evt);
-            }
-        });
-        jPanelSolicitacaoAprovada.add(ButtonContratarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 90, 30));
-
-        textValorSeguro.setEditable(false);
-        jScrollPane8.setViewportView(textValorSeguro);
-
-        jPanelSolicitacaoAprovada.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 60, -1));
-
-        buttonVoltar.setBackground(new java.awt.Color(126, 87, 194));
-        buttonVoltar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        buttonVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        buttonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
-        buttonVoltar.setText("Voltar");
-        buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonVoltarActionPerformed(evt);
-            }
-        });
-        jPanelSolicitacaoAprovada.add(buttonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, 30));
-
-        jPanel1.setBackground(new java.awt.Color(1, 45, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel47.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel47.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel47.setText("CEP:");
-        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
-
-        textCep.setEditable(false);
-        jScrollPane10.setViewportView(textCep);
-
-        jPanel1.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 200, 30));
-
-        jLabel48.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel48.setText("Cidade:");
-        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 20));
-
-        textCidade.setEditable(false);
-        jScrollPane3.setViewportView(textCidade);
-
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, 30));
-
-        textB.setEditable(false);
-        textBairro.setViewportView(textB);
-
-        jPanel1.add(textBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 200, 30));
-
-        jLabel49.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel49.setText("Bairro:");
-        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
-
-        textEnd.setEditable(false);
-        jScrollPane6.setViewportView(textEnd);
-
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 200, 40));
-
-        jLabel50.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel50.setText("Endereço:");
-        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
-
-        jPanelSolicitacaoAprovada.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 420, 210));
-
-        jLabel51.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel51.setText("Dados da sua Residência:");
-        jPanelSolicitacaoAprovada.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
-
-        painelP.add(jPanelSolicitacaoAprovada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         painelSolicitacao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -849,7 +702,154 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelSolicitacao.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 10, -1, -1));
         painelSolicitacao.add(jSeparator2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 122, 690, 260));
 
-        painelP.add(painelSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 150, 690, 380));
+        painelP.add(painelSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 380));
+
+        jPanelListaSeguros.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelListaSeguros.setMinimumSize(new java.awt.Dimension(730, 490));
+        jPanelListaSeguros.setPreferredSize(new java.awt.Dimension(730, 490));
+        jPanelListaSeguros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        listaSolicitacaoCandidato.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Descrição", "Data", "CEP", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        listaSolicitacaoCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaSolicitacaoCandidatoMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(listaSolicitacaoCandidato);
+
+        jPanelListaSeguros.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 560, 160));
+
+        painelP.add(jPanelListaSeguros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
+
+        jPanelSolicitacaoAprovada.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelSolicitacaoAprovada.setPreferredSize(new java.awt.Dimension(730, 490));
+        jPanelSolicitacaoAprovada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        buttonRecusarSeguro.setBackground(new java.awt.Color(126, 87, 194));
+        buttonRecusarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonRecusarSeguro.setForeground(new java.awt.Color(255, 255, 255));
+        buttonRecusarSeguro.setText("Recusar");
+        buttonRecusarSeguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonRecusarSeguroActionPerformed(evt);
+            }
+        });
+        jPanelSolicitacaoAprovada.add(buttonRecusarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 90, 30));
+
+        jLabel30.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel30.setText("Observações:");
+        jPanelSolicitacaoAprovada.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
+
+        textObs.setEditable(false);
+        jScrollPane7.setViewportView(textObs);
+
+        jPanelSolicitacaoAprovada.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 270, 120));
+
+        jLabel31.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel31.setText("Valor do Seguro:");
+        jPanelSolicitacaoAprovada.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+
+        ButtonContratarSeguro.setBackground(new java.awt.Color(0, 153, 255));
+        ButtonContratarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ButtonContratarSeguro.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonContratarSeguro.setText("Contratar ");
+        ButtonContratarSeguro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ButtonContratarSeguroActionPerformed(evt);
+            }
+        });
+        jPanelSolicitacaoAprovada.add(ButtonContratarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 90, 30));
+
+        textValorSeguro.setEditable(false);
+        jScrollPane8.setViewportView(textValorSeguro);
+
+        jPanelSolicitacaoAprovada.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 60, -1));
+
+        buttonVoltar.setBackground(new java.awt.Color(126, 87, 194));
+        buttonVoltar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        buttonVoltar.setForeground(new java.awt.Color(255, 255, 255));
+        buttonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
+        buttonVoltar.setText("Voltar");
+        buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVoltarActionPerformed(evt);
+            }
+        });
+        jPanelSolicitacaoAprovada.add(buttonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, 30));
+
+        jPanel1.setBackground(new java.awt.Color(1, 45, 90));
+        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel47.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel47.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel47.setText("CEP:");
+        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+
+        textCep.setEditable(false);
+        jScrollPane10.setViewportView(textCep);
+
+        jPanel1.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 200, 30));
+
+        jLabel48.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel48.setText("Cidade:");
+        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 20));
+
+        textCidade.setEditable(false);
+        jScrollPane3.setViewportView(textCidade);
+
+        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, 30));
+
+        textB.setEditable(false);
+        textBairro.setViewportView(textB);
+
+        jPanel1.add(textBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 200, 30));
+
+        jLabel49.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel49.setText("Bairro:");
+        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
+
+        textEnd.setEditable(false);
+        jScrollPane6.setViewportView(textEnd);
+
+        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 200, 40));
+
+        jLabel50.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel50.setText("Endereço:");
+        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        jPanelSolicitacaoAprovada.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 420, 210));
+
+        jLabel51.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel51.setText("Dados da sua Residência:");
+        jPanelSolicitacaoAprovada.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+
+        painelP.add(jPanelSolicitacaoAprovada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         painelServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1045,6 +1045,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         editar.setVisible(true);
         nova.setVisible(true);
         cancelarSolicitacao.setVisible(true);
+        jPanelHome.setVisible(false);
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
@@ -1054,13 +1055,16 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void contratarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarServicoActionPerformed
         painelServico.setVisible(true);
         painelSolicitacao.setVisible(false);
-        cancelar.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
     }//GEN-LAST:event_contratarServicoActionPerformed
 
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
         painelSolicitacao.setVisible(true);
+        cancelarSolicitacao.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
     }//GEN-LAST:event_novaActionPerformed
 
     private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
@@ -1071,6 +1075,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         //recuperar dados da solicitação que el deseja editar
         
         painelSolicitacao.setVisible(true);
+        cancelarSolicitacao.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
     }//GEN-LAST:event_editarActionPerformed
 
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
@@ -1120,6 +1127,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } catch (Exception e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
+        cancelarSolicitacao.setVisible(true);
+        editar.setVisible(true);
+        nova.setVisible(true);
 
     }//GEN-LAST:event_enviarActionPerformed
     public void esvaziarCampos() {
@@ -1128,6 +1138,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         this.esvaziarCampos();
         painelSolicitacao.setVisible(false);
+        
+        cancelarSolicitacao.setVisible(true);
+        editar.setVisible(true);
+        nova.setVisible(true);
     }//GEN-LAST:event_cancelarActionPerformed
 
     private void estruturaAStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_estruturaAStateChanged
@@ -1236,7 +1250,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_eletricistaActionPerformed
 
     private void cancelarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarServicoActionPerformed
-        // TODO add your handling code here:
+       painelServico.setVisible(false);
     }//GEN-LAST:event_cancelarServicoActionPerformed
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
@@ -1269,17 +1283,21 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-
+        painelServico.setVisible(false);
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void enviarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarServicoActionPerformed
             String escolhido = null;
             int qnt = 0;
-            
+            if(encanador.isSelected()){
             escolhido += encanador.getText() + ',';
+            }
+            if(chaveiro.isSelected()){
             escolhido += chaveiro.getText() + ',';
+            }
+            if(eletricista.isSelected()){
             escolhido += eletricista.getText() + ',';
-            
+            }
             qnt = escolhido.split(",").length;
             
             controlador.registrarServico(escolhido, qnt);
@@ -1296,6 +1314,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelPagamento.setVisible(false);
         jPanelSolicitacaoReprovada.setVisible(false);
         jPanelListaSeguros.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
     }
 
     private void visualizarSolicitacao() {
