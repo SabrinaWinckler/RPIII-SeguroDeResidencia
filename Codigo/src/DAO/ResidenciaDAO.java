@@ -23,7 +23,6 @@ import java.util.logging.Logger;
 public class ResidenciaDAO {
 
     public void create(Residencia residencia, String cpf) {
-        System.out.println(residencia.toString());
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;

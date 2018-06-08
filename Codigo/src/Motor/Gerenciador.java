@@ -19,6 +19,8 @@ import DadosUsuarios.Segurado;
 import Operacoes.Solicitacao;
 import SevicosSeguradora.Apolice;
 import dadosResidencia.Residencia;
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -86,7 +88,7 @@ public class Gerenciador {
         return daoCorretor.read();
     }
 
-    public List<Solicitacao> listaDeResidenciasPendentes() {
+    public List<Solicitacao> listaDeSolicitacoesPendentes() {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         return daoSolicitacao.read();
     }
@@ -153,5 +155,43 @@ public class Gerenciador {
     public void registrarDateVisitaResidencia(Solicitacao solicitacao) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         daoSolicitacao.registrarDataVisita(solicitacao);
+    }
+
+    public List<Solicitacao> filtrarSolicitacoesNaoVisualizadas() {
+        listaDeSolicitacao = listaDeSolicitacoesPendentes();
+        List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
+        for (Solicitacao solicitacao : listaDeSolicitacao) {
+            if (solicitacao.getDataVisitaResidencia() == null) {
+                listaDeSolicitacoesPendendes.add(solicitacao);
+            }
+        }
+        return listaDeSolicitacoesPendendes;
+    }
+
+    public List<Solicitacao> filtrarResidenciasParaAvaliar() {
+        listaDeSolicitacao = listaDeSolicitacoesPendentes();
+        List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
+        for (Solicitacao solicitacao : listaDeSolicitacao) {
+            if (solicitacao.getDataVisitaResidencia() != null) {
+                listaDeSolicitacoesPendendes.add(solicitacao);
+            }
+        }
+        return listaDeSolicitacoesPendendes;
+    }
+
+    public void updateStatusSolicitacao(Solicitacao solicitacao) {
+        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+        daoSolicitacao.updateStatusSolicitacao(solicitacao);
+    }
+
+    public List<Solicitacao> filtrarResidenciasPendentes() {
+        listaDeSolicitacao = listaDeSolicitacoesPendentes();
+        List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
+        for (Solicitacao solicitacao : listaDeSolicitacao) {
+            if (!solicitacao.getAprovadaSolicitacao().isEmpty()) {
+                listaDeSolicitacoesPendendes.add(solicitacao);
+            }
+        }
+        return listaDeSolicitacoesPendendes;
     }
 }

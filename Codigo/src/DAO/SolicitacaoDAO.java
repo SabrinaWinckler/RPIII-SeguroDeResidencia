@@ -13,6 +13,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -126,7 +127,7 @@ public class SolicitacaoDAO {
     public void registrarDataVisita(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
-        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dataFormatada = new SimpleDateFormat("yyyy-MM-dd");
         String data = dataFormatada.format(solicitacao.getDataVisitaResidencia());
         try {
             stm = conexao.prepareStatement("update solicitacaoseguro set "
@@ -140,17 +141,23 @@ public class SolicitacaoDAO {
         }
     }
 
-    public void updateStatusSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, int codCandidato, int codSolicitacao) {
+    public void updateStatusSolicitacao(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada=" + resultado + ","
-                    + " motivoReprovacao=" + motivoReprovacao + ", motivoAlterecao =" + motivoAlteracao + ","
-                    + "dataVisitaResidencia =" + data + "where solicitacaoseguro.idSolicitacao =" + codSolicitacao + "and "
-                    + "solicitacao.idPessoa = " + codCandidato);
-            stm.executeUpdate();
+            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada =?,"
+                    + " motivoReprovacao = ?, motivoAlterecao = ? "
+                    + "where solicitacaoseguro.idPessoa = ? and solicitacaoseguro.idResidencia = ?");
+            stm.setString(1, solicitacao.getAprovadaSolicitacao());
+            stm.setString(2, solicitacao.getMotivoReprovacao());
+            stm.setString(3, solicitacao.getMotivoAlteracao());
+            stm.setInt(4, solicitacao.getResidencia().getCodResidencia());
+            stm.setInt(5, solicitacao.getResidencia().getCandidato().getCodPessoa());
+            stm.execute();
         } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao);
         }
     }
 
@@ -198,6 +205,5 @@ public class SolicitacaoDAO {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
         return listDeSolicitacoes;
-
     }
 }

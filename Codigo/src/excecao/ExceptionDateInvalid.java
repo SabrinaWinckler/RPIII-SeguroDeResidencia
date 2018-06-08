@@ -5,6 +5,7 @@
  */
 package excecao;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -15,9 +16,9 @@ import java.util.Date;
  */
 public class ExceptionDateInvalid {
 
-    public static void isValido(String datas) throws Exception {
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        sdf.setLenient(false);
-        Date data = sdf.parse(datas);
+    public static Date isValido(String datas) throws ParseException {
+        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+        Date today = df.parse(datas);
+        return today;
     }
 }

@@ -8,6 +8,10 @@ package View;
 import DadosUsuarios.Segurado;
 import Motor.Gerenciador;
 import Operacoes.Solicitacao;
+import excecao.ExceptionDateInvalid;
+import java.sql.Array;
+import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
@@ -19,7 +23,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Matheus Montanha
  */
 public class Painel_Corretor extends javax.swing.JFrame {
-    
+
     int visivel = 0;
     Gerenciador gerenciador = new Gerenciador();
     String motivoReprovacao, motivoAlteracao, resultado;
@@ -32,14 +36,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
         initComponents();
         runProgram();
     }
-    
+
     public int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
         Gerenciador motor = new Gerenciador();
-        int tamanhoLista = motor.listaDeResidenciasPendentes().size();
+        int tamanhoLista = motor.filtrarResidenciasParaAvaliar().size();
         if (tamanhoLista > 0) {
-            for (Solicitacao solicitacao : motor.listaDeResidenciasPendentes()) {
+            for (Solicitacao solicitacao : motor.filtrarResidenciasParaAvaliar()) {
                 modelo.addRow(new Object[]{
                     solicitacao.getResidencia().getCandidato().getNomePessoa(),
                     solicitacao.getDataSolicitacao()
@@ -50,14 +54,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     public int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
         Gerenciador motor = new Gerenciador();
-        int tamanho = motor.listaDeResidenciasPendentes().size();
+        int tamanho = motor.filtrarSolicitacoesNaoVisualizadas().size();
         if (tamanho > 0) {
-            for (Solicitacao solicitacao : motor.listaDeResidenciasPendentes()) {
+            for (Solicitacao solicitacao : motor.filtrarSolicitacoesNaoVisualizadas()) {
                 modelo.addRow(new Object[]{
                     solicitacao.getResidencia().getCandidato().getNomePessoa(),
                     solicitacao.getDataSolicitacao()
@@ -68,7 +72,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     public int readTableListaDeSinistros() {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
@@ -891,9 +895,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonEditarSolicitacaoActionPerformed
 
     private void ButtonAprovarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacaoActionPerformed
-        JOptionPane.showInputDialog(rootPane, "Solicitação aprovada com sucesso!");
-        resultado = "aprovada";
-        //gerenciador.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
+        List<Solicitacao> listaDeSolicitacao;
+        listaDeSolicitacao = gerenciador.filtrarResidenciasParaAvaliar();
+        listaDeSolicitacao.get(selecionado).setAprovadaSolicitacao("aprovada");
+        listaDeSolicitacao.get(selecionado).setMotivoAlteracao(null);
+        listaDeSolicitacao.get(selecionado).setMotivoReprovacao(null);
+        gerenciador.updateStatusSolicitacao(listaDeSolicitacao.get(selecionado));
+        JOptionPane.showConfirmDialog(rootPane, "Residencia Avaliada com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
+        runProgram();
     }//GEN-LAST:event_ButtonAprovarSolicitacaoActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
@@ -962,13 +971,23 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRecusarSeguro1ActionPerformed
 
     private void ButtonAprovarSolicitacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacao1ActionPerformed
-        String dataVisita = JOptionPane.showInputDialog(rootPane, "Digite a data marcada, por favor:");
-        List<Solicitacao> listaDeSolicitacao;
-        listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
-        Date data = new Date();
-        listaDeSolicitacao.get(selecionado).setDataVisitaResidencia(data);
-        gerenciador.registrarDateVisitaResidencia(listaDeSolicitacao.get(selecionado));
-        
+        int controle = 0;
+        while (controle == 0) {
+            try {
+                List<Solicitacao> listaDeSolicitacao;
+                listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
+                String dataVisita = JOptionPane.showInputDialog(rootPane, "Digite a data e a hora marcada, por favor:");
+                listaDeSolicitacao.get(selecionado).setDataVisitaResidencia(ExceptionDateInvalid.isValido(dataVisita));
+                gerenciador.registrarDateVisitaResidencia(listaDeSolicitacao.get(selecionado));
+                JOptionPane.showConfirmDialog(rootPane, "Data registrada com sucesso.",
+                        "Alerta", JOptionPane.CLOSED_OPTION);
+                controle = 1;
+                runProgram();
+            } catch (ParseException e) {
+                JOptionPane.showConfirmDialog(rootPane, "Data inválida. Por favor, digite novamente:",
+                        "Alerta", JOptionPane.CLOSED_OPTION);
+            }
+        }
     }//GEN-LAST:event_ButtonAprovarSolicitacao1ActionPerformed
 
     private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
@@ -979,10 +998,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         runProgram();
     }//GEN-LAST:event_homeButtonActionPerformed
-    
+
     public void preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
-        listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
+        listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
         String cep = "" + listaDeSolicitacao.get(numeroLinha).getResidencia().getCepRes();
         campoCepResidencia.setText(cep);
         campoCidadeResidencia.setText(listaDeSolicitacao.get(numeroLinha).getResidencia().getCandidato().getCidade());
@@ -1000,10 +1019,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAnoConstrucao.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAnoConstrucao());
         campoAreaTotal.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaTotal());
     }
-    
+
     public void preencherCamposSolicitacaoSeguro(int numero) {
         List<Solicitacao> listaDeSolicitacao;
-        listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
+        listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
         campoNomeCandidato.setText(listaDeSolicitacao.get(numero).getResidencia().getCandidato().getNomePessoa());
         campoCPFCandidato.setText("" + listaDeSolicitacao.get(numero).getResidencia().getCandidato().getCpf());
         campoEmailCandidato.setText(listaDeSolicitacao.get(numero).getResidencia().getCandidato().getEmail());
@@ -1014,7 +1033,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("" + listaDeSolicitacao.get(numero).getDataSolicitacao());
         campoValorSolicitacao.setText("" + listaDeSolicitacao.get(numero).getValorSolicitacao());
     }
-    
+
     public void preencherCamposAvaliarSinistro(int selecionado) {
         List<Segurado> listaSinistro = gerenciador.listaDeSinistrosPendentes();
         campoDataSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getDataSinistro());
@@ -1026,7 +1045,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
         //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
-    
+
     public void runProgram() {
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
@@ -1037,7 +1056,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
     }
-    
+
     public void visualizarSolicitacao() {
         jPanelCorretor.setVisible(true);
         jPanelSolicitacaoDeSeguro.setVisible(true);
@@ -1046,7 +1065,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-    
+
     public void visualizarResidencias() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarResidencia.setVisible(true);
@@ -1055,7 +1074,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-    
+
     public void visualizarSinistros() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarSinistro.setVisible(true);
@@ -1064,7 +1083,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-    
+
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));
