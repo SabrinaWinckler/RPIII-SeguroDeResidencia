@@ -2,8 +2,10 @@ package Motor;
 
 import DAO.BemDAO;
 import DAO.ResidenciaDAO;
+import DAO.ServicoDAO;
 import DAO.SolicitacaoDAO;
 import Operacoes.Solicitacao;
+import SevicosSeguradora.Servico;
 import dadosResidencia.Bem;
 import dadosResidencia.Residencia;
 import java.util.ArrayList;
@@ -19,6 +21,8 @@ public class ControleSolicitacao {
     private ArrayList<Bem> bens;
     
     private Solicitacao solicitacao;
+    
+    private Servico servico;
 
     public ControleSolicitacao() {
         bens = new ArrayList<Bem>();
@@ -83,6 +87,21 @@ public class ControleSolicitacao {
         Solicitacao tempS = this.construirSolicitacao();
         geraDAOSolicitacao().create(tempS);
     }
+    public ServicoDAO geraDAOServico(){
+        ServicoDAO solicitacaoDAO = new ServicoDAO();
+        return solicitacaoDAO;
+    }
+    public Servico construirServico(String desc, int qnt){
+        Servico temp  = new Servico(desc, qnt);
+        return temp;
+    }
+    
+    public void registrarServico(String desc, int qnt) {
+        
+        Servico temp = new Servico(desc, qnt);
+        this.setServico(temp);
+        geraDAOServico().create(temp);
+    }
 
     @Override
     public String toString() {
@@ -118,6 +137,14 @@ public class ControleSolicitacao {
 
     public Solicitacao getSolicitacao() {
         return solicitacao;
+    }
+
+    public Servico getServico() {
+        return servico;
+    }
+
+    public void setServico(Servico servico) {
+        this.servico = servico;
     }
     
    

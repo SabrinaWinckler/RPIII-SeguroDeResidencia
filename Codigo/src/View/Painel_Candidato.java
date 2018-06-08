@@ -89,7 +89,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
-        jPanelHome = new javax.swing.JPanel();
         jPanelSolicitacaoReprovada = new javax.swing.JPanel();
         jScrollPane12 = new javax.swing.JScrollPane();
         textCpf = new javax.swing.JTextPane();
@@ -213,11 +212,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jSeparator2 = new javax.swing.JSeparator();
         painelServico = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        Encanador = new javax.swing.JCheckBox();
+        encanador = new javax.swing.JCheckBox();
         chaveiro = new javax.swing.JCheckBox();
         eletricista = new javax.swing.JCheckBox();
         enviarServico = new javax.swing.JButton();
         cancelarServico = new javax.swing.JButton();
+        jPanelHome = new javax.swing.JPanel();
         editar = new javax.swing.JButton();
         cancelarSolicitacao = new javax.swing.JButton();
         nova = new javax.swing.JButton();
@@ -260,10 +260,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setBackground(new java.awt.Color(255, 255, 255));
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        painelP.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 480));
 
         jPanelSolicitacaoReprovada.setBackground(new java.awt.Color(255, 255, 255));
         jPanelSolicitacaoReprovada.setMinimumSize(new java.awt.Dimension(730, 490));
@@ -861,9 +857,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jLabel4.setText("Qual serviço deseja solicitar?");
         painelServico.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
 
-        Encanador.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        Encanador.setText("Encanador");
-        painelServico.add(Encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
+        encanador.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        encanador.setText("Encanador");
+        painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
 
         chaveiro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         chaveiro.setText("Chaveiro");
@@ -882,6 +878,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
         enviarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         enviarServico.setForeground(new java.awt.Color(255, 255, 255));
         enviarServico.setText("Enviar");
+        enviarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarServicoActionPerformed(evt);
+            }
+        });
         painelServico.add(enviarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 80, 30));
 
         cancelarServico.setBackground(new java.awt.Color(126, 87, 194));
@@ -896,6 +897,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelServico.add(cancelarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, 30));
 
         painelP.add(painelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 350, 240));
+
+        jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        painelP.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 480));
 
         editar.setBackground(new java.awt.Color(151, 53, 255));
         editar.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
@@ -1029,6 +1034,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
         dispose();
+        
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void solicitarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarSeguroActionPerformed
@@ -1063,6 +1069,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         //recuperar dados da solicitação que el deseja editar
+        
         painelSolicitacao.setVisible(true);
     }//GEN-LAST:event_editarActionPerformed
 
@@ -1265,6 +1272,21 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
+    private void enviarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarServicoActionPerformed
+            String escolhido = null;
+            int qnt = 0;
+            
+            escolhido += encanador.getText() + ',';
+            escolhido += chaveiro.getText() + ',';
+            escolhido += eletricista.getText() + ',';
+            
+            qnt = escolhido.split(",").length;
+            
+            controlador.registrarServico(escolhido, qnt);
+            JOptionPane.showMessageDialog(painelP, "\n Sua solicitação de "+ qnt + " serviço(s) foi enviada para avaliação!");
+            painelServico.setVisible(false);
+    }//GEN-LAST:event_enviarServicoActionPerformed
+
     private void home() {
         painelP.setVisible(true);
         jPanelHome.setVisible(true);
@@ -1385,7 +1407,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonContratarSeguro;
-    private javax.swing.JCheckBox Encanador;
     private javax.swing.JButton add;
     private javax.swing.JTextField andares;
     private javax.swing.JTextField anoC;
@@ -1420,6 +1441,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel e;
     private javax.swing.JButton editar;
     private javax.swing.JCheckBox eletricista;
+    private javax.swing.JCheckBox encanador;
     private javax.swing.JButton enviar;
     private javax.swing.JButton enviarServico;
     private javax.swing.JSlider estruturaA;
