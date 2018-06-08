@@ -8,6 +8,7 @@ package View;
 import DadosUsuarios.Segurado;
 import Motor.Gerenciador;
 import Operacoes.Solicitacao;
+import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -18,10 +19,11 @@ import javax.swing.table.DefaultTableModel;
  * @author Matheus Montanha
  */
 public class Painel_Corretor extends javax.swing.JFrame {
-
+    
     int visivel = 0;
     Gerenciador gerenciador = new Gerenciador();
     String motivoReprovacao, motivoAlteracao, resultado;
+    int selecionado;
 
     /**
      * Creates new form Painel_Corretor
@@ -30,7 +32,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         initComponents();
         runProgram();
     }
-
+    
     public int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
@@ -48,7 +50,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-
+    
     public int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
@@ -66,7 +68,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-
+    
     public int readTableListaDeSinistros() {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
@@ -776,13 +778,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
         ButtonAprovarSolicitacao1.setBackground(new java.awt.Color(0, 153, 255));
         ButtonAprovarSolicitacao1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ButtonAprovarSolicitacao1.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonAprovarSolicitacao1.setText("Aprovada");
+        ButtonAprovarSolicitacao1.setText("Agendar Visita");
         ButtonAprovarSolicitacao1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonAprovarSolicitacao1ActionPerformed(evt);
             }
         });
-        jPanelSolicitacaoDeSeguro.add(ButtonAprovarSolicitacao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 440, 100, 30));
+        jPanelSolicitacaoDeSeguro.add(ButtonAprovarSolicitacao1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 130, 30));
 
         listaDeSolicitacoesSeguro.setBackground(new java.awt.Color(0, 153, 153));
         listaDeSolicitacoesSeguro.setModel(new javax.swing.table.DefaultTableModel(
@@ -920,7 +922,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonDadosProprietarioActionPerformed
 
     private void listaSinistrosPendentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSinistrosPendentesMouseClicked
-        int selecionado = listaSinistrosPendentes.getSelectedRow();
+        selecionado = listaSinistrosPendentes.getSelectedRow();
         preencherCamposAvaliarSinistro(selecionado);
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked
 
@@ -960,20 +962,24 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonRecusarSeguro1ActionPerformed
 
     private void ButtonAprovarSolicitacao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAprovarSolicitacao1ActionPerformed
-        //motor.updateSituacaoSolicitacao(resultado, motivoReprovacao, motivoAlteracao);
-        JOptionPane.showConfirmDialog(rootPane, "A solicitação foi aprovada com sucesso!", "Alerta", JOptionPane.CLOSED_OPTION);
-
+        String dataVisita = JOptionPane.showInputDialog(rootPane, "Digite a data marcada, por favor:");
+        List<Solicitacao> listaDeSolicitacao;
+        listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
+        Date data = new Date();
+        listaDeSolicitacao.get(selecionado).setDataVisitaResidencia(data);
+        gerenciador.registrarDateVisitaResidencia(listaDeSolicitacao.get(selecionado));
+        
     }//GEN-LAST:event_ButtonAprovarSolicitacao1ActionPerformed
 
     private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
-        int selecionado = listaDeSolicitacoesSeguro.getSelectedRow();
-        //preencherCampos(selecionado);
+        selecionado = listaDeSolicitacoesSeguro.getSelectedRow();
+        preencherCamposSolicitacaoSeguro(selecionado);
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseClicked
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
         runProgram();
     }//GEN-LAST:event_homeButtonActionPerformed
-
+    
     public void preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
@@ -994,7 +1000,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAnoConstrucao.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAnoConstrucao());
         campoAreaTotal.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaTotal());
     }
-
+    
     public void preencherCamposSolicitacaoSeguro(int numero) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
@@ -1008,7 +1014,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("" + listaDeSolicitacao.get(numero).getDataSolicitacao());
         campoValorSolicitacao.setText("" + listaDeSolicitacao.get(numero).getValorSolicitacao());
     }
-
+    
     public void preencherCamposAvaliarSinistro(int selecionado) {
         List<Segurado> listaSinistro = gerenciador.listaDeSinistrosPendentes();
         campoDataSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getDataSinistro());
@@ -1020,7 +1026,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
         //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
-
+    
     public void runProgram() {
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
@@ -1031,7 +1037,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
     }
-
+    
     public void visualizarSolicitacao() {
         jPanelCorretor.setVisible(true);
         jPanelSolicitacaoDeSeguro.setVisible(true);
@@ -1040,7 +1046,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-
+    
     public void visualizarResidencias() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarResidencia.setVisible(true);
@@ -1049,7 +1055,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-
+    
     public void visualizarSinistros() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarSinistro.setVisible(true);
@@ -1058,7 +1064,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-
+    
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));

@@ -123,6 +123,23 @@ public class SolicitacaoDAO {
         return listDeSolicitacoes;
     }
 
+    public void registrarDataVisita(Solicitacao solicitacao) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm;
+        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        String data = dataFormatada.format(solicitacao.getDataVisitaResidencia());
+        try {
+            stm = conexao.prepareStatement("update solicitacaoseguro set "
+                    + "dataVisitaResidenciia = '" + data + "' where "
+                    + "solicitacaoseguro.idSolicitacao = " + solicitacao.getCodSolicitacao());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao);
+        }
+    }
+
     public void updateStatusSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, int codCandidato, int codSolicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
@@ -143,8 +160,8 @@ public class SolicitacaoDAO {
         ResultSet rs = null;
         List<Solicitacao> listDeSolicitacoes = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select * from solicitacaoseguro inner join residencia"
-                    + "on solicitacaoseguro.idPessoa =" + candidato.getCodPessoa());
+            stmt = conexao.prepareStatement("SELECT * FROM solicitacaoseguro INNER JOIN RESIDENCIA ON "
+                    + "solicitacaoseguro.idResidencia = residencia.idResidencia AND solicitacaoseguro.idPessoa = " + candidato.getCodPessoa());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao();
