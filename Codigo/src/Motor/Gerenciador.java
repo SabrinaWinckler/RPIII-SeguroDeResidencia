@@ -5,6 +5,7 @@
  */
 package Motor;
 
+import DAO.ApoliceDAO;
 import DAO.CandidatoDAO;
 import DAO.CorretorDAO;
 import DAO.PessoaDAO;
@@ -16,6 +17,7 @@ import DadosUsuarios.Corretor;
 import DadosUsuarios.Pessoa;
 import DadosUsuarios.Segurado;
 import Operacoes.Solicitacao;
+import SevicosSeguradora.Apolice;
 import dadosResidencia.Residencia;
 import java.util.Date;
 import java.util.List;
@@ -87,6 +89,16 @@ public class Gerenciador {
     public List<Solicitacao> listaDeResidenciasPendentes() {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         return daoSolicitacao.read();
+    }
+
+    public void registrarApolice(String bandeiraCartão, long numeroApolice,
+            float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento,
+            String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao) {
+        Apolice apolice = new Apolice(bandeiraCartão, numeroApolice, premioApolice,
+                dataContratacaoApolice, cartaoCreditoPagamento, vencimentoCartao,
+                codSegurancaCartao, nomeNoCartao);
+        ApoliceDAO daoApolice = new ApoliceDAO();
+        daoApolice.create(apolice);
     }
 
     public List<Solicitacao> organizarListaDeSolicitacoes() {
