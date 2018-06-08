@@ -1,4 +1,4 @@
-package dadosResidencia;
+package Dominio;
 
 public class Bem {
 

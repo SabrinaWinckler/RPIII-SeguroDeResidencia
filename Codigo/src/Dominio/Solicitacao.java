@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Operacoes;
+package Dominio;
 
 import DAO.ResidenciaDAO;
-import dadosResidencia.Bem;
-import dadosResidencia.Residencia;
+import Dominio.Bem;
+import Dominio.Residencia;
 import java.util.ArrayList;
 import java.util.Date;
 

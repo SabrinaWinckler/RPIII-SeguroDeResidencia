@@ -5,9 +5,9 @@
  */
 package View;
 
-import DadosUsuarios.Candidato;
-import DadosUsuarios.Corretor;
-import DadosUsuarios.Pessoa;
+import Dominio.Candidato;
+import Dominio.Corretor;
+import Dominio.Pessoa;
 import Motor.Gerenciador;
 import java.awt.Color;
 import java.util.List;

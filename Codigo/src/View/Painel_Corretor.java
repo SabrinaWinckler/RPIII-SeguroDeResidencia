@@ -5,10 +5,10 @@
  */
 package View;
 
-import DadosUsuarios.Segurado;
+import Dominio.Segurado;
 import Motor.Gerenciador;
-import Operacoes.Solicitacao;
-import excecao.ExceptionDateInvalid;
+import Dominio.Solicitacao;
+import Excecoes.ExceptionDateInvalid;
 import java.sql.Array;
 import java.text.ParseException;
 import java.util.ArrayList;

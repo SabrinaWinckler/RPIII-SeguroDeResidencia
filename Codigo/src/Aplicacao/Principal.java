@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Principal;
+package Aplicacao;
 
 import DAO.BemDAO;
 import DAO.CandidatoDAO;
@@ -12,14 +12,14 @@ import DAO.ResidenciaDAO;
 import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
 import DAO.TipoSinistroDAO;
-import DadosUsuarios.Candidato;
-import DadosUsuarios.Pessoa;
+import Dominio.Candidato;
+import Dominio.Pessoa;
 import Motor.ControleSolicitacao;
-import SevicosSeguradora.Sinistro;
-import SevicosSeguradora.TipoSinistro;
+import Dominio.Sinistro;
+import Dominio.TipoSinistro;
 import View.Tela_Login;
-import dadosResidencia.Bem;
-import dadosResidencia.Residencia;
+import Dominio.Bem;
+import Dominio.Residencia;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;

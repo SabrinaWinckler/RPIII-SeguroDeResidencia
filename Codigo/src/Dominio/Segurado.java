@@ -3,11 +3,11 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package DadosUsuarios;
+package Dominio;
 
-import SevicosSeguradora.ItemServico;
-import SevicosSeguradora.Sinistro;
-import dadosResidencia.Residencia;
+import Dominio.ItemServico;
+import Dominio.Sinistro;
+import Dominio.Residencia;
 import java.util.ArrayList;
 import java.util.List;
 

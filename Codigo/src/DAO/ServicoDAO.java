@@ -5,9 +5,8 @@
  */
 package DAO;
 
-import DB.ConnectionFactory;
-import SevicosSeguradora.Servico;
-import dadosResidencia.Bem;
+import Dominio.Servico;
+import Dominio.Bem;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

@@ -7,7 +7,7 @@ package View;
 
 import Motor.Gerenciador;
 import Motor.ControleSolicitacao;
-import Operacoes.Solicitacao;
+import Dominio.Solicitacao;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;

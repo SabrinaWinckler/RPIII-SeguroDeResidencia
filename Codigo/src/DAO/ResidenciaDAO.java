@@ -5,8 +5,7 @@
  */
 package DAO;
 
-import DB.ConnectionFactory;
-import dadosResidencia.Residencia;
+import Dominio.Residencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

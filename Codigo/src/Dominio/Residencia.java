@@ -1,6 +1,6 @@
-package dadosResidencia;
+package Dominio;
 
-import DadosUsuarios.Candidato;
+import Dominio.Bem;
 import java.util.List;
 
 public class Residencia {

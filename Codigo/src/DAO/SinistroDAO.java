@@ -5,8 +5,7 @@
  */
 package DAO;
 
-import DB.ConnectionFactory;
-import SevicosSeguradora.Sinistro;
+import Dominio.Sinistro;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

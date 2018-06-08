@@ -7,8 +7,8 @@ package View;
 
 import DAO.CandidatoDAO;
 import DAO.PessoaDAO;
-import DadosUsuarios.Candidato;
-import DadosUsuarios.Pessoa;
+import Dominio.Candidato;
+import Dominio.Pessoa;
 import Motor.Gerenciador;
 import java.util.List;
 

@@ -5,12 +5,12 @@
  */
 package View;
 
-import DadosUsuarios.Candidato;
+import Dominio.Candidato;
 import Motor.ControleSolicitacao;
 import Motor.Gerenciador;
-import Operacoes.Solicitacao;
-import dadosResidencia.Bem;
-import excecao.ExceptionEmptySpace;
+import Dominio.Solicitacao;
+import Dominio.Bem;
+import Excecoes.ExceptionEmptySpace;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;

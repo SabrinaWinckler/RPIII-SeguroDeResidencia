@@ -5,8 +5,7 @@
  */
 package DAO;
 
-import DB.ConnectionFactory;
-import DadosUsuarios.Corretor;
+import Dominio.Corretor;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

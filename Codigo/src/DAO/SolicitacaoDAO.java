@@ -5,9 +5,8 @@
  */
 package DAO;
 
-import DB.ConnectionFactory;
-import DadosUsuarios.Candidato;
-import Operacoes.Solicitacao;
+import Dominio.Candidato;
+import Dominio.Solicitacao;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;

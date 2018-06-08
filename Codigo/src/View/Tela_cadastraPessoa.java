@@ -5,10 +5,10 @@
  */
 package View;
 
-import DadosUsuarios.Candidato;
+import Dominio.Candidato;
 import Motor.Gerenciador;
-import excecao.ExceptionCPFInvalid;
-import excecao.ExceptionEmailInvalid;
+import Excecoes.ExceptionCPFInvalid;
+import Excecoes.ExceptionEmailInvalid;
 import java.util.List;
 import javax.swing.JOptionPane;
 
