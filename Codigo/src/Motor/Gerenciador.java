@@ -86,8 +86,7 @@ public class Gerenciador {
 
     public List<Solicitacao> listaDeResidenciasPendentes() {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        List<Solicitacao> lista = daoSolicitacao.read();
-        return lista;
+        return daoSolicitacao.read();
     }
 
     public List<Solicitacao> organizarListaDeSolicitacoes() {
@@ -133,8 +132,14 @@ public class Gerenciador {
         RelataSinistroDAO daoSinistro = new RelataSinistroDAO();
         return daoSinistro.read();
     }
-    public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato){
+
+    public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         return daoSolicitacao.listaSolicitacaoCliente(candidato);
+    }
+
+    public void registrarDateVisitaResidencia(Solicitacao solicitacao) {
+        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+        daoSolicitacao.registrarDataVisita(solicitacao);
     }
 }

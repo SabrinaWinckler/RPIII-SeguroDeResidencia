@@ -1,35 +1,28 @@
--- phpMyAdmin SQL Dump
--- version 4.7.9
--- https://www.phpmyadmin.net/
+-- MySQL dump 10.13  Distrib 5.7.17, for Win64 (x86_64)
 --
--- Host: 127.0.0.1:3306
--- Generation Time: 24-Maio-2018 às 18:34
--- Versão do servidor: 5.7.21
--- PHP Version: 5.6.35
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
-
+-- Host: localhost    Database: seguroderesidencia
+-- ------------------------------------------------------
+-- Server version	5.7.21
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Database: `seguroderesidencia`
---
-
--- --------------------------------------------------------
-
---
--- Estrutura da tabela `analisesolicitacao`
+-- Table structure for table `analisesolicitacao`
 --
 
 DROP TABLE IF EXISTS `analisesolicitacao`;
-CREATE TABLE IF NOT EXISTS `analisesolicitacao` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `analisesolicitacao` (
   `idCorretor` int(11) NOT NULL,
   `idSolicitacao` int(11) NOT NULL,
   `data` date DEFAULT NULL,
@@ -37,15 +30,25 @@ CREATE TABLE IF NOT EXISTS `analisesolicitacao` (
   UNIQUE KEY `idCorretor_UNIQUE` (`idCorretor`),
   KEY `fk_solicitacao` (`idSolicitacao`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `apolice`
+-- Dumping data for table `analisesolicitacao`
+--
+
+LOCK TABLES `analisesolicitacao` WRITE;
+/*!40000 ALTER TABLE `analisesolicitacao` DISABLE KEYS */;
+/*!40000 ALTER TABLE `analisesolicitacao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `apolice`
 --
 
 DROP TABLE IF EXISTS `apolice`;
-CREATE TABLE IF NOT EXISTS `apolice` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `apolice` (
   `idApolice` int(11) NOT NULL AUTO_INCREMENT,
   `bandeiraCartao` char(10) DEFAULT NULL,
   `numeroApolice` float DEFAULT NULL,
@@ -58,52 +61,76 @@ CREATE TABLE IF NOT EXISTS `apolice` (
   PRIMARY KEY (`idApolice`),
   UNIQUE KEY `idApolice_UNIQUE` (`idApolice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `apoliceparcela`
+-- Dumping data for table `apolice`
+--
+
+LOCK TABLES `apolice` WRITE;
+/*!40000 ALTER TABLE `apolice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `apolice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `apoliceparcela`
 --
 
 DROP TABLE IF EXISTS `apoliceparcela`;
-CREATE TABLE IF NOT EXISTS `apoliceparcela` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `apoliceparcela` (
   `idApolice` int(11) DEFAULT NULL,
   `idParcela` int(11) DEFAULT NULL,
   KEY `fk_parecla_idx` (`idParcela`),
   KEY `fk_apolice_idx` (`idApolice`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `bem`
+-- Dumping data for table `apoliceparcela`
+--
+
+LOCK TABLES `apoliceparcela` WRITE;
+/*!40000 ALTER TABLE `apoliceparcela` DISABLE KEYS */;
+/*!40000 ALTER TABLE `apoliceparcela` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `bem`
 --
 
 DROP TABLE IF EXISTS `bem`;
-CREATE TABLE IF NOT EXISTS `bem` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `bem` (
   `idBem` int(11) NOT NULL AUTO_INCREMENT,
   `descricaoBem` varchar(60) DEFAULT NULL,
   `valorBem` float DEFAULT NULL,
   `idResidenciaPertencente` int(11) DEFAULT NULL,
   PRIMARY KEY (`idBem`),
   KEY `idResidenciaPertencente` (`idResidenciaPertencente`)
-) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=47 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `bem`
+-- Dumping data for table `bem`
 --
 
-INSERT INTO `bem` (`idBem`, `descricaoBem`, `valorBem`, `idResidenciaPertencente`) VALUES
-(41, 'Sofa', 540, 24);
-
--- --------------------------------------------------------
+LOCK TABLES `bem` WRITE;
+/*!40000 ALTER TABLE `bem` DISABLE KEYS */;
+INSERT INTO `bem` VALUES (41,'Sofa',540,24),(42,'Sofa',520,24),(43,'Sofa',520,24),(44,'Sofa',520,24),(45,'Sofa',520,24),(46,'Sofa',520,24);
+/*!40000 ALTER TABLE `bem` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `candidato`
+-- Table structure for table `candidato`
 --
 
 DROP TABLE IF EXISTS `candidato`;
-CREATE TABLE IF NOT EXISTS `candidato` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `candidato` (
   `cep` varchar(10) DEFAULT NULL,
   `sexo` varchar(10) DEFAULT NULL,
   `idPessoa` int(11) NOT NULL,
@@ -113,37 +140,50 @@ CREATE TABLE IF NOT EXISTS `candidato` (
   `dataNascimento` varchar(10) DEFAULT NULL,
   UNIQUE KEY `idPessoa_UNIQUE` (`idPessoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `candidato`
+-- Dumping data for table `candidato`
 --
 
-INSERT INTO `candidato` (`cep`, `sexo`, `idPessoa`, `ufCandidato`, `cidadeCandidato`, `bairroCandidato`, `dataNascimento`) VALUES
-('97547590', 'Masculino', 40, 'RS', 'Alegrete', 'Centro', '06/09/1998'),
-('97547590', NULL, 41, 'RS', 'Alegrete', 'NS conceição aparecida', '06Jul1997');
-
--- --------------------------------------------------------
+LOCK TABLES `candidato` WRITE;
+/*!40000 ALTER TABLE `candidato` DISABLE KEYS */;
+INSERT INTO `candidato` VALUES ('97547590','Masculino',40,'RS','Alegrete','Centro','06/09/1998'),('97547590',NULL,41,'RS','Alegrete','NS conceição aparecida','06Jul1997'),('97547590',NULL,42,'RS','Alegrete','NS da conceicao aparecida','02Mar1984'),('97546280',NULL,43,'RS','Alegrete','Ibirapuitã','08Mar1999');
+/*!40000 ALTER TABLE `candidato` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `corretor`
+-- Table structure for table `corretor`
 --
 
 DROP TABLE IF EXISTS `corretor`;
-CREATE TABLE IF NOT EXISTS `corretor` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `corretor` (
   `ativoCorretor` varchar(10) DEFAULT NULL,
   `dataContratacao` datetime DEFAULT NULL,
   `idPessoa` int(11) NOT NULL,
   KEY `fk_corretorPessoa_idx` (`idPessoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `itemservico`
+-- Dumping data for table `corretor`
+--
+
+LOCK TABLES `corretor` WRITE;
+/*!40000 ALTER TABLE `corretor` DISABLE KEYS */;
+/*!40000 ALTER TABLE `corretor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `itemservico`
 --
 
 DROP TABLE IF EXISTS `itemservico`;
-CREATE TABLE IF NOT EXISTS `itemservico` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `itemservico` (
   `descricaoRecusa` varchar(145) DEFAULT NULL,
   `descricaoAtendimento` varchar(145) DEFAULT NULL,
   `dataAtendimento` datetime DEFAULT NULL,
@@ -156,30 +196,50 @@ CREATE TABLE IF NOT EXISTS `itemservico` (
   PRIMARY KEY (`idItemServiço`),
   UNIQUE KEY `idItemServiço_UNIQUE` (`idItemServiço`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `parcelaapolice`
+-- Dumping data for table `itemservico`
+--
+
+LOCK TABLES `itemservico` WRITE;
+/*!40000 ALTER TABLE `itemservico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `itemservico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `parcelaapolice`
 --
 
 DROP TABLE IF EXISTS `parcelaapolice`;
-CREATE TABLE IF NOT EXISTS `parcelaapolice` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `parcelaapolice` (
   `valorParcela` decimal(45,0) DEFAULT NULL,
   `idParcela` int(11) NOT NULL AUTO_INCREMENT,
   `dataPagntParcela` datetime DEFAULT NULL,
   PRIMARY KEY (`idParcela`),
   UNIQUE KEY `idParcela_UNIQUE` (`idParcela`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `pessoa`
+-- Dumping data for table `parcelaapolice`
+--
+
+LOCK TABLES `parcelaapolice` WRITE;
+/*!40000 ALTER TABLE `parcelaapolice` DISABLE KEYS */;
+/*!40000 ALTER TABLE `parcelaapolice` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `pessoa`
 --
 
 DROP TABLE IF EXISTS `pessoa`;
-CREATE TABLE IF NOT EXISTS `pessoa` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `pessoa` (
   `Nome` varchar(45) DEFAULT NULL,
   `Endereco` varchar(45) DEFAULT NULL,
   `Telefone` bigint(12) DEFAULT NULL,
@@ -189,38 +249,55 @@ CREATE TABLE IF NOT EXISTS `pessoa` (
   `email` varchar(45) DEFAULT NULL,
   `idPessoa` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idPessoa`),
-  UNIQUE KEY `idPessoa_UNIQUE` (`idPessoa`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8;
+  UNIQUE KEY `idPessoa_UNIQUE` (`idPessoa`),
+  UNIQUE KEY `cpf_pk` (`Cpf`),
+  UNIQUE KEY `email_unique` (`email`),
+  UNIQUE KEY `nomeLogin_unique` (`nomeLogin`)
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `pessoa`
+-- Dumping data for table `pessoa`
 --
 
-INSERT INTO `pessoa` (`Nome`, `Endereco`, `Telefone`, `Cpf`, `nomeLogin`, `senha`, `email`, `idPessoa`) VALUES
-('Matheus Montanha', 'Joaquim Rodrigues Paim, 410', 34565236, '229', 'jojoPaulin', '0352635', 'estranho@gmail.com', 40),
-('Matheus Montanha Paulon', 'Joaquim Rodrigues Paim, 410', 984564630, '3457088063', 'mathmont', '742617', 'matheusmontanha@gmail.com', 41);
-
--- --------------------------------------------------------
+LOCK TABLES `pessoa` WRITE;
+/*!40000 ALTER TABLE `pessoa` DISABLE KEYS */;
+INSERT INTO `pessoa` VALUES ('Matheus Montanha','Joaquim Rodrigues Paim, 410',34565236,'229','jojoPaulin','0352635','estranho@gmail.com',40),('Matheus Montanha Paulon','Joaquim Rodrigues Paim, 410',984564630,'03457088064','mathmont','742617','matheusmontanha@gmail.com',41),('Joao Paulo Silva','Joaquim Rodrigues Paim, 410',55984564630,'03457088063','joaoPaulo','1234','JoaoSilva@hotmail.com',42),('Hanna Rebeca Ismail','Rua Inácio Lecuana 388',11944442010,'42459085800','hanna','944442010','hanna.rebeka64@gmail.com',43);
+/*!40000 ALTER TABLE `pessoa` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `relatasinistro`
+-- Table structure for table `relatasinistro`
 --
 
 DROP TABLE IF EXISTS `relatasinistro`;
-CREATE TABLE IF NOT EXISTS `relatasinistro` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `relatasinistro` (
   `idSinistro` int(11) DEFAULT NULL,
   `idPessoa` int(11) DEFAULT NULL,
   KEY `idSinistro` (`idSinistro`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `residencia`
+-- Dumping data for table `relatasinistro`
+--
+
+LOCK TABLES `relatasinistro` WRITE;
+/*!40000 ALTER TABLE `relatasinistro` DISABLE KEYS */;
+INSERT INTO `relatasinistro` VALUES (4,41);
+/*!40000 ALTER TABLE `relatasinistro` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `residencia`
 --
 
 DROP TABLE IF EXISTS `residencia`;
-CREATE TABLE IF NOT EXISTS `residencia` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `residencia` (
   `idResidencia` int(11) NOT NULL AUTO_INCREMENT,
   `idProprietario` int(11) NOT NULL,
   `ufResidencia` varchar(2) DEFAULT NULL,
@@ -242,49 +319,73 @@ CREATE TABLE IF NOT EXISTS `residencia` (
   PRIMARY KEY (`idResidencia`),
   KEY `idProprietario` (`idProprietario`)
 ) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `residencia`
+-- Dumping data for table `residencia`
 --
 
-INSERT INTO `residencia` (`idResidencia`, `idProprietario`, `ufResidencia`, `cidade`, `bairro`, `descricaoResidencia`, `cepResidencia`, `enderecoResidencia`, `areaTotal`, `areaConstruida`, `anoConstrucao`, `estruturaAmeacada`, `localizacaoPerigosa`, `terrenoPerigoso`, `quantidadeComodos`, `quantidadeBanheiros`, `quantidadeGaragens`, `numeroAndares`) VALUES
-(24, 40, 'RS', 'Alegrete', 'Centro', 'Casa verde', '97547590', 'Joaquim Rodrigues Paim, 410', '5285.0', '510.0', 2011, 5, 4, 5, '7', 1, '1', '3');
-
--- --------------------------------------------------------
+LOCK TABLES `residencia` WRITE;
+/*!40000 ALTER TABLE `residencia` DISABLE KEYS */;
+INSERT INTO `residencia` VALUES (24,40,'RS','Alegrete','Centro','Casa verde','97547590','Joaquim Rodrigues Paim, 410','5285.0','510.0',2011,5,4,5,7,1,1,3);
+/*!40000 ALTER TABLE `residencia` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `segurado`
+-- Table structure for table `segurado`
 --
 
 DROP TABLE IF EXISTS `segurado`;
-CREATE TABLE IF NOT EXISTS `segurado` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `segurado` (
   `idPessoa` int(11) NOT NULL AUTO_INCREMENT,
   KEY `idPessoa` (`idPessoa`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `servico`
+-- Dumping data for table `segurado`
+--
+
+LOCK TABLES `segurado` WRITE;
+/*!40000 ALTER TABLE `segurado` DISABLE KEYS */;
+/*!40000 ALTER TABLE `segurado` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `servico`
 --
 
 DROP TABLE IF EXISTS `servico`;
-CREATE TABLE IF NOT EXISTS `servico` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `servico` (
   `descricaoServico` varchar(145) DEFAULT NULL,
   `idServico` int(11) NOT NULL AUTO_INCREMENT,
   `quantidadeServico` decimal(10,0) DEFAULT NULL,
   PRIMARY KEY (`idServico`),
   UNIQUE KEY `idServico_UNIQUE` (`idServico`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
--- --------------------------------------------------------
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Estrutura da tabela `sinistro`
+-- Dumping data for table `servico`
+--
+
+LOCK TABLES `servico` WRITE;
+/*!40000 ALTER TABLE `servico` DISABLE KEYS */;
+/*!40000 ALTER TABLE `servico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `sinistro`
 --
 
 DROP TABLE IF EXISTS `sinistro`;
-CREATE TABLE IF NOT EXISTS `sinistro` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `sinistro` (
   `parecerAvaliador` varchar(145) DEFAULT NULL,
   `dataSinistro` date DEFAULT NULL,
   `descricaoSinistro` varchar(145) DEFAULT NULL,
@@ -296,25 +397,29 @@ CREATE TABLE IF NOT EXISTS `sinistro` (
   UNIQUE KEY `idSinistro_UNIQUE` (`idSinistro`),
   KEY `fk_tipoSinistro` (`idTipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `sinistro`
+-- Dumping data for table `sinistro`
 --
 
-INSERT INTO `sinistro` (`parecerAvaliador`, `dataSinistro`, `descricaoSinistro`, `autorizadoSinistro`, `valorSinistro`, `idSinistro`, `idTipo`) VALUES
-('Sinistro muito louco', '2018-05-23', 'Dois homens com mascara.', 'Autorizado', '250', 4, 4);
-
--- --------------------------------------------------------
+LOCK TABLES `sinistro` WRITE;
+/*!40000 ALTER TABLE `sinistro` DISABLE KEYS */;
+INSERT INTO `sinistro` VALUES ('Sinistro muito louco','2018-05-23','Dois homens com mascara.','Autorizado',250,4,4);
+/*!40000 ALTER TABLE `sinistro` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `solicitacaoseguro`
+-- Table structure for table `solicitacaoseguro`
 --
 
 DROP TABLE IF EXISTS `solicitacaoseguro`;
-CREATE TABLE IF NOT EXISTS `solicitacaoseguro` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `solicitacaoseguro` (
   `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT,
   `dataSolicitacao` date DEFAULT NULL,
-  `dataVisitaResidenciia` date DEFAULT NULL,
+  `dataVisitaResidenciia` varchar(10) DEFAULT NULL,
   `valorSolicitacao` float DEFAULT NULL,
   `aprovada` varchar(10) DEFAULT NULL,
   `motivoReprovacao` varchar(150) DEFAULT NULL,
@@ -324,79 +429,51 @@ CREATE TABLE IF NOT EXISTS `solicitacaoseguro` (
   PRIMARY KEY (`idSolicitacao`),
   KEY `idResidencia` (`idResidencia`),
   KEY `idPessoa` (`idPessoa`)
-) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `solicitacaoseguro`
+-- Dumping data for table `solicitacaoseguro`
 --
 
-INSERT INTO `solicitacaoseguro` (`idSolicitacao`, `dataSolicitacao`, `dataVisitaResidenciia`, `valorSolicitacao`, `aprovada`, `motivoReprovacao`, `motivoAlterecao`, `idResidencia`, `idPessoa`) VALUES
-(4, '2018-06-20', '2018-06-20', 250, 'aprovada', '', 'Sem alterações', 24, 40);
-
--- --------------------------------------------------------
+LOCK TABLES `solicitacaoseguro` WRITE;
+/*!40000 ALTER TABLE `solicitacaoseguro` DISABLE KEYS */;
+INSERT INTO `solicitacaoseguro` VALUES (4,'2018-06-20',NULL,250,'','','',24,40);
+/*!40000 ALTER TABLE `solicitacaoseguro` ENABLE KEYS */;
+UNLOCK TABLES;
 
 --
--- Estrutura da tabela `tiposinistro`
+-- Table structure for table `tiposinistro`
 --
 
 DROP TABLE IF EXISTS `tiposinistro`;
-CREATE TABLE IF NOT EXISTS `tiposinistro` (
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `tiposinistro` (
   `descricaoTipoSinistro` varchar(45) DEFAULT NULL,
   `idTipo` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idTipo`),
   UNIQUE KEY `idTipo_UNIQUE` (`idTipo`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Extraindo dados da tabela `tiposinistro`
+-- Dumping data for table `tiposinistro`
 --
 
-INSERT INTO `tiposinistro` (`descricaoTipoSinistro`, `idTipo`) VALUES
-('Roubo', 4);
+LOCK TABLES `tiposinistro` WRITE;
+/*!40000 ALTER TABLE `tiposinistro` DISABLE KEYS */;
+INSERT INTO `tiposinistro` VALUES ('Roubo',4);
+/*!40000 ALTER TABLE `tiposinistro` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
---
--- Constraints for dumped tables
---
-
---
--- Limitadores para a tabela `analisesolicitacao`
---
-ALTER TABLE `analisesolicitacao`
-  ADD CONSTRAINT `fk_corretor` FOREIGN KEY (`idCorretor`) REFERENCES `corretor` (`idPessoa`) ON DELETE NO ACTION ON UPDATE NO ACTION,
-  ADD CONSTRAINT `fk_solicitacao` FOREIGN KEY (`idSolicitacao`) REFERENCES `solicitacao` (`idSolicitacao`);
-
---
--- Limitadores para a tabela `apoliceparcela`
---
-ALTER TABLE `apoliceparcela`
-  ADD CONSTRAINT `fk_apolice` FOREIGN KEY (`idApolice`) REFERENCES `apolice` (`idApolice`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `fk_parecla` FOREIGN KEY (`idParcela`) REFERENCES `parcelaapolice` (`idParcela`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `corretor`
---
-ALTER TABLE `corretor`
-  ADD CONSTRAINT `fk_corretorPessoa` FOREIGN KEY (`idPessoa`) REFERENCES `pessoa` (`idPessoa`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `relatasinistro`
---
-ALTER TABLE `relatasinistro`
-  ADD CONSTRAINT FOREIGN KEY (`idSinistro`) REFERENCES `sinistro` (`idSinistro`);
-
---
--- Limitadores para a tabela `segurado`
---
-ALTER TABLE `segurado`
-  ADD CONSTRAINT `fk_candidato` FOREIGN KEY (`idPessoa`) REFERENCES `candidato` (`idPessoa`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Limitadores para a tabela `sinistro`
---
-ALTER TABLE `sinistro`
-  ADD CONSTRAINT `fk_tipoSinistro` FOREIGN KEY (`idTipo`) REFERENCES `tiposinistro` (`idTipo`) ON DELETE CASCADE ON UPDATE CASCADE;
-COMMIT;
-
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2018-06-08 11:43:01
