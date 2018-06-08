@@ -133,4 +133,8 @@ public class Gerenciador {
         RelataSinistroDAO daoSinistro = new RelataSinistroDAO();
         return daoSinistro.read();
     }
+    public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato){
+        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+        return daoSolicitacao.listaSolicitacaoCliente(candidato);
+    }
 }

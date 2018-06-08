@@ -6,6 +6,7 @@
 package DAO;
 
 import DB.ConnectionFactory;
+import DadosUsuarios.Candidato;
 import Operacoes.Solicitacao;
 import java.sql.Connection;
 import java.sql.Date;
@@ -134,5 +135,52 @@ public class SolicitacaoDAO {
         } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
         }
+    }
+
+    public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Solicitacao> listDeSolicitacoes = new ArrayList<>();
+        try {
+            stmt = conexao.prepareStatement("select * from solicitacaoseguro inner join residencia"
+                    + "on solicitacaoseguro.idPessoa =" + candidato.getCodPessoa());
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Solicitacao solicitacao = new Solicitacao();
+                solicitacao.setCodSolicitacao(rs.getInt("idSolicitacao"));
+                solicitacao.setDataSolicitacao(rs.getDate("dataSolicitacao"));
+                solicitacao.setValorSolicitacao(rs.getFloat("valorSolicitacao"));
+                solicitacao.setDataVisitaResidencia(rs.getDate("dataVisitaResidenciia"));
+                solicitacao.setAprovadaSolicitacao(rs.getString("aprovada"));
+                solicitacao.setMotivoReprovacao(rs.getString("motivoReprovacao"));
+                solicitacao.setMotivoAlteracao(rs.getString("motivoAlterecao"));
+                solicitacao.getResidencia().setCodResidencia(rs.getInt("idResidencia"));
+                solicitacao.getResidencia().setufResidencia(rs.getString("ufResidencia"));
+                solicitacao.getResidencia().setCidade(rs.getString("cidade"));
+                solicitacao.getResidencia().setBairro(rs.getString("bairro"));
+                solicitacao.getResidencia().setDescricaoRes(rs.getString("descricaoResidencia"));
+                solicitacao.getResidencia().setCepRes(rs.getLong("cepResidencia"));
+                solicitacao.getResidencia().setRuaRes(rs.getString("enderecoResidencia"));
+                solicitacao.getResidencia().setAreaTotal(rs.getFloat("areaTotal"));
+                solicitacao.getResidencia().setAreaConstruida(rs.getDouble("areaConstruida"));
+                solicitacao.getResidencia().setAnoConstrucao(rs.getInt("anoConstrucao"));
+                solicitacao.getResidencia().setEstruturaAmeacada(rs.getInt("estruturaAmeacada"));
+                solicitacao.getResidencia().setLocalizacaoPerigosa(rs.getInt("localizacaoPerigosa"));
+                solicitacao.getResidencia().setTerrenoPerigoso(rs.getInt("terrenoPerigoso"));
+                solicitacao.getResidencia().setQntComodos(rs.getInt("quantidadeComodos"));
+                solicitacao.getResidencia().setQntBanheiros(rs.getInt("quantidadeBanheiros"));
+                solicitacao.getResidencia().setQntGaragens(rs.getInt("quantidadeGaragens"));
+                solicitacao.getResidencia().setNumAndares(rs.getInt("numeroAndares"));
+                listDeSolicitacoes.add(solicitacao);
+            }
+
+        } catch (SQLException e) {
+            Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stmt, rs);
+        }
+        return listDeSolicitacoes;
+
     }
 }

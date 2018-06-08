@@ -10,9 +10,7 @@ import DadosUsuarios.Corretor;
 import DadosUsuarios.Pessoa;
 import Motor.Gerenciador;
 import java.awt.Color;
-import java.util.Arrays;
 import java.util.List;
-import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
 /**
@@ -20,10 +18,10 @@ import javax.swing.JOptionPane;
  * @author Débora Siqueira
  */
 public class Tela_Login extends javax.swing.JFrame {
-    
+
     Gerenciador motor = new Gerenciador();
-    Candidato usuario;
-    Corretor corretor;
+    Corretor corretor = new Corretor();
+    Candidato usuario = new Candidato();
 
     /**
      * Creates new form Tela_Login
@@ -149,8 +147,9 @@ public class Tela_Login extends javax.swing.JFrame {
                 senhaJunta += senha[i];
             }
             if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
+                usuario = pessoa;
                 usuarioExiste = true;
-                Painel_Candidato painelCandidato = new Painel_Candidato();
+                Painel_Candidato painelCandidato = new Painel_Candidato(usuario);
                 painelCandidato.setVisible(true);
                 dispose();
             }
@@ -162,8 +161,8 @@ public class Tela_Login extends javax.swing.JFrame {
                 senhaJunta += senha[i];
             }
             if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
-                usuarioExiste = true;
                 corretor = certoCorretor;
+                usuarioExiste = true;
                 Painel_Corretor painelCorretor = new Painel_Corretor();
                 painelCorretor.setVisible(usuarioExiste);
                 dispose();
@@ -193,15 +192,11 @@ public class Tela_Login extends javax.swing.JFrame {
         //cadastro.setForeground(Color.getColor("[r=68,g=122,b=221]"));
         //[68,122,221]
     }//GEN-LAST:event_cadastroMouseExited
-    
-    public Candidato usuarioIdenficacao() {
-        return usuario;
+
+    public Pessoa identificarUsuario() {
+        return null;
     }
-    
-    public Corretor corretorIdentificacao() {
-        return corretor;
-    }
-    
+
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         //bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
@@ -237,8 +232,10 @@ public class Tela_Login extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new Tela_Login().setVisible(true);
+                
             }
         });
     }
