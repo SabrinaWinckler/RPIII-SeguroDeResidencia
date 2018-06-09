@@ -90,25 +90,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
-        jPanelSolicitacaoReprovada = new javax.swing.JPanel();
-        buttonVoltar1 = new javax.swing.JButton();
-        jLabel40 = new javax.swing.JLabel();
-        jScrollPane9 = new javax.swing.JScrollPane();
-        textMotivo = new javax.swing.JTextPane();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel53 = new javax.swing.JLabel();
-        jLabel54 = new javax.swing.JLabel();
-        jLabel55 = new javax.swing.JLabel();
-        jScrollPane16 = new javax.swing.JScrollPane();
-        textCep1 = new javax.swing.JTextPane();
-        jLabel37 = new javax.swing.JLabel();
-        jScrollPane13 = new javax.swing.JScrollPane();
-        textB1 = new javax.swing.JTextPane();
-        jScrollPane14 = new javax.swing.JScrollPane();
-        textCidade1 = new javax.swing.JTextPane();
-        jScrollPane15 = new javax.swing.JScrollPane();
-        textEnd1 = new javax.swing.JTextPane();
-        jLabel52 = new javax.swing.JLabel();
         jPanelPagamento = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         campoNumeroDoCartao = new javax.swing.JTextField();
@@ -208,33 +189,52 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
-        jPanelListaSeguros = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        listaSolicitacaoCandidato = new javax.swing.JTable();
-        jPanelSolicitacaoAprovada = new javax.swing.JPanel();
-        buttonRecusarSeguro = new javax.swing.JButton();
-        jLabel30 = new javax.swing.JLabel();
-        jScrollPane7 = new javax.swing.JScrollPane();
-        textObs = new javax.swing.JTextPane();
-        jLabel31 = new javax.swing.JLabel();
-        ButtonContratarSeguro = new javax.swing.JButton();
-        jScrollPane8 = new javax.swing.JScrollPane();
-        textValorSeguro = new javax.swing.JTextPane();
-        buttonVoltar = new javax.swing.JButton();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel47 = new javax.swing.JLabel();
-        jScrollPane10 = new javax.swing.JScrollPane();
-        textCep = new javax.swing.JTextPane();
-        jLabel48 = new javax.swing.JLabel();
-        jScrollPane3 = new javax.swing.JScrollPane();
-        textCidade = new javax.swing.JTextPane();
-        textBairro = new javax.swing.JScrollPane();
-        textB = new javax.swing.JTextPane();
-        jLabel49 = new javax.swing.JLabel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        textEnd = new javax.swing.JTextPane();
-        jLabel50 = new javax.swing.JLabel();
-        jLabel51 = new javax.swing.JLabel();
+        jPanelListaSeguros1 = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        listaSolicitacaoCandidato1 = new javax.swing.JTable();
+        jPanelSolicitacaoAprovada1 = new javax.swing.JPanel();
+        buttonRecusarSeguro1 = new javax.swing.JButton();
+        jLabel32 = new javax.swing.JLabel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        textObs1 = new javax.swing.JTextPane();
+        jLabel33 = new javax.swing.JLabel();
+        ButtonContratarSeguro1 = new javax.swing.JButton();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        textValorSeguro1 = new javax.swing.JTextPane();
+        buttonVoltar2 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel56 = new javax.swing.JLabel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        textCep2 = new javax.swing.JTextPane();
+        jLabel57 = new javax.swing.JLabel();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        textCidade2 = new javax.swing.JTextPane();
+        textBairro1 = new javax.swing.JScrollPane();
+        textB2 = new javax.swing.JTextPane();
+        jLabel58 = new javax.swing.JLabel();
+        jScrollPane18 = new javax.swing.JScrollPane();
+        textEnd2 = new javax.swing.JTextPane();
+        jLabel59 = new javax.swing.JLabel();
+        jLabel60 = new javax.swing.JLabel();
+        jPanelSolicitacaoReprovada = new javax.swing.JPanel();
+        jLabel40 = new javax.swing.JLabel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        textMotivo = new javax.swing.JTextPane();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel53 = new javax.swing.JLabel();
+        jLabel54 = new javax.swing.JLabel();
+        jLabel55 = new javax.swing.JLabel();
+        jScrollPane16 = new javax.swing.JScrollPane();
+        textCep1 = new javax.swing.JTextPane();
+        jLabel37 = new javax.swing.JLabel();
+        jScrollPane13 = new javax.swing.JScrollPane();
+        textB1 = new javax.swing.JTextPane();
+        jScrollPane14 = new javax.swing.JScrollPane();
+        textCidade1 = new javax.swing.JTextPane();
+        jScrollPane15 = new javax.swing.JScrollPane();
+        textEnd1 = new javax.swing.JTextPane();
+        jLabel52 = new javax.swing.JLabel();
+        buttonVoltar3 = new javax.swing.JButton();
         painelServico = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         encanador = new javax.swing.JCheckBox();
@@ -243,6 +243,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         enviarServico = new javax.swing.JButton();
         cancelarServico = new javax.swing.JButton();
         jPanelHome = new javax.swing.JPanel();
+        editarSelecionado = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         cancelarSolicitacao = new javax.swing.JButton();
         nova = new javax.swing.JButton();
@@ -285,84 +286,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setBackground(new java.awt.Color(255, 255, 255));
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanelSolicitacaoReprovada.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelSolicitacaoReprovada.setMinimumSize(new java.awt.Dimension(730, 490));
-        jPanelSolicitacaoReprovada.setPreferredSize(new java.awt.Dimension(730, 490));
-        jPanelSolicitacaoReprovada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        buttonVoltar1.setBackground(new java.awt.Color(153, 51, 255));
-        buttonVoltar1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        buttonVoltar1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonVoltar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
-        buttonVoltar1.setText("Voltar");
-        buttonVoltar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonVoltar1ActionPerformed(evt);
-            }
-        });
-        jPanelSolicitacaoReprovada.add(buttonVoltar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
-
-        jLabel40.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel40.setText("Motivo da Reprovação:");
-        jPanelSolicitacaoReprovada.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
-
-        textMotivo.setEditable(false);
-        jScrollPane9.setViewportView(textMotivo);
-
-        jPanelSolicitacaoReprovada.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 260, 140));
-
-        jPanel2.setBackground(new java.awt.Color(1, 45, 90));
-        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel53.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel53.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel53.setText("Cidade:");
-        jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 20));
-
-        jLabel54.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel54.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel54.setText("Bairro:");
-        jPanel2.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
-
-        jLabel55.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel55.setText("Endereço:");
-        jPanel2.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
-
-        textCep1.setEditable(false);
-        jScrollPane16.setViewportView(textCep1);
-
-        jPanel2.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 200, 30));
-
-        jLabel37.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel37.setText("CEP:");
-        jPanel2.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
-
-        textB1.setEditable(false);
-        jScrollPane13.setViewportView(textB1);
-
-        jPanel2.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 200, 30));
-
-        textCidade1.setEditable(false);
-        jScrollPane14.setViewportView(textCidade1);
-
-        jPanel2.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, 30));
-
-        textEnd1.setEditable(false);
-        jScrollPane15.setViewportView(textEnd1);
-
-        jPanel2.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 200, 40));
-
-        jPanelSolicitacaoReprovada.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 420, 210));
-
-        jLabel52.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel52.setText("Dados da sua Residência:");
-        jPanelSolicitacaoReprovada.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
-
-        painelP.add(jPanelSolicitacaoReprovada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
         jPanelPagamento.setBackground(new java.awt.Color(255, 255, 255));
         jPanelPagamento.setMinimumSize(new java.awt.Dimension(730, 490));
@@ -470,6 +393,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jScrollPane1.setViewportView(listaSolicitacaoCandidato);
 
         jPanelListaSeguros.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 560, 160));
+
+        jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel23.setText("Selecione a Solicitação Desejada:");
+        jPanelListaSeguros.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
         painelP.add(jPanelListaSeguros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -872,12 +799,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         painelP.add(painelSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 60, -1, 380));
 
-        jPanelListaSeguros.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelListaSeguros.setMinimumSize(new java.awt.Dimension(730, 490));
-        jPanelListaSeguros.setPreferredSize(new java.awt.Dimension(730, 490));
-        jPanelListaSeguros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelListaSeguros1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelListaSeguros1.setMinimumSize(new java.awt.Dimension(730, 490));
+        jPanelListaSeguros1.setPreferredSize(new java.awt.Dimension(730, 490));
+        jPanelListaSeguros1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        listaSolicitacaoCandidato.setModel(new javax.swing.table.DefaultTableModel(
+        listaSolicitacaoCandidato1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -900,124 +827,202 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        listaSolicitacaoCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
+        listaSolicitacaoCandidato1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaSolicitacaoCandidatoMouseClicked(evt);
             }
         });
-        jScrollPane1.setViewportView(listaSolicitacaoCandidato);
+        jScrollPane2.setViewportView(listaSolicitacaoCandidato1);
 
-        jPanelListaSeguros.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 560, 160));
+        jPanelListaSeguros1.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 560, 160));
 
-        painelP.add(jPanelListaSeguros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
+        painelP.add(jPanelListaSeguros1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
-        jPanelSolicitacaoAprovada.setBackground(new java.awt.Color(255, 255, 255));
-        jPanelSolicitacaoAprovada.setPreferredSize(new java.awt.Dimension(730, 490));
-        jPanelSolicitacaoAprovada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanelSolicitacaoAprovada1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelSolicitacaoAprovada1.setPreferredSize(new java.awt.Dimension(730, 490));
+        jPanelSolicitacaoAprovada1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        buttonRecusarSeguro.setBackground(new java.awt.Color(126, 87, 194));
-        buttonRecusarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        buttonRecusarSeguro.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRecusarSeguro.setText("Recusar");
-        buttonRecusarSeguro.addActionListener(new java.awt.event.ActionListener() {
+        buttonRecusarSeguro1.setBackground(new java.awt.Color(126, 87, 194));
+        buttonRecusarSeguro1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonRecusarSeguro1.setForeground(new java.awt.Color(255, 255, 255));
+        buttonRecusarSeguro1.setText("Recusar");
+        buttonRecusarSeguro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonRecusarSeguroActionPerformed(evt);
             }
         });
-        jPanelSolicitacaoAprovada.add(buttonRecusarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 90, 30));
+        jPanelSolicitacaoAprovada1.add(buttonRecusarSeguro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 420, 90, 30));
 
-        jLabel30.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel30.setText("Observações:");
-        jPanelSolicitacaoAprovada.add(jLabel30, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel32.setText("Observações:");
+        jPanelSolicitacaoAprovada1.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, -1, -1));
 
-        textObs.setEditable(false);
-        jScrollPane7.setViewportView(textObs);
+        textObs1.setEditable(false);
+        jScrollPane11.setViewportView(textObs1);
 
-        jPanelSolicitacaoAprovada.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 270, 120));
+        jPanelSolicitacaoAprovada1.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 270, 120));
 
-        jLabel31.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel31.setText("Valor do Seguro:");
-        jPanelSolicitacaoAprovada.add(jLabel31, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
+        jLabel33.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel33.setText("Valor do Seguro:");
+        jPanelSolicitacaoAprovada1.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 180, -1, -1));
 
-        ButtonContratarSeguro.setBackground(new java.awt.Color(0, 153, 255));
-        ButtonContratarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        ButtonContratarSeguro.setForeground(new java.awt.Color(255, 255, 255));
-        ButtonContratarSeguro.setText("Contratar ");
-        ButtonContratarSeguro.addActionListener(new java.awt.event.ActionListener() {
+        ButtonContratarSeguro1.setBackground(new java.awt.Color(0, 153, 255));
+        ButtonContratarSeguro1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        ButtonContratarSeguro1.setForeground(new java.awt.Color(255, 255, 255));
+        ButtonContratarSeguro1.setText("Contratar ");
+        ButtonContratarSeguro1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ButtonContratarSeguroActionPerformed(evt);
             }
         });
-        jPanelSolicitacaoAprovada.add(ButtonContratarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 90, 30));
+        jPanelSolicitacaoAprovada1.add(ButtonContratarSeguro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 420, 90, 30));
 
-        textValorSeguro.setEditable(false);
-        jScrollPane8.setViewportView(textValorSeguro);
+        textValorSeguro1.setEditable(false);
+        jScrollPane12.setViewportView(textValorSeguro1);
 
-        jPanelSolicitacaoAprovada.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 60, -1));
+        jPanelSolicitacaoAprovada1.add(jScrollPane12, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 180, 60, -1));
 
-        buttonVoltar.setBackground(new java.awt.Color(126, 87, 194));
-        buttonVoltar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
-        buttonVoltar.setForeground(new java.awt.Color(255, 255, 255));
-        buttonVoltar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
-        buttonVoltar.setText("Voltar");
-        buttonVoltar.addActionListener(new java.awt.event.ActionListener() {
+        buttonVoltar2.setBackground(new java.awt.Color(126, 87, 194));
+        buttonVoltar2.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
+        buttonVoltar2.setForeground(new java.awt.Color(255, 255, 255));
+        buttonVoltar2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
+        buttonVoltar2.setText("Voltar");
+        buttonVoltar2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonVoltarActionPerformed(evt);
             }
         });
-        jPanelSolicitacaoAprovada.add(buttonVoltar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, 30));
+        jPanelSolicitacaoAprovada1.add(buttonVoltar2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 40, 100, 30));
 
-        jPanel1.setBackground(new java.awt.Color(1, 45, 90));
-        jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        jPanel3.setBackground(new java.awt.Color(1, 45, 90));
+        jPanel3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel47.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel47.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel47.setText("CEP:");
-        jPanel1.add(jLabel47, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
+        jLabel56.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel56.setText("CEP:");
+        jPanel3.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, -1, -1));
 
-        textCep.setEditable(false);
-        jScrollPane10.setViewportView(textCep);
+        textCep2.setEditable(false);
+        jScrollPane17.setViewportView(textCep2);
 
-        jPanel1.add(jScrollPane10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 200, 30));
+        jPanel3.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 200, 30));
 
-        jLabel48.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel48.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel48.setText("Cidade:");
-        jPanel1.add(jLabel48, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 20));
+        jLabel57.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel57.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel57.setText("Cidade:");
+        jPanel3.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 20));
 
-        textCidade.setEditable(false);
-        jScrollPane3.setViewportView(textCidade);
+        textCidade2.setEditable(false);
+        jScrollPane4.setViewportView(textCidade2);
 
-        jPanel1.add(jScrollPane3, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, 30));
+        jPanel3.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, 30));
 
-        textB.setEditable(false);
-        textBairro.setViewportView(textB);
+        textB2.setEditable(false);
+        textBairro1.setViewportView(textB2);
 
-        jPanel1.add(textBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 200, 30));
+        jPanel3.add(textBairro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 200, 30));
 
-        jLabel49.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel49.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel49.setText("Bairro:");
-        jPanel1.add(jLabel49, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
+        jLabel58.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel58.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel58.setText("Bairro:");
+        jPanel3.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
 
-        textEnd.setEditable(false);
-        jScrollPane6.setViewportView(textEnd);
+        textEnd2.setEditable(false);
+        jScrollPane18.setViewportView(textEnd2);
 
-        jPanel1.add(jScrollPane6, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 200, 40));
+        jPanel3.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 200, 40));
 
-        jLabel50.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel50.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel50.setText("Endereço:");
-        jPanel1.add(jLabel50, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+        jLabel59.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel59.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel59.setText("Endereço:");
+        jPanel3.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
 
-        jPanelSolicitacaoAprovada.add(jPanel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 420, 210));
+        jPanelSolicitacaoAprovada1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 160, 420, 210));
 
-        jLabel51.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
-        jLabel51.setText("Dados da sua Residência:");
-        jPanelSolicitacaoAprovada.add(jLabel51, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
+        jLabel60.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel60.setText("Dados da sua Residência:");
+        jPanelSolicitacaoAprovada1.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 130, -1, -1));
 
-        painelP.add(jPanelSolicitacaoAprovada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+        painelP.add(jPanelSolicitacaoAprovada1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jPanelSolicitacaoReprovada.setBackground(new java.awt.Color(255, 255, 255));
+        jPanelSolicitacaoReprovada.setMinimumSize(new java.awt.Dimension(730, 490));
+        jPanelSolicitacaoReprovada.setPreferredSize(new java.awt.Dimension(730, 490));
+        jPanelSolicitacaoReprovada.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel40.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel40.setText("Motivo da Reprovação:");
+        jPanelSolicitacaoReprovada.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 230, -1, -1));
+
+        textMotivo.setEditable(false);
+        jScrollPane9.setViewportView(textMotivo);
+
+        jPanelSolicitacaoReprovada.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 250, 260, 140));
+
+        jPanel2.setBackground(new java.awt.Color(1, 45, 90));
+        jPanel2.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel53.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel53.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel53.setText("Cidade:");
+        jPanel2.add(jLabel53, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 120, -1, 20));
+
+        jLabel54.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel54.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel54.setText("Bairro:");
+        jPanel2.add(jLabel54, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, 20));
+
+        jLabel55.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel55.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel55.setText("Endereço:");
+        jPanel2.add(jLabel55, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 160, -1, -1));
+
+        textCep1.setEditable(false);
+        jScrollPane16.setViewportView(textCep1);
+
+        jPanel2.add(jScrollPane16, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 30, 200, 30));
+
+        jLabel37.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel37.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel37.setText("CEP:");
+        jPanel2.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
+
+        textB1.setEditable(false);
+        jScrollPane13.setViewportView(textB1);
+
+        jPanel2.add(jScrollPane13, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 70, 200, 30));
+
+        textCidade1.setEditable(false);
+        jScrollPane14.setViewportView(textCidade1);
+
+        jPanel2.add(jScrollPane14, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, 200, 30));
+
+        textEnd1.setEditable(false);
+        jScrollPane15.setViewportView(textEnd1);
+
+        jPanel2.add(jScrollPane15, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 150, 200, 40));
+
+        jPanelSolicitacaoReprovada.add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 180, 420, 210));
+
+        jLabel52.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel52.setText("Dados da sua Residência:");
+        jPanelSolicitacaoReprovada.add(jLabel52, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 150, -1, -1));
+
+        buttonVoltar3.setBackground(new java.awt.Color(153, 51, 255));
+        buttonVoltar3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonVoltar3.setForeground(new java.awt.Color(255, 255, 255));
+        buttonVoltar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/back2.png"))); // NOI18N
+        buttonVoltar3.setText("Voltar");
+        buttonVoltar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonVoltar3ActionPerformed(evt);
+            }
+        });
+        jPanelSolicitacaoReprovada.add(buttonVoltar3, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 60, -1, 30));
+
+        painelP.add(jPanelSolicitacaoReprovada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
         painelServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1069,6 +1074,17 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
         jPanelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
         painelP.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 480));
+
+        editarSelecionado.setBackground(new java.awt.Color(153, 51, 255));
+        editarSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        editarSelecionado.setForeground(new java.awt.Color(255, 255, 255));
+        editarSelecionado.setText("Editar");
+        editarSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarSelecionadoActionPerformed(evt);
+            }
+        });
+        painelP.add(editarSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
 
         editar.setBackground(new java.awt.Color(151, 53, 255));
         editar.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
@@ -1241,8 +1257,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
         //recuperar dados da solicitação que el deseja editar
+        //gerenciador.listaSolicitacaoCliente(candidato);
+        visualizarSolicitacao();
+        editarSelecionado.setVisible(true);
+        preencherCamposEdicao(listaSolicitacaoCandidato.getSelectedRow());
         
-        painelSolicitacao.setVisible(true);
+       
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
@@ -1446,9 +1466,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
     home();
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
-    private void buttonVoltar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltar1ActionPerformed
-     home();
-    }//GEN-LAST:event_buttonVoltar1ActionPerformed
+    private void editarSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarSelecionadoActionPerformed
+      painelSolicitacao.setVisible(true);
+    }//GEN-LAST:event_editarSelecionadoActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         String campoImpressoNoCartao = campoImpressoNomeCartao.getText();
@@ -1487,6 +1507,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
             painelServico.setVisible(false);
     }//GEN-LAST:event_enviarServicoActionPerformed
 
+    private void buttonVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltar3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonVoltar3ActionPerformed
+
     private void home() {
         painelP.setVisible(true);
         jPanelHome.setVisible(true);
@@ -1499,6 +1523,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
+        editarSelecionado.setVisible(false);
     }
 
     private void visualizarSolicitacao() {
@@ -1563,6 +1588,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         textValorSeguro.setText("" + listaSolicitacao.get(selecionado).getValorSolicitacao());
         textMotivo.setText(listaSolicitacao.get(selecionado).getMotivoReprovacao());
     }
+    public void preencherCamposEdicao(int selecionado){
+        cep.setText("" + listaSolicitacao.get(selecionado).getResidencia().getCepRes());
+        bairro.setText(listaSolicitacao.get(selecionado).getResidencia().getBairro());
+        cidade.setText(listaSolicitacao.get(selecionado).getResidencia().getCidade());
+        rua.setText(listaSolicitacao.get(selecionado).getResidencia().getRuaRes());
+    }
 
     /**
      * @param args the command line arguments
@@ -1619,6 +1650,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonContratarSeguro;
+    private javax.swing.JButton ButtonContratarSeguro1;
     private javax.swing.JButton add;
     private javax.swing.JTextField andares;
     private javax.swing.JTextField anoC;
@@ -1634,8 +1666,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton buttonRecusarSeguro;
+    private javax.swing.JButton buttonRecusarSeguro1;
     private javax.swing.JButton buttonVoltar;
-    private javax.swing.JButton buttonVoltar1;
+    private javax.swing.JButton buttonVoltar2;
+    private javax.swing.JButton buttonVoltar3;
     private javax.swing.JTextField campoCodSegurancaCartao;
     private javax.swing.JTextField campoImpressoNomeCartao;
     private javax.swing.JTextField campoNumeroDoCartao;
@@ -1652,6 +1686,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField descRes;
     private javax.swing.JLabel e;
     private javax.swing.JButton editar;
+    private javax.swing.JButton editarSelecionado;
     private javax.swing.JCheckBox eletricista;
     private javax.swing.JCheckBox encanador;
     private javax.swing.JButton enviar;
@@ -1683,6 +1718,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -1702,7 +1739,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -1712,21 +1754,30 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanelHome;
     private javax.swing.JPanel jPanelListaSeguros;
+    private javax.swing.JPanel jPanelListaSeguros1;
     private javax.swing.JPanel jPanelPagamento;
     private javax.swing.JPanel jPanelSolicitacaoAprovada;
+    private javax.swing.JPanel jPanelSolicitacaoAprovada1;
     private javax.swing.JPanel jPanelSolicitacaoReprovada;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
+    private javax.swing.JScrollPane jScrollPane18;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
@@ -1735,6 +1786,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JLabel l;
     private javax.swing.JTable listaSolicitacaoCandidato;
+    private javax.swing.JTable listaSolicitacaoCandidato1;
     private javax.swing.JSlider localizacaoP;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
@@ -1759,16 +1811,23 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JSlider terrenoP;
     private javax.swing.JTextPane textB;
     private javax.swing.JTextPane textB1;
+    private javax.swing.JTextPane textB2;
     private javax.swing.JScrollPane textBairro;
+    private javax.swing.JScrollPane textBairro1;
     private javax.swing.JTextPane textCep;
     private javax.swing.JTextPane textCep1;
+    private javax.swing.JTextPane textCep2;
     private javax.swing.JTextPane textCidade;
     private javax.swing.JTextPane textCidade1;
+    private javax.swing.JTextPane textCidade2;
     private javax.swing.JTextPane textEnd;
     private javax.swing.JTextPane textEnd1;
+    private javax.swing.JTextPane textEnd2;
     private javax.swing.JTextPane textMotivo;
     private javax.swing.JTextPane textObs;
+    private javax.swing.JTextPane textObs1;
     private javax.swing.JTextPane textValorSeguro;
+    private javax.swing.JTextPane textValorSeguro1;
     private javax.swing.JTextField uf;
     private javax.swing.JTextField valor;
     // End of variables declaration//GEN-END:variables

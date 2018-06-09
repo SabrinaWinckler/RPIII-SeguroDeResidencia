@@ -23,6 +23,8 @@ public class ControleSolicitacao {
     private Solicitacao solicitacao;
     
     private Servico servico;
+    
+  
 
     public ControleSolicitacao() {
         bens = new ArrayList<Bem>();
