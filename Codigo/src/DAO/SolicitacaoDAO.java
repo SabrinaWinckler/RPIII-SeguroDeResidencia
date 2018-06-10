@@ -8,7 +8,7 @@ package DAO;
 import Dominio.Candidato;
 import Dominio.Solicitacao;
 import java.sql.Connection;
-import java.sql.Date;
+import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -29,7 +29,7 @@ public class SolicitacaoDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
-        SimpleDateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int idResidencia = -1;
         int idPessoa = -1;
         try {
@@ -46,8 +46,8 @@ public class SolicitacaoDAO {
             stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, dataVisitaResidenciia,"
                     + "valorSolicitacao, "
                     + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?,?)");
-            stm.setDate(1, (Date.valueOf(dataFormatada.format(solicitacao.getDataSolicitacao()))));
-            stm.setDate(2, (Date.valueOf(dataFormatada.format(solicitacao.getDataSolicitacao()))));
+            stm.setDate(1, (java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao()))));
+            stm.setDate(2, (java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao()))));
             stm.setDouble(3, solicitacao.getValorSolicitacao());
             stm.setString(4, solicitacao.getAprovadaSolicitacao());
             stm.setString(5, solicitacao.getMotivoReprovacao());
@@ -144,15 +144,11 @@ public class SolicitacaoDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada =?,"
-                    + " motivoReprovacao = ?, motivoAlterecao = ? "
-                    + "where solicitacaoseguro.idPessoa = ? and solicitacaoseguro.idResidencia = ?");
-            stm.setString(1, solicitacao.getAprovadaSolicitacao());
-            stm.setString(2, solicitacao.getMotivoReprovacao());
-            stm.setString(3, solicitacao.getMotivoAlteracao());
-            stm.setInt(4, solicitacao.getResidencia().getCodResidencia());
-            stm.setInt(5, solicitacao.getResidencia().getCandidato().getCodPessoa());
-            stm.execute();
+            stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = '" + solicitacao.getAprovadaSolicitacao() + "',"
+                    + " motivoReprovacao ='" + solicitacao.getMotivoReprovacao() + "', motivoAlterecao ='" + solicitacao.getMotivoReprovacao() + "'  "
+                    + "where solicitacaoseguro.idPessoa =" + solicitacao.getResidencia().getCandidato().getCodPessoa()
+                    + " and solicitacaoseguro.idResidencia =" + solicitacao.getResidencia().getCodResidencia());
+            stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {

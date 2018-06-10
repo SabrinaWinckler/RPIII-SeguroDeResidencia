@@ -172,7 +172,7 @@ public class Gerenciador {
         listaDeSolicitacao = listaDeSolicitacoesPendentes();
         List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
         for (Solicitacao solicitacao : listaDeSolicitacao) {
-            if (solicitacao.getDataVisitaResidencia() != null) {
+            if (solicitacao.getDataVisitaResidencia() != null && solicitacao.getAprovadaSolicitacao() == null) {
                 listaDeSolicitacoesPendendes.add(solicitacao);
             }
         }
