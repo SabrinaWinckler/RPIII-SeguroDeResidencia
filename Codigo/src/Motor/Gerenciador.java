@@ -87,12 +87,7 @@ public class Gerenciador {
         CorretorDAO daoCorretor = new CorretorDAO();
         return daoCorretor.read();
     }
-
-    public List<Solicitacao> listaDeSolicitacoesPendentes() {
-        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        return daoSolicitacao.read();
-    }
-
+    
     public void registrarApolice(String bandeiraCartão, long numeroApolice,
             float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento,
             String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao) {
@@ -103,95 +98,8 @@ public class Gerenciador {
         daoApolice.create(apolice);
     }
 
-    public List<Solicitacao> organizarListaDeSolicitacoes() {
-        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        List<Solicitacao> listaDeSolicitacoes;
-        listaDeSolicitacoes = daoSolicitacao.read();
-        boolean houveTroca;
-        if (listaDeSolicitacoes.size() >= 2) {
-            do {
-                houveTroca = false;
-                for (int i = 0; i < listaDeSolicitacoes.size() - 2; i++) {
-                    if (listaDeSolicitacoes.get(i).getDataSolicitacao().after(listaDeSolicitacoes.get(i + 1).getDataVisitaResidencia())) {
-                        Solicitacao temp = listaDeSolicitacoes.get(i);
-                        listaDeSolicitacoes.set(i, listaDeSolicitacoes.get(i + 1));
-                        listaDeSolicitacoes.set(i + 1, temp);
-                        houveTroca = true;
-                    }
-                }
-                if (!houveTroca) {
-                    break;
-                }
-                for (int i = listaDeSolicitacoes.size() - 2; i >= 0; i--) {
-                    if (listaDeSolicitacoes.get(i).getDataSolicitacao().after(listaDeSolicitacoes.get(i + 1).getDataVisitaResidencia())) {
-                        Solicitacao temp = listaDeSolicitacoes.get(i);
-                        listaDeSolicitacoes.set(i, listaDeSolicitacoes.get(i + 1));
-                        listaDeSolicitacoes.set(i + 1, temp);
-                        houveTroca = true;
-                    }
-                }
-            } while (houveTroca);
-            return listaDeSolicitacoes;
-        } else {
-            return listaDeSolicitacoes;
-        }
-    }
-
-    public void updateSituacaoSolicitacao(String resultado, String motivoReprovacao, String motivoAlteracao, String data, String cpf) {
-        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        //daoSolicitacao.updateStatusSolicitacao(resultado, motivoReprovacao, motivoAlteracao, data, cpf);
-    }
-
-    public List<Segurado> listaDeSinistrosPendentes() {
-        RelataSinistroDAO daoSinistro = new RelataSinistroDAO();
-        return daoSinistro.read();
-    }
-
     public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         return daoSolicitacao.listaSolicitacaoCliente(candidato);
-    }
-
-    public void registrarDateVisitaResidencia(Solicitacao solicitacao) {
-        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        daoSolicitacao.registrarDataVisita(solicitacao);
-    }
-
-    public List<Solicitacao> filtrarSolicitacoesNaoVisualizadas() {
-        listaDeSolicitacao = listaDeSolicitacoesPendentes();
-        List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
-        for (Solicitacao solicitacao : listaDeSolicitacao) {
-            if (solicitacao.getDataVisitaResidencia() == null) {
-                listaDeSolicitacoesPendendes.add(solicitacao);
-            }
-        }
-        return listaDeSolicitacoesPendendes;
-    }
-
-    public List<Solicitacao> filtrarResidenciasParaAvaliar() {
-        listaDeSolicitacao = listaDeSolicitacoesPendentes();
-        List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
-        for (Solicitacao solicitacao : listaDeSolicitacao) {
-            if (solicitacao.getDataVisitaResidencia() != null && solicitacao.getAprovadaSolicitacao() == null) {
-                listaDeSolicitacoesPendendes.add(solicitacao);
-            }
-        }
-        return listaDeSolicitacoesPendendes;
-    }
-
-    public void updateStatusSolicitacao(Solicitacao solicitacao) {
-        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        daoSolicitacao.updateStatusSolicitacao(solicitacao);
-    }
-
-    public List<Solicitacao> filtrarResidenciasPendentes() {
-        listaDeSolicitacao = listaDeSolicitacoesPendentes();
-        List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
-        for (Solicitacao solicitacao : listaDeSolicitacao) {
-            if (!solicitacao.getAprovadaSolicitacao().isEmpty()) {
-                listaDeSolicitacoesPendendes.add(solicitacao);
-            }
-        }
-        return listaDeSolicitacoesPendendes;
     }
 }

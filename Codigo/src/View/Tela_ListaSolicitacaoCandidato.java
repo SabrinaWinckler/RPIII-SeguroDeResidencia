@@ -26,7 +26,7 @@ public class Tela_ListaSolicitacaoCandidato extends javax.swing.JFrame {
     public Tela_ListaSolicitacaoCandidato() {
         initComponents();
         Gerenciador motor = new Gerenciador();
-        listaSolicitacao = motor.listaDeSolicitacoesPendentes();
+        //listaSolicitacao = motor.listaDeSolicitacoesPendentes();
         readTable();
     }
 

@@ -5,12 +5,15 @@
  */
 package View;
 
+import Aplicacao.CursorPersonalizado;
 import Dominio.Candidato;
 import Motor.Gerenciador;
 import Excecoes.ExceptionCPFInvalid;
 import Excecoes.ExceptionEmailInvalid;
+import java.awt.Cursor;
 import java.util.List;
 import javax.swing.JOptionPane;
+import service.WebServiceCep;
 
 /**
  *
@@ -54,13 +57,13 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         campoNome = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         campoCep = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
+        enderecoJLabel = new javax.swing.JLabel();
         campoBairro = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
-        campoEndereço = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
+        bairroJLabel = new javax.swing.JLabel();
+        campoEndereco = new javax.swing.JTextField();
+        ufJLabel = new javax.swing.JLabel();
         ufComboBox = new javax.swing.JComboBox<>();
-        jLabel6 = new javax.swing.JLabel();
+        cidadeJLabel = new javax.swing.JLabel();
         campoCidade = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -92,41 +95,83 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Nome:");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 50, -1));
+
+        campoNome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         getContentPane().add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 240, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Cep:");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 270, 40, 20));
-        getContentPane().add(campoCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 270, 230, 30));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 240, 40, 20));
 
-        jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("Endereço:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 230, 90, -1));
-        getContentPane().add(campoBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 180, 230, 30));
+        campoCep.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        campoCep.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoCepFocusLost(evt);
+            }
+        });
+        getContentPane().add(campoCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 230, 200, 30));
 
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Bairro:");
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 180, 50, -1));
-        getContentPane().add(campoEndereço, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 230, 40));
+        enderecoJLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        enderecoJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        enderecoJLabel.setText("Endereço:");
+        getContentPane().add(enderecoJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 320, 90, -1));
 
-        jLabel5.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("UF:");
-        getContentPane().add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 140, -1, -1));
+        campoBairro.setEditable(false);
+        campoBairro.setBackground(new java.awt.Color(204, 204, 255));
+        campoBairro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        campoBairro.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                campoBairroMouseMoved(evt);
+            }
+        });
+        getContentPane().add(campoBairro, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 270, 240, 30));
 
+        bairroJLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        bairroJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        bairroJLabel.setText("Bairro:");
+        getContentPane().add(bairroJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 270, 50, -1));
+
+        campoEndereco.setEditable(false);
+        campoEndereco.setBackground(new java.awt.Color(204, 204, 255));
+        campoEndereco.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        campoEndereco.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                campoEnderecoMouseMoved(evt);
+            }
+        });
+        getContentPane().add(campoEndereco, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 310, 240, 30));
+
+        ufJLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        ufJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        ufJLabel.setText("UF:");
+        getContentPane().add(ufJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(690, 350, 30, 20));
+
+        ufComboBox.setBackground(new java.awt.Color(204, 204, 255));
         ufComboBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ufComboBox.setForeground(new java.awt.Color(255, 255, 255));
         ufComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
-        getContentPane().add(ufComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(740, 140, -1, -1));
+        ufComboBox.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                ufComboBoxMouseMoved(evt);
+            }
+        });
+        getContentPane().add(ufComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(720, 350, -1, -1));
 
-        jLabel6.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Cidade:");
-        getContentPane().add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 140, -1, -1));
-        getContentPane().add(campoCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 140, 140, 30));
+        cidadeJLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cidadeJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        cidadeJLabel.setText("Cidade:");
+        getContentPane().add(cidadeJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 360, -1, -1));
+
+        campoCidade.setEditable(false);
+        campoCidade.setBackground(new java.awt.Color(204, 204, 255));
+        campoCidade.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        campoCidade.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                campoCidadeMouseMoved(evt);
+            }
+        });
+        getContentPane().add(campoCidade, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 350, 140, 30));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -190,6 +235,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         jLabel9.setText("CPF:");
         getContentPane().add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 190, -1, -1));
 
+        cpfCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cpfCampo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 cpfCampoFocusLost(evt);
@@ -202,6 +248,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         jLabel10.setText("e-mail:");
         getContentPane().add(jLabel10, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 360, -1, -1));
 
+        emailCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         emailCampo.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusLost(java.awt.event.FocusEvent evt) {
                 emailCampoFocusLost(evt);
@@ -213,28 +260,35 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Telefone:");
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
+
+        telefoneCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         getContentPane().add(telefoneCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 230, 30));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Usuário:");
-        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 330, -1, -1));
-        getContentPane().add(usuarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 320, 200, 30));
+        getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
+
+        usuarioCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        getContentPane().add(usuarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 200, 30));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Senha:");
-        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 370, 50, -1));
-        getContentPane().add(senhaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 360, 200, 30));
+        getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 50, -1));
+
+        senhaCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        getContentPane().add(senhaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 200, 30));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Informe seus Dados:");
         getContentPane().add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 50, -1, -1));
 
+        jLabel15.setBackground(new java.awt.Color(0, 45, 89));
         jLabel15.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-azul.jpg"))); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(0, 45, 89));
+        jLabel15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/fundoTelaCadastro.png"))); // NOI18N
         getContentPane().add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 980, 560));
 
         pack();
@@ -245,7 +299,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         nomePessoa = campoNome.getText();
         dataNascimento = diaComboBox.getSelectedItem().toString() + mesComboBox.getSelectedItem().toString() + anoComboBox.getSelectedItem().toString();
         cep = Long.parseLong(campoCep.getText());
-        endereco = campoEndereço.getText();
+        endereco = campoEndereco.getText();
         telefone = telefoneCampo.getText();
         usuarioCliente = usuarioCampo.getText();
         senhaCliente = senhaCampo.getText();
@@ -317,6 +371,31 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cpfCampoFocusLost
 
+    private void campoCepFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoCepFocusLost
+        WebServiceCep webServiceCep = WebServiceCep.searchCep(campoCep.getText());
+        if (webServiceCep.wasSuccessful()) {
+            campoBairro.setText(webServiceCep.getBairro());
+            campoEndereco.setText(webServiceCep.getLogradouro());
+            campoCidade.setText(webServiceCep.getCidade());
+            ufComboBox.setToolTipText(webServiceCep.getUf());
+        }
+    }//GEN-LAST:event_campoCepFocusLost
+
+    private void campoBairroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoBairroMouseMoved
+        campoBairro.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_campoBairroMouseMoved
+
+    private void campoEnderecoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoEnderecoMouseMoved
+        campoEndereco.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_campoEnderecoMouseMoved
+
+    private void campoCidadeMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_campoCidadeMouseMoved
+        campoCidade.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_campoCidadeMouseMoved
+
+    private void ufComboBoxMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ufComboBoxMouseMoved
+        ufComboBox.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
+    }//GEN-LAST:event_ufComboBoxMouseMoved
     /**
      * @param args the command line arguments
      */
@@ -356,16 +435,19 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private javax.swing.JCheckBox Feminino;
     private javax.swing.JCheckBox Masculino;
     private javax.swing.JComboBox<String> anoComboBox;
+    private javax.swing.JLabel bairroJLabel;
     private javax.swing.JTextField campoBairro;
     private javax.swing.JTextField campoCep;
     private javax.swing.JTextField campoCidade;
-    private javax.swing.JTextField campoEndereço;
+    private javax.swing.JTextField campoEndereco;
     private javax.swing.JTextField campoNome;
     private javax.swing.JButton cancelarButton;
+    private javax.swing.JLabel cidadeJLabel;
     private javax.swing.JButton confirmarButton;
     private javax.swing.JTextField cpfCampo;
     private javax.swing.JComboBox<String> diaComboBox;
     private javax.swing.JTextField emailCampo;
+    private javax.swing.JLabel enderecoJLabel;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -374,10 +456,6 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -385,6 +463,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private javax.swing.JTextField senhaCampo;
     private javax.swing.JTextField telefoneCampo;
     private javax.swing.JComboBox<String> ufComboBox;
+    private javax.swing.JLabel ufJLabel;
     private javax.swing.JTextField usuarioCampo;
     // End of variables declaration//GEN-END:variables
 }
