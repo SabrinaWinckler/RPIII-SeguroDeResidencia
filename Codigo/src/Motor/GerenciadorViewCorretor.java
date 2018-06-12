@@ -17,14 +17,14 @@ import java.util.List;
  * @author Matheus Montanha
  */
 public class GerenciadorViewCorretor {
-
+    
     List<Solicitacao> listaDeSolicitacao;
     SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-
+    
     public GerenciadorViewCorretor(List lista) {
         listaDeSolicitacao = lista;
     }
-
+    
     private List<Solicitacao> organizarListaDeSolicitacoes() {
         listaDeSolicitacao = daoSolicitacao.read();
         boolean houveTroca;
@@ -56,39 +56,35 @@ public class GerenciadorViewCorretor {
             return listaDeSolicitacao;
         }
     }
-
+    
     public List<Solicitacao> listaDeSolicitacoesPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
         listaDeSolicitacao = organizarListaDeSolicitacoes();
         List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
-        for (Solicitacao solicitacao : listaDeSolicitacao) {
-            if (solicitacao.getDataVisitaResidencia() == null) {
-                listaDeSolicitacoesPendendes.add(solicitacao);
-            }
-        }
+        listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() == null)).forEachOrdered((solicitacao) -> {
+            listaDeSolicitacoesPendendes.add(solicitacao);
+        });
         return listaDeSolicitacoesPendendes;
     }
-
+    
     public List<Solicitacao> listaDeResidenciasPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
         List<Solicitacao> listaDeResidenciasPendentes = new ArrayList<>();
-        for (Solicitacao solicitacao : listaDeSolicitacao) {
-            if (solicitacao.getDataVisitaResidencia() != null && solicitacao.getAprovadaSolicitacao() == null) {
-                listaDeResidenciasPendentes.add(solicitacao);
-            }
-        }
+        listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() != null && solicitacao.getAprovadaSolicitacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
+            listaDeResidenciasPendentes.add(solicitacao);
+        });
         return listaDeResidenciasPendentes;
     }
-
+    
     public void updateStatusSolicitacao(Solicitacao solicitacao) {
         daoSolicitacao.updateStatusSolicitacao(solicitacao);
     }
-
+    
     public List<Segurado> listaDeSinistrosPendentes() {
         RelataSinistroDAO daoSinistro = new RelataSinistroDAO();
         return daoSinistro.read();
     }
-
+    
     public void registrarDateVisitaResidencia(Solicitacao solicitacao) {
         daoSolicitacao.registrarDataVisita(solicitacao);
     }

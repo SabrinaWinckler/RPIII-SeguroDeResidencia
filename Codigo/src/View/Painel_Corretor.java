@@ -8,6 +8,7 @@ package View;
 import Dominio.Segurado;
 import Dominio.Solicitacao;
 import Motor.GerenciadorViewCorretor;
+import java.awt.Color;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,7 +26,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Matheus Montanha
  */
 public class Painel_Corretor extends javax.swing.JFrame {
-
+    
     int visivel = 0;
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
     String motivoReprovacao, motivoAlteracao, resultado;
@@ -38,7 +39,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         initComponents();
         runProgram();
     }
-
+    
     public int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
@@ -56,7 +57,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-
+    
     public int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
@@ -74,7 +75,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-
+    
     public int readTableListaDeSinistros() {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
@@ -185,6 +186,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jCalendarAgendarVisitaResidencia = new com.toedter.calendar.JCalendar();
         jButtonConfirmarData = new javax.swing.JButton();
         jButtonCancelarRegistroDeData = new javax.swing.JButton();
+        jLabel23 = new javax.swing.JLabel();
         jLabelLocalizacaoPerigosa = new javax.swing.JLabel();
         jLabelTerrenoPerigoso = new javax.swing.JLabel();
         jLabelEstruturaPerigosa = new javax.swing.JLabel();
@@ -446,6 +448,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelAvaliarResidencia.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelMotivoReprovacao.setBackground(new java.awt.Color(204, 204, 255));
+        jPanelMotivoReprovacao.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelMotivoReprovacao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         motivoReprovacaojTextArea.setColumns(20);
@@ -473,11 +476,17 @@ public class Painel_Corretor extends javax.swing.JFrame {
         cancelarMotivoReprovacaojButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cancelarMotivoReprovacaojButton2.setForeground(new java.awt.Color(255, 255, 255));
         cancelarMotivoReprovacaojButton2.setText("Cancelar");
+        cancelarMotivoReprovacaojButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarMotivoReprovacaojButton2ActionPerformed(evt);
+            }
+        });
         jPanelMotivoReprovacao.add(cancelarMotivoReprovacaojButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 90, 30));
 
-        jPanelAvaliarResidencia.add(jPanelMotivoReprovacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 200, 280, 190));
+        jPanelAvaliarResidencia.add(jPanelMotivoReprovacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 280, 190));
 
-        listaDeResidencias.setBackground(new java.awt.Color(0, 153, 153));
+        listaDeResidencias.setBackground(new java.awt.Color(240, 240, 240));
+        listaDeResidencias.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         listaDeResidencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -502,7 +511,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
             }
         });
         listaDeResidencias.setColumnSelectionAllowed(true);
+        listaDeResidencias.setSelectionBackground(new java.awt.Color(126, 87, 194));
         listaDeResidencias.getTableHeader().setReorderingAllowed(false);
+        listaDeResidencias.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                listaDeResidenciasMouseMoved(evt);
+            }
+        });
         listaDeResidencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaDeResidenciasMouseClicked(evt);
@@ -693,8 +708,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelSolicitacaoDeSeguro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jPanelCalendarioAgendarVisitaResidencia.setBackground(new java.awt.Color(204, 204, 255));
+        jPanelCalendarioAgendarVisitaResidencia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelCalendarioAgendarVisitaResidencia.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-        jPanelCalendarioAgendarVisitaResidencia.add(jCalendarAgendarVisitaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        jCalendarAgendarVisitaResidencia.setBackground(new java.awt.Color(204, 204, 255));
+        jPanelCalendarioAgendarVisitaResidencia.add(jCalendarAgendarVisitaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 30, -1, -1));
 
         jButtonConfirmarData.setBackground(new java.awt.Color(0, 153, 255));
         jButtonConfirmarData.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -705,7 +723,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 jButtonConfirmarDataActionPerformed(evt);
             }
         });
-        jPanelCalendarioAgendarVisitaResidencia.add(jButtonConfirmarData, new org.netbeans.lib.awtextra.AbsoluteConstraints(189, 230, 90, 30));
+        jPanelCalendarioAgendarVisitaResidencia.add(jButtonConfirmarData, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 260, 90, 30));
 
         jButtonCancelarRegistroDeData.setBackground(new java.awt.Color(153, 51, 255));
         jButtonCancelarRegistroDeData.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -716,9 +734,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 jButtonCancelarRegistroDeDataActionPerformed(evt);
             }
         });
-        jPanelCalendarioAgendarVisitaResidencia.add(jButtonCancelarRegistroDeData, new org.netbeans.lib.awtextra.AbsoluteConstraints(293, 230, 90, 30));
+        jPanelCalendarioAgendarVisitaResidencia.add(jButtonCancelarRegistroDeData, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, 90, 30));
 
-        jPanelSolicitacaoDeSeguro.add(jPanelCalendarioAgendarVisitaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 140, 385, 270));
+        jLabel23.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jLabel23.setText("Informe a data conforme o agendamento marcado:");
+        jPanelCalendarioAgendarVisitaResidencia.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 0, 360, 20));
+
+        jPanelSolicitacaoDeSeguro.add(jPanelCalendarioAgendarVisitaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, 400, 300));
 
         jLabelLocalizacaoPerigosa.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabelLocalizacaoPerigosa.setText("Localização Perigosa:");
@@ -823,7 +845,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         jPanelSolicitacaoDeSeguro.add(ButtonAgendarVisitaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 130, 30));
 
-        listaDeSolicitacoesSeguro.setBackground(new java.awt.Color(0, 153, 153));
+        listaDeSolicitacoesSeguro.setBackground(new java.awt.Color(240, 240, 240));
+        listaDeSolicitacoesSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         listaDeSolicitacoesSeguro.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -848,10 +871,19 @@ public class Painel_Corretor extends javax.swing.JFrame {
             }
         });
         listaDeSolicitacoesSeguro.setColumnSelectionAllowed(true);
+        listaDeSolicitacoesSeguro.setSelectionBackground(new java.awt.Color(126, 87, 194));
         listaDeSolicitacoesSeguro.getTableHeader().setReorderingAllowed(false);
+        listaDeSolicitacoesSeguro.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                listaDeSolicitacoesSeguroMouseMoved(evt);
+            }
+        });
         listaDeSolicitacoesSeguro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaDeSolicitacoesSeguroMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                listaDeSolicitacoesSeguroMouseExited(evt);
             }
         });
         jScrollPane5.setViewportView(listaDeSolicitacoesSeguro);
@@ -873,7 +905,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         if (readTableListaDeSolicitacaoSeguro() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Não possui solicitações para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
-            HabilitarRecusarEAgendarVisita(false);
+            habilitarButtonsTelaSolicitacao(false);
             visualizarSolicitacao();
         }
     }//GEN-LAST:event_visualizarSolicitacoesButtonActionPerformed
@@ -891,10 +923,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, "Não possui residencias para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
             visualizarResidencias();
-            buttonEditarDadosResidencia.setEnabled(false);
-            buttonAprovarResidencia.setEnabled(false);
-            buttonRecusarResidencia.setEnabled(false);
-            jToggleButtonDadosProprietario.setEnabled(false);
+            habiltarButtonsTelaResidencia(false);
         }
     }//GEN-LAST:event_avaliarResidenciaActionPerformed
 
@@ -926,10 +955,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void listaDeResidenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseClicked
         int linhaSelecionada = listaDeResidencias.getSelectedRow();
         preencherCamposAvaliarResidencia(linhaSelecionada);
-        buttonEditarDadosResidencia.setEnabled(true);
-        buttonAprovarResidencia.setEnabled(true);
-        buttonRecusarResidencia.setEnabled(true);
-        jToggleButtonDadosProprietario.setEnabled(true);
+        habiltarButtonsTelaResidencia(true);
     }//GEN-LAST:event_listaDeResidenciasMouseClicked
 
     private void buttonEditarDadosResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarDadosResidenciaActionPerformed
@@ -945,8 +971,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
         listaDeSolicitacao.get(selecionado).setAprovadaSolicitacao("aprovada");
-        listaDeSolicitacao.get(selecionado).setMotivoAlteracao(null);
-        listaDeSolicitacao.get(selecionado).setMotivoReprovacao(null);
         gerenciador.updateStatusSolicitacao(listaDeSolicitacao.get(selecionado));
         JOptionPane.showConfirmDialog(rootPane, "Residencia Avaliada com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
         runProgram();
@@ -954,6 +978,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
     private void buttonRecusarResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarResidenciaActionPerformed
         jPanelMotivoReprovacao.setVisible(true);
+        habilitarCamposTelaResidencia(false);
     }//GEN-LAST:event_buttonRecusarResidenciaActionPerformed
 
     private void jToggleButtonDadosProprietarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jToggleButtonDadosProprietarioActionPerformed
@@ -1031,7 +1056,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
     private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
         selecionado = listaDeSolicitacoesSeguro.getSelectedRow();
-        HabilitarRecusarEAgendarVisita(true);
+        habilitarButtonsTelaSolicitacao(true);
         preencherCamposSolicitacaoSeguro(selecionado);
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseClicked
 
@@ -1058,7 +1083,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
                         "Alerta", JOptionPane.CLOSED_OPTION);
                 jPanelCalendarioAgendarVisitaResidencia.setVisible(false);
                 habilitarCamposTelaSolicitacao(true);
-                HabilitarRecusarEAgendarVisita(false);
+                habilitarButtonsTelaSolicitacao(false);
                 if (readTableListaDeSolicitacaoSeguro() == 0) {
                     runProgram();
                 } else {
@@ -1089,9 +1114,51 @@ public class Painel_Corretor extends javax.swing.JFrame {
             listaDeSolicitacao.get(selecionado).setMotivoReprovacao(motivoReprovacaojTextArea.getText());
             gerenciador.updateStatusSolicitacao(listaDeSolicitacao.get(selecionado));
             JOptionPane.showConfirmDialog(rootPane, "Residencia recusada com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
+            jPanelMotivoReprovacao.setVisible(false);
+            habilitarCamposTelaResidencia(true);
+            if (readTableListaDeResidencia() == 0) {
+                runProgram();
+            } else {
+                limparCamposTelaResidencia();
+                habiltarButtonsTelaResidencia(false);
+            }
         }
     }//GEN-LAST:event_confirmarMotivoReprovacaojButtonActionPerformed
 
+    private void cancelarMotivoReprovacaojButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarMotivoReprovacaojButton2ActionPerformed
+        int escolha = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja cancelar?", "Alerta", JOptionPane.YES_NO_OPTION);
+        if (escolha == 0) {
+            jPanelMotivoReprovacao.setVisible(false);
+            habilitarCamposTelaResidencia(true);
+        }
+    }//GEN-LAST:event_cancelarMotivoReprovacaojButton2ActionPerformed
+
+    private void listaDeResidenciasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseMoved
+        listaDeResidencias.setBackground(new Color(126, 87, 194));
+    }//GEN-LAST:event_listaDeResidenciasMouseMoved
+
+    private void listaDeSolicitacoesSeguroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseMoved
+        listaDeSolicitacoesSeguro.setBackground(new Color(126, 87, 194));
+    }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseMoved
+
+    private void listaDeSolicitacoesSeguroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseExited
+        listaDeSolicitacoesSeguro.setBackground(new Color(204, 204, 255));
+    }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseExited
+    
+    private void limparCamposTelaResidencia() {
+        campoCepResidencia.setText("");
+        campoCidadeResidencia.setText("");
+        campoRuaResidencia.setText("");
+        campoDescricaoResidencia.setText("");
+        campoUFResidencia.setText("");
+        campoQuantidadeComodos.setText("");
+        campoQuantidadeDeBanheiros.setText("");
+        campoQuantidadeDeGaragens.setText("");
+        campoAreaConstruida.setText("");
+        campoAnoConstrucao.setText("");
+        campoAreaTotal.setText("");
+    }
+    
     private void limparCamposTelaSolicitacao() {
         campoNomeCandidato1.setText("");
         campoCPFCandidato1.setText("");
@@ -1103,12 +1170,19 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("");
         campoValorSolicitacao.setText("");
     }
-
-    private void HabilitarRecusarEAgendarVisita(Boolean condicao) {
+    
+    private void habilitarButtonsTelaSolicitacao(Boolean condicao) {
         ButtonAgendarVisitaResidencia.setEnabled(condicao);
         buttonRecusarSeguro1.setEnabled(condicao);
     }
-
+    
+    private void habiltarButtonsTelaResidencia(Boolean condicao) {
+        buttonEditarDadosResidencia.setEnabled(condicao);
+        buttonAprovarResidencia.setEnabled(condicao);
+        buttonRecusarResidencia.setEnabled(condicao);
+        jToggleButtonDadosProprietario.setEnabled(condicao);
+    }
+    
     private void habilitarCamposTelaSolicitacao(Boolean condicao) {
         jLabelLocalizacaoPerigosa.setEnabled(condicao);
         jLabelTerrenoPerigoso.setEnabled(condicao);
@@ -1125,7 +1199,26 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonRecusarSeguro1.setEnabled(condicao);
         listaDeSolicitacoesSeguro.setEnabled(condicao);
     }
-
+    
+    private void habilitarCamposTelaResidencia(Boolean condicao) {
+        campoCepResidencia.setEnabled(condicao);
+        campoCidadeResidencia.setEnabled(condicao);
+        campoRuaResidencia.setEnabled(condicao);
+        campoDescricaoResidencia.setEnabled(condicao);
+        campoUFResidencia.setEnabled(condicao);
+        jToggleButtonDadosProprietario.setEnabled(condicao);
+        campoQuantidadeComodos.setEnabled(condicao);
+        campoQuantidadeDeBanheiros.setEnabled(condicao);
+        campoQuantidadeDeGaragens.setEnabled(condicao);
+        campoAreaConstruida.setEnabled(condicao);
+        campoAnoConstrucao.setEnabled(condicao);
+        campoAreaTotal.setEnabled(condicao);
+        listaDeResidencias.setEnabled(condicao);
+        buttonAprovarResidencia.setEnabled(condicao);
+        buttonRecusarResidencia.setEnabled(condicao);
+        buttonEditarDadosResidencia.setEnabled(condicao);
+    }
+    
     private void preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
@@ -1146,7 +1239,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAnoConstrucao.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAnoConstrucao());
         campoAreaTotal.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaTotal());
     }
-
+    
     private void preencherCamposSolicitacaoSeguro(int numero) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
@@ -1160,7 +1253,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("" + listaDeSolicitacao.get(numero).getDataSolicitacao());
         campoValorSolicitacao.setText("" + listaDeSolicitacao.get(numero).getValorSolicitacao());
     }
-
+    
     private void preencherCamposAvaliarSinistro(int selecionado) {
         List<Segurado> listaSinistro = gerenciador.listaDeSinistrosPendentes();
         campoDataSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getDataSinistro());
@@ -1172,7 +1265,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
         //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
-
+    
     private void runProgram() {
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
@@ -1183,7 +1276,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
     }
-
+    
     private void visualizarSolicitacao() {
         jPanelCorretor.setVisible(true);
         jPanelCalendarioAgendarVisitaResidencia.setVisible(false);
@@ -1193,7 +1286,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-
+    
     private void visualizarResidencias() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarResidencia.setVisible(true);
@@ -1203,7 +1296,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelBemVindo.setVisible(false);
         jPanelMotivoReprovacao.setVisible(false);
     }
-
+    
     private void visualizarSinistros() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarSinistro.setVisible(true);
@@ -1212,7 +1305,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
     }
-
+    
     private void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));
@@ -1312,6 +1405,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;

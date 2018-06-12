@@ -145,7 +145,7 @@ public class SolicitacaoDAO {
         PreparedStatement stm;
         try {
             stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = '" + solicitacao.getAprovadaSolicitacao() + "',"
-                    + " motivoReprovacao ='" + solicitacao.getMotivoReprovacao() + "', motivoAlterecao ='" + solicitacao.getMotivoReprovacao() + "'  "
+                    + " motivoReprovacao ='" + solicitacao.getMotivoReprovacao() + "', motivoAlterecao ='" + solicitacao.getMotivoAlteracao() + "'  "
                     + "where solicitacaoseguro.idPessoa =" + solicitacao.getResidencia().getCandidato().getCodPessoa()
                     + " and solicitacaoseguro.idResidencia =" + solicitacao.getResidencia().getCodResidencia());
             stm.executeUpdate();

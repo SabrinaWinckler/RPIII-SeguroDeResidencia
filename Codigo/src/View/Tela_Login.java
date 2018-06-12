@@ -10,6 +10,9 @@ import Dominio.Corretor;
 import Dominio.Pessoa;
 import Motor.Gerenciador;
 import java.awt.Color;
+import java.awt.Cursor;
+import java.awt.Font;
+import java.awt.event.KeyEvent;
 import java.util.List;
 import javax.swing.JOptionPane;
 
@@ -94,15 +97,10 @@ public class Tela_Login extends javax.swing.JFrame {
         perguntaPrimeiroAcesso.setForeground(new java.awt.Color(255, 255, 255));
         perguntaPrimeiroAcesso.setText("Seu primeiro acesso? ");
         perguntaPrimeiroAcesso.setToolTipText("");
-        perguntaPrimeiroAcesso.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                perguntaPrimeiroAcessoMouseClicked(evt);
-            }
-        });
         getContentPane().add(perguntaPrimeiroAcesso, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 130, 30));
 
         cadastro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        cadastro.setForeground(new java.awt.Color(68, 122, 221));
+        cadastro.setForeground(new java.awt.Color(255, 255, 255));
         cadastro.setText("Cadastre-se aqui");
         cadastro.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -123,8 +121,16 @@ public class Tela_Login extends javax.swing.JFrame {
         getContentPane().add(perguntaEsqueceuSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 130, 20));
 
         recuperarSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        recuperarSenha.setForeground(new java.awt.Color(68, 122, 221));
+        recuperarSenha.setForeground(new java.awt.Color(255, 255, 255));
         recuperarSenha.setText("Recuperar senha");
+        recuperarSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                recuperarSenhaMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recuperarSenhaMouseExited(evt);
+            }
+        });
         getContentPane().add(recuperarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 100, 20));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
@@ -137,6 +143,38 @@ public class Tela_Login extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void entrarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_entrarButtonActionPerformed
+        realizarLogin();
+    }//GEN-LAST:event_entrarButtonActionPerformed
+
+    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
+        Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
+        telaCadastro.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_cadastroMouseClicked
+
+    private void cadastroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseEntered
+        cadastro.setForeground(new Color(68, 122, 221));
+        cadastro.setFont(new Font("Arial", Font.ITALIC, 12));
+        cadastro.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_cadastroMouseEntered
+
+    private void cadastroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseExited
+        cadastro.setForeground(new Color(255, 255, 255));
+        cadastro.setFont(new Font("Arial", Font.BOLD, 12));
+    }//GEN-LAST:event_cadastroMouseExited
+
+    private void recuperarSenhaMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recuperarSenhaMouseEntered
+        recuperarSenha.setForeground(new Color(68, 122, 221));
+        recuperarSenha.setFont(new Font("Arial", Font.ITALIC, 12));
+        recuperarSenha.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_recuperarSenhaMouseEntered
+
+    private void recuperarSenhaMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recuperarSenhaMouseExited
+        recuperarSenha.setForeground(new Color(255, 255, 255));
+        recuperarSenha.setFont(new Font("Arial", Font.BOLD, 12));
+    }//GEN-LAST:event_recuperarSenhaMouseExited
+
+    private void realizarLogin() {
         boolean usuarioExiste = false;
         List<Candidato> listPessoas = motor.retornaCliente();
         List<Corretor> listCorretores = motor.retornarCorretor();
@@ -172,26 +210,7 @@ public class Tela_Login extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, "Usuário ou senha inválidos. "
                     + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
-    }//GEN-LAST:event_entrarButtonActionPerformed
-
-    private void perguntaPrimeiroAcessoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_perguntaPrimeiroAcessoMouseClicked
-
-    }//GEN-LAST:event_perguntaPrimeiroAcessoMouseClicked
-
-    private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
-        Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
-        telaCadastro.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_cadastroMouseClicked
-
-    private void cadastroMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseEntered
-        cadastro.setForeground(Color.white);
-    }//GEN-LAST:event_cadastroMouseEntered
-
-    private void cadastroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseExited
-        //cadastro.setForeground(Color.getColor("[r=68,g=122,b=221]"));
-        //[68,122,221]
-    }//GEN-LAST:event_cadastroMouseExited
+    }
 
     public Pessoa identificarUsuario() {
         return null;
@@ -235,7 +254,7 @@ public class Tela_Login extends javax.swing.JFrame {
             @Override
             public void run() {
                 new Tela_Login().setVisible(true);
-                
+
             }
         });
     }

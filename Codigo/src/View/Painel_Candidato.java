@@ -11,6 +11,7 @@ import Motor.Gerenciador;
 import Dominio.Solicitacao;
 import Dominio.Bem;
 import Excecoes.ExceptionEmptySpace;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -385,9 +386,17 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        listaSolicitacaoCandidato.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                listaSolicitacaoCandidatoMouseMoved(evt);
+            }
+        });
         listaSolicitacaoCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaSolicitacaoCandidatoMouseClicked(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                listaSolicitacaoCandidatoMouseExited(evt);
             }
         });
         jScrollPane1.setViewportView(listaSolicitacaoCandidato);
@@ -1511,6 +1520,15 @@ public class Painel_Candidato extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonVoltar3ActionPerformed
 
+    private void listaSolicitacaoCandidatoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseMoved
+        listaSolicitacaoCandidato.setBackground(new Color(126, 87, 194));
+    }//GEN-LAST:event_listaSolicitacaoCandidatoMouseMoved
+
+    private void listaSolicitacaoCandidatoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseExited
+        listaSolicitacaoCandidato.setBackground(new Color(204, 204, 255));
+    }//GEN-LAST:event_listaSolicitacaoCandidatoMouseExited
+
+    
     private void home() {
         painelP.setVisible(true);
         jPanelHome.setVisible(true);
