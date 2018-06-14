@@ -1082,11 +1082,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_relatarSinistroActionPerformed
 
     private void contratarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarServicoActionPerformed
-        painelServico.setVisible(true);
-        painelSolicitacao.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
-        editar.setVisible(false);
-        nova.setVisible(false);
+        visualizarServico();
     }//GEN-LAST:event_contratarServicoActionPerformed
 
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
@@ -1421,6 +1417,28 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelSolicitacaoReprovada.setVisible(false);
         jPanelListaSeguros.setVisible(true);
         buttonVoltar.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
+    }
+
+    public void visualizarServico() {
+        painelServico.setVisible(true);
+        painelSolicitacao.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
+        painelP.setVisible(true);
+        jPanelHome.setVisible(false);
+        painelSolicitacao.setVisible(false);
+        jPanelSolicitacaoAprovada.setVisible(false);
+        jPanelPagamento.setVisible(false);
+        jPanelSolicitacaoReprovada.setVisible(false);
+        jPanelListaSeguros.setVisible(false);
+        buttonVoltar.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
     }
 
     private void solicitacaoAprovada() {
