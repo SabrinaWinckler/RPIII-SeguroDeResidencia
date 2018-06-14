@@ -91,6 +91,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
+        editar = new javax.swing.JButton();
+        editarSelecionado = new javax.swing.JButton();
+        nova = new javax.swing.JButton();
+        cancelarSolicitacao = new javax.swing.JButton();
         jPanelHome = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jPanelListaSeguros = new javax.swing.JPanel();
@@ -148,10 +152,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         encanador = new javax.swing.JCheckBox();
         eletricista = new javax.swing.JCheckBox();
         painelSolicitacao = new javax.swing.JPanel();
-        editarSelecionado = new javax.swing.JButton();
-        editar = new javax.swing.JButton();
-        cancelarSolicitacao = new javax.swing.JButton();
-        nova = new javax.swing.JButton();
         cep = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
@@ -263,6 +263,50 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setBackground(new java.awt.Color(255, 255, 255));
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        editar.setBackground(new java.awt.Color(151, 53, 255));
+        editar.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        editar.setForeground(new java.awt.Color(255, 255, 255));
+        editar.setText("Editar Solicitação");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+        painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 160, -1));
+
+        editarSelecionado.setBackground(new java.awt.Color(153, 51, 255));
+        editarSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        editarSelecionado.setForeground(new java.awt.Color(255, 255, 255));
+        editarSelecionado.setText("Editar");
+        editarSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarSelecionadoActionPerformed(evt);
+            }
+        });
+        painelP.add(editarSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
+
+        nova.setBackground(new java.awt.Color(151, 53, 255));
+        nova.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        nova.setForeground(new java.awt.Color(255, 255, 255));
+        nova.setText("Nova Solicitação");
+        nova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novaActionPerformed(evt);
+            }
+        });
+        painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 160, -1));
+
+        cancelarSolicitacao.setBackground(new java.awt.Color(204, 0, 0));
+        cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cancelarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarSolicitacao.setText("Cancelar Solicitação");
+        cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarSolicitacaoActionPerformed(evt);
+            }
+        });
+        painelP.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
 
         jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
         jPanelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -561,50 +605,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.add(painelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
         painelSolicitacao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        editarSelecionado.setBackground(new java.awt.Color(153, 51, 255));
-        editarSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        editarSelecionado.setForeground(new java.awt.Color(255, 255, 255));
-        editarSelecionado.setText("Editar");
-        editarSelecionado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarSelecionadoActionPerformed(evt);
-            }
-        });
-        painelSolicitacao.add(editarSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
-
-        editar.setBackground(new java.awt.Color(151, 53, 255));
-        editar.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        editar.setForeground(new java.awt.Color(255, 255, 255));
-        editar.setText("Editar Solicitação");
-        editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarActionPerformed(evt);
-            }
-        });
-        painelSolicitacao.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 160, -1));
-
-        cancelarSolicitacao.setBackground(new java.awt.Color(204, 0, 0));
-        cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        cancelarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarSolicitacao.setText("Cancelar Solicitação");
-        cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarSolicitacaoActionPerformed(evt);
-            }
-        });
-        painelSolicitacao.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
-
-        nova.setBackground(new java.awt.Color(151, 53, 255));
-        nova.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        nova.setForeground(new java.awt.Color(255, 255, 255));
-        nova.setText("Nova Solicitação");
-        nova.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novaActionPerformed(evt);
-            }
-        });
-        painelSolicitacao.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 160, -1));
 
         cep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1061,18 +1061,20 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void sairButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonActionPerformed
         dispose();
-        
+
     }//GEN-LAST:event_sairButtonActionPerformed
 
     private void solicitarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_solicitarSeguroActionPerformed
         /*Tela_ListaSolicitacoes telaSolicitacoes = new Tela_ListaSolicitacoes();
         telaSolicitacoes.setVisible(true);
-        dispose();*/
+        dispose();
         this.controlador = new ControleSolicitacao();
         editar.setVisible(true);
         nova.setVisible(true);
         cancelarSolicitacao.setVisible(true);
         jPanelHome.setVisible(false);
+         */
+        visualizarOpcoesSolicitacao();
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
@@ -1299,19 +1301,19 @@ if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancela
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
         //Painel_Candidato painel = new Painel_Candidato();
         //painel.setVisible(true);
-         if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja recusar o seguro?", "Alerta", JOptionPane.YES_NO_OPTION)== 0){
-             visualizarSolicitacao();
-             //chamar o metodo para excluir do banco de dados essa soclitação
-             
-         }
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja recusar o seguro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            visualizarSolicitacao();
+            //chamar o metodo para excluir do banco de dados essa soclitação
+
+        }
     }//GEN-LAST:event_buttonRecusarSeguroActionPerformed
 
     private void ButtonContratarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonContratarSeguroActionPerformed
-       if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja contratar o seguro?", "Alerta", JOptionPane.YES_NO_OPTION)== 0){
-           pagamento();
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja contratar o seguro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            pagamento();
+            
+        }
 
-       }
-        
     }//GEN-LAST:event_ButtonContratarSeguroActionPerformed
 
     private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
@@ -1323,25 +1325,25 @@ if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancela
     }//GEN-LAST:event_editarSelecionadoActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
-        if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja confirmar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0){
-        String campoImpressoNoCartao = campoImpressoNomeCartao.getText();
-        String numeroCartao = campoNumeroDoCartao.getText();
-        String validadeCartao = mesComboBox.getActionCommand() + "/" + anoComboBox.getActionCommand();
-        long codSeguranca = Long.parseLong(campoCodSegurancaCartao.getText());
-        float premioApolice = Float.parseFloat(campoValorParcela.getText());
-        String bandeiraCartao = null;
-        long numeroApolice = 2536;
-        Date dataContratacaoApolice = new Date();
-        gerenciador.registrarApolice(bandeiraCartao, numeroApolice, premioApolice, dataContratacaoApolice, bandeiraCartao, numeroCartao, codSeguranca, numeroCartao);
-        JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
-        visualizarSolicitacao();
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja confirmar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            String campoImpressoNoCartao = campoImpressoNomeCartao.getText();
+            String numeroCartao = campoNumeroDoCartao.getText();
+            String validadeCartao = mesComboBox.getActionCommand() + "/" + anoComboBox.getActionCommand();
+            long codSeguranca = Long.parseLong(campoCodSegurancaCartao.getText());
+            float premioApolice = Float.parseFloat(campoValorParcela.getText());
+            String bandeiraCartao = null;
+            long numeroApolice = 2536;
+            Date dataContratacaoApolice = new Date();
+            gerenciador.registrarApolice(bandeiraCartao, numeroApolice, premioApolice, dataContratacaoApolice, bandeiraCartao, numeroCartao, codSeguranca, numeroCartao);
+            JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
+            visualizarSolicitacao();
         }
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
-if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0){
-    solicitacaoAprovada();
-}
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            solicitacaoAprovada();
+        }
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void enviarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarServicoActionPerformed
@@ -1390,7 +1392,18 @@ if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancela
         jPanelPagamento.setVisible(false);
         jPanelSolicitacaoReprovada.setVisible(false);
         jPanelListaSeguros.setVisible(false);
+        editar.setVisible(false);
+        editarSelecionado.setVisible(false);
+        nova.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
         //buttonVoltar.setVisible(false);
+    }
+    
+    public void visualizarOpcoesSolicitacao() {
+        editar.setVisible(true);
+        nova.setVisible(true);
+        cancelarSolicitacao.setVisible(true);
+        jPanelHome.setVisible(false);
     }
     
     private void visualizarSolicitacao() {
@@ -1456,7 +1469,7 @@ if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancela
         textValorSeguro.setText("" + listaSolicitacao.get(selecionado).getValorSolicitacao());
         textMotivo.setText(listaSolicitacao.get(selecionado).getMotivoReprovacao());
     }
-
+    
     public void preencherCamposEdicao(int selecionado) {
         cep.setText("" + listaSolicitacao.get(selecionado).getResidencia().getCepRes());
         bairro.setText(listaSolicitacao.get(selecionado).getResidencia().getBairro());
