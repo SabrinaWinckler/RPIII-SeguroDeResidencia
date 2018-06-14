@@ -17,14 +17,14 @@ import java.util.List;
  * @author Matheus Montanha
  */
 public class GerenciadorViewCorretor {
-    
+
     List<Solicitacao> listaDeSolicitacao;
     SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-    
+
     public GerenciadorViewCorretor(List lista) {
         listaDeSolicitacao = lista;
     }
-    
+
     private List<Solicitacao> organizarListaDeSolicitacoes() {
         listaDeSolicitacao = daoSolicitacao.read();
         boolean houveTroca;
@@ -56,17 +56,17 @@ public class GerenciadorViewCorretor {
             return listaDeSolicitacao;
         }
     }
-    
+
     public List<Solicitacao> listaDeSolicitacoesPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
         listaDeSolicitacao = organizarListaDeSolicitacoes();
         List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
-        listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() == null)).forEachOrdered((solicitacao) -> {
+        listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() == null && solicitacao.getMotivoReprovacao() == null)).forEachOrdered((solicitacao) -> {
             listaDeSolicitacoesPendendes.add(solicitacao);
         });
         return listaDeSolicitacoesPendendes;
     }
-    
+
     public List<Solicitacao> listaDeResidenciasPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
         List<Solicitacao> listaDeResidenciasPendentes = new ArrayList<>();
@@ -75,16 +75,16 @@ public class GerenciadorViewCorretor {
         });
         return listaDeResidenciasPendentes;
     }
-    
+
     public void updateStatusSolicitacao(Solicitacao solicitacao) {
         daoSolicitacao.updateStatusSolicitacao(solicitacao);
     }
-    
+
     public List<Segurado> listaDeSinistrosPendentes() {
         RelataSinistroDAO daoSinistro = new RelataSinistroDAO();
         return daoSinistro.read();
     }
-    
+
     public void registrarDateVisitaResidencia(Solicitacao solicitacao) {
         daoSolicitacao.registrarDataVisita(solicitacao);
     }

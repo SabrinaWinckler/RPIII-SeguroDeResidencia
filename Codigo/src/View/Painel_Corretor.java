@@ -182,6 +182,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAreaConstruida = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
         jPanelSolicitacaoDeSeguro = new javax.swing.JPanel();
+        jPanelMotivoSolicitacaoRecusado = new javax.swing.JPanel();
+        jScrollPane7 = new javax.swing.JScrollPane();
+        motivoReprovacaoSolicitacaojTextArea = new javax.swing.JTextArea();
+        jLabel24 = new javax.swing.JLabel();
+        confirmarMotivoReprovacaojButton1 = new javax.swing.JButton();
+        cancelarMotivoReprovacaojButton3 = new javax.swing.JButton();
         jPanelCalendarioAgendarVisitaResidencia = new javax.swing.JPanel();
         jCalendarAgendarVisitaResidencia = new com.toedter.calendar.JCalendar();
         jButtonConfirmarData = new javax.swing.JButton();
@@ -208,7 +214,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoEmailCandidato1 = new javax.swing.JTextField();
         campoTelefoneCandidato1 = new javax.swing.JTextField();
         jLabelTituloDadosSolicitante = new javax.swing.JLabel();
-        buttonRecusarSeguro1 = new javax.swing.JButton();
+        buttonRecusarSeguro = new javax.swing.JButton();
         ButtonAgendarVisitaResidencia = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         listaDeSolicitacoesSeguro = new javax.swing.JTable();
@@ -707,6 +713,44 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelSolicitacaoDeSeguro.setPreferredSize(new java.awt.Dimension(730, 490));
         jPanelSolicitacaoDeSeguro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        jPanelMotivoSolicitacaoRecusado.setBackground(new java.awt.Color(204, 204, 255));
+        jPanelMotivoSolicitacaoRecusado.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelMotivoSolicitacaoRecusado.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        motivoReprovacaoSolicitacaojTextArea.setColumns(20);
+        motivoReprovacaoSolicitacaojTextArea.setRows(5);
+        jScrollPane7.setViewportView(motivoReprovacaoSolicitacaojTextArea);
+
+        jPanelMotivoSolicitacaoRecusado.add(jScrollPane7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 260, -1));
+
+        jLabel24.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel24.setText("Por favor, digite o motivo da reprovação:");
+        jPanelMotivoSolicitacaoRecusado.add(jLabel24, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 30));
+
+        confirmarMotivoReprovacaojButton1.setBackground(new java.awt.Color(0, 153, 255));
+        confirmarMotivoReprovacaojButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        confirmarMotivoReprovacaojButton1.setForeground(new java.awt.Color(255, 255, 255));
+        confirmarMotivoReprovacaojButton1.setText("Confirmar");
+        confirmarMotivoReprovacaojButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarMotivoReprovacaojButton1ActionPerformed(evt);
+            }
+        });
+        jPanelMotivoSolicitacaoRecusado.add(confirmarMotivoReprovacaojButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 90, 30));
+
+        cancelarMotivoReprovacaojButton3.setBackground(new java.awt.Color(126, 87, 194));
+        cancelarMotivoReprovacaojButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cancelarMotivoReprovacaojButton3.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarMotivoReprovacaojButton3.setText("Cancelar");
+        cancelarMotivoReprovacaojButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarMotivoReprovacaojButton3ActionPerformed(evt);
+            }
+        });
+        jPanelMotivoSolicitacaoRecusado.add(cancelarMotivoReprovacaojButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 90, 30));
+
+        jPanelSolicitacaoDeSeguro.add(jPanelMotivoSolicitacaoRecusado, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 280, 190));
+
         jPanelCalendarioAgendarVisitaResidencia.setBackground(new java.awt.Color(204, 204, 255));
         jPanelCalendarioAgendarVisitaResidencia.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelCalendarioAgendarVisitaResidencia.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -823,16 +867,16 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabelTituloDadosSolicitante.setText("Dados do Solicitante:");
         jPanelSolicitacaoDeSeguro.add(jLabelTituloDadosSolicitante, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 130, -1, -1));
 
-        buttonRecusarSeguro1.setBackground(new java.awt.Color(153, 51, 255));
-        buttonRecusarSeguro1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        buttonRecusarSeguro1.setForeground(new java.awt.Color(255, 255, 255));
-        buttonRecusarSeguro1.setText("Recusada");
-        buttonRecusarSeguro1.addActionListener(new java.awt.event.ActionListener() {
+        buttonRecusarSeguro.setBackground(new java.awt.Color(153, 51, 255));
+        buttonRecusarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonRecusarSeguro.setForeground(new java.awt.Color(255, 255, 255));
+        buttonRecusarSeguro.setText("Recusada");
+        buttonRecusarSeguro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonRecusarSeguro1ActionPerformed(evt);
+                buttonRecusarSeguroActionPerformed(evt);
             }
         });
-        jPanelSolicitacaoDeSeguro.add(buttonRecusarSeguro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 100, 30));
+        jPanelSolicitacaoDeSeguro.add(buttonRecusarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 440, 100, 30));
 
         ButtonAgendarVisitaResidencia.setBackground(new java.awt.Color(0, 153, 255));
         ButtonAgendarVisitaResidencia.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1022,18 +1066,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_buttonNegarPagamentoActionPerformed
 
-    private void buttonRecusarSeguro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguro1ActionPerformed
-        int controle = 0;
-        while (controle == 0) {
-            String motivo = JOptionPane.showInputDialog(rootPane, "Digite o motivo da reprovação, por favor:");
-            if (motivo.equalsIgnoreCase("") || motivo.equalsIgnoreCase(" ")) {
-                JOptionPane.showConfirmDialog(rootPane, "O campo de texto não deve ser deixado em branco."
-                        + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
-            } else {
-                controle = 1;
-            }
-        }
-    }//GEN-LAST:event_buttonRecusarSeguro1ActionPerformed
+    private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
+        jPanelMotivoSolicitacaoRecusado.setVisible(true);
+        habilitarCamposTelaSolicitacao(false);
+
+    }//GEN-LAST:event_buttonRecusarSeguroActionPerformed
 
     private void ButtonAgendarVisitaResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgendarVisitaResidenciaActionPerformed
         jPanelCalendarioAgendarVisitaResidencia.setVisible(true);
@@ -1149,6 +1186,28 @@ public class Painel_Corretor extends javax.swing.JFrame {
         listaDeSolicitacoesSeguro.setBackground(new Color(204, 204, 255));
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseExited
 
+    private void confirmarMotivoReprovacaojButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMotivoReprovacaojButton1ActionPerformed
+        if (motivoReprovacaoSolicitacaojTextArea.getText().length() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "O motivo não pode ser em branco. Por favor, digite novamente.", "Alerta", JOptionPane.OK_OPTION);
+        } else {
+            motivoReprovacao = motivoReprovacaoSolicitacaojTextArea.getText();
+            Solicitacao solicitacao = gerenciador.listaDeSolicitacoesPendentes().get(selecionado);
+            solicitacao.setMotivoReprovacao(motivoReprovacao);
+            gerenciador.updateStatusSolicitacao(solicitacao);
+            JOptionPane.showConfirmDialog(rootPane, "Solicitação recusada com sucesso.", "Alerta", JOptionPane.OK_OPTION);
+            readTableListaDeSolicitacaoSeguro();
+            habilitarCamposTelaSolicitacao(false);
+        }
+    }//GEN-LAST:event_confirmarMotivoReprovacaojButton1ActionPerformed
+
+    private void cancelarMotivoReprovacaojButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarMotivoReprovacaojButton3ActionPerformed
+        int escolha = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja cancelar?", "Alerta", JOptionPane.YES_NO_OPTION);
+        if (escolha == 0) {
+            jPanelMotivoSolicitacaoRecusado.setVisible(false);
+            habilitarCamposTelaSolicitacao(true);
+        }
+    }//GEN-LAST:event_cancelarMotivoReprovacaojButton3ActionPerformed
+
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
         campoCidadeResidencia.setText("");
@@ -1177,7 +1236,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
     private void habilitarButtonsTelaSolicitacao(Boolean condicao) {
         ButtonAgendarVisitaResidencia.setEnabled(condicao);
-        buttonRecusarSeguro1.setEnabled(condicao);
+        buttonRecusarSeguro.setEnabled(condicao);
     }
 
     private void habiltarButtonsTelaResidencia(Boolean condicao) {
@@ -1200,8 +1259,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabelTituloDadosSolicitante.setEnabled(condicao);
         jLabelTituloDadosSolicitacao.setEnabled(condicao);
         ButtonAgendarVisitaResidencia.setEnabled(condicao);
-        buttonRecusarSeguro1.setEnabled(condicao);
+        buttonRecusarSeguro.setEnabled(condicao);
         listaDeSolicitacoesSeguro.setEnabled(condicao);
+        campoLocalizacaoPerigosa.setEnabled(condicao);
+        campoTerrenoPerigoso.setEnabled(condicao);
+        campoEstruturaAmeacada.setEnabled(condicao);
+        campoDataSolicitacao.setEnabled(condicao);
+        campoValorSolicitacao.setEnabled(condicao);
     }
 
     private void habilitarCamposTelaResidencia(Boolean condicao) {
@@ -1289,6 +1353,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelAvaliarSinistro.setVisible(false);
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
+        jPanelMotivoSolicitacaoRecusado.setVisible(false);
     }
 
     private void visualizarResidencias() {
@@ -1357,7 +1422,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton buttonEditarDadosResidencia;
     private javax.swing.JButton buttonNegarPagamento;
     private javax.swing.JButton buttonRecusarResidencia;
-    private javax.swing.JButton buttonRecusarSeguro1;
+    private javax.swing.JButton buttonRecusarSeguro;
     private javax.swing.JTextField campoAnoConstrucao;
     private javax.swing.JTextField campoAreaConstruida;
     private javax.swing.JTextField campoAreaTotal;
@@ -1387,7 +1452,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorSinistro;
     private javax.swing.JTextField campoValorSolicitacao;
     private javax.swing.JButton cancelarMotivoReprovacaojButton2;
+    private javax.swing.JButton cancelarMotivoReprovacaojButton3;
     private javax.swing.JButton confirmarMotivoReprovacaojButton;
+    private javax.swing.JButton confirmarMotivoReprovacaojButton1;
     private javax.swing.JButton gerenciarServicosButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButtonCancelarRegistroDeData;
@@ -1410,6 +1477,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -1442,6 +1510,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelDadosProprietario;
     private javax.swing.JPanel jPanelDadosSolicitante;
     private javax.swing.JPanel jPanelMotivoReprovacao;
+    private javax.swing.JPanel jPanelMotivoSolicitacaoRecusado;
     private javax.swing.JPanel jPanelSolicitacaoDeSeguro;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
@@ -1449,12 +1518,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JToggleButton jToggleButtonDadosProprietario;
     private javax.swing.JLabel labelFundoHomePainelCorretor;
     public javax.swing.JTable listaDeResidencias;
     public javax.swing.JTable listaDeSolicitacoesSeguro;
     private javax.swing.JTable listaSinistrosPendentes;
+    private javax.swing.JTextArea motivoReprovacaoSolicitacaojTextArea;
     private javax.swing.JTextArea motivoReprovacaojTextArea;
     private javax.swing.JButton visualizarSolicitacoesButton;
     // End of variables declaration//GEN-END:variables
