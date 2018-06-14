@@ -137,6 +137,16 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         buttonConfirmar = new javax.swing.JButton();
         buttonCancelar = new javax.swing.JButton();
+        painelServico = new javax.swing.JPanel();
+        jLabel4 = new javax.swing.JLabel();
+        enviarServico = new javax.swing.JButton();
+        jLabel27 = new javax.swing.JLabel();
+        chaveiro = new javax.swing.JCheckBox();
+        cancelarServico = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        encanador = new javax.swing.JCheckBox();
+        eletricista = new javax.swing.JCheckBox();
         painelSolicitacao = new javax.swing.JPanel();
         editarSelecionado = new javax.swing.JButton();
         editar = new javax.swing.JButton();
@@ -215,13 +225,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         textEnd1 = new javax.swing.JTextPane();
         jLabel52 = new javax.swing.JLabel();
         buttonVoltar3 = new javax.swing.JButton();
-        painelServico = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        encanador = new javax.swing.JCheckBox();
-        chaveiro = new javax.swing.JCheckBox();
-        eletricista = new javax.swing.JCheckBox();
-        enviarServico = new javax.swing.JButton();
-        cancelarServico = new javax.swing.JButton();
         buttonHome = new javax.swing.JButton();
         relatarSinistro = new javax.swing.JButton();
         contratarServico = new javax.swing.JButton();
@@ -498,6 +501,64 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelPagamento.add(buttonCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 410, 90, 30));
 
         painelP.add(jPanelPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
+
+        painelServico.setBackground(new java.awt.Color(255, 255, 255));
+        painelServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(1, 45, 90));
+        jLabel4.setText("Qual serviço você deseja solicitar?");
+        painelServico.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 120, -1, -1));
+
+        enviarServico.setBackground(new java.awt.Color(0, 153, 255));
+        enviarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        enviarServico.setForeground(new java.awt.Color(255, 255, 255));
+        enviarServico.setText("Solicitar");
+        enviarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarServicoActionPerformed(evt);
+            }
+        });
+        painelServico.add(enviarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 280, 100, 30));
+
+        jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/house-key.png"))); // NOI18N
+        painelServico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 220, 30, 30));
+
+        chaveiro.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        chaveiro.setText("Chaveiro");
+        painelServico.add(chaveiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 220, 130, -1));
+
+        cancelarServico.setBackground(new java.awt.Color(126, 87, 194));
+        cancelarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cancelarServico.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarServico.setText("Cancelar");
+        cancelarServico.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarServicoActionPerformed(evt);
+            }
+        });
+        painelServico.add(cancelarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, 100, 30));
+
+        jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pipe.png"))); // NOI18N
+        painelServico.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 160, 30, -1));
+
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/flash.png"))); // NOI18N
+        painelServico.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 190, -1, -1));
+
+        encanador.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        encanador.setText("Encanador");
+        painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 130, -1));
+
+        eletricista.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        eletricista.setText("Eletricista");
+        eletricista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                eletricistaActionPerformed(evt);
+            }
+        });
+        painelServico.add(eletricista, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 160, 130, -1));
+
+        painelP.add(painelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
         painelSolicitacao.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -912,53 +973,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         painelP.add(jPanelSolicitacaoReprovada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
-        painelServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel4.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        jLabel4.setText("Qual serviço deseja solicitar?");
-        painelServico.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, -1, -1));
-
-        encanador.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        encanador.setText("Encanador");
-        painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 110, -1, -1));
-
-        chaveiro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        chaveiro.setText("Chaveiro");
-        painelServico.add(chaveiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 130, -1, -1));
-
-        eletricista.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
-        eletricista.setText("Eletricista");
-        eletricista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                eletricistaActionPerformed(evt);
-            }
-        });
-        painelServico.add(eletricista, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
-
-        enviarServico.setBackground(new java.awt.Color(0, 153, 255));
-        enviarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        enviarServico.setForeground(new java.awt.Color(255, 255, 255));
-        enviarServico.setText("Enviar");
-        enviarServico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarServicoActionPerformed(evt);
-            }
-        });
-        painelServico.add(enviarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 200, 80, 30));
-
-        cancelarServico.setBackground(new java.awt.Color(126, 87, 194));
-        cancelarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        cancelarServico.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarServico.setText("Cancelar");
-        cancelarServico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarServicoActionPerformed(evt);
-            }
-        });
-        painelServico.add(cancelarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 200, -1, 30));
-
-        painelP.add(painelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 130, 350, 240));
-
         getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 730, -1));
 
         buttonHome.setBackground(new java.awt.Color(255, 255, 255));
@@ -1266,7 +1280,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_eletricistaActionPerformed
 
     private void cancelarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarServicoActionPerformed
+if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0){       
         painelServico.setVisible(false);
+}
     }//GEN-LAST:event_cancelarServicoActionPerformed
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
@@ -1329,6 +1345,7 @@ if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancela
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void enviarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarServicoActionPerformed
+        if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja solicitar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0){
         String escolhido = null;
         int qnt = 0;
         if (encanador.isSelected()) {
@@ -1345,6 +1362,7 @@ if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancela
         controlador.registrarServico(escolhido, qnt);
         JOptionPane.showMessageDialog(painelP, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
         painelServico.setVisible(false);
+        }
     }//GEN-LAST:event_enviarServicoActionPerformed
 
     private void buttonVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltar3ActionPerformed
@@ -1563,10 +1581,13 @@ if(JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancela
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
