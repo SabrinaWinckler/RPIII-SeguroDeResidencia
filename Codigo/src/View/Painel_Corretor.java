@@ -9,6 +9,7 @@ import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
+import java.awt.Font;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,7 +31,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     int visivel = 0;
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
     String motivoReprovacao, motivoAlteracao, resultado;
-    int selecionado;
+    int selecionado = -1;
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
@@ -127,7 +128,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        parecerDoAvaliadorSinistro = new javax.swing.JTextArea();
         jLabel21 = new javax.swing.JLabel();
         ButtonAutorizarPagamento = new javax.swing.JButton();
         buttonNegarPagamento = new javax.swing.JButton();
@@ -319,6 +320,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelAvaliarSinistro.setPreferredSize(new java.awt.Dimension(720, 480));
         jPanelAvaliarSinistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        listaSinistrosPendentes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         listaSinistrosPendentes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -395,9 +397,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel20.setText("Preencha o campo abaixo.");
         jPanel1.add(jLabel20, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 50, -1, -1));
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane4.setViewportView(jTextArea1);
+        parecerDoAvaliadorSinistro.setColumns(20);
+        parecerDoAvaliadorSinistro.setRows(5);
+        parecerDoAvaliadorSinistro.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                parecerDoAvaliadorSinistroMouseClicked(evt);
+            }
+        });
+        jScrollPane4.setViewportView(parecerDoAvaliadorSinistro);
 
         jPanel1.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 210, 90));
 
@@ -1033,9 +1040,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonDadosProprietarioActionPerformed
 
     private void listaSinistrosPendentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSinistrosPendentesMouseClicked
-        selecionado = listaSinistrosPendentes.getSelectedRow();
-        preencherCamposAvaliarSinistro(selecionado);
-        habilitarButtonsTelaSinistro(true);
+        if (selecionado == -1) {
+            selecionado = listaSinistrosPendentes.getSelectedRow();
+            preencherCamposAvaliarSinistro(selecionado);
+            habilitarButtonsTelaSinistro(true);
+            listaSinistrosPendentes.setEnabled(false);
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "Você pode selecionar apenas um sinistro por vez. Por favor, se deseja selecionar"
+                    + " selecionar outro sinistro, click no botão (Cancelar avaliação) e selecione a solicitação desejada!", "Confirmação", JOptionPane.CLOSED_OPTION);
+        }
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked
 
     private void ButtonAutorizarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAutorizarPagamentoActionPerformed
@@ -1043,8 +1056,18 @@ public class Painel_Corretor extends javax.swing.JFrame {
         Sinistro sinistro = gerenciador.listaDeSinistrosPendentes().get(selecionado);
         sinistro.setAutorizadoSinistro(resultadoSinistro);
         gerenciador.updateStatusSinistro(sinistro);
-        JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro autorizado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
-
+        if (!parecerDoAvaliadorSinistro.getText().equalsIgnoreCase("Digite aqui o parecer técnico do sinistro...") && parecerDoAvaliadorSinistro.getText().isEmpty() && parecerDoAvaliadorSinistro.getText().equals("")) {
+            JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro autorizado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
+            if (readTableListaDeSinistros() == 0) {
+                runProgram();
+            } else {
+                limparCamposTelaSinistro();
+                habilitarButtonsTelaSinistro(false);
+                listaSinistrosPendentes.setEnabled(true);
+            }
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "O parecer não pode ser deixado em branco!", "Confirmação", JOptionPane.CLOSED_OPTION);
+        }
     }//GEN-LAST:event_ButtonAutorizarPagamentoActionPerformed
 
     private void buttonNegarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNegarPagamentoActionPerformed
@@ -1202,6 +1225,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cancelarMotivoReprovacaojButton3ActionPerformed
 
+    private void parecerDoAvaliadorSinistroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_parecerDoAvaliadorSinistroMouseClicked
+        parecerDoAvaliadorSinistro.setText("");
+    }//GEN-LAST:event_parecerDoAvaliadorSinistroMouseClicked
+
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
         campoCidadeResidencia.setText("");
@@ -1226,6 +1253,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoEstruturaAmeacada.setText("");
         campoDataSolicitacao.setText("");
         campoValorSolicitacao.setText("");
+    }
+
+    private void limparCamposTelaSinistro() {
+        campoDataSinistroFormat.setText("");
+        campoDescricaoSinistro.setText("");
+        campoTipoSinistro.setText("");
+        campoValorSinistroFormt.setText("");
     }
 
     private void habilitarButtonsTelaSolicitacao(Boolean condicao) {
@@ -1326,8 +1360,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSinistroFormat.setText("" + sdf.format(listaSinistro.get(selecionado).getDataSinistro()));
         campoDescricaoSinistro.setText(listaSinistro.get(selecionado).getDescricaoSinistro());
         campoTipoSinistro.setText(listaSinistro.get(selecionado).getTipoSinistro());
-        //campoValorSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getValorSinistro());
         campoValorSinistroFormt.setText("" + listaSinistro.get(selecionado).getValorSinistro());
+        parecerDoAvaliadorSinistro.setText("Digite aqui o parecer técnico do sinistro...");
+        parecerDoAvaliadorSinistro.setFont(new Font("Arial", Font.ITALIC, 12));
+        parecerDoAvaliadorSinistro.setForeground(new Color(119, 119, 119));
         //campoNomeSolicitante.setText(listaSinistro.get(selecionado).getNomePessoa());
         //campoCPFSolicitante.setText("" + listaSinistro.get(selecionado).getCpf());
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
@@ -1519,7 +1555,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JTextArea jTextArea1;
     private javax.swing.JToggleButton jToggleButtonDadosProprietario;
     private javax.swing.JLabel labelFundoHomePainelCorretor;
     public javax.swing.JTable listaDeResidencias;
@@ -1527,6 +1562,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTable listaSinistrosPendentes;
     private javax.swing.JTextArea motivoReprovacaoSolicitacaojTextArea;
     private javax.swing.JTextArea motivoReprovacaojTextArea;
+    private javax.swing.JTextArea parecerDoAvaliadorSinistro;
     private javax.swing.JButton visualizarSolicitacoesButton;
     // End of variables declaration//GEN-END:variables
 }

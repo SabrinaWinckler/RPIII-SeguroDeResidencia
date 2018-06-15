@@ -74,12 +74,16 @@ public class GerenciadorViewCorretor {
     public List<Solicitacao> listaDeResidenciasPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
         List<Solicitacao> listaDeResidenciasPendentes = new ArrayList<>();
-        listaDeSolicitacao.stream().filter((solicitacao)
-                -> (solicitacao.getDataVisitaResidencia() != null
-                && solicitacao.getMotivoReprovacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
-            listaDeResidenciasPendentes.add(solicitacao);
-        });
-        return listaDeResidenciasPendentes;
+        if (listaDeSolicitacao.size() > 0) {
+            listaDeSolicitacao.stream().filter((solicitacao)
+                    -> (solicitacao.getDataVisitaResidencia() != null
+                    && solicitacao.getMotivoReprovacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
+                listaDeResidenciasPendentes.add(solicitacao);
+            });
+            return listaDeResidenciasPendentes;
+        } else {
+            return listaDeResidenciasPendentes;
+        }
     }
 
     public void updateStatusSolicitacao(Solicitacao solicitacao) {
@@ -89,12 +93,15 @@ public class GerenciadorViewCorretor {
     public List<Sinistro> listaDeSinistrosPendentes() {
         listaDeSinistro = daoSinistro.read();
         List<Sinistro> listaDeSinistrosParaAvaliar = new ArrayList<>();
-        for (Sinistro sinistro : listaDeSinistro) {
-            if (!sinistro.getAutorizadoSinistro().equalsIgnoreCase("Autorizado")) {
+        if (listaDeSinistro.size() > 0) {
+            listaDeSinistro.stream().filter((sinistro) -> (sinistro.getAutorizadoSinistro() == null
+                    || sinistro.getAutorizadoSinistro().equalsIgnoreCase("null") || sinistro.getAutorizadoSinistro().isEmpty())).forEachOrdered((sinistro) -> {
                 listaDeSinistrosParaAvaliar.add(sinistro);
-            }
+            });
+            return listaDeSinistrosParaAvaliar;
+        } else {
+            return listaDeSinistrosParaAvaliar;
         }
-        return listaDeSinistrosParaAvaliar;
     }
 
     public void registrarDateVisitaResidencia(Solicitacao solicitacao) {

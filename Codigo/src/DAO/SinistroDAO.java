@@ -57,14 +57,14 @@ public class SinistroDAO {
         java.util.Date dataSinistro;
         String descricaoSinistro;
         float valorSinistro;
-        String autorizadoSinistro = "";
+        String autorizadoSinistro;
         String parecerAvaliador = null;
         int codSinistro, codTipoSinitro;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Sinistro> listaDeSinistros = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select sinistro.idSinistro ,dataSinistro, "
+            stmt = conexao.prepareStatement("select sinistro.idSinistro, autorizadoSinistro, dataSinistro, "
                     + "descricaoSinistro, valorSinistro, descricaoTipoSinistro, tiposinistro.idTipo from sinistro,"
                     + "tiposinistro where sinistro.idTipo = tiposinistro.idTipo;");
             rs = stmt.executeQuery();
@@ -74,6 +74,7 @@ public class SinistroDAO {
                 dataSinistro = rs.getDate("dataSinistro");
                 descricaoSinistro = rs.getString("descricaoSinistro");
                 valorSinistro = rs.getFloat("valorSinistro");
+                autorizadoSinistro = rs.getString("autorizadoSinistro");
                 tipoSinistro = rs.getString("descricaoTipoSinistro");
                 Sinistro sinistro = new Sinistro(codSinistro, dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador, codTipoSinitro, tipoSinistro);
                 listaDeSinistros.add(sinistro);
@@ -90,8 +91,7 @@ public class SinistroDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update sinistro set autorizadoSinistro ='" + sinistro.getAutorizadoSinistro()
-                    + "' where sinistro.idSinistro =" + sinistro.getCodSinistro());
+            stm = conexao.prepareStatement("update sinistro set autorizadoSinistro = '" + sinistro.getAutorizadoSinistro() + "' where sinistro.idSinistro = " + sinistro.getCodSinistro());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);
