@@ -1194,17 +1194,18 @@ public class Painel_Candidato extends javax.swing.JFrame {
             
             controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
-                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
+                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura, candidato);
 
             JOptionPane.showMessageDialog(painelP, "\n Sua solicitação foi enviada para avaliação!");
             //JOptionPane.showMessageDialog(painelP, "/n" + controlador.getSolicitacao().toString());//ler do banco 
             painelSolicitacao.setVisible(false);
+            cancelarSolicitacao.setVisible(true);
+        editar.setVisible(true);
+        nova.setVisible(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
-        cancelarSolicitacao.setVisible(true);
-        editar.setVisible(true);
-        nova.setVisible(true);
+
 
     }//GEN-LAST:event_enviarActionPerformed
     public void esvaziarCampos() {
@@ -1404,9 +1405,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void enviarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarServicoActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja solicitar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            String escolhido = null;
+            String escolhido = "";
             int qnt = 0;
             if (encanador.isSelected()) {
+               
                 escolhido += encanador.getText() + ',';
             }
             if (chaveiro.isSelected()) {

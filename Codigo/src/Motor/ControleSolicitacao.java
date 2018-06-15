@@ -7,6 +7,7 @@ import DAO.SolicitacaoDAO;
 import Dominio.Solicitacao;
 import Dominio.Servico;
 import Dominio.Bem;
+import Dominio.Candidato;
 import Dominio.Residencia;
 import java.util.ArrayList;
 import java.util.Date;
@@ -86,12 +87,12 @@ public class ControleSolicitacao {
             String desc, int numRes, long cepRes, int qntComodos, 
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacao,
-            int terreno, int estrutura) {
+            int terreno, int estrutura, Candidato candidato) {
         
         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
               areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
         this.setResidencia(temp);
-         geraDAOResidencia().create(temp, temp.getCandidato().getCpf());
+         geraDAOResidencia().create(temp, candidato.getCpf());
          
        Date data = new Date();
        this.setDataSolicitacao(data);
@@ -100,7 +101,7 @@ public class ControleSolicitacao {
             daoBem.create((Bem)bens.get(i));
         }
         Solicitacao tempS = this.construirSolicitacao();
-        geraDAOSolicitacao().create(tempS);
+       // geraDAOSolicitacao().create(tempS);
     }
     public ServicoDAO geraDAOServico(){
         ServicoDAO solicitacaoDAO = new ServicoDAO();
