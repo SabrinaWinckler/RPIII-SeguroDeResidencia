@@ -20,7 +20,7 @@ public class ControleSolicitacao {
     
     private ArrayList<Bem> bens;
     
-    private Solicitacao solicitacao;
+    private Solicitacao solicitacao = new Solicitacao();
     
     private Servico servico;
     
@@ -67,7 +67,17 @@ public class ControleSolicitacao {
         Solicitacao temp  = new Solicitacao( this.dataSolicitacao, this.residencia);
         return temp;
     }
-    
+    public void atualizarSolicitacaoEditada(String uf, String cidade, String bairro, 
+            String desc, int numRes, long cepRes, int qntComodos, 
+            int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
+            int anoConstrucao, String ruaRes, int localizacao,
+            int terreno, int estrutura){
+        Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
+              areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
+        this.setResidencia(temp);
+        this.solicitacao.setResidencia(temp);
+        geraDAOSolicitacao().updateStatusSolicitacao(this.solicitacao);
+    }
     public void registrarSolicitacao(String uf, String cidade, String bairro, 
             String desc, int numRes, long cepRes, int qntComodos, 
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
@@ -77,7 +87,7 @@ public class ControleSolicitacao {
         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
               areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
         this.setResidencia(temp);
-         //geraDAOResidencia().create(temp);
+         geraDAOResidencia().create(temp, temp.getCandidato().getCpf());
          
         Date data = new Date();
         this.setDataSolicitacao(data);

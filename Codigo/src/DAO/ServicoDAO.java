@@ -24,19 +24,20 @@ public class ServicoDAO {
     public void create(Servico servico) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-        int idResidencia = -1;
+        int idServico = -1;
         ResultSet rs;
         try {
-            stm = conexao.prepareStatement("SELECT max(residencia.idResidencia) FROM residencia");
+            stm = conexao.prepareStatement("SELECT max(servico.idServico) FROM servico");
             rs = stm.executeQuery();
             while (rs.next()) {
-                idResidencia = rs.getInt(1);
+                idServico = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("INSERT INTO servico(servicoEscolhido, qnt)VALUES(?,?,?)");
+            stm = conexao.prepareStatement("INSERT INTO servico(descricaoServico, idServico, quantidadeServico)VALUES(?,?,?)");
             stm.setFloat(1, servico.getQnt());
             stm.setString(2, servico.getDesc());
-            stm.setInt(3, idResidencia);
+            stm.setInt(3, idServico);
             stm.executeUpdate();
+        
         } catch (SQLException ex) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {

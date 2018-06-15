@@ -10,7 +10,9 @@ import Motor.ControleSolicitacao;
 import Motor.Gerenciador;
 import Dominio.Solicitacao;
 import Dominio.Bem;
+import Dominio.Residencia;
 import Excecoes.ExceptionEmptySpace;
+import java.awt.Button;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  */
 public class Painel_Candidato extends javax.swing.JFrame {
 
-    ControleSolicitacao controlador;
+    ControleSolicitacao controlador = new ControleSolicitacao();
     List<Solicitacao> listaSolicitacao = new ArrayList<>();
     Gerenciador gerenciador = new Gerenciador();
     private int quantidadeDeSolicitacao, selecionado;
@@ -199,6 +201,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         estruturaA = new javax.swing.JSlider();
         e = new javax.swing.JLabel();
         cancelar = new javax.swing.JButton();
+        confirmarEdicao = new javax.swing.JButton();
         enviar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         areaConstruida = new javax.swing.JTextField(4);
@@ -591,6 +594,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         encanador.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         encanador.setText("Encanador");
+        encanador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                encanadorActionPerformed(evt);
+            }
+        });
         painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 190, 130, -1));
 
         eletricista.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -861,6 +869,17 @@ public class Painel_Candidato extends javax.swing.JFrame {
         });
         painelSolicitacao.add(cancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 90, -1));
 
+        confirmarEdicao.setBackground(new java.awt.Color(151, 53, 255));
+        confirmarEdicao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        confirmarEdicao.setForeground(new java.awt.Color(255, 255, 255));
+        confirmarEdicao.setText("Confirmar");
+        confirmarEdicao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarEdicaoActionPerformed(evt);
+            }
+        });
+        painelSolicitacao.add(confirmarEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 340, 90, -1));
+
         enviar.setBackground(new java.awt.Color(151, 53, 255));
         enviar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         enviar.setForeground(new java.awt.Color(255, 255, 255));
@@ -870,7 +889,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 enviarActionPerformed(evt);
             }
         });
-        painelSolicitacao.add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 340, 80, -1));
+        painelSolicitacao.add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(589, 340, 90, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Dados:");
@@ -1086,7 +1105,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_contratarServicoActionPerformed
 
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
-        painelSolicitacao.setVisible(true);
+        
+                confirmarEdicao.setVisible(false);
+                enviar.setVisible(true);
+                painelSolicitacao.setVisible(true);
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
@@ -1094,14 +1116,27 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
         // TODO add your handling code here:
+          if (quantidadeDeSolicitacao > 0) {
+            visualizarSolicitacao();
+            
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
+        }
+        cancelarSolicitacao.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
     }//GEN-LAST:event_cancelarSolicitacaoActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        //recuperar dados da solicitação que el deseja editar
+        //recuperar dados da solicitação que ele deseja editar
         //gerenciador.listaSolicitacaoCliente(candidato);
-        visualizarSolicitacao();
+        if (quantidadeDeSolicitacao > 0) {
+            visualizarSolicitacao();
+            
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
+        }
         editarSelecionado.setVisible(true);
-        preencherCamposEdicao(listaSolicitacaoCandidato.getSelectedRow());
 
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
@@ -1144,7 +1179,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             int localizacao = localizacaoP.getValue();
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
-
+            
             controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
                     anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
@@ -1285,12 +1320,16 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
         selecionado = listaSolicitacaoCandidato.getSelectedRow();
-        if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().equalsIgnoreCase("aprovada")) {
+        if(!editarSelecionado.isVisible()){
+            if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().equalsIgnoreCase("aprovada")) {
             solicitacaoAprovada();
             preencherCamposResultado(selecionado);
         } else {
             solicitacaoRecusada();
             preencherCamposReprovado(selecionado);
+        }
+        }else{
+             preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
         }
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
@@ -1317,7 +1356,13 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
     private void editarSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarSelecionadoActionPerformed
+        enviar.setVisible(false);
+        confirmarEdicao.setVisible(true);
+        cancelarSolicitacao.setVisible(false);
+        nova.setVisible(false);
+        jPanelListaSeguros.setVisible(false);
         painelSolicitacao.setVisible(true);
+        editarSelecionado.setVisible(false);
     }//GEN-LAST:event_editarSelecionadoActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
@@ -1378,6 +1423,58 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
         home();
     }//GEN-LAST:event_buttonHomeActionPerformed
+
+    private void encanadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_encanadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_encanadorActionPerformed
+
+    private void confirmarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEdicaoActionPerformed
+    try{ 
+            ExceptionEmptySpace.informaDado(cep.getText()); //parse long
+            ExceptionEmptySpace.informaDado(uf.getText());
+            ExceptionEmptySpace.informaDado(cidade.getText());
+            ExceptionEmptySpace.informaDado(bairro.getText());
+            ExceptionEmptySpace.informaDado(rua.getText());
+            ExceptionEmptySpace.informaDado(numero.getText());//parse int
+            ExceptionEmptySpace.informaDado(comodos.getText());//parse int
+            ExceptionEmptySpace.informaDado(banheiro.getText());///parse int
+            ExceptionEmptySpace.informaDado(garagem.getText());//parse int
+            ExceptionEmptySpace.informaDado(andares.getText());///parse int
+            ExceptionEmptySpace.informaDado(areat.getText());//parse int
+            ExceptionEmptySpace.informaDado(anoC.getText());///parse int
+            ExceptionEmptySpace.informaDado(descRes.getText());
+            ExceptionEmptySpace.informaDado(areaConstruida.getText());
+
+            int numeroCandidato = Integer.parseInt(numero.getText());
+            long cepCandidato = Long.parseLong(cep.getText());
+
+            int comodosCandidato = Integer.parseInt(comodos.getText());
+            int banheiroCandidato = Integer.parseInt(banheiro.getText());
+            int garagemCandidato = Integer.parseInt(garagem.getText());
+            int andaresCandidato = Integer.parseInt(andares.getText());
+            float areaT = Float.parseFloat(areat.getText());
+            double areaC = Float.parseFloat(areaConstruida.getText());
+
+            int anoConstrucao = Integer.parseInt(anoC.getText());
+
+            int localizacao = localizacaoP.getValue();
+            int terreno = terrenoP.getValue();
+            int estrutura = estruturaA.getValue();
+            
+        controlador.atualizarSolicitacaoEditada(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
+                    numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
+                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
+        JOptionPane.showMessageDialog(painelP, "Sua solicitação foi editada com susesso!");
+        cancelarSolicitacao.setVisible(true);
+        editar.setVisible(true);
+        nova.setVisible(true);
+
+        
+                } catch (Exception e) {
+            JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
+        }
+        
+    }//GEN-LAST:event_confirmarEdicaoActionPerformed
 
     private void home() {
         painelP.setVisible(true);
@@ -1493,11 +1590,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
         textMotivo.setText(listaSolicitacao.get(selecionado).getMotivoReprovacao());
     }
 
-    public void preencherCamposEdicao(int selecionado) {
-        cep.setText("" + listaSolicitacao.get(selecionado).getResidencia().getCepRes());
-        bairro.setText(listaSolicitacao.get(selecionado).getResidencia().getBairro());
-        cidade.setText(listaSolicitacao.get(selecionado).getResidencia().getCidade());
-        rua.setText(listaSolicitacao.get(selecionado).getResidencia().getRuaRes());
+    public void preencherCamposEdicao(Residencia selecionado) {
+        cep.setText("" + selecionado.getCepRes());
+        bairro.setText(selecionado.getBairro());
+        cidade.setText(selecionado.getCidade());
+        rua.setText(selecionado.getRuaRes());
     }
 
     /**
@@ -1584,6 +1681,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JCheckBox chaveiro;
     private javax.swing.JTextField cidade;
     private javax.swing.JTextField comodos;
+    private javax.swing.JButton confirmarEdicao;
     private javax.swing.JButton contratarServico;
     private javax.swing.JTextField descBem;
     private javax.swing.JTextField descRes;
