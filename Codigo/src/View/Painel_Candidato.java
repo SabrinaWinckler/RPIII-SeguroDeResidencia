@@ -1195,15 +1195,14 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
             controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
-                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura, candidato);
+                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
 
             JOptionPane.showMessageDialog(painelP, "\n Sua solicitação foi enviada para avaliação!");
             //JOptionPane.showMessageDialog(painelP, "/n" + controlador.getSolicitacao().toString());//ler do banco 
             painelSolicitacao.setVisible(false);
             cancelarSolicitacao.setVisible(true);
-        editar.setVisible(true);
-        nova.setVisible(true);
-        } catch (Exception e) {
+            editar.setVisible(true);
+            nova.setVisible(true);
         } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
@@ -1410,7 +1409,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             String escolhido = "";
             int qnt = 0;
             if (encanador.isSelected()) {
-               
+
                 escolhido += encanador.getText() + ',';
             }
             if (chaveiro.isSelected()) {
