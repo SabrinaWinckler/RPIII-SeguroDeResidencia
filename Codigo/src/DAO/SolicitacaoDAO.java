@@ -46,8 +46,8 @@ public class SolicitacaoDAO {
             stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, dataVisitaResidenciia,"
                     + "valorSolicitacao, "
                     + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?,?)");
-            stm.setDate(1, (java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao()))));
-            stm.setDate(2, (java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao()))));
+            stm.setDate(1, java.sql.Date.valueOf("2018-06-02"));
+            stm.setDate(2, java.sql.Date.valueOf("2018-06-20"));
             stm.setDouble(3, solicitacao.getValorSolicitacao());
             stm.setString(4, solicitacao.getAprovadaSolicitacao());
             stm.setString(5, solicitacao.getMotivoReprovacao());

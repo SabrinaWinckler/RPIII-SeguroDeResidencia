@@ -13,6 +13,7 @@ import Dominio.Bem;
 import Dominio.Residencia;
 import Excecoes.ExceptionEmptySpace;
 import java.awt.Color;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -1116,10 +1117,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_contratarServicoActionPerformed
 
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
-        
-                confirmarEdicao.setVisible(false);
-                enviar.setVisible(true);
-                painelSolicitacao.setVisible(true);
+
+        confirmarEdicao.setVisible(false);
+        enviar.setVisible(true);
+        painelSolicitacao.setVisible(true);
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
@@ -1127,9 +1128,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
         // TODO add your handling code here:
-          if (quantidadeDeSolicitacao > 0) {
+        if (quantidadeDeSolicitacao > 0) {
             visualizarSolicitacao();
-            
+
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
@@ -1144,7 +1145,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         //gerenciador.listaSolicitacaoCliente(candidato);
         if (quantidadeDeSolicitacao > 0) {
             visualizarSolicitacao();
-            
+
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
@@ -1191,7 +1192,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             int localizacao = localizacaoP.getValue();
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
-            
+
             controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
                     anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
@@ -1199,7 +1200,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(painelP, "\n Sua solicitação foi enviada para avaliação!");
             //JOptionPane.showMessageDialog(painelP, "/n" + controlador.getSolicitacao().toString());//ler do banco 
             painelSolicitacao.setVisible(false);
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
         cancelarSolicitacao.setVisible(true);
@@ -1332,19 +1333,19 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
         selecionado = listaSolicitacaoCandidato.getSelectedRow();
-        if(!editarSelecionado.isVisible() && !excluirSelecionado.isVisible()){
+        if (!editarSelecionado.isVisible() && !excluirSelecionado.isVisible()) {
             if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().equalsIgnoreCase("aprovada")) {
-            solicitacaoAprovada();
-            preencherCamposResultado(selecionado);
+                solicitacaoAprovada();
+                preencherCamposResultado(selecionado);
+            } else {
+                solicitacaoRecusada();
+                preencherCamposReprovado(selecionado);
+            }
         } else {
-            solicitacaoRecusada();
-            preencherCamposReprovado(selecionado);
+            preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
+            controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
         }
-        }else{
-             preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
-             controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
-        }   
-        
+
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
@@ -1444,7 +1445,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_encanadorActionPerformed
 
     private void confirmarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEdicaoActionPerformed
-    try{ 
+        try {
             ExceptionEmptySpace.informaDado(cep.getText()); //parse long
             ExceptionEmptySpace.informaDado(uf.getText());
             ExceptionEmptySpace.informaDado(cidade.getText());
@@ -1475,30 +1476,29 @@ public class Painel_Candidato extends javax.swing.JFrame {
             int localizacao = localizacaoP.getValue();
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
-            
-        controlador.atualizarSolicitacaoResidenciaEditada(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
+
+            controlador.atualizarSolicitacaoResidenciaEditada(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
                     anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
-        JOptionPane.showMessageDialog(painelP, "Sua solicitação foi editada com susesso!");
-        cancelarSolicitacao.setVisible(true);
-        editar.setVisible(true);
-        nova.setVisible(true);
-        painelSolicitacao.setVisible(false);
+            JOptionPane.showMessageDialog(painelP, "Sua solicitação foi editada com susesso!");
+            cancelarSolicitacao.setVisible(true);
+            editar.setVisible(true);
+            nova.setVisible(true);
+            painelSolicitacao.setVisible(false);
 
-        
-                } catch (Exception e) {
+        } catch (Exception e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
-        
+
     }//GEN-LAST:event_confirmarEdicaoActionPerformed
 
     private void excluirSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirSelecionadoActionPerformed
-    try{    
-        controlador.deletarResidencia();
-        JOptionPane.showMessageDialog(painelP, "Sua residencia com descrição: " + controlador.deletarResidencia().getDescricaoRes() + " foi removida!");
-    }catch(Exception e){
-        JOptionPane.showMessageDialog(painelP, "Não foi possível remover residência!");
-    }
+        try {
+            controlador.deletarResidencia();
+            JOptionPane.showMessageDialog(painelP, "Sua residencia com descrição: " + controlador.deletarResidencia().getDescricaoRes() + " foi removida!");
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(painelP, "Não foi possível remover residência!");
+        }
     }//GEN-LAST:event_excluirSelecionadoActionPerformed
 
     private void home() {

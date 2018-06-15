@@ -114,6 +114,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelBemVindo = new javax.swing.JPanel();
         labelFundoHomePainelCorretor = new javax.swing.JLabel();
         jPanelAvaliarSinistro = new javax.swing.JPanel();
+        jPanelMotivoNegarSinistro = new javax.swing.JPanel();
+        jScrollPane9 = new javax.swing.JScrollPane();
+        motivoNegacaoSinistrojTextArea = new javax.swing.JTextArea();
+        jLabel26 = new javax.swing.JLabel();
+        confirmarMotivoReprovacaojButton3 = new javax.swing.JButton();
+        cancelarMotivoReprovacaojButton4 = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         listaSinistrosPendentes = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
@@ -319,6 +325,44 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelAvaliarSinistro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanelAvaliarSinistro.setPreferredSize(new java.awt.Dimension(720, 480));
         jPanelAvaliarSinistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelMotivoNegarSinistro.setBackground(new java.awt.Color(204, 204, 255));
+        jPanelMotivoNegarSinistro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelMotivoNegarSinistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        motivoNegacaoSinistrojTextArea.setColumns(20);
+        motivoNegacaoSinistrojTextArea.setRows(5);
+        jScrollPane9.setViewportView(motivoNegacaoSinistrojTextArea);
+
+        jPanelMotivoNegarSinistro.add(jScrollPane9, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 50, 260, -1));
+
+        jLabel26.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel26.setText("Por favor, digite o motivo da reprovação:");
+        jPanelMotivoNegarSinistro.add(jLabel26, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 230, 30));
+
+        confirmarMotivoReprovacaojButton3.setBackground(new java.awt.Color(0, 153, 255));
+        confirmarMotivoReprovacaojButton3.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        confirmarMotivoReprovacaojButton3.setForeground(new java.awt.Color(255, 255, 255));
+        confirmarMotivoReprovacaojButton3.setText("Confirmar");
+        confirmarMotivoReprovacaojButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmarMotivoReprovacaojButton3ActionPerformed(evt);
+            }
+        });
+        jPanelMotivoNegarSinistro.add(confirmarMotivoReprovacaojButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 150, 90, 30));
+
+        cancelarMotivoReprovacaojButton4.setBackground(new java.awt.Color(126, 87, 194));
+        cancelarMotivoReprovacaojButton4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cancelarMotivoReprovacaojButton4.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarMotivoReprovacaojButton4.setText("Cancelar");
+        cancelarMotivoReprovacaojButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarMotivoReprovacaojButton4ActionPerformed(evt);
+            }
+        });
+        jPanelMotivoNegarSinistro.add(cancelarMotivoReprovacaojButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 90, 30));
+
+        jPanelAvaliarSinistro.add(jPanelMotivoNegarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 280, 190));
 
         listaSinistrosPendentes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         listaSinistrosPendentes.setModel(new javax.swing.table.DefaultTableModel(
@@ -1229,6 +1273,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
         parecerDoAvaliadorSinistro.setText("");
     }//GEN-LAST:event_parecerDoAvaliadorSinistroMouseClicked
 
+    private void confirmarMotivoReprovacaojButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMotivoReprovacaojButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirmarMotivoReprovacaojButton3ActionPerformed
+
+    private void cancelarMotivoReprovacaojButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarMotivoReprovacaojButton4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarMotivoReprovacaojButton4ActionPerformed
+
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
         campoCidadeResidencia.setText("");
@@ -1489,8 +1541,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorSolicitacao;
     private javax.swing.JButton cancelarMotivoReprovacaojButton2;
     private javax.swing.JButton cancelarMotivoReprovacaojButton3;
+    private javax.swing.JButton cancelarMotivoReprovacaojButton4;
     private javax.swing.JButton confirmarMotivoReprovacaojButton;
     private javax.swing.JButton confirmarMotivoReprovacaojButton1;
+    private javax.swing.JButton confirmarMotivoReprovacaojButton2;
+    private javax.swing.JButton confirmarMotivoReprovacaojButton3;
     private javax.swing.JButton gerenciarServicosButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButtonCancelarRegistroDeData;
@@ -1514,6 +1569,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
@@ -1545,7 +1602,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCorretor;
     private javax.swing.JPanel jPanelDadosProprietario;
     private javax.swing.JPanel jPanelDadosSolicitante;
+    private javax.swing.JPanel jPanelMotivoNegarSinistro;
     private javax.swing.JPanel jPanelMotivoReprovacao;
+    private javax.swing.JPanel jPanelMotivoReprovacao1;
     private javax.swing.JPanel jPanelMotivoSolicitacaoRecusado;
     private javax.swing.JPanel jPanelSolicitacaoDeSeguro;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1555,13 +1614,17 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
+    private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JToggleButton jToggleButtonDadosProprietario;
     private javax.swing.JLabel labelFundoHomePainelCorretor;
     public javax.swing.JTable listaDeResidencias;
     public javax.swing.JTable listaDeSolicitacoesSeguro;
     private javax.swing.JTable listaSinistrosPendentes;
+    private javax.swing.JTextArea motivoNegacaoSinistrojTextArea;
     private javax.swing.JTextArea motivoReprovacaoSolicitacaojTextArea;
     private javax.swing.JTextArea motivoReprovacaojTextArea;
+    private javax.swing.JTextArea motivoReprovacaojTextArea1;
     private javax.swing.JTextArea parecerDoAvaliadorSinistro;
     private javax.swing.JButton visualizarSolicitacoesButton;
     // End of variables declaration//GEN-END:variables

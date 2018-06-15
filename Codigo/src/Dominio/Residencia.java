@@ -99,6 +99,27 @@ public class Residencia {
         this.candidato = candidato;
     }
 
+    public Residencia(String descricaoRes, int numRes, long cepRes, int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal, int numAndares, int anoConstrucao, String ruaRes, String ufResidencia, String cidade, String bairro, double areaConstruida, List<Bem> bens, int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada) {
+        this.descricaoRes = descricaoRes;
+        this.numRes = numRes;
+        this.cepRes = cepRes;
+        this.qntComodos = qntComodos;
+        this.qntBanheiros = qntBanheiros;
+        this.qntGaragens = qntGaragens;
+        this.areaTotal = areaTotal;
+        this.numAndares = numAndares;
+        this.anoConstrucao = anoConstrucao;
+        this.ruaRes = ruaRes;
+        this.ufResidencia = ufResidencia;
+        this.cidade = cidade;
+        this.bairro = bairro;
+        this.areaConstruida = areaConstruida;
+        this.bens = bens;
+        this.localizacaoPerigosa = localizacaoPerigosa;
+        this.terrenoPerigoso = terrenoPerigoso;
+        this.estruturaAmeacada = estruturaAmeacada;
+    }
+
     /**
      * @return the descricaoRes
      */

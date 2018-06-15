@@ -25,12 +25,13 @@ public class ResidenciaDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
-        int idCandidato;
+        int idCandidato = -9;
         try {
             stm = conexao.prepareStatement("select idPessoa from pessoa where pessoa.Cpf =" + cpf);
             rs = stm.executeQuery();
-            idCandidato = rs.getInt(1);
-
+            while (rs.next()) {
+                idCandidato = rs.getInt("idPessoa");
+            }
             stm = conexao.prepareStatement("INSERT INTO residencia(idProprietario,ufResidencia,"
                     + " cidade, bairro, descricaoResidencia, "
                     + "cepResidencia, enderecoResidencia, areaTotal,"
@@ -98,18 +99,19 @@ public class ResidenciaDAO {
         }
         return listaDeResidecias;
     }
+
     public void updateStatusResidencia(Residencia solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
             stm = conexao.prepareStatement("update residencia set ufResidencia = '" + solicitacao.getUfResidencia() + "',"
                     + " cidade ='" + solicitacao.getCidade() + "',bairro ='" + solicitacao.getBairro() + "',descricaoResidencia ='" + solicitacao.getDescricaoRes()
-                     + "',cepResidencia ='" + solicitacao.getCepRes()  + "',enderecoResidencia ='" + solicitacao.getRuaRes() 
-                     + "',areaTotal ='" + solicitacao.getAreaTotal()  + "',areaContruida ='" + solicitacao.getAreaConstruida() 
-                     + "',anoConstrucao ='" + solicitacao.getAnoConstrucao() + "',estruturaAmeacada ='" + solicitacao.getEstruturaAmeacada()
-                     + "',localizacaoPeridgoas ='" + solicitacao.getLocalizacaoPerigosa() + "',terrenoPerigoso ='" + solicitacao.getTerrenoPerigoso()
-                     + "',quantidadeComodos ='" + solicitacao.getQntComodos() + "',quantidadeBanheiros ='" + solicitacao.getQntBanheiros()
-                     + "',quantidadeGaragens ='" + solicitacao.getQntGaragens() + "',numeroAndares ='" + solicitacao.getNumAndares()+ "'  "
+                    + "',cepResidencia ='" + solicitacao.getCepRes() + "',enderecoResidencia ='" + solicitacao.getRuaRes()
+                    + "',areaTotal ='" + solicitacao.getAreaTotal() + "',areaContruida ='" + solicitacao.getAreaConstruida()
+                    + "',anoConstrucao ='" + solicitacao.getAnoConstrucao() + "',estruturaAmeacada ='" + solicitacao.getEstruturaAmeacada()
+                    + "',localizacaoPeridgoas ='" + solicitacao.getLocalizacaoPerigosa() + "',terrenoPerigoso ='" + solicitacao.getTerrenoPerigoso()
+                    + "',quantidadeComodos ='" + solicitacao.getQntComodos() + "',quantidadeBanheiros ='" + solicitacao.getQntBanheiros()
+                    + "',quantidadeGaragens ='" + solicitacao.getQntGaragens() + "',numeroAndares ='" + solicitacao.getNumAndares() + "'  "
                     + "where residencia.idProprietario =" + solicitacao.getCandidato().getCodPessoa()
                     + " and residencia.idResidencia =" + solicitacao.getCodResidencia());
             stm.executeUpdate();
@@ -119,18 +121,19 @@ public class ResidenciaDAO {
             ConnectionFactory.fecharConexao(conexao);
         }
     }
-    public void deleteResidencia(Residencia residencia){
+
+    public void deleteResidencia(Residencia residencia) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
-        try{
-        stm = conexao.prepareStatement("DELETE FROM residencia WHERE residencia.idProprietario =" + residencia.getCandidato().getCodPessoa()
+        try {
+            stm = conexao.prepareStatement("DELETE FROM residencia WHERE residencia.idProprietario =" + residencia.getCandidato().getCodPessoa()
                     + " and residencia.idResidencia =" + residencia.getCodResidencia());
-        stm.executeUpdate();
-        }catch(SQLException e){
+            stm.executeUpdate();
+        } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
-        }finally{
+        } finally {
             ConnectionFactory.fecharConexao(conexao);
         }
-        
+
     }
 }
