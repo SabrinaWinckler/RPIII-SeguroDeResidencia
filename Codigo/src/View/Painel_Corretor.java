@@ -5,7 +5,7 @@
  */
 package View;
 
-import Dominio.Segurado;
+import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
@@ -31,6 +31,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
     String motivoReprovacao, motivoAlteracao, resultado;
     int selecionado;
+    DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     /**
      * Creates new form Painel_Corretor
@@ -43,7 +44,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     public int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
-        DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         int tamanhoLista = gerenciador.listaDeResidenciasPendentes().size();
         if (tamanhoLista > 0) {
             gerenciador.listaDeResidenciasPendentes().forEach((solicitacao) -> {
@@ -61,7 +61,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     public int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
-        DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         int tamanho = gerenciador.listaDeSolicitacoesPendentes().size();
         if (tamanho > 0) {
             gerenciador.listaDeSolicitacoesPendentes().forEach((solicitacao) -> {
@@ -80,15 +79,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
         int tamanhoLista = gerenciador.listaDeSinistrosPendentes().size();
-        int i = 0;
         if (tamanhoLista > 0) {
-            for (Segurado segurado : gerenciador.listaDeSinistrosPendentes()) {
+            gerenciador.listaDeSinistrosPendentes().forEach((sinistro) -> {
                 modelo.addRow(new Object[]{
-                    segurado.getSinistros().get(i).getTipoSinistro(),
-                    segurado.getSinistros().get(i).getDataSinistro().toString()
+                    sinistro.getTipoSinistro(),
+                    sdf.format(sinistro.getDataSinistro())
                 });
-                i++;
-            }
+            });
             return 1;
         } else {
             return 0;
@@ -119,7 +116,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         listaSinistrosPendentes = new javax.swing.JTable();
         jLabel5 = new javax.swing.JLabel();
-        campoDataSinistro = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jScrollPane3 = new javax.swing.JScrollPane();
@@ -127,7 +123,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoTipoSinistro = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        campoValorSinistro = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
@@ -136,6 +131,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel21 = new javax.swing.JLabel();
         ButtonAutorizarPagamento = new javax.swing.JButton();
         buttonNegarPagamento = new javax.swing.JButton();
+        campoDataSinistroFormat = new javax.swing.JFormattedTextField();
+        campoValorSinistroFormt = new javax.swing.JFormattedTextField();
         jPanelAvaliarResidencia = new javax.swing.JPanel();
         jPanelMotivoReprovacao = new javax.swing.JPanel();
         jScrollPane6 = new javax.swing.JScrollPane();
@@ -358,15 +355,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel5.setText("Dados do Sinistro:");
         jPanelAvaliarSinistro.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 120, -1, -1));
 
-        campoDataSinistro.setEditable(false);
-        campoDataSinistro.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        campoDataSinistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                campoDataSinistroActionPerformed(evt);
-            }
-        });
-        jPanelAvaliarSinistro.add(campoDataSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 90, 30));
-
         jLabel4.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel4.setText("Data:");
         jPanelAvaliarSinistro.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 190, 30, 20));
@@ -394,11 +382,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel18.setText("Valor: R$");
         jPanelAvaliarSinistro.add(jLabel18, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 400, 110, 50));
-
-        campoValorSinistro.setEditable(false);
-        campoValorSinistro.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        campoValorSinistro.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelAvaliarSinistro.add(campoValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 90, 40));
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -445,6 +428,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
             }
         });
         jPanelAvaliarSinistro.add(buttonNegarPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 430, 140, 30));
+
+        campoDataSinistroFormat.setEditable(false);
+        campoDataSinistroFormat.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter()));
+        jPanelAvaliarSinistro.add(campoDataSinistroFormat, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 180, 100, 30));
+
+        campoValorSinistroFormt.setEditable(false);
+        campoValorSinistroFormt.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        campoValorSinistroFormt.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jPanelAvaliarSinistro.add(campoValorSinistroFormt, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 400, 100, 40));
 
         jPanelCorretor.add(jPanelAvaliarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -959,6 +951,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, "Não possui sinistros para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
             visualizarSinistros();
+            habilitarButtonsTelaSinistro(false);
         }
     }//GEN-LAST:event_avaliarSinistroButtonActionPerformed
 
@@ -1042,13 +1035,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void listaSinistrosPendentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSinistrosPendentesMouseClicked
         selecionado = listaSinistrosPendentes.getSelectedRow();
         preencherCamposAvaliarSinistro(selecionado);
+        habilitarButtonsTelaSinistro(true);
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked
 
-    private void campoDataSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoDataSinistroActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_campoDataSinistroActionPerformed
-
     private void ButtonAutorizarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAutorizarPagamentoActionPerformed
+        String resultadoSinistro = "Sim";
+        Sinistro sinistro = gerenciador.listaDeSinistrosPendentes().get(selecionado);
+        sinistro.setAutorizadoSinistro(resultadoSinistro);
+        gerenciador.updateStatusSinistro(sinistro);
         JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro autorizado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
 
     }//GEN-LAST:event_ButtonAutorizarPagamentoActionPerformed
@@ -1246,6 +1240,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jToggleButtonDadosProprietario.setEnabled(condicao);
     }
 
+    private void habilitarButtonsTelaSinistro(Boolean condicao) {
+        ButtonAutorizarPagamento.setEnabled(condicao);
+        buttonNegarPagamento.setEnabled(condicao);
+    }
+
     private void habilitarCamposTelaSolicitacao(Boolean condicao) {
         jLabelLocalizacaoPerigosa.setEnabled(condicao);
         jLabelTerrenoPerigoso.setEnabled(condicao);
@@ -1323,11 +1322,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }
 
     private void preencherCamposAvaliarSinistro(int selecionado) {
-        List<Segurado> listaSinistro = gerenciador.listaDeSinistrosPendentes();
-        campoDataSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getDataSinistro());
-        campoDescricaoSinistro.setText(listaSinistro.get(selecionado).getSinistros().get(selecionado).getDescricaoSinistro());
-        campoTipoSinistro.setText(listaSinistro.get(selecionado).getSinistros().get(selecionado).getTipoSinistro());
-        campoValorSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getValorSinistro());
+        List<Sinistro> listaSinistro = gerenciador.listaDeSinistrosPendentes();
+        campoDataSinistroFormat.setText("" + sdf.format(listaSinistro.get(selecionado).getDataSinistro()));
+        campoDescricaoSinistro.setText(listaSinistro.get(selecionado).getDescricaoSinistro());
+        campoTipoSinistro.setText(listaSinistro.get(selecionado).getTipoSinistro());
+        //campoValorSinistro.setText("" + listaSinistro.get(selecionado).getSinistros().get(selecionado).getValorSinistro());
+        campoValorSinistroFormt.setText("" + listaSinistro.get(selecionado).getValorSinistro());
         //campoNomeSolicitante.setText(listaSinistro.get(selecionado).getNomePessoa());
         //campoCPFSolicitante.setText("" + listaSinistro.get(selecionado).getCpf());
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
@@ -1430,7 +1430,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextField campoCPFCandidato1;
     public javax.swing.JTextField campoCepResidencia;
     private javax.swing.JTextField campoCidadeResidencia;
-    private javax.swing.JTextField campoDataSinistro;
+    private javax.swing.JFormattedTextField campoDataSinistroFormat;
     private javax.swing.JTextField campoDataSolicitacao;
     public javax.swing.JTextField campoDescricaoResidencia;
     private javax.swing.JTextArea campoDescricaoSinistro;
@@ -1449,7 +1449,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextField campoTerrenoPerigoso;
     private javax.swing.JTextField campoTipoSinistro;
     public javax.swing.JTextField campoUFResidencia;
-    private javax.swing.JTextField campoValorSinistro;
+    private javax.swing.JFormattedTextField campoValorSinistroFormt;
     private javax.swing.JTextField campoValorSolicitacao;
     private javax.swing.JButton cancelarMotivoReprovacaojButton2;
     private javax.swing.JButton cancelarMotivoReprovacaojButton3;
