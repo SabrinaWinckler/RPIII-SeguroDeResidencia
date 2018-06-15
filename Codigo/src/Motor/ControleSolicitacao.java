@@ -67,16 +67,26 @@ public class ControleSolicitacao {
         Solicitacao temp  = new Solicitacao( this.dataSolicitacao, this.residencia);
         return temp;
     }
-    public void atualizarSolicitacaoEditada(String uf, String cidade, String bairro, 
+    public void atualizarSolicitacaoResidenciaEditada(String uf, String cidade, String bairro, 
             String desc, int numRes, long cepRes, int qntComodos, 
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacao,
             int terreno, int estrutura){
+        
         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
               areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
         this.setResidencia(temp);
-        this.solicitacao.setResidencia(temp);
-        geraDAOSolicitacao().updateStatusSolicitacao(this.solicitacao);
+        geraDAOResidencia().updateStatusResidencia(temp);
+    }
+    public void deletarResidencia( String uf, String cidade, String bairro, 
+            String desc, int numRes, long cepRes, int qntComodos, 
+            int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
+            int anoConstrucao, String ruaRes, int localizacao,
+            int terreno, int estrutura){
+         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
+              areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
+        this.setResidencia(temp);
+        geraDAOResidencia().deleteResidencia(residencia);
     }
     public void registrarSolicitacao(String uf, String cidade, String bairro, 
             String desc, int numRes, long cepRes, int qntComodos, 

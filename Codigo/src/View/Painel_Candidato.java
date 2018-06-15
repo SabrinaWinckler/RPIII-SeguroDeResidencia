@@ -95,6 +95,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP = new javax.swing.JPanel();
         editar = new javax.swing.JButton();
         editarSelecionado = new javax.swing.JButton();
+        excluirSelecionado = new javax.swing.JButton();
         nova = new javax.swing.JButton();
         cancelarSolicitacao = new javax.swing.JButton();
         jPanelHome = new javax.swing.JPanel();
@@ -288,6 +289,17 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         });
         painelP.add(editarSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
+
+        excluirSelecionado.setBackground(new java.awt.Color(153, 51, 255));
+        excluirSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        excluirSelecionado.setForeground(new java.awt.Color(255, 255, 255));
+        excluirSelecionado.setText("Excluir");
+        excluirSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirSelecionadoActionPerformed(evt);
+            }
+        });
+        painelP.add(excluirSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
 
         nova.setBackground(new java.awt.Color(151, 53, 255));
         nova.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
@@ -1122,6 +1134,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
+        excluirSelecionado.setVisible(true);
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
@@ -1331,6 +1344,18 @@ public class Painel_Candidato extends javax.swing.JFrame {
         }else{
              preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
         }
+         if(!excluirSelecionado.isVisible()){
+            if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().equalsIgnoreCase("aprovada")) {
+            solicitacaoAprovada();
+            preencherCamposResultado(selecionado);
+        } else {
+            solicitacaoRecusada();
+            preencherCamposReprovado(selecionado);
+        }
+        }else{
+             
+             controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
+        }
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
@@ -1461,7 +1486,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
             
-        controlador.atualizarSolicitacaoEditada(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
+        controlador.atualizarSolicitacaoResidenciaEditada(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
                     anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
         JOptionPane.showMessageDialog(painelP, "Sua solicitação foi editada com susesso!");
@@ -1475,6 +1500,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_confirmarEdicaoActionPerformed
+
+    private void excluirSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirSelecionadoActionPerformed
+        
+//        controlador.deletarResidencia(uf, cidade, bairro, desc, ERROR, ERROR, SOMEBITS, HEIGHT, PROPERTIES, TOP_ALIGNMENT, ERROR, PROPERTIES, NORMAL, ruaRes, SOMEBITS, ERROR, ERROR);
+    }//GEN-LAST:event_excluirSelecionadoActionPerformed
 
     private void home() {
         painelP.setVisible(true);
@@ -1693,6 +1723,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JButton enviar;
     private javax.swing.JButton enviarServico;
     private javax.swing.JSlider estruturaA;
+    private javax.swing.JButton excluirSelecionado;
     private javax.swing.JButton exibir;
     private javax.swing.JTextField garagem;
     private javax.swing.JComboBox<String> jComboBox1;
