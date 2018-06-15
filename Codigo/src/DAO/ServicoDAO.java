@@ -33,9 +33,10 @@ public class ServicoDAO {
                 idServico = rs.getInt(1);
             }
             stm = conexao.prepareStatement("INSERT INTO servico(descricaoServico, idServico, quantidadeServico)VALUES(?,?,?)");
-            stm.setFloat(1, servico.getQnt());
-            stm.setString(2, servico.getDesc());
-            stm.setInt(3, idServico);
+            
+            stm.setString(1, servico.getDesc());
+            stm.setInt(2, idServico);
+            stm.setFloat(3, servico.getQnt());
             stm.executeUpdate();
         
         } catch (SQLException ex) {
