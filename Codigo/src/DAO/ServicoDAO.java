@@ -33,7 +33,6 @@ public class ServicoDAO {
                 idServico = rs.getInt(1);
             }
             stm = conexao.prepareStatement("INSERT INTO servico(descricaoServico, idServico, quantidadeServico)VALUES(?,?,?)");
-            
             stm.setString(1, servico.getDesc());
             stm.setInt(2, idServico);
             stm.setFloat(3, servico.getQnt());
