@@ -78,15 +78,9 @@ public class ControleSolicitacao {
         this.setResidencia(temp);
         geraDAOResidencia().updateStatusResidencia(temp);
     }
-    public void deletarResidencia( String uf, String cidade, String bairro, 
-            String desc, int numRes, long cepRes, int qntComodos, 
-            int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
-            int anoConstrucao, String ruaRes, int localizacao,
-            int terreno, int estrutura){
-         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, 
-              areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
-        this.setResidencia(temp);
-        geraDAOResidencia().deleteResidencia(residencia);
+    public Residencia deletarResidencia(){
+        geraDAOResidencia().deleteResidencia(this.residencia);
+        return this.residencia;
     }
     public void registrarSolicitacao(String uf, String cidade, String bairro, 
             String desc, int numRes, long cepRes, int qntComodos, 
@@ -99,9 +93,8 @@ public class ControleSolicitacao {
         this.setResidencia(temp);
          geraDAOResidencia().create(temp, temp.getCandidato().getCpf());
          
-        Date data = new Date();
-        this.setDataSolicitacao(data);
-       
+       Date data = new Date();
+       this.setDataSolicitacao(data);
         BemDAO daoBem = geraDAOBem();
         for(int i = 0; i< bens.size(); i++ ){ 
             daoBem.create((Bem)bens.get(i));

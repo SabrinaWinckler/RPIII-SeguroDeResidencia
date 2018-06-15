@@ -102,7 +102,7 @@ public class ResidenciaDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update residencia set uf = '" + solicitacao.getUfResidencia() + "',"
+            stm = conexao.prepareStatement("update residencia set ufResidencia = '" + solicitacao.getUfResidencia() + "',"
                     + " cidade ='" + solicitacao.getCidade() + "',bairro ='" + solicitacao.getBairro() + "',descricaoResidencia ='" + solicitacao.getDescricaoRes()
                      + "',cepResidencia ='" + solicitacao.getCepRes()  + "',enderecoResidencia ='" + solicitacao.getRuaRes() 
                      + "',areaTotal ='" + solicitacao.getAreaTotal()  + "',areaContruida ='" + solicitacao.getAreaConstruida() 
@@ -110,8 +110,8 @@ public class ResidenciaDAO {
                      + "',localizacaoPeridgoas ='" + solicitacao.getLocalizacaoPerigosa() + "',terrenoPerigoso ='" + solicitacao.getTerrenoPerigoso()
                      + "',quantidadeComodos ='" + solicitacao.getQntComodos() + "',quantidadeBanheiros ='" + solicitacao.getQntBanheiros()
                      + "',quantidadeGaragens ='" + solicitacao.getQntGaragens() + "',numeroAndares ='" + solicitacao.getNumAndares()+ "'  "
-                    + "where solicitacaoseguro.idPessoa =" + solicitacao.getCandidato().getCodPessoa()
-                    + " and solicitacaoseguro.idResidencia =" + solicitacao.getCodResidencia());
+                    + "where residencia.idProprietario =" + solicitacao.getCandidato().getCodPessoa()
+                    + " and residencia.idResidencia =" + solicitacao.getCodResidencia());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -123,8 +123,8 @@ public class ResidenciaDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try{
-        stm = conexao.prepareStatement("DELETE FROM residencia WHERE solicitacaoseguro.idPessoa =" + residencia.getCandidato().getCodPessoa()
-                    + " and solicitacaoseguro.idResidencia =" + residencia.getCodResidencia());
+        stm = conexao.prepareStatement("DELETE FROM residencia WHERE residencia.idProprietario =" + residencia.getCandidato().getCodPessoa()
+                    + " and residencia.idResidencia =" + residencia.getCodResidencia());
         stm.executeUpdate();
         }catch(SQLException e){
             Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);

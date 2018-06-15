@@ -12,7 +12,6 @@ import Dominio.Solicitacao;
 import Dominio.Bem;
 import Dominio.Residencia;
 import Excecoes.ExceptionEmptySpace;
-import java.awt.Button;
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.Date;
@@ -1333,7 +1332,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
         selecionado = listaSolicitacaoCandidato.getSelectedRow();
-        if(!editarSelecionado.isVisible()){
+        if(!editarSelecionado.isVisible() && !excluirSelecionado.isVisible()){
             if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().equalsIgnoreCase("aprovada")) {
             solicitacaoAprovada();
             preencherCamposResultado(selecionado);
@@ -1343,19 +1342,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         }
         }else{
              preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
-        }
-         if(!excluirSelecionado.isVisible()){
-            if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().equalsIgnoreCase("aprovada")) {
-            solicitacaoAprovada();
-            preencherCamposResultado(selecionado);
-        } else {
-            solicitacaoRecusada();
-            preencherCamposReprovado(selecionado);
-        }
-        }else{
-             
              controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
-        }
+        }   
+        
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
@@ -1388,6 +1377,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelListaSeguros.setVisible(false);
         painelSolicitacao.setVisible(true);
         editarSelecionado.setVisible(false);
+        excluirSelecionado.setVisible(false);
     }//GEN-LAST:event_editarSelecionadoActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
@@ -1493,6 +1483,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(true);
         editar.setVisible(true);
         nova.setVisible(true);
+        painelSolicitacao.setVisible(false);
 
         
                 } catch (Exception e) {
@@ -1502,8 +1493,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmarEdicaoActionPerformed
 
     private void excluirSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_excluirSelecionadoActionPerformed
-        
-//        controlador.deletarResidencia(uf, cidade, bairro, desc, ERROR, ERROR, SOMEBITS, HEIGHT, PROPERTIES, TOP_ALIGNMENT, ERROR, PROPERTIES, NORMAL, ruaRes, SOMEBITS, ERROR, ERROR);
+    try{    
+        controlador.deletarResidencia();
+        JOptionPane.showMessageDialog(painelP, "Sua residencia com descrição: " + controlador.deletarResidencia().getDescricaoRes() + " foi removida!");
+    }catch(Exception e){
+        JOptionPane.showMessageDialog(painelP, "Não foi possível remover residência!");
+    }
     }//GEN-LAST:event_excluirSelecionadoActionPerformed
 
     private void home() {
@@ -1517,6 +1512,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelListaSeguros.setVisible(false);
         editar.setVisible(false);
         editarSelecionado.setVisible(false);
+        excluirSelecionado.setVisible(false);
         nova.setVisible(false);
         cancelarSolicitacao.setVisible(false);
         //buttonVoltar.setVisible(false);
