@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Matheus Montanha
  */
 public class Painel_Corretor extends javax.swing.JFrame {
-
+    
     int visivel = 0;
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
     String motivoReprovacao, motivoAlteracao, resultado;
@@ -41,7 +41,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         initComponents();
         runProgram();
     }
-
+    
     public int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
@@ -58,7 +58,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-
+    
     public int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
@@ -75,7 +75,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-
+    
     public int readTableListaDeSinistros() {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
@@ -1280,7 +1280,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void cancelarMotivoReprovacaojButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarMotivoReprovacaojButton4ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cancelarMotivoReprovacaojButton4ActionPerformed
-
+    
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
         campoCidadeResidencia.setText("");
@@ -1294,7 +1294,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAnoConstrucao.setText("");
         campoAreaTotal.setText("");
     }
-
+    
     private void limparCamposTelaSolicitacao() {
         campoNomeCandidato1.setText("");
         campoCPFCandidato1.setText("");
@@ -1306,31 +1306,31 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("");
         campoValorSolicitacao.setText("");
     }
-
+    
     private void limparCamposTelaSinistro() {
         campoDataSinistroFormat.setText("");
         campoDescricaoSinistro.setText("");
         campoTipoSinistro.setText("");
         campoValorSinistroFormt.setText("");
     }
-
+    
     private void habilitarButtonsTelaSolicitacao(Boolean condicao) {
         ButtonAgendarVisitaResidencia.setEnabled(condicao);
         buttonRecusarSeguro.setEnabled(condicao);
     }
-
+    
     private void habiltarButtonsTelaResidencia(Boolean condicao) {
         buttonEditarDadosResidencia.setEnabled(condicao);
         buttonAprovarResidencia.setEnabled(condicao);
         buttonRecusarResidencia.setEnabled(condicao);
         jToggleButtonDadosProprietario.setEnabled(condicao);
     }
-
+    
     private void habilitarButtonsTelaSinistro(Boolean condicao) {
         ButtonAutorizarPagamento.setEnabled(condicao);
         buttonNegarPagamento.setEnabled(condicao);
     }
-
+    
     private void habilitarCamposTelaSolicitacao(Boolean condicao) {
         jLabelLocalizacaoPerigosa.setEnabled(condicao);
         jLabelTerrenoPerigoso.setEnabled(condicao);
@@ -1352,7 +1352,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setEnabled(condicao);
         campoValorSolicitacao.setEnabled(condicao);
     }
-
+    
     private void habilitarCamposTelaResidencia(Boolean condicao) {
         campoCepResidencia.setEnabled(condicao);
         campoCidadeResidencia.setEnabled(condicao);
@@ -1371,7 +1371,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonRecusarResidencia.setEnabled(condicao);
         buttonEditarDadosResidencia.setEnabled(condicao);
     }
-
+    
     private void preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
@@ -1392,7 +1392,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAnoConstrucao.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAnoConstrucao());
         campoAreaTotal.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaTotal());
     }
-
+    
     private void preencherCamposSolicitacaoSeguro(int numero) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
@@ -1406,7 +1406,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("" + listaDeSolicitacao.get(numero).getDataSolicitacao());
         campoValorSolicitacao.setText("" + listaDeSolicitacao.get(numero).getValorSolicitacao());
     }
-
+    
     private void preencherCamposAvaliarSinistro(int selecionado) {
         List<Sinistro> listaSinistro = gerenciador.listaDeSinistrosPendentes();
         campoDataSinistroFormat.setText("" + sdf.format(listaSinistro.get(selecionado).getDataSinistro()));
@@ -1421,7 +1421,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
         //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
-
+    
     private void runProgram() {
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
@@ -1432,7 +1432,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
     }
-
+    
     private void visualizarSolicitacao() {
         jPanelCorretor.setVisible(true);
         jPanelCalendarioAgendarVisitaResidencia.setVisible(false);
@@ -1443,7 +1443,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelBemVindo.setVisible(false);
         jPanelMotivoSolicitacaoRecusado.setVisible(false);
     }
-
+    
     private void visualizarResidencias() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarResidencia.setVisible(true);
@@ -1453,7 +1453,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelBemVindo.setVisible(false);
         jPanelMotivoReprovacao.setVisible(false);
     }
-
+    
     private void visualizarSinistros() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarSinistro.setVisible(true);
@@ -1461,8 +1461,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelSolicitacaoDeSeguro.setVisible(false);
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
+        jPanelMotivoNegarSinistro.setVisible(false);
     }
-
+    
     private void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));
