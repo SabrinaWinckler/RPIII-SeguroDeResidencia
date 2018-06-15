@@ -318,7 +318,7 @@ CREATE TABLE `residencia` (
   `numeroAndares` decimal(45,0) DEFAULT NULL,
   PRIMARY KEY (`idResidencia`),
   KEY `idProprietario` (`idProprietario`)
-) ENGINE=MyISAM AUTO_INCREMENT=25 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=26 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +327,7 @@ CREATE TABLE `residencia` (
 
 LOCK TABLES `residencia` WRITE;
 /*!40000 ALTER TABLE `residencia` DISABLE KEYS */;
-INSERT INTO `residencia` VALUES (24,40,'RS','Alegrete','Centro','Casa verde','97547590','Joaquim Rodrigues Paim, 410','5285.0','510.0',2011,5,4,5,7,1,1,3);
+INSERT INTO `residencia` VALUES (24,40,'RS','Alegrete','Centro','Casa verde','97547590','Joaquim Rodrigues Paim, 410','5285.0','510.0',2011,5,4,5,7,1,1,3),(25,40,'RS','Alegrete','Centro','Casa Marrom','97547590','Joaquim Rodrigues Paim, 410','540','250',2016,4,3,4,9,2,1,1);
 /*!40000 ALTER TABLE `residencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -396,7 +396,7 @@ CREATE TABLE `sinistro` (
   PRIMARY KEY (`idSinistro`),
   UNIQUE KEY `idSinistro_UNIQUE` (`idSinistro`),
   KEY `fk_tipoSinistro` (`idTipo`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -405,7 +405,7 @@ CREATE TABLE `sinistro` (
 
 LOCK TABLES `sinistro` WRITE;
 /*!40000 ALTER TABLE `sinistro` DISABLE KEYS */;
-INSERT INTO `sinistro` VALUES ('Sinistro muito louco','2018-05-23','Dois homens com mascara.','Autorizado',250,4,4);
+INSERT INTO `sinistro` VALUES ('','2018-05-23','Dois homens com mascara.','Sim',250,4,4),('','2018-06-15','Arrombamento.',NULL,460,5,4);
 /*!40000 ALTER TABLE `sinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -419,7 +419,7 @@ DROP TABLE IF EXISTS `solicitacaoseguro`;
 CREATE TABLE `solicitacaoseguro` (
   `idSolicitacao` int(11) NOT NULL AUTO_INCREMENT,
   `dataSolicitacao` date DEFAULT NULL,
-  `dataVisitaResidenciia` varchar(10) DEFAULT NULL,
+  `dataVisitaResidenciia` date DEFAULT NULL,
   `valorSolicitacao` float DEFAULT NULL,
   `aprovada` varchar(10) DEFAULT NULL,
   `motivoReprovacao` varchar(150) DEFAULT NULL,
@@ -429,7 +429,7 @@ CREATE TABLE `solicitacaoseguro` (
   PRIMARY KEY (`idSolicitacao`),
   KEY `idResidencia` (`idResidencia`),
   KEY `idPessoa` (`idPessoa`)
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -438,7 +438,7 @@ CREATE TABLE `solicitacaoseguro` (
 
 LOCK TABLES `solicitacaoseguro` WRITE;
 /*!40000 ALTER TABLE `solicitacaoseguro` DISABLE KEYS */;
-INSERT INTO `solicitacaoseguro` VALUES (4,'2018-06-20',NULL,250,'','','',24,40);
+INSERT INTO `solicitacaoseguro` VALUES (4,'2018-06-08','2018-06-26',250,NULL,'null','null',24,40),(6,'2018-06-09',NULL,300,NULL,NULL,NULL,25,40);
 /*!40000 ALTER TABLE `solicitacaoseguro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -476,4 +476,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-08 11:43:01
+-- Dump completed on 2018-06-15 16:26:34

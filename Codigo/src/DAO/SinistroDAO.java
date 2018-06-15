@@ -11,6 +11,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -26,6 +27,7 @@ public class SinistroDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int idTipo = -1;
         try {
             stm = conexao.prepareStatement("SELECT max(tiposinistro.idTipo) from tiposinistro");
@@ -36,7 +38,7 @@ public class SinistroDAO {
             stm = conexao.prepareStatement("INSERT INTO sinistro(parecerAvaliador, dataSinistro, descricaoSinistro,"
                     + "autorizadoSinistro, valorSinistro, idTipo)VALUES(?,?,?,?,?,?)");
             stm.setString(1, sinistro.getParecerAvaliador());
-            stm.setDate(2, Date.valueOf("2018-05-23"));
+            stm.setDate(2, (java.sql.Date.valueOf(sdf.format(sinistro.getDataSinistro()))));
             stm.setString(3, sinistro.getDescricaoSinistro());
             stm.setString(4, sinistro.getAutorizadoSinistro());
             stm.setFloat(5, sinistro.getValorSinistro());
@@ -55,23 +57,24 @@ public class SinistroDAO {
         java.util.Date dataSinistro;
         String descricaoSinistro;
         float valorSinistro;
-        String autorizadoSinistro = "";
-        String parecerAvaliador;
+        String autorizadoSinistro;
+        String parecerAvaliador = null;
         int codSinistro, codTipoSinitro;
         PreparedStatement stmt = null;
         ResultSet rs = null;
         ArrayList<Sinistro> listaDeSinistros = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select * from sinistro inner join tiposinistro on"
-                    + " sinistro.idTipo = tiposinistro.idTipo");
+            stmt = conexao.prepareStatement("select sinistro.idSinistro, autorizadoSinistro, dataSinistro, "
+                    + "descricaoSinistro, valorSinistro, descricaoTipoSinistro, tiposinistro.idTipo from sinistro,"
+                    + "tiposinistro where sinistro.idTipo = tiposinistro.idTipo;");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 codSinistro = rs.getInt("idSinistro");
                 codTipoSinitro = rs.getInt("idTipo");
-                parecerAvaliador = rs.getString("parecerAvaliador");
                 dataSinistro = rs.getDate("dataSinistro");
                 descricaoSinistro = rs.getString("descricaoSinistro");
                 valorSinistro = rs.getFloat("valorSinistro");
+                autorizadoSinistro = rs.getString("autorizadoSinistro");
                 tipoSinistro = rs.getString("descricaoTipoSinistro");
                 Sinistro sinistro = new Sinistro(codSinistro, dataSinistro, descricaoSinistro, valorSinistro, autorizadoSinistro, parecerAvaliador, codTipoSinitro, tipoSinistro);
                 listaDeSinistros.add(sinistro);
@@ -82,5 +85,18 @@ public class SinistroDAO {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
         return listaDeSinistros;
+    }
+
+    public void updateStatusSinistro(Sinistro sinistro) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm;
+        try {
+            stm = conexao.prepareStatement("update sinistro set autorizadoSinistro = '" + sinistro.getAutorizadoSinistro() + "' where sinistro.idSinistro = " + sinistro.getCodSinistro());
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao);
+        }
     }
 }

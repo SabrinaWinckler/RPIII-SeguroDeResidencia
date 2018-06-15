@@ -6,8 +6,10 @@
 package Motor;
 
 import DAO.RelataSinistroDAO;
+import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
 import Dominio.Segurado;
+import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import java.util.ArrayList;
 import java.util.List;
@@ -19,7 +21,9 @@ import java.util.List;
 public class GerenciadorViewCorretor {
 
     List<Solicitacao> listaDeSolicitacao;
+    List<Sinistro> listaDeSinistro;
     SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
+    SinistroDAO daoSinistro = new SinistroDAO();
 
     public GerenciadorViewCorretor(List lista) {
         listaDeSolicitacao = lista;
@@ -70,22 +74,41 @@ public class GerenciadorViewCorretor {
     public List<Solicitacao> listaDeResidenciasPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
         List<Solicitacao> listaDeResidenciasPendentes = new ArrayList<>();
-        listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() != null && solicitacao.getAprovadaSolicitacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
-            listaDeResidenciasPendentes.add(solicitacao);
-        });
-        return listaDeResidenciasPendentes;
+        if (listaDeSolicitacao.size() > 0) {
+            listaDeSolicitacao.stream().filter((solicitacao)
+                    -> (solicitacao.getDataVisitaResidencia() != null
+                    && solicitacao.getMotivoReprovacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
+                listaDeResidenciasPendentes.add(solicitacao);
+            });
+            return listaDeResidenciasPendentes;
+        } else {
+            return listaDeResidenciasPendentes;
+        }
     }
 
     public void updateStatusSolicitacao(Solicitacao solicitacao) {
         daoSolicitacao.updateStatusSolicitacao(solicitacao);
     }
 
-    public List<Segurado> listaDeSinistrosPendentes() {
-        RelataSinistroDAO daoSinistro = new RelataSinistroDAO();
-        return daoSinistro.read();
+    public List<Sinistro> listaDeSinistrosPendentes() {
+        listaDeSinistro = daoSinistro.read();
+        List<Sinistro> listaDeSinistrosParaAvaliar = new ArrayList<>();
+        if (listaDeSinistro.size() > 0) {
+            listaDeSinistro.stream().filter((sinistro) -> (sinistro.getAutorizadoSinistro() == null
+                    || sinistro.getAutorizadoSinistro().equalsIgnoreCase("null") || sinistro.getAutorizadoSinistro().isEmpty())).forEachOrdered((sinistro) -> {
+                listaDeSinistrosParaAvaliar.add(sinistro);
+            });
+            return listaDeSinistrosParaAvaliar;
+        } else {
+            return listaDeSinistrosParaAvaliar;
+        }
     }
 
     public void registrarDateVisitaResidencia(Solicitacao solicitacao) {
         daoSolicitacao.registrarDataVisita(solicitacao);
+    }
+
+    public void updateStatusSinistro(Sinistro sinistro) {
+        daoSinistro.updateStatusSinistro(sinistro);
     }
 }
