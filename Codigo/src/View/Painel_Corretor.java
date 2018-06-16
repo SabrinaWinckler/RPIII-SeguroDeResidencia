@@ -362,7 +362,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         jPanelMotivoNegarSinistro.add(cancelarMotivoReprovacaojButton4, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 90, 30));
 
-        jPanelAvaliarSinistro.add(jPanelMotivoNegarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 280, 190));
+        jPanelAvaliarSinistro.add(jPanelMotivoNegarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 180, 280, 190));
 
         listaSinistrosPendentes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         listaSinistrosPendentes.setModel(new javax.swing.table.DefaultTableModel(
@@ -1096,15 +1096,16 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked
 
     private void ButtonAutorizarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAutorizarPagamentoActionPerformed
-        String resultadoSinistro = "Sim";
+        String resultadoSinistro = "Aprovado";
         Sinistro sinistro = gerenciador.listaDeSinistrosPendentes().get(selecionado);
         sinistro.setAutorizadoSinistro(resultadoSinistro);
-        if (!parecerDoAvaliadorSinistro.getText().equalsIgnoreCase("Digite aqui o parecer técnico do sinistro...") && parecerDoAvaliadorSinistro.getText().isEmpty() && parecerDoAvaliadorSinistro.getText().equals("")) {
+        if (!parecerDoAvaliadorSinistro.getText().equalsIgnoreCase("Digite aqui o parecer técnico do sinistro...") && !parecerDoAvaliadorSinistro.getText().isEmpty() && !parecerDoAvaliadorSinistro.getText().equals("")) {
+            sinistro.setParecerAvaliador(parecerDoAvaliadorSinistro.getText());
             gerenciador.updateStatusSinistro(sinistro);
             JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro autorizado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
             selecionado = -1;
             if (readTableListaDeSinistros() == 0) {
-                runProgram();
+                runProgram(); 
             } else {
                 limparCamposTelaSinistro();
                 habilitarButtonsTelaSinistro(false);
@@ -1116,16 +1117,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_ButtonAutorizarPagamentoActionPerformed
 
     private void buttonNegarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonNegarPagamentoActionPerformed
-        int controle = 0;
-        while (controle == 0) {
-            String motivo = JOptionPane.showInputDialog(rootPane, "Digite o motivo da rejeição do sinistro, por favor:");
-            if (motivo.equalsIgnoreCase("") || motivo.equalsIgnoreCase(" ")) {
-                JOptionPane.showConfirmDialog(rootPane, "O campo de texto não deve ser deixado em branco."
-                        + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
-            } else {
-                controle = 1;
-            }
-        }
+        jPanelMotivoNegarSinistro.setVisible(true);
+        habilitarCamposAvaliarSinistro(false);
     }//GEN-LAST:event_buttonNegarPagamentoActionPerformed
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
@@ -1275,11 +1268,34 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_parecerDoAvaliadorSinistroMouseClicked
 
     private void confirmarMotivoReprovacaojButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMotivoReprovacaojButton3ActionPerformed
-        // TODO add your handling code here:
+        String resultadoSinistro = "Reprovado";
+        Sinistro sinistro = gerenciador.listaDeSinistrosPendentes().get(selecionado);
+        sinistro.setAutorizadoSinistro(resultadoSinistro);
+        if (motivoNegacaoSinistrojTextArea.getText().equalsIgnoreCase("") || motivoReprovacaojTextArea.getText().equalsIgnoreCase(" ")) {
+            JOptionPane.showConfirmDialog(rootPane, "O campo de texto não deve ser deixado em branco."
+                    + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
+        } else {
+            sinistro.setMotivoReprovacao(motivoNegacaoSinistrojTextArea.getText());
+            gerenciador.updateStatusSinistro(sinistro);
+            JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro negado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
+            selecionado = -1;
+            if (readTableListaDeSinistros() == 0) {
+                runProgram();
+            } else {
+                limparCamposTelaSinistro();
+                habilitarButtonsTelaSinistro(false);
+                listaSinistrosPendentes.setEnabled(true);
+                jPanelMotivoNegarSinistro.setVisible(false);
+            }
+        }
     }//GEN-LAST:event_confirmarMotivoReprovacaojButton3ActionPerformed
 
     private void cancelarMotivoReprovacaojButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarMotivoReprovacaojButton4ActionPerformed
-        // TODO add your handling code here:
+        int escolha = JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja cancelar?", "Alerta", JOptionPane.YES_NO_OPTION);
+        if (escolha == 0) {
+            jPanelMotivoNegarSinistro.setVisible(false);
+            habilitarCamposAvaliarSinistro(true);
+        }
     }//GEN-LAST:event_cancelarMotivoReprovacaojButton4ActionPerformed
 
     private void limparCamposTelaResidencia() {
@@ -1371,6 +1387,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonAprovarResidencia.setEnabled(condicao);
         buttonRecusarResidencia.setEnabled(condicao);
         buttonEditarDadosResidencia.setEnabled(condicao);
+    }
+
+    private void habilitarCamposAvaliarSinistro(Boolean condicao) {
+        campoDataSinistroFormat.setEnabled(condicao);
+        campoDescricaoSinistro.setEnabled(condicao);
+        campoTipoSinistro.setEnabled(condicao);
+        campoValorSinistroFormt.setEnabled(condicao);
+        parecerDoAvaliadorSinistro.setEnabled(condicao);
+        habilitarButtonsTelaSinistro(condicao);
     }
 
     private void preencherCamposAvaliarResidencia(int numeroLinha) {
@@ -1546,7 +1571,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton cancelarMotivoReprovacaojButton4;
     private javax.swing.JButton confirmarMotivoReprovacaojButton;
     private javax.swing.JButton confirmarMotivoReprovacaojButton1;
-    private javax.swing.JButton confirmarMotivoReprovacaojButton2;
     private javax.swing.JButton confirmarMotivoReprovacaojButton3;
     private javax.swing.JButton gerenciarServicosButton;
     private javax.swing.JButton homeButton;
@@ -1571,7 +1595,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -1606,7 +1629,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelDadosSolicitante;
     private javax.swing.JPanel jPanelMotivoNegarSinistro;
     private javax.swing.JPanel jPanelMotivoReprovacao;
-    private javax.swing.JPanel jPanelMotivoReprovacao1;
     private javax.swing.JPanel jPanelMotivoSolicitacaoRecusado;
     private javax.swing.JPanel jPanelSolicitacaoDeSeguro;
     private javax.swing.JScrollPane jScrollPane1;
@@ -1616,7 +1638,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
-    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JToggleButton jToggleButtonDadosProprietario;
     private javax.swing.JLabel labelFundoHomePainelCorretor;
@@ -1626,7 +1647,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextArea motivoNegacaoSinistrojTextArea;
     private javax.swing.JTextArea motivoReprovacaoSolicitacaojTextArea;
     private javax.swing.JTextArea motivoReprovacaojTextArea;
-    private javax.swing.JTextArea motivoReprovacaojTextArea1;
     private javax.swing.JTextArea parecerDoAvaliadorSinistro;
     private javax.swing.JButton visualizarSolicitacoesButton;
     // End of variables declaration//GEN-END:variables

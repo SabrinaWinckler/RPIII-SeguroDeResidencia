@@ -19,6 +19,7 @@ public class Sinistro extends TipoSinistro {
     private float valorSinistro;
     private String autorizadoSinistro;
     private String parecerAvaliador;
+    private String motivoReprovacao;
 
     public Sinistro() {
 
@@ -41,6 +42,13 @@ public class Sinistro extends TipoSinistro {
         this.valorSinistro = valorSinistro;
         this.autorizadoSinistro = autorizadoSinistro;
         this.parecerAvaliador = parecerAvaliador;
+    }
+
+    public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String tipoSinistro) {
+        super(tipoSinistro);
+        this.dataSinistro = dataSinistro;
+        this.descricaoSinistro = descricaoSinistro;
+        this.valorSinistro = valorSinistro;
     }
 
     public Date getDataSinistro() {
@@ -95,6 +103,20 @@ public class Sinistro extends TipoSinistro {
      */
     public void setCodSinistro(int codSinistro) {
         this.codSinistro = codSinistro;
+    }
+
+    /**
+     * @return the motivoReprovacao
+     */
+    public String getMotivoReprovacao() {
+        return motivoReprovacao;
+    }
+
+    /**
+     * @param motivoReprovacao the motivoReprovacao to set
+     */
+    public void setMotivoReprovacao(String motivoReprovacao) {
+        this.motivoReprovacao = motivoReprovacao;
     }
 
 }

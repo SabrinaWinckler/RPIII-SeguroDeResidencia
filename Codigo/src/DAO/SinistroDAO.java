@@ -91,7 +91,9 @@ public class SinistroDAO {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update sinistro set autorizadoSinistro = '" + sinistro.getAutorizadoSinistro() + "' where sinistro.idSinistro = " + sinistro.getCodSinistro());
+            stm = conexao.prepareStatement("update sinistro set autorizadoSinistro = '" + sinistro.getAutorizadoSinistro()
+                    + "', motivoReprovacao = '" + sinistro.getMotivoReprovacao()
+                    + "', parecerAvaliador = '" + sinistro.getParecerAvaliador() + "' where sinistro.idSinistro = " + sinistro.getCodSinistro());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);
