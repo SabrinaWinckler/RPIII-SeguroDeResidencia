@@ -77,7 +77,7 @@ public class GerenciadorViewCorretor {
         if (listaDeSolicitacao.size() > 0) {
             listaDeSolicitacao.stream().filter((solicitacao)
                     -> (solicitacao.getDataVisitaResidencia() != null
-                    && solicitacao.getMotivoReprovacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
+                    || solicitacao.getMotivoReprovacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
                 listaDeResidenciasPendentes.add(solicitacao);
             });
             return listaDeResidenciasPendentes;
