@@ -19,4 +19,8 @@ public class GerenciadorViewLogin {
     public List<String> esqueciASenha() {
         return daoPessoa.readUserName();
     }
+
+    public void updatePassword(String userName, String password) {
+        daoPessoa.updatePassword(userName, password);
+    }
 }

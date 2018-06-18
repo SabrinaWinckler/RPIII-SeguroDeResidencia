@@ -91,4 +91,18 @@ public class PessoaDAO {
         }
         return listaDeUserNames;
     }
+
+    public void updatePassword(String userName, String password) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm;
+        try {
+            stm = conexao.prepareStatement("update pessoa set senha = '"
+                    + password + "' where pessoa.nomeLogin = '" + userName + "'");
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao);
+        }
+    }
 }

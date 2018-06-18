@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Débora Siqueira
  */
 public class Tela_Login extends javax.swing.JFrame {
-
+    
     Gerenciador motor = new Gerenciador();
     GerenciadorViewLogin gerenciadorLogin = new GerenciadorViewLogin();
     Corretor corretor = new Corretor();
@@ -136,6 +136,11 @@ public class Tela_Login extends javax.swing.JFrame {
         enviarNovaSenha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         enviarNovaSenha.setForeground(new java.awt.Color(255, 255, 255));
         enviarNovaSenha.setText("Enviar");
+        enviarNovaSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarNovaSenhaActionPerformed(evt);
+            }
+        });
         EsqueciASenhajPanel.add(enviarNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
 
         getContentPane().add(EsqueciASenhajPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 290, 150));
@@ -270,6 +275,7 @@ public class Tela_Login extends javax.swing.JFrame {
                 usuarioEsqueciASenhajPanel.setVisible(false);
                 EsqueciASenhajPanel.setVisible(true);
                 userNameExiste = true;
+                
             }
         }
         if (!userNameExiste) {
@@ -278,9 +284,31 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_enviarUsuarioButtonActionPerformed
 
     private void cancelarEnvioUsuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarEnvioUsuarioButtonActionPerformed
-        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja cancelar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            usuarioEsqueciASenhajPanel.setVisible(false);
+        }
     }//GEN-LAST:event_cancelarEnvioUsuarioButtonActionPerformed
 
+    private void enviarNovaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarNovaSenhaActionPerformed
+        String esqueciASenha = "";
+        char[] vetorComSenha = novaSenha.getPassword();
+        String repitaSenha = "";
+        for (int i = 0; i < novaSenha.getPassword().length; i++) {
+            esqueciASenha += vetorComSenha[i];
+        }
+        for (int i = 0; i < repitaNovaSenha.getPassword().length; i++) {
+            vetorComSenha = repitaNovaSenha.getPassword();
+            repitaSenha += vetorComSenha[i];
+        }
+        if (esqueciASenha.equals(repitaSenha)) {
+            gerenciadorLogin.updatePassword(usuarioVerificar.getText(), repitaSenha);
+            JOptionPane.showConfirmDialog(rootPane, "Nova senha salva com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
+            EsqueciASenhajPanel.setVisible(false);
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "As senhas não combinam. Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
+        }
+    }//GEN-LAST:event_enviarNovaSenhaActionPerformed
+    
     private void realizarLogin() {
         boolean usuarioExiste = false;
         List<Candidato> listPessoas = motor.retornaCliente();
@@ -318,11 +346,11 @@ public class Tela_Login extends javax.swing.JFrame {
                     + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }
-
+    
     public Pessoa identificarUsuario() {
         return null;
     }
-
+    
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         //bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
