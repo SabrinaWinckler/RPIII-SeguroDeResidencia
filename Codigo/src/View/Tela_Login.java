@@ -9,6 +9,7 @@ import Dominio.Candidato;
 import Dominio.Corretor;
 import Dominio.Pessoa;
 import Motor.Gerenciador;
+import Motor.GerenciadorViewLogin;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -22,6 +23,7 @@ import javax.swing.JOptionPane;
 public class Tela_Login extends javax.swing.JFrame {
 
     Gerenciador motor = new Gerenciador();
+    GerenciadorViewLogin gerenciadorLogin = new GerenciadorViewLogin();
     Corretor corretor = new Corretor();
     Candidato usuario = new Candidato();
 
@@ -30,6 +32,8 @@ public class Tela_Login extends javax.swing.JFrame {
      */
     public Tela_Login() {
         initComponents();
+        usuarioEsqueciASenhajPanel.setVisible(false);
+        EsqueciASenhajPanel.setVisible(false);
     }
 
     /**
@@ -41,6 +45,18 @@ public class Tela_Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        usuarioEsqueciASenhajPanel = new javax.swing.JPanel();
+        usuarioJLabel = new javax.swing.JLabel();
+        usuarioVerificar = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        enviarUsuarioButton = new javax.swing.JButton();
+        cancelarEnvioUsuarioButton = new javax.swing.JButton();
+        EsqueciASenhajPanel = new javax.swing.JPanel();
+        jLabel5 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        novaSenha = new javax.swing.JPasswordField();
+        repitaNovaSenha = new javax.swing.JPasswordField();
+        enviarNovaSenha = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         campoUsuario = new javax.swing.JTextPane();
         identificadorUsuario = new javax.swing.JLabel();
@@ -59,20 +75,85 @@ public class Tela_Login extends javax.swing.JFrame {
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        usuarioEsqueciASenhajPanel.setBackground(new java.awt.Color(2, 66, 130));
+        usuarioEsqueciASenhajPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        usuarioEsqueciASenhajPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        usuarioJLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        usuarioJLabel.setForeground(new java.awt.Color(255, 255, 255));
+        usuarioJLabel.setText("Usuário:");
+        usuarioEsqueciASenhajPanel.add(usuarioJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 60, 30));
+
+        usuarioVerificar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        usuarioEsqueciASenhajPanel.add(usuarioVerificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 110, 30));
+
+        jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(188, 132, 253));
+        jLabel7.setText("Digite o seu usuário:");
+        usuarioEsqueciASenhajPanel.add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 120, -1));
+
+        enviarUsuarioButton.setBackground(new java.awt.Color(26, 204, 252));
+        enviarUsuarioButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        enviarUsuarioButton.setForeground(new java.awt.Color(255, 255, 255));
+        enviarUsuarioButton.setText("Enviar");
+        enviarUsuarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarUsuarioButtonActionPerformed(evt);
+            }
+        });
+        usuarioEsqueciASenhajPanel.add(enviarUsuarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+
+        cancelarEnvioUsuarioButton.setBackground(new java.awt.Color(126, 87, 194));
+        cancelarEnvioUsuarioButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cancelarEnvioUsuarioButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarEnvioUsuarioButton.setText("Cancelar");
+        cancelarEnvioUsuarioButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarEnvioUsuarioButtonActionPerformed(evt);
+            }
+        });
+        usuarioEsqueciASenhajPanel.add(cancelarEnvioUsuarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+
+        getContentPane().add(usuarioEsqueciASenhajPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 230, 130));
+
+        EsqueciASenhajPanel.setBackground(new java.awt.Color(2, 66, 130));
+        EsqueciASenhajPanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        EsqueciASenhajPanel.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel5.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel5.setText("Repita a senha:");
+        EsqueciASenhajPanel.add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 70, 140, 30));
+
+        jLabel6.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Nova senha:");
+        EsqueciASenhajPanel.add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 120, 20));
+        EsqueciASenhajPanel.add(novaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 20, 120, 30));
+        EsqueciASenhajPanel.add(repitaNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 70, 120, 30));
+
+        enviarNovaSenha.setBackground(new java.awt.Color(26, 204, 252));
+        enviarNovaSenha.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        enviarNovaSenha.setForeground(new java.awt.Color(255, 255, 255));
+        enviarNovaSenha.setText("Enviar");
+        EsqueciASenhajPanel.add(enviarNovaSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 120, -1, -1));
+
+        getContentPane().add(EsqueciASenhajPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 360, 290, 150));
+
         jScrollPane1.setViewportView(campoUsuario);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 270, 128, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 230, 128, -1));
 
         identificadorUsuario.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         identificadorUsuario.setForeground(new java.awt.Color(255, 255, 255));
         identificadorUsuario.setText("Usuário:");
-        getContentPane().add(identificadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 270, 60, 20));
-        getContentPane().add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 300, 128, -1));
+        getContentPane().add(identificadorUsuario, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 60, 20));
+        getContentPane().add(campoSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 260, 128, -1));
 
         jLabel3.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Senha:");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 300, 60, 20));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 60, 20));
 
         entrarButton.setBackground(new java.awt.Color(153, 51, 255));
         entrarButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -83,20 +164,20 @@ public class Tela_Login extends javax.swing.JFrame {
                 entrarButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 280, -1, -1));
+        getContentPane().add(entrarButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 240, -1, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/user-silhouette.png"))); // NOI18N
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 260, 30, 40));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 30, 40));
 
         jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/locked-padlock.png"))); // NOI18N
-        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 300, -1, -1));
+        getContentPane().add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
 
         perguntaPrimeiroAcesso.setBackground(new java.awt.Color(255, 255, 255));
         perguntaPrimeiroAcesso.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         perguntaPrimeiroAcesso.setForeground(new java.awt.Color(255, 255, 255));
         perguntaPrimeiroAcesso.setText("Seu primeiro acesso? ");
         perguntaPrimeiroAcesso.setToolTipText("");
-        getContentPane().add(perguntaPrimeiroAcesso, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 340, 130, 30));
+        getContentPane().add(perguntaPrimeiroAcesso, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 300, 130, 30));
 
         cadastro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         cadastro.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,17 +193,20 @@ public class Tela_Login extends javax.swing.JFrame {
                 cadastroMouseExited(evt);
             }
         });
-        getContentPane().add(cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, -1, 30));
+        getContentPane().add(cadastro, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 300, -1, 30));
 
         perguntaEsqueceuSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         perguntaEsqueceuSenha.setForeground(new java.awt.Color(255, 255, 255));
         perguntaEsqueceuSenha.setText("Esqueceu sua senha?");
-        getContentPane().add(perguntaEsqueceuSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, 130, 20));
+        getContentPane().add(perguntaEsqueceuSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 330, 130, 20));
 
         recuperarSenha.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         recuperarSenha.setForeground(new java.awt.Color(255, 255, 255));
         recuperarSenha.setText("Recuperar senha");
         recuperarSenha.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                recuperarSenhaMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 recuperarSenhaMouseEntered(evt);
             }
@@ -130,7 +214,7 @@ public class Tela_Login extends javax.swing.JFrame {
                 recuperarSenhaMouseExited(evt);
             }
         });
-        getContentPane().add(recuperarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 370, 100, 20));
+        getContentPane().add(recuperarSenha, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 330, 100, 20));
 
         jLabel2.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,6 +258,28 @@ public class Tela_Login extends javax.swing.JFrame {
         recuperarSenha.setForeground(new Color(255, 255, 255));
         recuperarSenha.setFont(new Font("Arial", Font.BOLD, 12));
     }//GEN-LAST:event_recuperarSenhaMouseExited
+
+    private void recuperarSenhaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recuperarSenhaMouseClicked
+        usuarioEsqueciASenhajPanel.setVisible(true);
+    }//GEN-LAST:event_recuperarSenhaMouseClicked
+
+    private void enviarUsuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarUsuarioButtonActionPerformed
+        boolean userNameExiste = false;
+        for (String userName : gerenciadorLogin.esqueciASenha()) {
+            if (userName.equalsIgnoreCase(usuarioVerificar.getText())) {
+                usuarioEsqueciASenhajPanel.setVisible(false);
+                EsqueciASenhajPanel.setVisible(true);
+                userNameExiste = true;
+            }
+        }
+        if (!userNameExiste) {
+            JOptionPane.showConfirmDialog(rootPane, "Usuário informado não foi encontrado.", "Alerta", JOptionPane.CLOSED_OPTION);
+        }
+    }//GEN-LAST:event_enviarUsuarioButtonActionPerformed
+
+    private void cancelarEnvioUsuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarEnvioUsuarioButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancelarEnvioUsuarioButtonActionPerformed
 
     private void realizarLogin() {
         boolean usuarioExiste = false;
@@ -253,18 +359,30 @@ public class Tela_Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel EsqueciASenhajPanel;
     private javax.swing.JLabel cadastro;
     private javax.swing.JPasswordField campoSenha;
     private javax.swing.JTextPane campoUsuario;
+    private javax.swing.JButton cancelarEnvioUsuarioButton;
     private javax.swing.JButton entrarButton;
+    private javax.swing.JButton enviarNovaSenha;
+    private javax.swing.JButton enviarUsuarioButton;
     private javax.swing.JLabel identificadorUsuario;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JPasswordField novaSenha;
     private javax.swing.JLabel perguntaEsqueceuSenha;
     private javax.swing.JLabel perguntaPrimeiroAcesso;
     private javax.swing.JLabel recuperarSenha;
+    private javax.swing.JPasswordField repitaNovaSenha;
+    private javax.swing.JPanel usuarioEsqueciASenhajPanel;
+    private javax.swing.JLabel usuarioJLabel;
+    private javax.swing.JTextField usuarioVerificar;
     // End of variables declaration//GEN-END:variables
 }

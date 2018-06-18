@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author Débora Siqueira
  */
 public class PessoaDAO {
-    
+
     public void create(Pessoa pessoa) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -42,7 +42,7 @@ public class PessoaDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-    
+
     public List<Pessoa> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -69,5 +69,26 @@ public class PessoaDAO {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
         return listaDePessoa;
+    }
+
+    public List<String> readUserName() {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<String> listaDeUserNames = new ArrayList<>();
+        String userName;
+        try {
+            stmt = conexao.prepareStatement("select nomeLogin from pessoa");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                userName = rs.getString("nomeLogin");
+                listaDeUserNames.add(userName);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(PessoaDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stmt, rs);
+        }
+        return listaDeUserNames;
     }
 }
