@@ -12,6 +12,7 @@ import Dominio.Solicitacao;
 import Motor.GerenciadorViewCorretor;
 import View.Tela_Login;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -50,6 +51,7 @@ public class Principal {
         Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
         CandidatoDAO canDAO = new CandidatoDAO();
         canDAO.create(candidato);
+         
 
         //RESIDENCIA
         String descricaoRes = "Casa verde";
@@ -57,11 +59,11 @@ public class Principal {
         long cepRes = 97547590;
         int qntComodos = 7;
         int qntGaragens = 1;
-        float areaTotal = 5285;
+        float areaTotal = 250;
         int numAndares = 3;
         int anoConstrucao = 2011;
         String ruaRes = "Joaquim Rodrigues", ufResidencia = "RS";
-        double areaConstruida = 510;
+        double areaConstruida = 75;
         int localizacaoPerigosa = 4;
         int terrenoPerigoso = 5;
         int estruturaAmeacada = 5;
@@ -101,7 +103,10 @@ public class Principal {
                 motivoAlteracao, residencia);
         GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
         double valorTeste = gerenciador.calcularValorSolicitacao(solicitcao);
-        System.out.println(valorTeste);
+        //String valorString = "" + valorTeste;
+        //float valorFloat = Float.parseFloat(valorString);
+        DecimalFormat df = new DecimalFormat("0,000.00");
+        System.out.println(df.format(valorTeste));
         /*
         //TIPO DE SINISTRO
         String tipoSinistroRoubo = "Roubo";

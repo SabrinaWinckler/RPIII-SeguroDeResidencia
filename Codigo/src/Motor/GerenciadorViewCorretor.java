@@ -76,7 +76,8 @@ public class GerenciadorViewCorretor {
         if (listaDeSolicitacao.size() > 0) {
             listaDeSolicitacao.stream().filter((solicitacao)
                     -> (solicitacao.getDataVisitaResidencia() != null
-                    || solicitacao.getMotivoReprovacao().equalsIgnoreCase("null"))).forEachOrdered((solicitacao) -> {
+                    && (solicitacao.getMotivoAlteracao() == null || solicitacao.getMotivoAlteracao().equalsIgnoreCase("null"))
+                    && (solicitacao.getMotivoReprovacao() == null || solicitacao.getMotivoReprovacao().equalsIgnoreCase("null")))).forEachOrdered((solicitacao) -> {
                 listaDeResidenciasPendentes.add(solicitacao);
             });
             return listaDeResidenciasPendentes;
@@ -177,5 +178,9 @@ public class GerenciadorViewCorretor {
         }
 
         return valorBaseSolicitacao;
+    }
+
+    public void editarSolicitacao(Solicitacao solicitacao) {
+        daoSolicitacao.editarSolicitacao(solicitacao);
     }
 }

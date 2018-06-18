@@ -308,11 +308,10 @@ public class Residencia {
     /**
      * @param bens the bens to set
      */
-    /*
     public void setBens(List<Bem> bens) {
         this.bens = bens;
     }
-     */
+
     /**
      * @param localizacaoPerigosa the localizacaoPerigosa to set
      */
