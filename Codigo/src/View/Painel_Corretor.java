@@ -9,6 +9,7 @@ import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
+import java.awt.Cursor;
 import java.awt.Font;
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -185,6 +186,16 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAnoConstrucao = new javax.swing.JTextField();
         campoAreaConstruida = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
+        salvarEditacao = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel32 = new javax.swing.JLabel();
+        terrenoPerigoso = new javax.swing.JSlider();
+        estruturaAmeacada = new javax.swing.JSlider();
+        localizacaoPerigosa = new javax.swing.JSlider();
+        numeroTerrenoPerigoso = new javax.swing.JLabel();
+        numeroEstruturaAmeacada = new javax.swing.JLabel();
+        numeroLocalizacaoPerigosa = new javax.swing.JLabel();
         jPanelSolicitacaoDeSeguro = new javax.swing.JPanel();
         jPanelMotivoSolicitacaoRecusado = new javax.swing.JPanel();
         jScrollPane7 = new javax.swing.JScrollPane();
@@ -488,6 +499,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
         jPanelCorretor.add(jPanelAvaliarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
+        jPanelAvaliarResidencia.setBackground(new java.awt.Color(255, 255, 255));
         jPanelAvaliarResidencia.setMinimumSize(new java.awt.Dimension(730, 490));
         jPanelAvaliarResidencia.setName(""); // NOI18N
         jPanelAvaliarResidencia.setPreferredSize(new java.awt.Dimension(730, 490));
@@ -529,7 +541,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         jPanelMotivoReprovacao.add(cancelarMotivoReprovacaojButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 150, 90, 30));
 
-        jPanelAvaliarResidencia.add(jPanelMotivoReprovacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 180, 280, 190));
+        jPanelAvaliarResidencia.add(jPanelMotivoReprovacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 170, 280, 190));
 
         listaDeResidencias.setBackground(new java.awt.Color(240, 240, 240));
         listaDeResidencias.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -559,14 +571,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
         listaDeResidencias.setColumnSelectionAllowed(true);
         listaDeResidencias.setSelectionBackground(new java.awt.Color(126, 87, 194));
         listaDeResidencias.getTableHeader().setReorderingAllowed(false);
-        listaDeResidencias.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                listaDeResidenciasMouseMoved(evt);
-            }
-        });
         listaDeResidencias.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaDeResidenciasMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                listaDeResidenciasMouseEntered(evt);
             }
         });
         jScrollPane1.setViewportView(listaDeResidencias);
@@ -581,11 +591,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabelCep.setText("Cep:");
         jPanelAvaliarResidencia.add(jLabelCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 30, -1));
 
-        campoCepResidencia.setEditable(false);
+        campoCepResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoCepResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoCepResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 200, 30));
 
-        campoRuaResidencia.setEditable(false);
+        campoRuaResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoRuaResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoRuaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 200, 30));
 
@@ -597,11 +607,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel2.setText("Cidade:");
         jPanelAvaliarResidencia.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 50, -1));
 
-        campoCidadeResidencia.setEditable(false);
+        campoCidadeResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoCidadeResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoCidadeResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 200, 30));
 
-        campoUFResidencia.setEditable(false);
+        campoUFResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoUFResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 50, 30));
 
@@ -613,11 +623,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabelDescr.setText("Descrição:");
         jPanelAvaliarResidencia.add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 70, 20));
 
-        campoDescricaoResidencia.setEditable(false);
+        campoDescricaoResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoDescricaoResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 190, 50));
 
-        buttonEditarDadosResidencia.setBackground(new java.awt.Color(0, 0, 102));
+        buttonEditarDadosResidencia.setBackground(new java.awt.Color(1, 45, 90));
         buttonEditarDadosResidencia.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         buttonEditarDadosResidencia.setForeground(new java.awt.Color(255, 255, 255));
         buttonEditarDadosResidencia.setText("Editar");
@@ -652,7 +662,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         jPanelAvaliarResidencia.add(buttonRecusarResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 450, 100, 30));
 
-        jToggleButtonDadosProprietario.setBackground(new java.awt.Color(204, 204, 255));
+        jToggleButtonDadosProprietario.setBackground(new java.awt.Color(126, 87, 194));
+        jToggleButtonDadosProprietario.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jToggleButtonDadosProprietario.setForeground(new java.awt.Color(255, 255, 255));
         jToggleButtonDadosProprietario.setText("Dados Proprietário");
         jToggleButtonDadosProprietario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -661,38 +673,47 @@ public class Painel_Corretor extends javax.swing.JFrame {
         });
         jPanelAvaliarResidencia.add(jToggleButtonDadosProprietario, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 140, 160, 30));
 
+        jPanelDadosProprietario.setBackground(new java.awt.Color(1, 45, 90));
         jPanelDadosProprietario.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanelDadosProprietario.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         campoNomeCandidato.setEditable(false);
+        campoNomeCandidato.setBackground(new java.awt.Color(213, 213, 213));
         campoNomeCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelDadosProprietario.add(campoNomeCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, 170, 30));
 
         campoCPFCandidato.setEditable(false);
+        campoCPFCandidato.setBackground(new java.awt.Color(213, 213, 213));
         campoCPFCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelDadosProprietario.add(campoCPFCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 60, 170, 30));
 
         campoEmailCandidato.setEditable(false);
+        campoEmailCandidato.setBackground(new java.awt.Color(213, 213, 213));
         campoEmailCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelDadosProprietario.add(campoEmailCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 100, 170, 30));
 
         campoTelefoneCandidato.setEditable(false);
+        campoTelefoneCandidato.setBackground(new java.awt.Color(213, 213, 213));
         campoTelefoneCandidato.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelDadosProprietario.add(campoTelefoneCandidato, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 140, 170, 30));
 
         jLabel8.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Nome:");
         jPanelDadosProprietario.add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 30, -1, -1));
 
         jLabel9.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("CPF:");
         jPanelDadosProprietario.add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 70, 30, -1));
 
         jLabel16.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("Email:");
         jPanelDadosProprietario.add(jLabel16, new org.netbeans.lib.awtextra.AbsoluteConstraints(24, 110, 40, -1));
 
         jLabel17.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Telefone:");
         jPanelDadosProprietario.add(jLabel17, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 150, -1, -1));
 
@@ -702,7 +723,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel14.setText("Area Total:");
         jPanelAvaliarResidencia.add(jLabel14, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 380, 70, -1));
 
-        campoAreaTotal.setEditable(false);
+        campoAreaTotal.setBackground(new java.awt.Color(213, 213, 213));
         campoAreaTotal.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoAreaTotal, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 370, 50, 30));
 
@@ -718,15 +739,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel12.setText("Quantidade de Garagens:");
         jPanelAvaliarResidencia.add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 260, -1, -1));
 
-        campoQuantidadeDeGaragens.setEditable(false);
+        campoQuantidadeDeGaragens.setBackground(new java.awt.Color(213, 213, 213));
         campoQuantidadeDeGaragens.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoQuantidadeDeGaragens, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, 50, 30));
 
-        campoQuantidadeDeBanheiros.setEditable(false);
+        campoQuantidadeDeBanheiros.setBackground(new java.awt.Color(213, 213, 213));
         campoQuantidadeDeBanheiros.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoQuantidadeDeBanheiros, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 210, 50, 30));
 
-        campoQuantidadeComodos.setEditable(false);
+        campoQuantidadeComodos.setBackground(new java.awt.Color(213, 213, 213));
         campoQuantidadeComodos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoQuantidadeComodos, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 170, 50, 30));
 
@@ -734,17 +755,89 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel15.setText("Ano de Construção:");
         jPanelAvaliarResidencia.add(jLabel15, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
 
-        campoAnoConstrucao.setEditable(false);
+        campoAnoConstrucao.setBackground(new java.awt.Color(213, 213, 213));
         campoAnoConstrucao.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoAnoConstrucao, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 290, 50, 30));
 
-        campoAreaConstruida.setEditable(false);
+        campoAreaConstruida.setBackground(new java.awt.Color(213, 213, 213));
         campoAreaConstruida.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoAreaConstruida, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 330, 50, 30));
 
         jLabel13.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel13.setText("Area Construida:");
         jPanelAvaliarResidencia.add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 340, -1, -1));
+
+        salvarEditacao.setBackground(new java.awt.Color(0, 153, 255));
+        salvarEditacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        salvarEditacao.setForeground(new java.awt.Color(255, 255, 255));
+        salvarEditacao.setText("Salvar");
+        salvarEditacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarEditacaoActionPerformed(evt);
+            }
+        });
+        jPanelAvaliarResidencia.add(salvarEditacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 420, 100, 30));
+
+        jLabel25.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel25.setText("Terreno Perigoso:");
+        jPanelAvaliarResidencia.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 180, -1, -1));
+
+        jLabel27.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel27.setText("Estrutura Ameaçada:");
+        jPanelAvaliarResidencia.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 250, -1, -1));
+
+        jLabel32.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel32.setText("Localização Perigosa:");
+        jPanelAvaliarResidencia.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 330, -1, -1));
+
+        terrenoPerigoso.setBackground(new java.awt.Color(213, 213, 213));
+        terrenoPerigoso.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        terrenoPerigoso.setForeground(new java.awt.Color(0, 0, 0));
+        terrenoPerigoso.setMaximum(10);
+        terrenoPerigoso.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        terrenoPerigoso.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        terrenoPerigoso.setEnabled(false);
+        terrenoPerigoso.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                terrenoPerigosoStateChanged(evt);
+            }
+        });
+        jPanelAvaliarResidencia.add(terrenoPerigoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 200, 140, -1));
+
+        estruturaAmeacada.setBackground(new java.awt.Color(213, 213, 213));
+        estruturaAmeacada.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        estruturaAmeacada.setForeground(new java.awt.Color(0, 0, 0));
+        estruturaAmeacada.setMaximum(10);
+        estruturaAmeacada.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        estruturaAmeacada.setEnabled(false);
+        estruturaAmeacada.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                estruturaAmeacadaStateChanged(evt);
+            }
+        });
+        jPanelAvaliarResidencia.add(estruturaAmeacada, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 280, 140, -1));
+
+        localizacaoPerigosa.setBackground(new java.awt.Color(213, 213, 213));
+        localizacaoPerigosa.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        localizacaoPerigosa.setForeground(new java.awt.Color(0, 0, 0));
+        localizacaoPerigosa.setMaximum(10);
+        localizacaoPerigosa.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        localizacaoPerigosa.setEnabled(false);
+        localizacaoPerigosa.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                localizacaoPerigosaStateChanged(evt);
+            }
+        });
+        jPanelAvaliarResidencia.add(localizacaoPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 360, 140, -1));
+
+        numeroTerrenoPerigoso.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanelAvaliarResidencia.add(numeroTerrenoPerigoso, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 200, 20, 30));
+
+        numeroEstruturaAmeacada.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanelAvaliarResidencia.add(numeroEstruturaAmeacada, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 280, 20, 30));
+
+        numeroLocalizacaoPerigosa.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        jPanelAvaliarResidencia.add(numeroLocalizacaoPerigosa, new org.netbeans.lib.awtextra.AbsoluteConstraints(700, 360, 20, 30));
 
         jPanelCorretor.add(jPanelAvaliarResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -1044,6 +1137,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void listaDeResidenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseClicked
         if (selecionado == -1) {
             int linhaSelecionada = listaDeResidencias.getSelectedRow();
+            listaDeResidencias.setSelectionBackground(new Color(1, 45, 90));
             preencherCamposAvaliarResidencia(linhaSelecionada);
             habiltarButtonsTelaResidencia(true);
             listaDeResidencias.setEnabled(false);
@@ -1054,11 +1148,28 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
     private void buttonEditarDadosResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarDadosResidenciaActionPerformed
         campoQuantidadeComodos.setEditable(true);
+        campoQuantidadeComodos.setBackground(new Color(255, 255, 255));
+        campoQuantidadeComodos.setFont(new Font("Arial", Font.ITALIC, 12));
         campoQuantidadeDeBanheiros.setEditable(true);
+        campoQuantidadeDeBanheiros.setBackground(new Color(255, 255, 255));
+        campoQuantidadeDeBanheiros.setFont(new Font("Arial", Font.ITALIC, 12));
         campoQuantidadeDeGaragens.setEditable(true);
+        campoQuantidadeDeGaragens.setBackground(new Color(255, 255, 255));
+        campoQuantidadeDeGaragens.setFont(new Font("Arial", Font.ITALIC, 12));
         campoAnoConstrucao.setEditable(true);
+        campoAnoConstrucao.setBackground(new Color(255, 255, 255));
+        campoAnoConstrucao.setFont(new Font("Arial", Font.ITALIC, 12));
         campoAreaConstruida.setEditable(true);
+        campoAreaConstruida.setBackground(new Color(255, 255, 255));
+        campoAreaConstruida.setFont(new Font("Arial", Font.ITALIC, 12));
         campoAreaTotal.setEditable(true);
+        campoAreaTotal.setBackground(new Color(255, 255, 255));
+        campoAreaTotal.setFont(new Font("Arial", Font.ITALIC, 12));
+        salvarEditacao.setVisible(true);
+        terrenoPerigoso.setEnabled(true);
+        estruturaAmeacada.setEnabled(true);
+        localizacaoPerigosa.setEnabled(true);
+        buttonsTelaResidenciaVisivel(false);
     }//GEN-LAST:event_buttonEditarDadosResidenciaActionPerformed
 
     private void buttonAprovarResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonAprovarResidenciaActionPerformed
@@ -1113,6 +1224,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 limparCamposTelaSinistro();
                 habilitarButtonsTelaSinistro(false);
                 listaSinistrosPendentes.setEnabled(true);
+                parecerDoAvaliadorSinistro.setText("Digite aqui o parecer técnico do sinistro...");
+                parecerDoAvaliadorSinistro.setFont(new Font("Arial", Font.ITALIC, 12));
+                parecerDoAvaliadorSinistro.setForeground(new Color(119, 119, 119));
+                
             }
         } else {
             JOptionPane.showConfirmDialog(rootPane, "O parecer não pode ser deixado em branco!", "Confirmação", JOptionPane.CLOSED_OPTION);
@@ -1238,10 +1353,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cancelarMotivoReprovacaojButton2ActionPerformed
 
-    private void listaDeResidenciasMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseMoved
-        listaDeResidencias.setBackground(new Color(126, 87, 194));
-    }//GEN-LAST:event_listaDeResidenciasMouseMoved
-
     private void listaDeSolicitacoesSeguroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseMoved
         listaDeSolicitacoesSeguro.setBackground(new Color(126, 87, 194));
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseMoved
@@ -1307,6 +1418,27 @@ public class Painel_Corretor extends javax.swing.JFrame {
             habilitarCamposAvaliarSinistro(true);
         }
     }//GEN-LAST:event_cancelarMotivoReprovacaojButton4ActionPerformed
+
+    private void salvarEditacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarEditacaoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_salvarEditacaoActionPerformed
+
+    private void terrenoPerigosoStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_terrenoPerigosoStateChanged
+        numeroTerrenoPerigoso.setText("" + terrenoPerigoso.getValue());
+    }//GEN-LAST:event_terrenoPerigosoStateChanged
+
+    private void estruturaAmeacadaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_estruturaAmeacadaStateChanged
+        numeroEstruturaAmeacada.setText("" + estruturaAmeacada.getValue());
+    }//GEN-LAST:event_estruturaAmeacadaStateChanged
+
+    private void localizacaoPerigosaStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_localizacaoPerigosaStateChanged
+        numeroLocalizacaoPerigosa.setText("" + localizacaoPerigosa.getValue());
+    }//GEN-LAST:event_localizacaoPerigosaStateChanged
+
+    private void listaDeResidenciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseEntered
+        //listaDeResidencias.setBackground(new Color(126, 87, 194));
+        listaDeResidencias.setCursor(new Cursor(Cursor.HAND_CURSOR));
+    }//GEN-LAST:event_listaDeResidenciasMouseEntered
     
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
@@ -1353,6 +1485,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jToggleButtonDadosProprietario.setEnabled(condicao);
     }
     
+    private void buttonsTelaResidenciaVisivel(Boolean condicao) {
+        buttonEditarDadosResidencia.setVisible(condicao);
+        buttonAprovarResidencia.setVisible(condicao);
+        buttonRecusarResidencia.setVisible(condicao);
+        jToggleButtonDadosProprietario.setEnabled(condicao);
+        listaDeResidencias.setEnabled(condicao);
+    }
+    
     private void habilitarButtonsTelaSinistro(Boolean condicao) {
         ButtonAutorizarPagamento.setEnabled(condicao);
         buttonNegarPagamento.setEnabled(condicao);
@@ -1397,6 +1537,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonAprovarResidencia.setEnabled(condicao);
         buttonRecusarResidencia.setEnabled(condicao);
         buttonEditarDadosResidencia.setEnabled(condicao);
+        estruturaAmeacada.setEnabled(condicao);
+        localizacaoPerigosa.setEnabled(condicao);
+        terrenoPerigoso.setEnabled(condicao);
     }
     
     private void habilitarCamposAvaliarSinistro(Boolean condicao) {
@@ -1427,6 +1570,9 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAreaConstruida.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaConstruida());
         campoAnoConstrucao.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAnoConstrucao());
         campoAreaTotal.setText("" + listaDeSolicitacao.get(numeroLinha).getResidencia().getAreaTotal());
+        terrenoPerigoso.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getTerrenoPerigoso());
+        estruturaAmeacada.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getEstruturaAmeacada());
+        localizacaoPerigosa.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getLocalizacaoPerigosa());
     }
     
     private void preencherCamposSolicitacaoSeguro(int numero) {
@@ -1488,6 +1634,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
         jPanelMotivoReprovacao.setVisible(false);
+        salvarEditacao.setVisible(false);
     }
     
     private void visualizarSinistros() {
@@ -1582,6 +1729,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton confirmarMotivoReprovacaojButton;
     private javax.swing.JButton confirmarMotivoReprovacaojButton1;
     private javax.swing.JButton confirmarMotivoReprovacaojButton3;
+    private javax.swing.JSlider estruturaAmeacada;
     private javax.swing.JButton gerenciarServicosButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButtonCancelarRegistroDeData;
@@ -1605,12 +1753,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1654,10 +1805,16 @@ public class Painel_Corretor extends javax.swing.JFrame {
     public javax.swing.JTable listaDeResidencias;
     public javax.swing.JTable listaDeSolicitacoesSeguro;
     private javax.swing.JTable listaSinistrosPendentes;
+    private javax.swing.JSlider localizacaoPerigosa;
     private javax.swing.JTextArea motivoNegacaoSinistrojTextArea;
     private javax.swing.JTextArea motivoReprovacaoSolicitacaojTextArea;
     private javax.swing.JTextArea motivoReprovacaojTextArea;
+    private javax.swing.JLabel numeroEstruturaAmeacada;
+    private javax.swing.JLabel numeroLocalizacaoPerigosa;
+    private javax.swing.JLabel numeroTerrenoPerigoso;
     private javax.swing.JTextArea parecerDoAvaliadorSinistro;
+    private javax.swing.JButton salvarEditacao;
+    private javax.swing.JSlider terrenoPerigoso;
     private javax.swing.JButton visualizarSolicitacoesButton;
     // End of variables declaration//GEN-END:variables
 }

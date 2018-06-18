@@ -203,7 +203,7 @@ public class Tela_Login extends javax.swing.JFrame {
                 corretor = certoCorretor;
                 usuarioExiste = true;
                 Painel_Corretor painelCorretor = new Painel_Corretor();
-                painelCorretor.setVisible(usuarioExiste);
+                painelCorretor.setVisible(true);
                 dispose();
             }
         }

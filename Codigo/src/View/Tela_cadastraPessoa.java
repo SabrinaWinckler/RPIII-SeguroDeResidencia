@@ -5,7 +5,6 @@
  */
 package View;
 
-import Aplicacao.CursorPersonalizado;
 import Dominio.Candidato;
 import Motor.Gerenciador;
 import Excecoes.ExceptionCPFInvalid;
@@ -377,7 +376,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
             campoBairro.setText(webServiceCep.getBairro());
             campoEndereco.setText(webServiceCep.getLogradouro());
             campoCidade.setText(webServiceCep.getCidade());
-            ufComboBox.setToolTipText(webServiceCep.getUf());
+            ufComboBox.setSelectedItem(webServiceCep.getUf());
         }
     }//GEN-LAST:event_campoCepFocusLost
 
@@ -412,22 +411,16 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastraPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastraPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Tela_cadastraPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Tela_cadastraPessoa.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
+        //</editor-fold>
+
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Tela_cadastraPessoa().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Tela_cadastraPessoa().setVisible(true);
         });
     }
 
