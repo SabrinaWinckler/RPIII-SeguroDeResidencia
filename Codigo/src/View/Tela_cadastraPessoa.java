@@ -19,7 +19,7 @@ import service.WebServiceCep;
  * @author Débora Siqueira
  */
 public class Tela_cadastraPessoa extends javax.swing.JFrame {
-
+    
     private String sexo;
     private long cep;
     private String dataNascimento;
@@ -69,8 +69,8 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         diaComboBox = new javax.swing.JComboBox<>();
         mesComboBox = new javax.swing.JComboBox<>();
         anoComboBox = new javax.swing.JComboBox<>();
-        Feminino = new javax.swing.JCheckBox();
-        Masculino = new javax.swing.JCheckBox();
+        feminino = new javax.swing.JCheckBox();
+        masculino = new javax.swing.JCheckBox();
         confirmarButton = new javax.swing.JButton();
         cancelarButton = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
@@ -197,15 +197,25 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         anoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1999", "1998", "1997", "1996", "1995", "1994", "1993", "1992", "1991", "1990", "1989", "1988", "1987", "1986", "1985", "1984", "1983", "1982", "1981", "1980", "1979", "1978", "1977", "1976", "1975", "1974", "1973", "1972", "1971", "1970", "1969", "1968", "1967", "1966", "1965", "1964", "1963", "1962", "1961", "1960", "1959", "1958", "1957", "1956", "1955", "1954", "1953", "1952", "1951", "1950", "1949", "1948", "1947", "1946", "1945", "1944", "1943", "1942", "1941", "1940", "1939", "1938", "1937", "1936", "1935", "1934", "1933", "1932", "1931", "1930", "1929", "1928", "1927", "1926", "1925", "1924", "1923", "1922", "1921", "1920", "1919", "1918", "1917", "1916", "1915", "1914", "1913", "1912", "1911", "1910" }));
         getContentPane().add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
-        Feminino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Feminino.setForeground(new java.awt.Color(255, 255, 255));
-        Feminino.setText("Feminino");
-        getContentPane().add(Feminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 80, -1));
+        feminino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        feminino.setForeground(new java.awt.Color(255, 255, 255));
+        feminino.setText("Feminino");
+        feminino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                femininoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(feminino, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 280, 80, -1));
 
-        Masculino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        Masculino.setForeground(new java.awt.Color(255, 255, 255));
-        Masculino.setText("Masculino");
-        getContentPane().add(Masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 80, -1));
+        masculino.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        masculino.setForeground(new java.awt.Color(255, 255, 255));
+        masculino.setText("Masculino");
+        masculino.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                masculinoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(masculino, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 280, 80, -1));
 
         confirmarButton.setBackground(new java.awt.Color(0, 153, 255));
         confirmarButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -395,6 +405,18 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private void ufComboBoxMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_ufComboBoxMouseMoved
         ufComboBox.setCursor(new Cursor(Cursor.DEFAULT_CURSOR));
     }//GEN-LAST:event_ufComboBoxMouseMoved
+
+    private void femininoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_femininoActionPerformed
+        if (masculino.isSelected()) {
+            masculino.setSelected(false);
+        }
+    }//GEN-LAST:event_femininoActionPerformed
+
+    private void masculinoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_masculinoActionPerformed
+        if (feminino.isSelected()) {
+            feminino.setSelected(false);
+        }
+    }//GEN-LAST:event_masculinoActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -425,8 +447,6 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JCheckBox Feminino;
-    private javax.swing.JCheckBox Masculino;
     private javax.swing.JComboBox<String> anoComboBox;
     private javax.swing.JLabel bairroJLabel;
     private javax.swing.JTextField campoBairro;
@@ -441,6 +461,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> diaComboBox;
     private javax.swing.JTextField emailCampo;
     private javax.swing.JLabel enderecoJLabel;
+    private javax.swing.JCheckBox feminino;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -452,6 +473,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JCheckBox masculino;
     private javax.swing.JComboBox<String> mesComboBox;
     private javax.swing.JTextField senhaCampo;
     private javax.swing.JTextField telefoneCampo;
