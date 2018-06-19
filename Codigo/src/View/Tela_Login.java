@@ -290,16 +290,8 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarEnvioUsuarioButtonActionPerformed
 
     private void enviarNovaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarNovaSenhaActionPerformed
-        String esqueciASenha = "";
-        char[] vetorComSenha = novaSenha.getPassword();
-        String repitaSenha = "";
-        for (int i = 0; i < novaSenha.getPassword().length; i++) {
-            esqueciASenha += vetorComSenha[i];
-        }
-        for (int i = 0; i < repitaNovaSenha.getPassword().length; i++) {
-            vetorComSenha = repitaNovaSenha.getPassword();
-            repitaSenha += vetorComSenha[i];
-        }
+        String esqueciASenha = String.copyValueOf(novaSenha.getPassword());
+        String repitaSenha = String.copyValueOf(repitaNovaSenha.getPassword()); 
         if (esqueciASenha.equals(repitaSenha)) {
             gerenciadorLogin.updatePassword(usuarioVerificar.getText(), repitaSenha);
             JOptionPane.showConfirmDialog(rootPane, "Nova senha salva com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
