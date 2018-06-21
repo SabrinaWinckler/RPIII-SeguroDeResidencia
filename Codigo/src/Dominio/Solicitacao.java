@@ -16,9 +16,7 @@ public class Solicitacao {
     private int codSolicitacao;
 
     private Date dataSolicitacao;
-
-    private String dataSol;
-
+    
     private double valorSolicitacao;
 
     private Date dataVisitaResidencia;
@@ -38,7 +36,7 @@ public class Solicitacao {
     }
 
     public Solicitacao(Date dataSolicitacao, Residencia residencia) {
-        this.dataSol = dataSolicitacao.toString().replace(dataSolicitacao.toString(), "2018-15-06");
+        this.dataSolicitacao = dataSolicitacao;
         this.residencia = residencia;
         this.valorSolicitacao = 0;
         this.aprovadaSolicitacao = null;

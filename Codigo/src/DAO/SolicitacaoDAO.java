@@ -25,12 +25,12 @@ import java.util.logging.Logger;
 public class SolicitacaoDAO {
 
     ResidenciaDAO daoResidencia = new ResidenciaDAO();
+    DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public void create(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int idResidencia = -1;
         int idPessoa = -1;
         try {
@@ -39,22 +39,22 @@ public class SolicitacaoDAO {
             while (rs.next()) {
                 idResidencia = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("SELECT max(pessoa.idPessoa) from pessoa");
+            stm = conexao.prepareStatement("SELECT idPessoa from pessoa where pessoa.idPessoa = "
+                    + solicitacao.getResidencia().getCandidato().getCodPessoa());
             rs = stm.executeQuery();
             while (rs.next()) {
                 idPessoa = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, dataVisitaResidenciia,"
+            stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, "
                     + "valorSolicitacao, "
-                    + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?,?)");
-            stm.setDate(1, java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao())));
-            stm.setDate(2, java.sql.Date.valueOf(sdf.format(solicitacao.getDataVisitaResidencia())));
-            stm.setDouble(3, solicitacao.getValorSolicitacao());
-            stm.setString(4, solicitacao.getAprovadaSolicitacao());
-            stm.setString(5, solicitacao.getMotivoReprovacao());
-            stm.setString(6, solicitacao.getMotivoAlteracao());
-            stm.setInt(7, idResidencia);
-            stm.setInt(8, idPessoa);
+                    + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?)");
+            stm.setDate(1, (java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao()))));
+            stm.setDouble(2, solicitacao.getValorSolicitacao());
+            stm.setString(3, solicitacao.getAprovadaSolicitacao());
+            stm.setString(4, solicitacao.getMotivoReprovacao());
+            stm.setString(5, solicitacao.getMotivoAlteracao());
+            stm.setInt(6, idResidencia);
+            stm.setInt(7, idPessoa);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -112,8 +112,7 @@ public class SolicitacaoDAO {
     public void registrarDataVisita(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
-        DateFormat dataFormatada = new SimpleDateFormat("yyyy-MM-dd");
-        String data = dataFormatada.format(solicitacao.getDataVisitaResidencia());
+        String data = sdf.format(solicitacao.getDataVisitaResidencia());
         try {
             stm = conexao.prepareStatement("update solicitacaoseguro set "
                     + "dataVisitaResidenciia = '" + data + "' where "

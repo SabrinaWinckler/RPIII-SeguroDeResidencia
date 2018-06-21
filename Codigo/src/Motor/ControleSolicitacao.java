@@ -7,7 +7,6 @@ import DAO.SolicitacaoDAO;
 import Dominio.Solicitacao;
 import Dominio.Servico;
 import Dominio.Bem;
-import Dominio.Candidato;
 import Dominio.Residencia;
 import java.util.ArrayList;
 import java.util.Date;
@@ -107,7 +106,7 @@ public class ControleSolicitacao {
             daoBem.create((Bem) bens.get(i));
         }
         Solicitacao tempS = this.construirSolicitacao();
-       // geraDAOSolicitacao().create(tempS);
+        geraDAOSolicitacao().create(tempS);
     }
 
     public ServicoDAO geraDAOServico() {
