@@ -23,6 +23,7 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import service.WebServiceCep;
 
 /**
  *
@@ -101,5 +102,72 @@ public class Gerenciador {
     public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
         return daoSolicitacao.listaSolicitacaoCliente(candidato);
+    }
+    public double calcularValorSolicitacao(Solicitacao solicitacao) {
+        double valorBaseSolicitacao = 0, valorComTaxas;
+        WebServiceCep webServiceCep = WebServiceCep.searchCep("" + solicitacao.getResidencia().getCepRes());
+        String Uf = webServiceCep.getUf();
+        if (Uf.equalsIgnoreCase("RS") || Uf.equalsIgnoreCase("SC") || Uf.equalsIgnoreCase("PR")) {
+            valorBaseSolicitacao = 346.00;
+            valorComTaxas = valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getQntComodos();
+            valorComTaxas += solicitacao.getResidencia().getAreaConstruida() * 8.54;
+            valorComTaxas += valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getBens().size();
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getLocalizacaoPerigosa() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getEstruturaAmeacada() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getTerrenoPerigoso() / 100;
+            valorComTaxas += valorBaseSolicitacao;
+            return valorComTaxas;
+        } else if (Uf.equalsIgnoreCase("SP") || Uf.equalsIgnoreCase("RJ")
+                || Uf.equalsIgnoreCase("ES") || Uf.equalsIgnoreCase("MG")) {
+            valorBaseSolicitacao = 394.80;
+            valorComTaxas = valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getQntComodos();
+            valorComTaxas += solicitacao.getResidencia().getAreaConstruida() * 8.54;
+            valorComTaxas += valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getBens().size();
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getLocalizacaoPerigosa() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getEstruturaAmeacada() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getTerrenoPerigoso() / 100;
+            valorComTaxas += valorBaseSolicitacao;
+            return valorComTaxas;
+        } else if (Uf.equalsIgnoreCase("AC") || Uf.equalsIgnoreCase("AM")
+                || Uf.equalsIgnoreCase("RO") || Uf.equalsIgnoreCase("RR")
+                || Uf.equalsIgnoreCase("PA") || Uf.equalsIgnoreCase("AP")
+                || Uf.equalsIgnoreCase("TO")) {
+            valorBaseSolicitacao = 302.00;
+            valorComTaxas = valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getQntComodos();
+            valorComTaxas += solicitacao.getResidencia().getAreaConstruida() * 8.54;
+            valorComTaxas += valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getBens().size();
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getLocalizacaoPerigosa() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getEstruturaAmeacada() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getTerrenoPerigoso() / 100;
+            valorComTaxas += valorBaseSolicitacao;
+            return valorComTaxas;
+        } else if (Uf.equalsIgnoreCase("MA") || Uf.equalsIgnoreCase("PI")
+                || Uf.equalsIgnoreCase("BA") || Uf.equalsIgnoreCase("CE")
+                || Uf.equalsIgnoreCase("PE") || Uf.equalsIgnoreCase("SE")
+                || Uf.equalsIgnoreCase("AL") || Uf.equalsIgnoreCase("PB")
+                || Uf.equalsIgnoreCase("RN")) {
+            valorBaseSolicitacao = 327.90;
+            valorComTaxas = valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getQntComodos();
+            valorComTaxas += solicitacao.getResidencia().getAreaConstruida() * 8.54;
+            valorComTaxas += valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getBens().size();
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getLocalizacaoPerigosa() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getEstruturaAmeacada() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getTerrenoPerigoso() / 100;
+            valorComTaxas += valorBaseSolicitacao;
+            return valorComTaxas;
+        } else if (Uf.equalsIgnoreCase("MT") || Uf.equalsIgnoreCase("GO")
+                || Uf.equalsIgnoreCase("MS")) {
+            valorBaseSolicitacao = 341.55;
+            valorComTaxas = valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getQntComodos();
+            valorComTaxas += solicitacao.getResidencia().getAreaConstruida() * 8.54;
+            valorComTaxas += valorBaseSolicitacao * 3 / 100 * solicitacao.getResidencia().getBens().size();
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getLocalizacaoPerigosa() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getEstruturaAmeacada() / 100;
+            valorComTaxas += valorBaseSolicitacao * solicitacao.getResidencia().getTerrenoPerigoso() / 100;
+            valorComTaxas += valorBaseSolicitacao;
+            return valorComTaxas;
+        }
+
+        return valorBaseSolicitacao;
     }
 }
