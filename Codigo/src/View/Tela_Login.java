@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  * @author Débora Siqueira
  */
 public class Tela_Login extends javax.swing.JFrame {
-    
+
     Gerenciador motor = new Gerenciador();
     GerenciadorViewLogin gerenciadorLogin = new GerenciadorViewLogin();
     Corretor corretor = new Corretor();
@@ -81,11 +81,11 @@ public class Tela_Login extends javax.swing.JFrame {
 
         usuarioJLabel.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         usuarioJLabel.setForeground(new java.awt.Color(255, 255, 255));
-        usuarioJLabel.setText("Usuário:");
-        usuarioEsqueciASenhajPanel.add(usuarioJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 40, 60, 30));
+        usuarioJLabel.setText("Login:");
+        usuarioEsqueciASenhajPanel.add(usuarioJLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(7, 40, -1, 30));
 
         usuarioVerificar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        usuarioEsqueciASenhajPanel.add(usuarioVerificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 40, 110, 30));
+        usuarioEsqueciASenhajPanel.add(usuarioVerificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 40, 170, 30));
 
         jLabel7.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(188, 132, 253));
@@ -275,7 +275,7 @@ public class Tela_Login extends javax.swing.JFrame {
                 usuarioEsqueciASenhajPanel.setVisible(false);
                 EsqueciASenhajPanel.setVisible(true);
                 userNameExiste = true;
-                
+
             }
         }
         if (!userNameExiste) {
@@ -291,7 +291,7 @@ public class Tela_Login extends javax.swing.JFrame {
 
     private void enviarNovaSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarNovaSenhaActionPerformed
         String esqueciASenha = String.copyValueOf(novaSenha.getPassword());
-        String repitaSenha = String.copyValueOf(repitaNovaSenha.getPassword()); 
+        String repitaSenha = String.copyValueOf(repitaNovaSenha.getPassword());
         if (esqueciASenha.equals(repitaSenha)) {
             gerenciadorLogin.updatePassword(usuarioVerificar.getText(), repitaSenha);
             JOptionPane.showConfirmDialog(rootPane, "Nova senha salva com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
@@ -300,17 +300,13 @@ public class Tela_Login extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, "As senhas não combinam. Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_enviarNovaSenhaActionPerformed
-    
+
     private void realizarLogin() {
         boolean usuarioExiste = false;
         List<Candidato> listPessoas = motor.retornaCliente();
         List<Corretor> listCorretores = motor.retornarCorretor();
+        String senhaJunta = String.copyValueOf(campoSenha.getPassword());
         for (Candidato pessoa : listPessoas) {
-            char[] senha = campoSenha.getPassword();
-            String senhaJunta = "";
-            for (int i = 0; i < campoSenha.getPassword().length; i++) {
-                senhaJunta += senha[i];
-            }
             if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                 usuario = pessoa;
                 usuarioExiste = true;
@@ -320,11 +316,6 @@ public class Tela_Login extends javax.swing.JFrame {
             }
         }
         for (Corretor certoCorretor : listCorretores) {
-            char[] senha = campoSenha.getPassword();
-            String senhaJunta = "";
-            for (int i = 0; i < campoSenha.getPassword().length; i++) {
-                senhaJunta += senha[i];
-            }
             if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                 corretor = certoCorretor;
                 usuarioExiste = true;
@@ -338,11 +329,11 @@ public class Tela_Login extends javax.swing.JFrame {
                     + "Por favor, digite novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }
-    
+
     public Pessoa identificarUsuario() {
         return null;
     }
-    
+
     public void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         //bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
@@ -351,7 +342,7 @@ public class Tela_Login extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
-     */
+     */ 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

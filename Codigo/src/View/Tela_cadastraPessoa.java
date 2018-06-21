@@ -150,6 +150,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         ufComboBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         ufComboBox.setForeground(new java.awt.Color(255, 255, 255));
         ufComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG", "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO" }));
+        ufComboBox.setEnabled(false);
         ufComboBox.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 ufComboBoxMouseMoved(evt);

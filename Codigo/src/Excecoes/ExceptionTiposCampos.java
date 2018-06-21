@@ -13,7 +13,16 @@ import java.text.ParseException;
  */
 public class ExceptionTiposCampos {
 
-    public String camposString(String texto) throws ParseException {
-        return "";
+    public String camposString(String texto) {
+        if (texto.contains("^[0-9]*$")) {
+            return texto;
+        } else {
+            return null;
+        }
+    }
+
+    public Double camposDouble(String numero) throws ParseException {
+        double numeroReal = Double.parseDouble(numero);
+        return numeroReal;
     }
 }

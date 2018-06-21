@@ -1488,7 +1488,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             nova.setVisible(true);
             painelSolicitacao.setVisible(false);
 
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
 
