@@ -10,16 +10,23 @@ import Motor.ControleSolicitacao;
 import Motor.Gerenciador;
 import Dominio.Solicitacao;
 import Dominio.Bem;
+import Dominio.ItemServico;
 import Dominio.Residencia;
+import Dominio.Segurado;
 import Excecoes.ExceptionEmptySpace;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
 import java.awt.HeadlessException;
+import java.text.DateFormat;
 import java.text.DecimalFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -36,6 +43,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     Gerenciador gerenciador = new Gerenciador();
     private int quantidadeDeSolicitacao, selecionado;
     static Candidato candidato;
+    List<ItemServico> listaDeServico = new ArrayList<>();
 
     /**
      * Creates new form Painel_Corretor
@@ -50,10 +58,31 @@ public class Painel_Candidato extends javax.swing.JFrame {
         initComponents();
         gerarBackground();
         quantidadeDeSolicitacao = readTableListaSolicitacao(candidato);
+        //readTableListaServico((Segurado)candidato);
         home();
     }
 
-    public int readTableListaSolicitacao(Candidato candidato) {
+    private int readTableListaServico(Segurado segurado) {
+        DefaultTableModel modelo = (DefaultTableModel) listaSolicitacaoCandidato.getModel();
+        modelo.setNumRows(0);
+        listaDeServico = gerenciador.servicoPorCliente(segurado);
+        int tamanhoLista = listaDeServico.size();
+        if (tamanhoLista > 0) {
+            for (ItemServico itemServico : listaDeServico) {
+                modelo.addRow(new Object[]{
+                    itemServico.getDescricaoSolicitacao(),
+                    itemServico.getDataSolicitacaoServico(), //adicionar o cep
+                });
+
+            }
+            return 1;
+        } else {
+            return 0;
+        }
+
+    }
+
+    private int readTableListaSolicitacao(Candidato candidato) {
         DefaultTableModel modelo = (DefaultTableModel) listaSolicitacaoCandidato.getModel();
         modelo.setNumRows(0);
         listaSolicitacao = gerenciador.listaSolicitacaoCliente(candidato);
@@ -156,7 +185,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTabelaListaServicos = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        buttonFecharListaServicos = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         calendarServico = new com.toedter.calendar.JCalendar();
         enviarServico = new javax.swing.JButton();
@@ -634,6 +663,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTabelaListaServicos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabelaListaServicosMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTabelaListaServicos);
 
         jPanelListaServicos.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 450, 150));
@@ -644,16 +678,16 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jButton1.setText("Cancelar Solicitação");
         jPanelListaServicos.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
-        jButton2.setBackground(new java.awt.Color(204, 0, 0));
-        jButton2.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setText("Fechar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        buttonFecharListaServicos.setBackground(new java.awt.Color(204, 0, 0));
+        buttonFecharListaServicos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonFecharListaServicos.setForeground(new java.awt.Color(255, 255, 255));
+        buttonFecharListaServicos.setText("Fechar");
+        buttonFecharListaServicos.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                buttonFecharListaServicosActionPerformed(evt);
             }
         });
-        jPanelListaServicos.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
+        jPanelListaServicos.add(buttonFecharListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
 
         painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 160, 450, 200));
 
@@ -735,6 +769,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         visualizarSolicitacaoServico.setForeground(new java.awt.Color(68, 122, 221));
         visualizarSolicitacaoServico.setText("Visualizar Solicitações");
         visualizarSolicitacaoServico.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                visualizarSolicitacaoServicoMouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 visualizarSolicitacaoServicoMouseEntered(evt);
             }
@@ -1527,8 +1564,19 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonCancelarActionPerformed
 
     private void enviarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarServicoActionPerformed
+        int dia = calendarServico.getDayChooser().getDay(), mes = calendarServico.getMonthChooser().getMonth() + 1, ano = calendarServico.getYearChooser().getYear();
+        String dataString = "" + dia + "/" + mes + "/" + ano;
+        Date dataVisitaResidencia = null;
+        Date dataAgora = new Date();
+        DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            dataVisitaResidencia = (Date) formatter.parse(dataString);
+        } catch (ParseException ex) {
+            Logger.getLogger(Painel_Candidato.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja solicitar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             String escolhido = "";
+            Date data = new Date();
             int qnt = 0;
             if (encanador.isSelected()) {
 
@@ -1542,7 +1590,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
             qnt = escolhido.split(",").length;
 
-            controlador.registrarServico(escolhido, qnt);
+            controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             JOptionPane.showMessageDialog(painelP, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
             painelServico.setVisible(false);
         }
@@ -1645,9 +1693,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         visualizarSolicitacaoServico.setFont(new Font("Arial", Font.BOLD, 14));
     }//GEN-LAST:event_visualizarSolicitacaoServicoMouseExited
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    private void buttonFecharListaServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharListaServicosActionPerformed
+        jPanelListaServicos.setVisible(false);
+    }//GEN-LAST:event_buttonFecharListaServicosActionPerformed
 
     private void campoValorParceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorParceladoActionPerformed
         // TODO add your handling code here:
@@ -1659,6 +1707,15 @@ public class Painel_Candidato extends javax.swing.JFrame {
         double resultado = valorTeste / quantidadeVezes;
         campoValorParcelado.setText("" + resultado);
     }//GEN-LAST:event_quantidadeVezesParcelaItemStateChanged
+
+    private void visualizarSolicitacaoServicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarSolicitacaoServicoMouseClicked
+        jPanelListaServicos.setVisible(true);
+    }//GEN-LAST:event_visualizarSolicitacaoServicoMouseClicked
+
+    private void jTabelaListaServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaListaServicosMouseClicked
+        selecionado = jTabelaListaServicos.getSelectedRow();
+
+    }//GEN-LAST:event_jTabelaListaServicosMouseClicked
 
     private void home() {
         painelP.setVisible(true);
@@ -1722,6 +1779,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         nova.setVisible(false);
         cancelarSolicitacao.setVisible(false);
         calendarServico.setVisible(false);
+        jPanelListaServicos.setVisible(false);
     }
 
     private void solicitacaoAprovada() {
@@ -1856,6 +1914,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JButton buttonConfirmar;
     private javax.swing.JButton buttonContratarSeguro;
     private javax.swing.JToggleButton buttonDataServico;
+    private javax.swing.JButton buttonFecharListaServicos;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton buttonHome;
@@ -1891,7 +1950,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JButton exibir;
     private javax.swing.JTextField garagem;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

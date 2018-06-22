@@ -15,7 +15,7 @@ import java.util.List;
  *
  * @author Matheus Montanha
  */
-public class Segurado extends Pessoa {
+public class Segurado extends Candidato {
 
     private List<Sinistro> sinistros;
     private List<ItemServico> servicos;
@@ -25,13 +25,21 @@ public class Segurado extends Pessoa {
         sinistros = new ArrayList<>();
     }
 
-    public Segurado(List<Sinistro> sinistros, List<ItemServico> servicos, List<Residencia> residencias, int codPessoa, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
-        super(codPessoa, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+    public Segurado(List<Sinistro> sinistros, List<ItemServico> servicos, List<Residencia> residencias, String sexo, long cep, String dataNescimento, String uf, String cidade, String bairro, int codPessoa, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+        super(sexo, cep, dataNescimento, uf, cidade, bairro, codPessoa, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
         this.sinistros = sinistros;
         this.servicos = servicos;
         this.residencias = residencias;
     }
-    
+
+    public Segurado(List<Sinistro> sinistros, List<ItemServico> servicos, List<Residencia> residencias, String sexo, long cep, String dataNescimento, String uf, String cidade, String bairro, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+        super(sexo, cep, dataNescimento, uf, cidade, bairro, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+        this.sinistros = sinistros;
+        this.servicos = servicos;
+        this.residencias = residencias;
+    }
+
+   
     /**
      * @return the sinistros
      */

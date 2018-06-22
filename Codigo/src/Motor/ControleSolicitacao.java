@@ -114,14 +114,14 @@ public class ControleSolicitacao {
         return solicitacaoDAO;
     }
 
-    public Servico construirServico(String desc, int qnt) {
-        Servico temp = new Servico(desc, qnt);
+    public Servico construirServico(String desc, int qnt, Date data, Date visitaResidencia) {
+        Servico temp = new Servico(desc, qnt, data, visitaResidencia);
         return temp;
     }
 
-    public void registrarServico(String desc, int qnt) {
+    public void registrarServico(String desc, int qnt, Date data, Date visitaResidencia) {
 
-        Servico temp = new Servico(desc, qnt);
+        Servico temp = new Servico(desc, qnt, data, visitaResidencia);
         this.setServico(temp);
         geraDAOServico().create(temp);
     }

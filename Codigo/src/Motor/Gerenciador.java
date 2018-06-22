@@ -11,6 +11,7 @@ import DAO.CorretorDAO;
 import DAO.PessoaDAO;
 import DAO.RelataSinistroDAO;
 import DAO.ResidenciaDAO;
+import DAO.ServicoDAO;
 import DAO.SolicitacaoDAO;
 import Dominio.Candidato;
 import Dominio.Corretor;
@@ -18,6 +19,7 @@ import Dominio.Pessoa;
 import Dominio.Segurado;
 import Dominio.Solicitacao;
 import Dominio.Apolice;
+import Dominio.ItemServico;
 import Dominio.Residencia;
 import java.sql.Array;
 import java.util.ArrayList;
@@ -169,5 +171,9 @@ public class Gerenciador {
         }
 
         return valorBaseSolicitacao;
+    }
+    public List<ItemServico> servicoPorCliente(Segurado segurado){
+        ServicoDAO servicoDAO = new ServicoDAO();
+       return servicoDAO.servicosSegurados(segurado);
     }
 }
