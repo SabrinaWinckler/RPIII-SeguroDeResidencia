@@ -19,4 +19,6 @@ public class ExceptionEmptySpace extends RuntimeException {
             throw new ExceptionEmptySpace("Não foi inserida nenhuma informação!");
         }
     }
+
+ 
 }

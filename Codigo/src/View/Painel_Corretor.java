@@ -7,6 +7,7 @@ package View;
 
 import Dominio.Sinistro;
 import Dominio.Solicitacao;
+import Motor.ControleSolicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
 import java.awt.Font;
@@ -33,6 +34,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     String motivoReprovacao, motivoAlteracao, resultado;
     int selecionado = -1;
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+    ControleSolicitacao controlador = new ControleSolicitacao();
 
     /**
      * Creates new form Painel_Corretor
@@ -107,10 +109,19 @@ public class Painel_Corretor extends javax.swing.JFrame {
         visualizarSolicitacoesButton = new javax.swing.JButton();
         avaliarSinistroButton = new javax.swing.JButton();
         gerenciarServicosButton = new javax.swing.JButton();
+        gerenciarSinistrosButton = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxOpcoesCorretor = new javax.swing.JComboBox<>();
         buttonConfiguracao = new javax.swing.JButton();
         jPanelCorretor = new javax.swing.JPanel();
+        jPanelGerenciarSinistros = new javax.swing.JPanel();
+        cancelarGerenciarSinistro = new javax.swing.JButton();
+        cadastrarSinistros = new javax.swing.JButton();
+        jLabel25 = new javax.swing.JLabel();
+        campoRegistroTipoSinistro = new javax.swing.JTextField();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        tabelaSinistrosDados = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
         jPanelBemVindo = new javax.swing.JPanel();
         labelFundoHomePainelCorretor = new javax.swing.JLabel();
         jPanelAvaliarSinistro = new javax.swing.JPanel();
@@ -251,7 +262,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 avaliarResidenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 200, 180, 40));
+        getContentPane().add(avaliarResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
         avaliarResidencia.getAccessibleContext().setAccessibleDescription("");
 
         visualizarSolicitacoesButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -265,7 +276,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 visualizarSolicitacoesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 180, 40));
+        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 320, 180, 40));
 
         avaliarSinistroButton.setBackground(new java.awt.Color(255, 255, 255));
         avaliarSinistroButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -277,14 +288,31 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 avaliarSinistroButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 180, 40));
+        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 250, 180, 40));
 
         gerenciarServicosButton.setBackground(new java.awt.Color(255, 255, 255));
         gerenciarServicosButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         gerenciarServicosButton.setForeground(new java.awt.Color(110, 48, 110));
         gerenciarServicosButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tools.png"))); // NOI18N
         gerenciarServicosButton.setText("Gerenciar Serviços ");
-        getContentPane().add(gerenciarServicosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 490, 180, 40));
+        gerenciarServicosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerenciarServicosButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gerenciarServicosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 390, 180, 40));
+
+        gerenciarSinistrosButton.setBackground(new java.awt.Color(255, 255, 255));
+        gerenciarSinistrosButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        gerenciarSinistrosButton.setForeground(new java.awt.Color(110, 48, 110));
+        gerenciarSinistrosButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tools.png"))); // NOI18N
+        gerenciarSinistrosButton.setText("Gerenciar Sinistros ");
+        gerenciarSinistrosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerenciarSinistrosButtonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(gerenciarSinistrosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 460, 180, 40));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-roxoMenu.jpg"))); // NOI18N
@@ -311,6 +339,63 @@ public class Painel_Corretor extends javax.swing.JFrame {
         getContentPane().add(buttonConfiguracao, new org.netbeans.lib.awtextra.AbsoluteConstraints(930, 0, 40, -1));
 
         jPanelCorretor.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelGerenciarSinistros.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        cancelarGerenciarSinistro.setText("Cancelar");
+        cancelarGerenciarSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarGerenciarSinistroActionPerformed(evt);
+            }
+        });
+        jPanelGerenciarSinistros.add(cancelarGerenciarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 310, -1, -1));
+
+        cadastrarSinistros.setText("Cadastrar");
+        cadastrarSinistros.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cadastrarSinistrosActionPerformed(evt);
+            }
+        });
+        jPanelGerenciarSinistros.add(cadastrarSinistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 310, -1, -1));
+
+        jLabel25.setText("Informe o tipo de Sinistro que deseja cadastrar:");
+        jPanelGerenciarSinistros.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
+        jPanelGerenciarSinistros.add(campoRegistroTipoSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 100, -1));
+
+        tabelaSinistrosDados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null},
+                {null},
+                {null},
+                {null}
+            },
+            new String [] {
+                "Tipo"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane8.setViewportView(tabelaSinistrosDados);
+
+        jPanelGerenciarSinistros.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 90, 380, 100));
+
+        jLabel32.setText("Dados tipo de sinistros cadastrados:");
+        jPanelGerenciarSinistros.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, -1, -1));
+
+        jPanelCorretor.add(jPanelGerenciarSinistros, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 50, 480, 350));
 
         jPanelBemVindo.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -1307,6 +1392,25 @@ public class Painel_Corretor extends javax.swing.JFrame {
             habilitarCamposAvaliarSinistro(true);
         }
     }//GEN-LAST:event_cancelarMotivoReprovacaojButton4ActionPerformed
+
+    private void gerenciarServicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciarServicosButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_gerenciarServicosButtonActionPerformed
+
+    private void gerenciarSinistrosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciarSinistrosButtonActionPerformed
+        jPanelGerenciarSinistros.setVisible(true);
+    }//GEN-LAST:event_gerenciarSinistrosButtonActionPerformed
+
+    private void cancelarGerenciarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarGerenciarSinistroActionPerformed
+        jPanelGerenciarSinistros.setVisible(false);
+    }//GEN-LAST:event_cancelarGerenciarSinistroActionPerformed
+
+    private void cadastrarSinistrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cadastrarSinistrosActionPerformed
+
+        controlador.cadastrarTipoDeSinistro(campoRegistroTipoSinistro.getText());
+        JOptionPane.showMessageDialog(rootPane, "Este Sinistro foi cadastrado com sucesso!");
+        jPanelGerenciarSinistros.setVisible(false);
+    }//GEN-LAST:event_cadastrarSinistrosActionPerformed
     
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
@@ -1467,6 +1571,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelBemVindo.setVisible(true);
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
+        jPanelGerenciarSinistros.setVisible(false);
     }
     
     private void visualizarSolicitacao() {
@@ -1548,6 +1653,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton buttonNegarPagamento;
     private javax.swing.JButton buttonRecusarResidencia;
     private javax.swing.JButton buttonRecusarSeguro;
+    private javax.swing.JButton cadastrarSinistros;
     private javax.swing.JTextField campoAnoConstrucao;
     private javax.swing.JTextField campoAreaConstruida;
     private javax.swing.JTextField campoAreaTotal;
@@ -1568,6 +1674,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextField campoQuantidadeComodos;
     private javax.swing.JTextField campoQuantidadeDeBanheiros;
     private javax.swing.JTextField campoQuantidadeDeGaragens;
+    private javax.swing.JTextField campoRegistroTipoSinistro;
     public javax.swing.JTextField campoRuaResidencia;
     private javax.swing.JTextField campoTelefoneCandidato;
     private javax.swing.JTextField campoTelefoneCandidato1;
@@ -1576,6 +1683,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     public javax.swing.JTextField campoUFResidencia;
     private javax.swing.JFormattedTextField campoValorSinistroFormt;
     private javax.swing.JTextField campoValorSolicitacao;
+    private javax.swing.JButton cancelarGerenciarSinistro;
     private javax.swing.JButton cancelarMotivoReprovacaojButton2;
     private javax.swing.JButton cancelarMotivoReprovacaojButton3;
     private javax.swing.JButton cancelarMotivoReprovacaojButton4;
@@ -1583,6 +1691,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton confirmarMotivoReprovacaojButton1;
     private javax.swing.JButton confirmarMotivoReprovacaojButton3;
     private javax.swing.JButton gerenciarServicosButton;
+    private javax.swing.JButton gerenciarSinistrosButton;
     private javax.swing.JButton homeButton;
     private javax.swing.JButton jButtonCancelarRegistroDeData;
     private javax.swing.JButton jButtonConfirmarData;
@@ -1605,12 +1714,14 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1637,6 +1748,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCorretor;
     private javax.swing.JPanel jPanelDadosProprietario;
     private javax.swing.JPanel jPanelDadosSolicitante;
+    private javax.swing.JPanel jPanelGerenciarSinistros;
     private javax.swing.JPanel jPanelMotivoNegarSinistro;
     private javax.swing.JPanel jPanelMotivoReprovacao;
     private javax.swing.JPanel jPanelMotivoSolicitacaoRecusado;
@@ -1648,6 +1760,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JToggleButton jToggleButtonDadosProprietario;
     private javax.swing.JLabel labelFundoHomePainelCorretor;
@@ -1658,6 +1771,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JTextArea motivoReprovacaoSolicitacaojTextArea;
     private javax.swing.JTextArea motivoReprovacaojTextArea;
     private javax.swing.JTextArea parecerDoAvaliadorSinistro;
+    private javax.swing.JTable tabelaSinistrosDados;
     private javax.swing.JButton visualizarSolicitacoesButton;
     // End of variables declaration//GEN-END:variables
 }

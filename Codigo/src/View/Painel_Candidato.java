@@ -93,11 +93,26 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
-        editar = new javax.swing.JButton();
-        editarSelecionado = new javax.swing.JButton();
-        excluirSelecionado = new javax.swing.JButton();
-        nova = new javax.swing.JButton();
-        cancelarSolicitacao = new javax.swing.JButton();
+        painelContratoPacoteSinistro = new javax.swing.JPanel();
+        jLabel35 = new javax.swing.JLabel();
+        pacote1 = new javax.swing.JCheckBox();
+        pacote2 = new javax.swing.JCheckBox();
+        pacote3 = new javax.swing.JCheckBox();
+        pacote4 = new javax.swing.JCheckBox();
+        pacote5 = new javax.swing.JCheckBox();
+        contratarPacoteSinistro = new javax.swing.JButton();
+        cancelarContratoPacoteSinistro = new javax.swing.JButton();
+        painelSinistro = new javax.swing.JPanel();
+        roubo = new javax.swing.JCheckBox();
+        incendio = new javax.swing.JCheckBox();
+        explosao = new javax.swing.JCheckBox();
+        arrombamento = new javax.swing.JCheckBox();
+        jLabel33 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        descricaoSinistro = new javax.swing.JTextArea();
+        enviarSinistro = new javax.swing.JButton();
+        cancelarSinistro = new javax.swing.JButton();
+        jLabel34 = new javax.swing.JLabel();
         jPanelHome = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jPanelListaSeguros = new javax.swing.JPanel();
@@ -229,6 +244,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
         textEnd1 = new javax.swing.JTextPane();
         jLabel52 = new javax.swing.JLabel();
         buttonVoltar3 = new javax.swing.JButton();
+        editar = new javax.swing.JButton();
+        editarSelecionado = new javax.swing.JButton();
+        excluirSelecionado = new javax.swing.JButton();
+        nova = new javax.swing.JButton();
+        cancelarSolicitacao = new javax.swing.JButton();
         buttonHome = new javax.swing.JButton();
         relatarSinistro = new javax.swing.JButton();
         contratarServico = new javax.swing.JButton();
@@ -268,60 +288,168 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editar.setBackground(new java.awt.Color(151, 53, 255));
-        editar.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        editar.setForeground(new java.awt.Color(255, 255, 255));
-        editar.setText("Editar Solicitação");
-        editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarActionPerformed(evt);
-            }
-        });
-        painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 160, -1));
+        painelContratoPacoteSinistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        editarSelecionado.setBackground(new java.awt.Color(153, 51, 255));
-        editarSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        editarSelecionado.setForeground(new java.awt.Color(255, 255, 255));
-        editarSelecionado.setText("Editar");
-        editarSelecionado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarSelecionadoActionPerformed(evt);
-            }
-        });
-        painelP.add(editarSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
+        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel35.setText("Qual pacote deseja contratar?");
+        painelContratoPacoteSinistro.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
-        excluirSelecionado.setBackground(new java.awt.Color(153, 51, 255));
-        excluirSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        excluirSelecionado.setForeground(new java.awt.Color(255, 255, 255));
-        excluirSelecionado.setText("Excluir");
-        excluirSelecionado.addActionListener(new java.awt.event.ActionListener() {
+        pacote1.setText("800 reais em Sinistros");
+        pacote1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                excluirSelecionadoActionPerformed(evt);
+                pacote1ActionPerformed(evt);
             }
         });
-        painelP.add(excluirSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
+        painelContratoPacoteSinistro.add(pacote1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
 
-        nova.setBackground(new java.awt.Color(151, 53, 255));
-        nova.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        nova.setForeground(new java.awt.Color(255, 255, 255));
-        nova.setText("Nova Solicitação");
-        nova.addActionListener(new java.awt.event.ActionListener() {
+        pacote2.setText("200 reais em Sinistros      ");
+        pacote2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novaActionPerformed(evt);
+                pacote2ActionPerformed(evt);
             }
         });
-        painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 160, -1));
+        painelContratoPacoteSinistro.add(pacote2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
 
-        cancelarSolicitacao.setBackground(new java.awt.Color(204, 0, 0));
-        cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        cancelarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarSolicitacao.setText("Cancelar Solicitação");
-        cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+        pacote3.setText("1000 reais em Sinistros");
+        pacote3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarSolicitacaoActionPerformed(evt);
+                pacote3ActionPerformed(evt);
             }
         });
-        painelP.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
+        painelContratoPacoteSinistro.add(pacote3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
+
+        pacote4.setText("600 reais em Sinistros");
+        pacote4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacote4ActionPerformed(evt);
+            }
+        });
+        painelContratoPacoteSinistro.add(pacote4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
+
+        pacote5.setText("400 reais em Sinistros");
+        pacote5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                pacote5ActionPerformed(evt);
+            }
+        });
+        painelContratoPacoteSinistro.add(pacote5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
+
+        contratarPacoteSinistro.setText("Contratar");
+        contratarPacoteSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contratarPacoteSinistroActionPerformed(evt);
+            }
+        });
+        painelContratoPacoteSinistro.add(contratarPacoteSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
+
+        cancelarContratoPacoteSinistro.setText("Cancelar");
+        cancelarContratoPacoteSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarContratoPacoteSinistroActionPerformed(evt);
+            }
+        });
+        painelContratoPacoteSinistro.add(cancelarContratoPacoteSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
+
+        painelP.add(painelContratoPacoteSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 460, 380));
+
+        roubo.setText("Roubo");
+        roubo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rouboActionPerformed(evt);
+            }
+        });
+
+        incendio.setText("Incêndio");
+        incendio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                incendioActionPerformed(evt);
+            }
+        });
+
+        explosao.setText("Explosão");
+        explosao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                explosaoActionPerformed(evt);
+            }
+        });
+
+        arrombamento.setText("Arrombamento");
+        arrombamento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                arrombamentoActionPerformed(evt);
+            }
+        });
+
+        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jLabel33.setText("Selecione o sinistro que deseja relatar:");
+
+        descricaoSinistro.setColumns(20);
+        descricaoSinistro.setRows(5);
+        jScrollPane2.setViewportView(descricaoSinistro);
+
+        enviarSinistro.setText("Enviar");
+        enviarSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarSinistroActionPerformed(evt);
+            }
+        });
+
+        cancelarSinistro.setText("Cancelar");
+        cancelarSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarSinistroActionPerformed(evt);
+            }
+        });
+
+        jLabel34.setText("Descreva Brevemente o que aconteceu:");
+
+        javax.swing.GroupLayout painelSinistroLayout = new javax.swing.GroupLayout(painelSinistro);
+        painelSinistro.setLayout(painelSinistroLayout);
+        painelSinistroLayout.setHorizontalGroup(
+            painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSinistroLayout.createSequentialGroup()
+                .addGap(0, 88, Short.MAX_VALUE)
+                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(explosao)
+                    .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(painelSinistroLayout.createSequentialGroup()
+                            .addComponent(cancelarSinistro)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(enviarSinistro))
+                        .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel33)
+                            .addComponent(jLabel34)
+                            .addComponent(roubo)
+                            .addComponent(incendio)
+                            .addComponent(arrombamento)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addGap(78, 78, 78))
+        );
+        painelSinistroLayout.setVerticalGroup(
+            painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelSinistroLayout.createSequentialGroup()
+                .addGap(38, 38, 38)
+                .addComponent(jLabel33)
+                .addGap(18, 18, 18)
+                .addComponent(roubo)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(incendio)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(explosao)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(arrombamento)
+                .addGap(10, 10, 10)
+                .addComponent(jLabel34)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enviarSinistro)
+                    .addComponent(cancelarSinistro))
+                .addContainerGap(22, Short.MAX_VALUE))
+        );
+
+        painelP.add(painelSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 440, 360));
 
         jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
         jPanelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -1004,6 +1132,61 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         painelP.add(jPanelSolicitacaoReprovada, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
+        editar.setBackground(new java.awt.Color(151, 53, 255));
+        editar.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        editar.setForeground(new java.awt.Color(255, 255, 255));
+        editar.setText("Editar Solicitação");
+        editar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarActionPerformed(evt);
+            }
+        });
+        painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 160, -1));
+
+        editarSelecionado.setBackground(new java.awt.Color(153, 51, 255));
+        editarSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        editarSelecionado.setForeground(new java.awt.Color(255, 255, 255));
+        editarSelecionado.setText("Editar");
+        editarSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editarSelecionadoActionPerformed(evt);
+            }
+        });
+        painelP.add(editarSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
+
+        excluirSelecionado.setBackground(new java.awt.Color(153, 51, 255));
+        excluirSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        excluirSelecionado.setForeground(new java.awt.Color(255, 255, 255));
+        excluirSelecionado.setText("Excluir");
+        excluirSelecionado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                excluirSelecionadoActionPerformed(evt);
+            }
+        });
+        painelP.add(excluirSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
+
+        nova.setBackground(new java.awt.Color(151, 53, 255));
+        nova.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        nova.setForeground(new java.awt.Color(255, 255, 255));
+        nova.setText("Nova Solicitação");
+        nova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novaActionPerformed(evt);
+            }
+        });
+        painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 160, -1));
+
+        cancelarSolicitacao.setBackground(new java.awt.Color(204, 0, 0));
+        cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cancelarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarSolicitacao.setText("Cancelar Solicitação");
+        cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarSolicitacaoActionPerformed(evt);
+            }
+        });
+        painelP.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
+
         getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 730, -1));
 
         buttonHome.setBackground(new java.awt.Color(255, 255, 255));
@@ -1109,7 +1292,13 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
-        // TODO add your handling code here:
+        //try{
+        //    controlador.verificarSeguro(candidato.getCodPessoa());
+            painelSinistro.setVisible(true);
+        //}catch(Exception e){
+        //    JOptionPane.showMessageDialog(painelP, "Você não possui residências seguradas!");
+        //}
+        
     }//GEN-LAST:event_relatarSinistroActionPerformed
 
     private void contratarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarServicoActionPerformed
@@ -1195,7 +1384,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
             controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
-                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
+                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura, candidato.getCodPessoa());
 
             JOptionPane.showMessageDialog(painelP, "\n Sua solicitação foi enviada para avaliação!");
             //JOptionPane.showMessageDialog(painelP, "/n" + controlador.getSolicitacao().toString());//ler do banco 
@@ -1419,9 +1608,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 escolhido += eletricista.getText() + ',';
             }
             qnt = escolhido.split(",").length;
-
             controlador.registrarServico(escolhido, qnt);
-            JOptionPane.showMessageDialog(painelP, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
+            JOptionPane.showInternalInputDialog(painelP, "Qual data que você deseja ser atendido?");
+            
             painelServico.setVisible(false);
         }
     }//GEN-LAST:event_enviarServicoActionPerformed
@@ -1488,9 +1677,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
             nova.setVisible(true);
             painelSolicitacao.setVisible(false);
 
-        } catch (Exception e) {
+        } catch (HeadlessException | NumberFormatException e) {
             JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
         }
+
 
     }//GEN-LAST:event_confirmarEdicaoActionPerformed
 
@@ -1502,6 +1692,183 @@ public class Painel_Candidato extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(painelP, "Não foi possível remover residência!");
         }
     }//GEN-LAST:event_excluirSelecionadoActionPerformed
+
+    private void rouboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rouboActionPerformed
+            if (incendio.isSelected()) {
+                incendio.setSelected(false);
+            }
+            if (arrombamento.isSelected()) {
+                arrombamento.setSelected(false);
+            }
+            
+            if (explosao.isSelected()) {
+                explosao.setSelected(false);
+            }
+    }//GEN-LAST:event_rouboActionPerformed
+
+    private void enviarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSinistroActionPerformed
+         
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja relatar este sinistro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            try{
+                controlador.verificarPacoteContratado();
+            String escolhido = "";
+            if (roubo.isSelected()) {
+                escolhido = roubo.getText();
+            }
+            if (incendio.isSelected()) {
+                escolhido = incendio.getText();
+            }
+            if (arrombamento.isSelected()) {
+                escolhido = arrombamento.getText();
+            }
+            if (explosao.isSelected()) {
+                escolhido = explosao.getText();
+            }
+            float valorSinistro = controlador.valorSinistroEscolhido(escolhido);
+            controlador.registrarSinistro(escolhido, valorSinistro, descricaoSinistro.getText());
+            JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! \n Valor Estimado para este tipo de sinistro: "+ valorSinistro);
+            painelSinistro.setVisible(false);
+            }catch(Exception e){
+                if (JOptionPane.showConfirmDialog(rootPane, "Você não pode mais relatar sinistros pois já excedeu seu plano anual de relatos! \n Deseja contratar um novo pacote?", "Alerta", JOptionPane.YES_NO_OPTION) == 0){
+                    painelContratoPacoteSinistro.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_enviarSinistroActionPerformed
+
+    private void incendioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incendioActionPerformed
+        if (roubo.isSelected()) {
+                roubo.setSelected(false);
+            }
+            if (arrombamento.isSelected()) {
+                arrombamento.setSelected(false);
+            }
+            
+            if (explosao.isSelected()) {
+                explosao.setSelected(false);
+            }
+    }//GEN-LAST:event_incendioActionPerformed
+
+    private void explosaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explosaoActionPerformed
+            if (incendio.isSelected()) {
+                incendio.setSelected(false);
+            }
+            if (arrombamento.isSelected()) {
+                arrombamento.setSelected(false);
+            }
+            
+            if (roubo.isSelected()) {
+                roubo.setSelected(false);
+            }        // TODO add your handling code here:
+    }//GEN-LAST:event_explosaoActionPerformed
+
+    private void arrombamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrombamentoActionPerformed
+       if (incendio.isSelected()) {
+                incendio.setSelected(false);
+            }
+            if (roubo.isSelected()) {
+                roubo.setSelected(false);
+            }
+            
+            if (explosao.isSelected()) {
+                explosao.setSelected(false);
+            }
+    }//GEN-LAST:event_arrombamentoActionPerformed
+
+    private void cancelarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSinistroActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0)
+        painelSinistro.setVisible(false);
+    }//GEN-LAST:event_cancelarSinistroActionPerformed
+
+    private void pacote1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote1ActionPerformed
+        if (pacote2.isSelected()) {
+                pacote2.setSelected(false);
+            }
+            if (pacote3.isSelected()) {
+                pacote3.setSelected(false);
+            }
+            
+            if (pacote4.isSelected()) {
+                pacote4.setSelected(false);
+            }
+            if (pacote5.isSelected()) {
+                pacote5.setSelected(false);
+            }
+
+    }//GEN-LAST:event_pacote1ActionPerformed
+
+    private void pacote2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote2ActionPerformed
+        if (pacote1.isSelected()) {
+                pacote1.setSelected(false);
+            }
+            if (pacote3.isSelected()) {
+                pacote3.setSelected(false);
+            }
+            
+            if (pacote4.isSelected()) {
+                pacote4.setSelected(false);
+            }
+            if (pacote5.isSelected()) {
+                pacote5.setSelected(false);
+            }
+    }//GEN-LAST:event_pacote2ActionPerformed
+
+    private void pacote3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote3ActionPerformed
+        if (pacote2.isSelected()) {
+                pacote2.setSelected(false);
+            }
+            if (pacote1.isSelected()) {
+                pacote1.setSelected(false);
+            }
+            
+            if (pacote4.isSelected()) {
+                pacote4.setSelected(false);
+            }
+            if (pacote5.isSelected()) {
+                pacote5.setSelected(false);
+            }
+    }//GEN-LAST:event_pacote3ActionPerformed
+
+    private void pacote4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote4ActionPerformed
+       if (pacote2.isSelected()) {
+                pacote2.setSelected(false);
+            }
+            if (pacote3.isSelected()) {
+                pacote3.setSelected(false);
+            }
+            
+            if (pacote1.isSelected()) {
+                pacote1.setSelected(false);
+            }
+            if (pacote5.isSelected()) {
+                pacote5.setSelected(false);
+            }
+    }//GEN-LAST:event_pacote4ActionPerformed
+
+    private void pacote5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote5ActionPerformed
+        if (pacote2.isSelected()) {
+                pacote2.setSelected(false);
+            }
+            if (pacote3.isSelected()) {
+                pacote3.setSelected(false);
+            }
+            
+            if (pacote4.isSelected()) {
+                pacote4.setSelected(false);
+            }
+            if (pacote1.isSelected()) {
+                pacote1.setSelected(false);
+            }
+    }//GEN-LAST:event_pacote5ActionPerformed
+
+    private void contratarPacoteSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarPacoteSinistroActionPerformed
+       painelContratoPacoteSinistro.setVisible(false);
+    }//GEN-LAST:event_contratarPacoteSinistroActionPerformed
+
+    private void cancelarContratoPacoteSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarContratoPacoteSinistroActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0)
+        painelContratoPacoteSinistro.setVisible(false);
+    }//GEN-LAST:event_cancelarContratoPacoteSinistroActionPerformed
 
     private void home() {
         painelP.setVisible(true);
@@ -1517,6 +1884,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         excluirSelecionado.setVisible(false);
         nova.setVisible(false);
         cancelarSolicitacao.setVisible(false);
+        painelSinistro.setVisible(false);
+        painelContratoPacoteSinistro.setVisible(false);
         //buttonVoltar.setVisible(false);
     }
 
@@ -1619,10 +1988,22 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }
 
     public void preencherCamposEdicao(Residencia selecionado) {
-        cep.setText("" + selecionado.getCepRes());
-        bairro.setText(selecionado.getBairro());
-        cidade.setText(selecionado.getCidade());
+         cep.setText("" + selecionado.getCepRes());
+    uf.setText(selecionado.getUfResidencia()); 
+        bairro.setText(selecionado.getBairro()); 
+        cidade.setText(selecionado.getCidade()); 
         rua.setText(selecionado.getRuaRes());
+        //andares.setText(selecionado.getA);
+        anoC.setText("" + selecionado.getAnoConstrucao());
+        areaConstruida.setText("" + selecionado.getAreaConstruida());
+        //areaT
+        //banheiro.setText("" + selecionado.get);
+        //comodos
+        //garagem
+        //terrenoP
+        //numero
+        //localizacaoP
+        //estruturaA 
     }
 
     /**
@@ -1686,6 +2067,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> anoComboBox;
     private javax.swing.JTextField areaConstruida;
     private javax.swing.JTextField areat;
+    private javax.swing.JCheckBox arrombamento;
     private javax.swing.JTextField bairro;
     private javax.swing.JTextField banheiro;
     private javax.swing.JLabel bg;
@@ -1703,16 +2085,20 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField campoNumeroDoCartao;
     private javax.swing.JTextField campoValorParcela;
     private javax.swing.JButton cancelar;
+    private javax.swing.JButton cancelarContratoPacoteSinistro;
     private javax.swing.JButton cancelarServico;
+    private javax.swing.JButton cancelarSinistro;
     private javax.swing.JButton cancelarSolicitacao;
     private javax.swing.JTextField cep;
     private javax.swing.JCheckBox chaveiro;
     private javax.swing.JTextField cidade;
     private javax.swing.JTextField comodos;
     private javax.swing.JButton confirmarEdicao;
+    private javax.swing.JButton contratarPacoteSinistro;
     private javax.swing.JButton contratarServico;
     private javax.swing.JTextField descBem;
     private javax.swing.JTextField descRes;
+    private javax.swing.JTextArea descricaoSinistro;
     private javax.swing.JLabel e;
     private javax.swing.JButton editar;
     private javax.swing.JButton editarSelecionado;
@@ -1720,10 +2106,13 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JCheckBox encanador;
     private javax.swing.JButton enviar;
     private javax.swing.JButton enviarServico;
+    private javax.swing.JButton enviarSinistro;
     private javax.swing.JSlider estruturaA;
     private javax.swing.JButton excluirSelecionado;
     private javax.swing.JButton exibir;
+    private javax.swing.JCheckBox explosao;
     private javax.swing.JTextField garagem;
+    private javax.swing.JCheckBox incendio;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -1751,6 +2140,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
+    private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -1794,6 +2186,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
@@ -1813,12 +2206,20 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> mesComboBox;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
+    private javax.swing.JCheckBox pacote1;
+    private javax.swing.JCheckBox pacote2;
+    private javax.swing.JCheckBox pacote3;
+    private javax.swing.JCheckBox pacote4;
+    private javax.swing.JCheckBox pacote5;
+    private javax.swing.JPanel painelContratoPacoteSinistro;
     private javax.swing.JPanel painelP;
     private javax.swing.JPanel painelServico;
+    private javax.swing.JPanel painelSinistro;
     private javax.swing.JPanel painelSolicitacao;
     private java.awt.PopupMenu popupMenu1;
     private javax.swing.JButton relatarSinistro;
     private javax.swing.JButton remover;
+    private javax.swing.JCheckBox roubo;
     private javax.swing.JTextField rua;
     private javax.swing.JButton sairButton;
     private javax.swing.JButton solicitarSeguro;

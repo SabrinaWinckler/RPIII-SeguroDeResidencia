@@ -50,6 +50,10 @@ public class Sinistro extends TipoSinistro {
         this.descricaoSinistro = descricaoSinistro;
         this.valorSinistro = valorSinistro;
     }
+     public Sinistro(  String tipoSinistro) {
+        super(tipoSinistro);
+       
+    }
 
     public Date getDataSinistro() {
         return dataSinistro;
