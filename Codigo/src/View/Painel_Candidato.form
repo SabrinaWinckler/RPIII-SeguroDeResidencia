@@ -2411,7 +2411,7 @@
         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
           <Image iconType="3" name="/imagens/tools.png"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Contratar Servi&#xe7;os"/>
+        <Property name="text" type="java.lang.String" value="Solicitar Servi&#xe7;os"/>
         <Property name="toolTipText" type="java.lang.String" value=""/>
       </Properties>
       <Events>

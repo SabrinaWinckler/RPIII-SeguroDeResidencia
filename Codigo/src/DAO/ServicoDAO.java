@@ -7,6 +7,7 @@ package DAO;
 
 import Dominio.Servico;
 import Dominio.Bem;
+import Dominio.Candidato;
 import Dominio.ItemServico;
 import Dominio.Segurado;
 import com.sun.javafx.geom.Quat4f;
@@ -69,30 +70,29 @@ public class ServicoDAO {
         return servico;
     }
 
-    public List<ItemServico> servicosSegurados(Segurado segurado) {
+    public List<ItemServico> servicosSegurados(Candidato segurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<ItemServico> listaDeServico = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select * from servico inner join itemservico on "
-                    + "itemservico.idServico = servico.idServico inner join seguradosolicitaservico on "
-                    + "seguradosolicitaservico.idServico = itemservico.idServico and "
-                    + "seguradosolicitaservico.idSegurado =" + segurado.getCodPessoa());
+            stmt = conexao.prepareStatement("select * from servico inner join "
+                    + "itemservico on servico.idServico = itemservico.idItemServiço;");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ItemServico itemServico = new ItemServico();
                 itemServico.setDesc(rs.getString("descricaoServico"));
                 itemServico.setIdCodServico(rs.getInt("idServico"));
-                itemServico.setQnt(rs.getInt("quantidadeServico"));
+                //itemServico.setQnt(rs.getInt("quantidadeServico"));
                 itemServico.setDescricaoRecusa(rs.getString("descricaoRecusa"));
                 itemServico.setDescricaoAtendimento(rs.getString("descricaoAtendimento"));
-                itemServico.setDataDeAtendimento(rs.getDate("dataAtendimento"));
+                //itemServico.setDataDeAtendimento(rs.getDate("dataAtendimento"));
                 itemServico.setAtendidaSolicitacaoServico(rs.getString("atendidaSolicitacao"));
                 itemServico.setAceitaSolicitacao(rs.getString("aceitaSolicitacao"));
                 itemServico.setDescricaoSolicitacao(rs.getString("descricaoSolicitacao"));
-                itemServico.setDataSolicitacaoServico(rs.getDate("dataSolicitacao"));
-                itemServico.setIdItemServico(rs.getInt("idServico"));
+                //itemServico.setDataSolicitacaoServico(rs.getDate("dataSolicitacao"));
+                itemServico.setIdItemServico(rs.getInt("idItemServiço"));
+                itemServico.setDataDeSolitacao(rs.getDate("dataDeSolicitacao"));
                 listaDeServico.add(itemServico);
             }
         } catch (SQLException e) {

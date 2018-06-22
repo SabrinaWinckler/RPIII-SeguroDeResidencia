@@ -172,7 +172,7 @@ public class Gerenciador {
 
         return valorBaseSolicitacao;
     }
-    public List<ItemServico> servicoPorCliente(Segurado segurado){
+    public List<ItemServico> servicoPorCliente(Candidato segurado){
         ServicoDAO servicoDAO = new ServicoDAO();
        return servicoDAO.servicosSegurados(segurado);
     }

@@ -58,22 +58,21 @@ public class Painel_Candidato extends javax.swing.JFrame {
         initComponents();
         gerarBackground();
         quantidadeDeSolicitacao = readTableListaSolicitacao(candidato);
-        //readTableListaServico((Segurado)candidato);
+        readTableListaServico(candidato);
         home();
     }
 
-    private int readTableListaServico(Segurado segurado) {
-        DefaultTableModel modelo = (DefaultTableModel) listaSolicitacaoCandidato.getModel();
+    private int readTableListaServico(Candidato segurado) {
+        DefaultTableModel modelo = (DefaultTableModel) jTabelaListaServicos.getModel();
         modelo.setNumRows(0);
         listaDeServico = gerenciador.servicoPorCliente(segurado);
         int tamanhoLista = listaDeServico.size();
         if (tamanhoLista > 0) {
             for (ItemServico itemServico : listaDeServico) {
                 modelo.addRow(new Object[]{
-                    itemServico.getDescricaoSolicitacao(),
-                    itemServico.getDataSolicitacaoServico(), //adicionar o cep
+                    itemServico.getDesc(),
+                    itemServico.getDataDeSolitacao() //adicionar o cep
                 });
-
             }
             return 1;
         } else {
@@ -1194,7 +1193,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         contratarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         contratarServico.setForeground(new java.awt.Color(110, 48, 110));
         contratarServico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tools.png"))); // NOI18N
-        contratarServico.setText("Contratar Serviços");
+        contratarServico.setText("Solicitar Serviços");
         contratarServico.setToolTipText("");
         contratarServico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1567,7 +1566,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         int dia = calendarServico.getDayChooser().getDay(), mes = calendarServico.getMonthChooser().getMonth() + 1, ano = calendarServico.getYearChooser().getYear();
         String dataString = "" + dia + "/" + mes + "/" + ano;
         Date dataVisitaResidencia = null;
-        Date dataAgora = new Date();
         DateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         try {
             dataVisitaResidencia = (Date) formatter.parse(dataString);
