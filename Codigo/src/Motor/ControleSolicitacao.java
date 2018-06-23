@@ -27,7 +27,7 @@ public class ControleSolicitacao {
     private Solicitacao solicitacao = new Solicitacao();
 
     private Servico servico;
-    
+
     private ArrayList<Sinistro> sinistros;
 
     public ControleSolicitacao() {
@@ -132,49 +132,38 @@ public class ControleSolicitacao {
         this.setServico(temp);
         geraDAOServico().create(temp);
     }
-    
-    public SinistroDAO geraDAOSinistro(){
+
+    public SinistroDAO geraDAOSinistro() {
         SinistroDAO sinistro = new SinistroDAO();
         return sinistro;
     }
+
     public void registrarSinistro(String tipo, float valor, String descricao) {
         Date dataSinistro = new Date();
         Sinistro temp = new Sinistro(dataSinistro, descricao, valor, tipo);
         geraDAOSinistro().create(temp);
     }
-    public float valorSinistroEscolhido(String escolhido){
+
+    public float valorSinistroEscolhido(String escolhido) {
         float valor = 0;
-        for(int i = 0; i < sinistros.size(); i++){
-            if(sinistros.get(i).getTipoSinistro().equalsIgnoreCase(escolhido)){
-            valor = sinistros.get(i).getValorSinistro();
-            break;
+        for (int i = 0; i < sinistros.size(); i++) {
+            if (sinistros.get(i).getTipoSinistro().equalsIgnoreCase(escolhido)) {
+                valor = sinistros.get(i).getValorSinistro();
+                break;
             }
         }
         return valor;
     }
-    public void cadastrarTipoDeSinistro(String nome){
+
+    public void cadastrarTipoDeSinistro(String nome) {
         Sinistro sinistro = new Sinistro(nome);
         sinistros.add(sinistro);
     }
-    public void verificarPacoteContratado(){
-    
+
+    public void verificarPacoteContratado() {
+
     }
-    public void verificarSeguro(int codPessoa) throws Exception{
-        CandidatoDAO candidato = new CandidatoDAO();
-        ArrayList<Candidato> candidatos = new ArrayList();
-        Candidato candidatoEncontrado = new Candidato();
-        candidatos.addAll(candidato.read());
-        for(int i = 0; i < candidatos.size(); i++){
-            if(candidatos.get(i).getCodPessoa() == codPessoa){
-                candidatoEncontrado = candidatos.get(i);
-                //if(candidatoEncontrado.getSegurado()){
-                //    break;
-                //}else{
-                //throw new Exception("Você não possui uma residência Segurada!");
-                //}
-            }
-        }
-    }
+
     @Override
     public String toString() {
         return "Solicitaçâo:" + "dataSolicitacao=" + dataSolicitacao + ", residencias=" + residencia + '}';
@@ -230,7 +219,5 @@ public class ControleSolicitacao {
     public void setServico(Servico servico) {
         this.servico = servico;
     }
-
-    
 
 }
