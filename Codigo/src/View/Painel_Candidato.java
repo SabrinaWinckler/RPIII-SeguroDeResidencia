@@ -93,15 +93,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
-        painelContratoPacoteSinistro = new javax.swing.JPanel();
-        jLabel35 = new javax.swing.JLabel();
-        pacote1 = new javax.swing.JCheckBox();
-        pacote2 = new javax.swing.JCheckBox();
-        pacote3 = new javax.swing.JCheckBox();
-        pacote4 = new javax.swing.JCheckBox();
-        pacote5 = new javax.swing.JCheckBox();
-        contratarPacoteSinistro = new javax.swing.JButton();
-        cancelarContratoPacoteSinistro = new javax.swing.JButton();
         painelSinistro = new javax.swing.JPanel();
         roubo = new javax.swing.JCheckBox();
         incendio = new javax.swing.JCheckBox();
@@ -287,70 +278,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setBackground(new java.awt.Color(255, 255, 255));
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        painelContratoPacoteSinistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jLabel35.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel35.setText("Qual pacote deseja contratar?");
-        painelContratoPacoteSinistro.add(jLabel35, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
-
-        pacote1.setText("800 reais em Sinistros");
-        pacote1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pacote1ActionPerformed(evt);
-            }
-        });
-        painelContratoPacoteSinistro.add(pacote1, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 200, -1, -1));
-
-        pacote2.setText("200 reais em Sinistros      ");
-        pacote2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pacote2ActionPerformed(evt);
-            }
-        });
-        painelContratoPacoteSinistro.add(pacote2, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 80, -1, -1));
-
-        pacote3.setText("1000 reais em Sinistros");
-        pacote3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pacote3ActionPerformed(evt);
-            }
-        });
-        painelContratoPacoteSinistro.add(pacote3, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 240, -1, -1));
-
-        pacote4.setText("600 reais em Sinistros");
-        pacote4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pacote4ActionPerformed(evt);
-            }
-        });
-        painelContratoPacoteSinistro.add(pacote4, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 160, -1, -1));
-
-        pacote5.setText("400 reais em Sinistros");
-        pacote5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pacote5ActionPerformed(evt);
-            }
-        });
-        painelContratoPacoteSinistro.add(pacote5, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, -1, -1));
-
-        contratarPacoteSinistro.setText("Contratar");
-        contratarPacoteSinistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                contratarPacoteSinistroActionPerformed(evt);
-            }
-        });
-        painelContratoPacoteSinistro.add(contratarPacoteSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 300, -1, -1));
-
-        cancelarContratoPacoteSinistro.setText("Cancelar");
-        cancelarContratoPacoteSinistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarContratoPacoteSinistroActionPerformed(evt);
-            }
-        });
-        painelContratoPacoteSinistro.add(cancelarContratoPacoteSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 300, -1, -1));
-
-        painelP.add(painelContratoPacoteSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 40, 460, 380));
 
         roubo.setText("Roubo");
         roubo.addActionListener(new java.awt.event.ActionListener() {
@@ -1504,7 +1431,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
-
+        
     }//GEN-LAST:event_buttonContratarSeguroActionPerformed
 
     private void anoCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_anoCActionPerformed
@@ -1730,7 +1657,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             painelSinistro.setVisible(false);
             }catch(Exception e){
                 if (JOptionPane.showConfirmDialog(rootPane, "Você não pode mais relatar sinistros pois já excedeu seu plano anual de relatos! \n Deseja contratar um novo pacote?", "Alerta", JOptionPane.YES_NO_OPTION) == 0){
-                    painelContratoPacoteSinistro.setVisible(true);
+//                    painelContratoPacoteSinistro.setVisible(true);
                 }
             }
         }
@@ -1780,96 +1707,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelSinistro.setVisible(false);
     }//GEN-LAST:event_cancelarSinistroActionPerformed
 
-    private void pacote1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote1ActionPerformed
-        if (pacote2.isSelected()) {
-                pacote2.setSelected(false);
-            }
-            if (pacote3.isSelected()) {
-                pacote3.setSelected(false);
-            }
-            
-            if (pacote4.isSelected()) {
-                pacote4.setSelected(false);
-            }
-            if (pacote5.isSelected()) {
-                pacote5.setSelected(false);
-            }
-
-    }//GEN-LAST:event_pacote1ActionPerformed
-
-    private void pacote2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote2ActionPerformed
-        if (pacote1.isSelected()) {
-                pacote1.setSelected(false);
-            }
-            if (pacote3.isSelected()) {
-                pacote3.setSelected(false);
-            }
-            
-            if (pacote4.isSelected()) {
-                pacote4.setSelected(false);
-            }
-            if (pacote5.isSelected()) {
-                pacote5.setSelected(false);
-            }
-    }//GEN-LAST:event_pacote2ActionPerformed
-
-    private void pacote3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote3ActionPerformed
-        if (pacote2.isSelected()) {
-                pacote2.setSelected(false);
-            }
-            if (pacote1.isSelected()) {
-                pacote1.setSelected(false);
-            }
-            
-            if (pacote4.isSelected()) {
-                pacote4.setSelected(false);
-            }
-            if (pacote5.isSelected()) {
-                pacote5.setSelected(false);
-            }
-    }//GEN-LAST:event_pacote3ActionPerformed
-
-    private void pacote4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote4ActionPerformed
-       if (pacote2.isSelected()) {
-                pacote2.setSelected(false);
-            }
-            if (pacote3.isSelected()) {
-                pacote3.setSelected(false);
-            }
-            
-            if (pacote1.isSelected()) {
-                pacote1.setSelected(false);
-            }
-            if (pacote5.isSelected()) {
-                pacote5.setSelected(false);
-            }
-    }//GEN-LAST:event_pacote4ActionPerformed
-
-    private void pacote5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pacote5ActionPerformed
-        if (pacote2.isSelected()) {
-                pacote2.setSelected(false);
-            }
-            if (pacote3.isSelected()) {
-                pacote3.setSelected(false);
-            }
-            
-            if (pacote4.isSelected()) {
-                pacote4.setSelected(false);
-            }
-            if (pacote1.isSelected()) {
-                pacote1.setSelected(false);
-            }
-    }//GEN-LAST:event_pacote5ActionPerformed
-
-    private void contratarPacoteSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarPacoteSinistroActionPerformed
-       painelContratoPacoteSinistro.setVisible(false);
-    }//GEN-LAST:event_contratarPacoteSinistroActionPerformed
-
-    private void cancelarContratoPacoteSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarContratoPacoteSinistroActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0)
-        painelContratoPacoteSinistro.setVisible(false);
-    }//GEN-LAST:event_cancelarContratoPacoteSinistroActionPerformed
-
     private void home() {
         painelP.setVisible(true);
         jPanelHome.setVisible(true);
@@ -1885,7 +1722,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         nova.setVisible(false);
         cancelarSolicitacao.setVisible(false);
         painelSinistro.setVisible(false);
-        painelContratoPacoteSinistro.setVisible(false);
+
         //buttonVoltar.setVisible(false);
     }
 
@@ -2085,7 +1922,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField campoNumeroDoCartao;
     private javax.swing.JTextField campoValorParcela;
     private javax.swing.JButton cancelar;
-    private javax.swing.JButton cancelarContratoPacoteSinistro;
     private javax.swing.JButton cancelarServico;
     private javax.swing.JButton cancelarSinistro;
     private javax.swing.JButton cancelarSolicitacao;
@@ -2094,7 +1930,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField cidade;
     private javax.swing.JTextField comodos;
     private javax.swing.JButton confirmarEdicao;
-    private javax.swing.JButton contratarPacoteSinistro;
     private javax.swing.JButton contratarServico;
     private javax.swing.JTextField descBem;
     private javax.swing.JTextField descRes;
@@ -2142,7 +1977,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel40;
@@ -2206,12 +2040,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> mesComboBox;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
-    private javax.swing.JCheckBox pacote1;
-    private javax.swing.JCheckBox pacote2;
-    private javax.swing.JCheckBox pacote3;
-    private javax.swing.JCheckBox pacote4;
-    private javax.swing.JCheckBox pacote5;
-    private javax.swing.JPanel painelContratoPacoteSinistro;
     private javax.swing.JPanel painelP;
     private javax.swing.JPanel painelServico;
     private javax.swing.JPanel painelSinistro;

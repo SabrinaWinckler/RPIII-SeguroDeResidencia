@@ -360,6 +360,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
         jLabel25.setText("Informe o tipo de Sinistro que deseja cadastrar:");
         jPanelGerenciarSinistros.add(jLabel25, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 230, -1, -1));
+
+        campoRegistroTipoSinistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                campoRegistroTipoSinistroActionPerformed(evt);
+            }
+        });
         jPanelGerenciarSinistros.add(campoRegistroTipoSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 250, 100, -1));
 
         tabelaSinistrosDados.setModel(new javax.swing.table.DefaultTableModel(
@@ -1411,6 +1417,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(rootPane, "Este Sinistro foi cadastrado com sucesso!");
         jPanelGerenciarSinistros.setVisible(false);
     }//GEN-LAST:event_cadastrarSinistrosActionPerformed
+
+    private void campoRegistroTipoSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoRegistroTipoSinistroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_campoRegistroTipoSinistroActionPerformed
     
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
