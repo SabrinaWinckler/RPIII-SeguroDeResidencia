@@ -5,10 +5,6 @@
  */
 package Dominio;
 
-import DAO.ResidenciaDAO;
-import Dominio.Bem;
-import Dominio.Residencia;
-import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,8 +17,6 @@ public class Solicitacao {
 
     private Date dataSolicitacao;
     
-    private String dataSol;
-
     private double valorSolicitacao;
 
     private Date dataVisitaResidencia;
@@ -35,12 +29,14 @@ public class Solicitacao {
 
     private Residencia residencia;
 
+    private int idResidencia;
+
     public Solicitacao() {
         this.residencia = new Residencia();
     }
 
     public Solicitacao(Date dataSolicitacao, Residencia residencia) {
-        this.dataSol = dataSolicitacao.toString().replace(dataSolicitacao.toString(), "2018-15-06");
+        this.dataSolicitacao = dataSolicitacao;
         this.residencia = residencia;
         this.valorSolicitacao = 0;
         this.aprovadaSolicitacao = null;
@@ -144,6 +140,20 @@ public class Solicitacao {
      */
     public void setCodSolicitacao(int codSolicitacao) {
         this.codSolicitacao = codSolicitacao;
+    }
+
+    /**
+     * @return the idResidencia
+     */
+    public int getIdResidencia() {
+        return idResidencia;
+    }
+
+    /**
+     * @param idResidencia the idResidencia to set
+     */
+    public void setIdResidencia(int idResidencia) {
+        this.idResidencia = idResidencia;
     }
 
 }

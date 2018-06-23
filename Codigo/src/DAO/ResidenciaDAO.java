@@ -6,12 +6,11 @@
 package DAO;
 
 import Dominio.Residencia;
+import Dominio.Solicitacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -20,6 +19,8 @@ import java.util.logging.Logger;
  * @author SABRINA
  */
 public class ResidenciaDAO {
+
+    BemDAO daoBem = new BemDAO();
 
     public void create(Residencia residencia, String cpf) {
         Connection conexao = ConnectionFactory.realizarConexao();
@@ -63,21 +64,21 @@ public class ResidenciaDAO {
         }
     }
 
-    public List<Residencia> read() {
+    public Residencia read(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
-        ArrayList<Residencia> listaDeResidecias = new ArrayList<>();
+        Residencia residencia = new Residencia();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM residencia");
+            stmt = conexao.prepareStatement("select * from residencia where residencia.idResidencia = "
+                    + solicitacao.getIdResidencia());
             rs = stmt.executeQuery();
             while (rs.next()) {
-                Residencia residencia = new Residencia();
                 residencia.setCodResidencia(rs.getInt("idResidencia"));
                 residencia.setQntGaragens(rs.getInt("quantidadeGaragens"));
                 residencia.setAnoConstrucao(rs.getInt("anoConstrucao"));
                 residencia.setufResidencia(rs.getString("ufResidencia"));
-                residencia.setQntGaragens(rs.getInt("quantidadeComodos"));
+                residencia.setQntComodos(rs.getInt("quantidadeComodos"));
                 residencia.setDescricaoRes(rs.getString("descricaoResidencia"));
                 residencia.setAreaTotal(rs.getFloat("areaTotal"));
                 residencia.setCepRes(rs.getLong("cepResidencia"));
@@ -90,14 +91,14 @@ public class ResidenciaDAO {
                 residencia.setCidade(rs.getString("cidade"));
                 residencia.setBairro(rs.getString("bairro"));
                 residencia.setQntBanheiros(rs.getInt("quantidadeBanheiros"));
-                listaDeResidecias.add(residencia);
+                residencia.setBens(daoBem.bensPorResidencia(residencia));;
             }
         } catch (SQLException ex) {
             Logger.getLogger(ResidenciaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
-        return listaDeResidecias;
+        return residencia;
     }
 
     public void updateStatusResidencia(Residencia solicitacao) {

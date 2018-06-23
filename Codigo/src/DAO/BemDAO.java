@@ -6,6 +6,7 @@
 package DAO;
 
 import Dominio.Bem;
+import Dominio.Residencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -20,7 +21,7 @@ import java.util.logging.Logger;
  * @author Matheus Montanha
  */
 public class BemDAO {
-    
+
     public void create(Bem bem) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -43,7 +44,7 @@ public class BemDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-    
+
     public List<Bem> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -64,6 +65,31 @@ public class BemDAO {
             Logger.getLogger(Bem.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
+        }
+        return listaDeBens;
+    }
+
+    public List<Bem> bensPorResidencia(Residencia residencia) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        ArrayList<Bem> listaDeBens = new ArrayList<>();
+        try {
+            stm = conexao.prepareStatement("select * from bem where "
+                    + "bem.idResidenciaPertencente =" + residencia.getCodResidencia());
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Bem bem = new Bem();
+                bem.setCodBem(rs.getInt("idBem"));
+                bem.setCodResidenciaPertencente(rs.getInt("idResidenciaPertencente"));
+                bem.setDescricaoBem(rs.getString("descricaoBem"));
+                bem.setValorEstimadoBem(rs.getFloat("valorBem"));
+                listaDeBens.add(bem);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Bem.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stm, rs);
         }
         return listaDeBens;
     }

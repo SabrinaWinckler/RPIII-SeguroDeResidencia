@@ -5,23 +5,15 @@
  */
 package Aplicacao;
 
-import DAO.BemDAO;
-import DAO.CandidatoDAO;
-import DAO.PessoaDAO;
-import DAO.ResidenciaDAO;
-import DAO.SinistroDAO;
-import DAO.SolicitacaoDAO;
-import DAO.TipoSinistroDAO;
-import Dominio.Candidato;
-import Dominio.Pessoa;
-import Motor.ControleSolicitacao;
-import Dominio.Sinistro;
-import Dominio.TipoSinistro;
-import View.Tela_Login;
 import Dominio.Bem;
+import Dominio.Pessoa;
 import Dominio.Residencia;
+import Dominio.Solicitacao;
+import Motor.GerenciadorViewCorretor;
+import View.Tela_Login;
+import com.sun.javafx.scene.control.skin.VirtualFlow;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 
 /**
@@ -34,18 +26,19 @@ public class Principal {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        /*
         //CANDIDATO
+        /*
         String sexo = "Masculino";
         long cep = 97547590;
         String dataNescimento = "06/09/1998";
         String uf = "RS";
         String cidade = "Alegrete";
         String bairro = "Centro";
-         
+        /*
+
         //pessoa atributo
         String nomePessoa = "Matheus Montanha";
-        long cpf = 0345;
+        String cpf = "0345";
         String endereco = "Joaquim Rodrigues Paim, 410";
         String telefone = "034565236";
         String email = "estranho@gmail.com";
@@ -53,12 +46,12 @@ public class Principal {
         String senhaCliente = "0352635";
 
         Pessoa pessoa = new Pessoa(nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
-        PessoaDAO pesDAO = new PessoaDAO();
-        pesDAO.create(pessoa);
-        /*
+        //PessoaDAO pesDAO = new PessoaDAO();
+        //pesDAO.create(pessoa);
         Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
         CandidatoDAO canDAO = new CandidatoDAO();
         canDAO.create(candidato);
+         
 
         //RESIDENCIA
         String descricaoRes = "Casa verde";
@@ -66,11 +59,11 @@ public class Principal {
         long cepRes = 97547590;
         int qntComodos = 7;
         int qntGaragens = 1;
-        float areaTotal = 5285;
+        float areaTotal = 250;
         int numAndares = 3;
         int anoConstrucao = 2011;
         String ruaRes = "Joaquim Rodrigues", ufResidencia = "RS";
-        double areaConstruida = 510;
+        double areaConstruida = 75;
         int localizacaoPerigosa = 4;
         int terrenoPerigoso = 5;
         int estruturaAmeacada = 5;
@@ -85,29 +78,36 @@ public class Principal {
         Bem bem = new Bem(descricaoBem, valorBem);
         bens.add(bem);
 
-        Residencia residencia = new Residencia(uf, cidade, bairro, descricaoRes, bens, numRes,
-                cepRes, qntComodos, quantidadeBanheiros, quantidadeGaragens, areaTotal,
-                areaConstruida, numAndares, anoConstrucao, endereco, localizacaoPerigosa, terrenoPerigoso,
-                estruturaAmeacada);
+        Residencia residencia = new Residencia(descricaoRes, numRes, cepRes,
+                qntComodos, quantidadeBanheiros, qntGaragens, areaTotal,
+                numAndares, anoConstrucao, ruaRes, ufResidencia, cidade,
+                bairro, areaConstruida, bens, localizacaoPerigosa,
+                terrenoPerigoso, estruturaAmeacada);
+        /*
         ResidenciaDAO dao = new ResidenciaDAO();
         dao.create(residencia);
 
         BemDAO bemDAO = new BemDAO();
         bemDAO.create(bem);
+         
 
         //SOLICITACAO
         Date dataSolicitacao = new Date();
         float valorSolicitacao = 250;
         Date dataVisitaResidencia = new Date();
         String aprovadaSolicitacao = "Não";
-        String motivoReprovacao = "Reprovada por ser perigosa";
-        String motivoAlteracao = "Sem alterações";
-        ControleSolicitacao solicitacao = new ControleSolicitacao(dataSolicitacao, valorSolicitacao,
+        String motivoReprovacao = "";
+        String motivoAlteracao = "";
+        Solicitacao solicitcao = new Solicitacao(dataSolicitacao, areaConstruida,
                 dataVisitaResidencia, aprovadaSolicitacao, motivoReprovacao,
-                motivoAlteracao, residencia, dao);
-        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        daoSolicitacao.create(solicitacao);
-
+                motivoAlteracao, residencia);
+        GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
+        double valorTeste = gerenciador.calcularValorSolicitacao(solicitcao);
+        //String valorString = "" + valorTeste;
+        //float valorFloat = Float.parseFloat(valorString);
+        DecimalFormat df = new DecimalFormat("0,000.00");
+        System.out.println(df.format(valorTeste));
+        /*
         //TIPO DE SINISTRO
         String tipoSinistroRoubo = "Roubo";
         TipoSinistro tipoSinistro = new TipoSinistro(tipoSinistroRoubo);

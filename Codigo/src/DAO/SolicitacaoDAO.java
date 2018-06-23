@@ -8,7 +8,6 @@ package DAO;
 import Dominio.Candidato;
 import Dominio.Solicitacao;
 import java.sql.Connection;
-import java.util.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -25,11 +24,13 @@ import java.util.logging.Logger;
  */
 public class SolicitacaoDAO {
 
+    ResidenciaDAO daoResidencia = new ResidenciaDAO();
+    DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
     public void create(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int idResidencia = -1;
         int idPessoa = -1;
         try {
@@ -38,22 +39,22 @@ public class SolicitacaoDAO {
             while (rs.next()) {
                 idResidencia = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("SELECT max(pessoa.idPessoa) from pessoa");
+            stm = conexao.prepareStatement("SELECT idPessoa from pessoa where pessoa.idPessoa = "
+                    + solicitacao.getResidencia().getCandidato().getCodPessoa());
             rs = stm.executeQuery();
             while (rs.next()) {
                 idPessoa = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, dataVisitaResidenciia,"
+            stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, "
                     + "valorSolicitacao, "
-                    + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?,?)");
-            stm.setDate(1, java.sql.Date.valueOf("2018-06-02"));
-            stm.setDate(2, java.sql.Date.valueOf("2018-06-20"));
-            stm.setDouble(3, solicitacao.getValorSolicitacao());
-            stm.setString(4, solicitacao.getAprovadaSolicitacao());
-            stm.setString(5, solicitacao.getMotivoReprovacao());
-            stm.setString(6, solicitacao.getMotivoAlteracao());
-            stm.setInt(7, idResidencia);
-            stm.setInt(8, idPessoa);
+                    + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?)");
+            stm.setDate(1, (java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao()))));
+            stm.setDouble(2, solicitacao.getValorSolicitacao());
+            stm.setString(3, solicitacao.getAprovadaSolicitacao());
+            stm.setString(4, solicitacao.getMotivoReprovacao());
+            stm.setString(5, solicitacao.getMotivoAlteracao());
+            stm.setInt(6, idResidencia);
+            stm.setInt(7, idPessoa);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -82,23 +83,8 @@ public class SolicitacaoDAO {
                 solicitacao.setAprovadaSolicitacao(rs.getString("aprovada"));
                 solicitacao.setMotivoReprovacao(rs.getString("motivoReprovacao"));
                 solicitacao.setMotivoAlteracao(rs.getString("motivoAlterecao"));
-                solicitacao.getResidencia().setCodResidencia(rs.getInt("idResidencia"));
-                solicitacao.getResidencia().setufResidencia(rs.getString("ufResidencia"));
-                solicitacao.getResidencia().setCidade(rs.getString("cidade"));
-                solicitacao.getResidencia().setBairro(rs.getString("bairro"));
-                solicitacao.getResidencia().setDescricaoRes(rs.getString("descricaoResidencia"));
-                solicitacao.getResidencia().setCepRes(rs.getLong("cepResidencia"));
-                solicitacao.getResidencia().setRuaRes(rs.getString("enderecoResidencia"));
-                solicitacao.getResidencia().setAreaTotal(rs.getFloat("areaTotal"));
-                solicitacao.getResidencia().setAreaConstruida(rs.getDouble("areaConstruida"));
-                solicitacao.getResidencia().setAnoConstrucao(rs.getInt("anoConstrucao"));
-                solicitacao.getResidencia().setEstruturaAmeacada(rs.getInt("estruturaAmeacada"));
-                solicitacao.getResidencia().setLocalizacaoPerigosa(rs.getInt("localizacaoPerigosa"));
-                solicitacao.getResidencia().setTerrenoPerigoso(rs.getInt("terrenoPerigoso"));
-                solicitacao.getResidencia().setQntComodos(rs.getInt("quantidadeComodos"));
-                solicitacao.getResidencia().setQntBanheiros(rs.getInt("quantidadeBanheiros"));
-                solicitacao.getResidencia().setQntGaragens(rs.getInt("quantidadeGaragens"));
-                solicitacao.getResidencia().setNumAndares(rs.getInt("numeroAndares"));
+                solicitacao.setIdResidencia(rs.getInt("idResidencia"));
+                solicitacao.setResidencia(daoResidencia.read(solicitacao));
                 solicitacao.getResidencia().getCandidato().setCodPessoa(rs.getInt("idPessoa"));
                 solicitacao.getResidencia().getCandidato().setCep(rs.getLong("cep"));
                 solicitacao.getResidencia().getCandidato().setSexo(rs.getString("sexo"));
@@ -126,8 +112,7 @@ public class SolicitacaoDAO {
     public void registrarDataVisita(Solicitacao solicitacao) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
-        DateFormat dataFormatada = new SimpleDateFormat("yyyy-MM-dd");
-        String data = dataFormatada.format(solicitacao.getDataVisitaResidencia());
+        String data = sdf.format(solicitacao.getDataVisitaResidencia());
         try {
             stm = conexao.prepareStatement("update solicitacaoseguro set "
                     + "dataVisitaResidenciia = '" + data + "' where "
@@ -145,7 +130,7 @@ public class SolicitacaoDAO {
         PreparedStatement stm;
         try {
             stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = '" + solicitacao.getAprovadaSolicitacao() + "',"
-                    + " motivoReprovacao ='" + solicitacao.getMotivoReprovacao() + "', motivoAlterecao ='" + solicitacao.getMotivoAlteracao() + "'  "
+                    + " motivoReprovacao ='" + solicitacao.getMotivoReprovacao() + "' "
                     + "where solicitacaoseguro.idPessoa =" + solicitacao.getResidencia().getCandidato().getCodPessoa()
                     + " and solicitacaoseguro.idResidencia =" + solicitacao.getResidencia().getCodResidencia());
             stm.executeUpdate();
@@ -174,23 +159,8 @@ public class SolicitacaoDAO {
                 solicitacao.setAprovadaSolicitacao(rs.getString("aprovada"));
                 solicitacao.setMotivoReprovacao(rs.getString("motivoReprovacao"));
                 solicitacao.setMotivoAlteracao(rs.getString("motivoAlterecao"));
-                solicitacao.getResidencia().setCodResidencia(rs.getInt("idResidencia"));
-                solicitacao.getResidencia().setufResidencia(rs.getString("ufResidencia"));
-                solicitacao.getResidencia().setCidade(rs.getString("cidade"));
-                solicitacao.getResidencia().setBairro(rs.getString("bairro"));
-                solicitacao.getResidencia().setDescricaoRes(rs.getString("descricaoResidencia"));
-                solicitacao.getResidencia().setCepRes(rs.getLong("cepResidencia"));
-                solicitacao.getResidencia().setRuaRes(rs.getString("enderecoResidencia"));
-                solicitacao.getResidencia().setAreaTotal(rs.getFloat("areaTotal"));
-                solicitacao.getResidencia().setAreaConstruida(rs.getDouble("areaConstruida"));
-                solicitacao.getResidencia().setAnoConstrucao(rs.getInt("anoConstrucao"));
-                solicitacao.getResidencia().setEstruturaAmeacada(rs.getInt("estruturaAmeacada"));
-                solicitacao.getResidencia().setLocalizacaoPerigosa(rs.getInt("localizacaoPerigosa"));
-                solicitacao.getResidencia().setTerrenoPerigoso(rs.getInt("terrenoPerigoso"));
-                solicitacao.getResidencia().setQntComodos(rs.getInt("quantidadeComodos"));
-                solicitacao.getResidencia().setQntBanheiros(rs.getInt("quantidadeBanheiros"));
-                solicitacao.getResidencia().setQntGaragens(rs.getInt("quantidadeGaragens"));
-                solicitacao.getResidencia().setNumAndares(rs.getInt("numeroAndares"));
+                solicitacao.setIdResidencia(rs.getInt("idResidencia"));
+                solicitacao.setResidencia(daoResidencia.read(solicitacao));
                 listDeSolicitacoes.add(solicitacao);
             }
 
@@ -200,5 +170,34 @@ public class SolicitacaoDAO {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
         return listDeSolicitacoes;
+    }
+
+    public void editarSolicitacao(Solicitacao solicitacao) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm;
+        PreparedStatement stmt;
+        try {
+            stm = conexao.prepareStatement("update residencia set quantidadeComodos = "
+                    + solicitacao.getResidencia().getQntComodos() + ", quantidadeBanheiros = "
+                    + solicitacao.getResidencia().getQntBanheiros() + ", "
+                    + "quantidadeGaragens = " + solicitacao.getResidencia().getQntGaragens() + ","
+                    + " anoConstrucao =" + solicitacao.getResidencia().getAnoConstrucao() + " ,"
+                    + " areaConstruida = " + solicitacao.getResidencia().getAreaConstruida() + ", "
+                    + "areaTotal = " + solicitacao.getResidencia().getAreaTotal() + ", "
+                    + "terrenoPerigoso = " + solicitacao.getResidencia().getTerrenoPerigoso() + ", "
+                    + "estruturaAmeacada = " + solicitacao.getResidencia().getEstruturaAmeacada() + ","
+                    + " localizacaoPerigosa = " + solicitacao.getResidencia().getLocalizacaoPerigosa() + " "
+                    + "where residencia.idResidencia = " + solicitacao.getResidencia().getCodResidencia());
+            stmt = conexao.prepareStatement("update solicitacaoseguro set valorSolicitacao = "
+                    + solicitacao.getValorSolicitacao() + ", motivoAlterecao = '"
+                    + solicitacao.getMotivoAlteracao() + "' where solicitacaoseguro.idSolicitacao = "
+                    + solicitacao.getCodSolicitacao());
+            stm.executeUpdate();
+            stmt.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(SolicitacaoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao);
+        }
     }
 }

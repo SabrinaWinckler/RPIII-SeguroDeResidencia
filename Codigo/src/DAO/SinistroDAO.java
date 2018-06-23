@@ -7,10 +7,10 @@ package DAO;
 
 import Dominio.Sinistro;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -23,11 +23,12 @@ import java.util.logging.Logger;
  */
 public class SinistroDAO {
 
+    DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+
     public void create(Sinistro sinistro) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         int idTipo = -1;
         try {
             stm = conexao.prepareStatement("SELECT max(tiposinistro.idTipo) from tiposinistro");
