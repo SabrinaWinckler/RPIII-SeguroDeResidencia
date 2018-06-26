@@ -38,7 +38,6 @@ public class Solicitacao {
     public Solicitacao(Date dataSolicitacao, Residencia residencia, double valorSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
         this.residencia = residencia;
-        this.valorSolicitacao = 0;
         this.aprovadaSolicitacao = null;
         this.dataVisitaResidencia = null;
         this.motivoAlteracao = null;

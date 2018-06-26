@@ -100,7 +100,7 @@ public class Gerenciador {
     }
 
     public double calcularValorSolicitacao(Residencia residencia) {
-        double valorBaseSolicitacao = 0, valorComTaxas;
+        double valorBaseSolicitacao = 0, valorComTaxas = 0;
         WebServiceCep webServiceCep = WebServiceCep.searchCep("" + residencia.getCepRes());
         String Uf = webServiceCep.getUf();
         if (Uf.equalsIgnoreCase("RS") || Uf.equalsIgnoreCase("SC") || Uf.equalsIgnoreCase("PR")) {
@@ -164,7 +164,7 @@ public class Gerenciador {
             return valorComTaxas;
         }
 
-        return valorBaseSolicitacao;
+        return valorComTaxas;
     }
 
     public List<ItemServico> servicoPorCliente(Candidato segurado) {
