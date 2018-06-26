@@ -27,7 +27,7 @@ public class SolicitacaoDAO {
     ResidenciaDAO daoResidencia = new ResidenciaDAO();
     DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    public void create(Solicitacao solicitacao) {
+    public void create(Solicitacao solicitacao, String cpfPessoa) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
@@ -39,8 +39,8 @@ public class SolicitacaoDAO {
             while (rs.next()) {
                 idResidencia = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("SELECT idPessoa from pessoa where pessoa.idPessoa = "
-                    + solicitacao.getResidencia().getCandidato().getCodPessoa());
+            stm = conexao.prepareStatement("SELECT idPessoa from pessoa where pessoa.Cpf = "
+                    + cpfPessoa);
             rs = stm.executeQuery();
             while (rs.next()) {
                 idPessoa = rs.getInt(1);

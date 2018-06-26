@@ -1,7 +1,6 @@
 package Motor;
 
 import DAO.BemDAO;
-import DAO.CandidatoDAO;
 import DAO.ResidenciaDAO;
 import DAO.ServicoDAO;
 import DAO.SinistroDAO;
@@ -11,7 +10,6 @@ import Dominio.Servico;
 import Dominio.Bem;
 import Dominio.Residencia;
 import Dominio.Sinistro;
-import Excecoes.ExceptionEmptySpace;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -22,6 +20,8 @@ public class ControleSolicitacao {
 
     private Residencia residencia;
 
+    private double valorSolicitacao;
+    
     private ArrayList<Bem> bens;
 
     private Solicitacao solicitacao = new Solicitacao();
@@ -29,6 +29,8 @@ public class ControleSolicitacao {
     private Servico servico;
 
     private ArrayList<Sinistro> sinistros;
+    
+    private Gerenciador gerenciador = new Gerenciador();
 
     public ControleSolicitacao() {
         bens = new ArrayList<Bem>();
@@ -38,6 +40,11 @@ public class ControleSolicitacao {
     public ResidenciaDAO geraDAOResidencia() {
         ResidenciaDAO residenciaDados = new ResidenciaDAO();
         return residenciaDados;
+    }
+
+    public Bem construirBem(float valorEstimado, String desc) {
+        Bem bem = new Bem(valorEstimado, desc);
+        return bem;
     }
 
     public boolean registraBemLista(float valor, String descB) {
@@ -69,17 +76,6 @@ public class ControleSolicitacao {
         //areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
         return residenciaTeste;
     }
-
-    public Bem construirBem(float valorEstimado, String desc) {
-        Bem bem = new Bem(valorEstimado, desc);
-        return bem;
-    }
-
-    public Solicitacao construirSolicitacao() {
-        Solicitacao temp = new Solicitacao(this.dataSolicitacao, this.residencia);
-        return temp;
-    }
-
     public void atualizarSolicitacaoResidenciaEditada(String uf, String cidade, String bairro,
             String desc, int numRes, long cepRes, int qntComodos,
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
@@ -102,18 +98,17 @@ public class ControleSolicitacao {
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacao,
             int terreno, int estrutura, long cpf) {
-
+        
         Residencia temp = new Residencia(ruaRes, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, numAndares, anoConstrucao, ruaRes, ruaRes, cidade, bairro, areaC, bens, localizacao, terreno, estrutura);
-        this.setResidencia(temp);
-        geraDAOResidencia().create(temp, String.valueOf(cpf));
         Date data = new Date();
-        this.setDataSolicitacao(data);
-        BemDAO daoBem = geraDAOBem();
+        geraDAOResidencia().create(temp, String.valueOf(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCpf()));
+        BemDAO daoBem = new BemDAO();
         for (int i = 0; i < bens.size(); i++) {
-            daoBem.create((Bem) bens.get(i));
+            daoBem.create(bens.get(i));
         }
-        Solicitacao tempS = this.construirSolicitacao();
-        geraDAOSolicitacao().create(tempS);
+        valorSolicitacao = gerenciador.calcularValorSolicitacao(temp);
+        Solicitacao tempS = new Solicitacao(data, residencia, valorSolicitacao);
+        geraDAOSolicitacao().create(tempS, GerenciadorViewLogin.getInstance().getUsuarioOnline().getCpf());
     }
 
     public ServicoDAO geraDAOServico() {

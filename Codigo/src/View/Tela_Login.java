@@ -8,6 +8,7 @@ package View;
 import Dominio.Candidato;
 import Dominio.Corretor;
 import Dominio.Pessoa;
+import Dominio.Segurado;
 import Motor.Gerenciador;
 import Motor.GerenciadorViewLogin;
 import java.awt.Color;
@@ -23,9 +24,7 @@ import javax.swing.JOptionPane;
 public class Tela_Login extends javax.swing.JFrame {
 
     Gerenciador motor = new Gerenciador();
-    GerenciadorViewLogin gerenciadorLogin = new GerenciadorViewLogin();
-    Corretor corretor = new Corretor();
-    Candidato usuario = new Candidato();
+    Painel_Candidato painelCandidato;
 
     /**
      * Creates new form Tela_Login
@@ -34,6 +33,8 @@ public class Tela_Login extends javax.swing.JFrame {
         initComponents();
         usuarioEsqueciASenhajPanel.setVisible(false);
         EsqueciASenhajPanel.setVisible(false);
+        campoUsuario.setText("jojopaulin");
+        campoSenha.setText("0352635");
     }
 
     /**
@@ -95,13 +96,13 @@ public class Tela_Login extends javax.swing.JFrame {
         enviarUsuarioButton.setBackground(new java.awt.Color(26, 204, 252));
         enviarUsuarioButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         enviarUsuarioButton.setForeground(new java.awt.Color(255, 255, 255));
-        enviarUsuarioButton.setText("Enviar");
+        enviarUsuarioButton.setText("Continuar");
         enviarUsuarioButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enviarUsuarioButtonActionPerformed(evt);
             }
         });
-        usuarioEsqueciASenhajPanel.add(enviarUsuarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 90, -1, -1));
+        usuarioEsqueciASenhajPanel.add(enviarUsuarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 90, -1, -1));
 
         cancelarEnvioUsuarioButton.setBackground(new java.awt.Color(126, 87, 194));
         cancelarEnvioUsuarioButton.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -112,7 +113,7 @@ public class Tela_Login extends javax.swing.JFrame {
                 cancelarEnvioUsuarioButtonActionPerformed(evt);
             }
         });
-        usuarioEsqueciASenhajPanel.add(cancelarEnvioUsuarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 90, -1, -1));
+        usuarioEsqueciASenhajPanel.add(cancelarEnvioUsuarioButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, -1, -1));
 
         getContentPane().add(usuarioEsqueciASenhajPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 370, 230, 130));
 
@@ -270,12 +271,11 @@ public class Tela_Login extends javax.swing.JFrame {
 
     private void enviarUsuarioButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarUsuarioButtonActionPerformed
         boolean userNameExiste = false;
-        for (String userName : gerenciadorLogin.esqueciASenha()) {
+        for (String userName : GerenciadorViewLogin.getInstance().esqueciASenha()) {
             if (userName.equalsIgnoreCase(usuarioVerificar.getText())) {
                 usuarioEsqueciASenhajPanel.setVisible(false);
                 EsqueciASenhajPanel.setVisible(true);
                 userNameExiste = true;
-
             }
         }
         if (!userNameExiste) {
@@ -293,7 +293,7 @@ public class Tela_Login extends javax.swing.JFrame {
         String esqueciASenha = String.copyValueOf(novaSenha.getPassword());
         String repitaSenha = String.copyValueOf(repitaNovaSenha.getPassword());
         if (esqueciASenha.equals(repitaSenha)) {
-            gerenciadorLogin.updatePassword(usuarioVerificar.getText(), repitaSenha);
+            GerenciadorViewLogin.getInstance().updatePassword(usuarioVerificar.getText(), repitaSenha);
             JOptionPane.showConfirmDialog(rootPane, "Nova senha salva com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
             EsqueciASenhajPanel.setVisible(false);
         } else {
@@ -303,25 +303,40 @@ public class Tela_Login extends javax.swing.JFrame {
 
     private void realizarLogin() {
         boolean usuarioExiste = false;
-        List<Candidato> listPessoas = motor.retornaCliente();
-        List<Corretor> listCorretores = motor.retornarCorretor();
+        List<Candidato> listPessoas = GerenciadorViewLogin.getInstance().retornaCliente();
+        List<Corretor> listCorretores = GerenciadorViewLogin.getInstance().retornarCorretor();
+        List<Segurado> listSegurados = GerenciadorViewLogin.getInstance().retornaSegurados();
         String senhaJunta = String.copyValueOf(campoSenha.getPassword());
-        for (Candidato pessoa : listPessoas) {
-            if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
-                usuario = pessoa;
-                usuarioExiste = true;
-                Painel_Candidato painelCandidato = new Painel_Candidato(usuario);
+        for (Segurado segurado : listSegurados) {
+            if (segurado.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && segurado.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
+                painelCandidato = new Painel_Candidato(segurado);
+                GerenciadorViewLogin.getInstance().setSeguradoOnline(segurado);
                 painelCandidato.setVisible(true);
                 dispose();
+                usuarioExiste = true;
+                break;
             }
         }
-        for (Corretor certoCorretor : listCorretores) {
-            if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
-                corretor = certoCorretor;
-                usuarioExiste = true;
-                Painel_Corretor painelCorretor = new Painel_Corretor();
-                painelCorretor.setVisible(true);
-                dispose();
+        if (!usuarioExiste) {
+            for (Candidato pessoa : listPessoas) {
+                if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
+                    usuarioExiste = true;
+                    painelCandidato = new Painel_Candidato(pessoa);
+                    GerenciadorViewLogin.getInstance().setCandidatoOnline(pessoa);
+                    painelCandidato.setVisible(true);
+                    dispose();
+                }
+            }
+        }
+        if (!usuarioExiste) {
+            for (Corretor certoCorretor : listCorretores) {
+                if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
+                    usuarioExiste = true;
+                    Painel_Corretor painelCorretor = new Painel_Corretor(certoCorretor);
+                    GerenciadorViewLogin.getInstance().setCorretorOnline(certoCorretor);
+                    painelCorretor.setVisible(true);
+                    dispose();
+                }
             }
         }
         if (!usuarioExiste) {
@@ -342,7 +357,7 @@ public class Tela_Login extends javax.swing.JFrame {
 
     /**
      * @param args the command line arguments
-     */ 
+     */
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">

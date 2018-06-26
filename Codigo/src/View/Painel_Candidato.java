@@ -14,6 +14,7 @@ import Dominio.ItemServico;
 import Dominio.Residencia;
 import Dominio.Segurado;
 import Excecoes.ExceptionEmptySpace;
+import Motor.GerenciadorViewLogin;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
@@ -42,8 +43,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     List<Solicitacao> listaSolicitacao = new ArrayList<>();
     Gerenciador gerenciador = new Gerenciador();
     private int quantidadeDeSolicitacao, selecionado;
+    static Segurado segurado;
     static Candidato candidato;
     List<ItemServico> listaDeServico = new ArrayList<>();
+    GerenciadorViewLogin gerenciadorLogin = new GerenciadorViewLogin();
 
     /**
      * Creates new form Painel_Corretor
@@ -54,15 +57,25 @@ public class Painel_Candidato extends javax.swing.JFrame {
         home();
     }
 
-    public Painel_Candidato(Candidato candidato) {
+    public Painel_Candidato(Candidato seguradoOnline) {
         initComponents();
+        candidato = seguradoOnline;
         gerarBackground();
-        quantidadeDeSolicitacao = readTableListaSolicitacao(candidato);
-        readTableListaServico(candidato);
+        quantidadeDeSolicitacao = readTableListaSolicitacao(seguradoOnline);
+        habilitarOpcoesSegurado(false);
         home();
     }
 
-    private int readTableListaServico(Candidato segurado) {
+    public Painel_Candidato(Segurado seguradoOnline) {
+        initComponents();
+        segurado = seguradoOnline;
+        readTableListaServico(seguradoOnline);
+        habilitarOpcoesSegurado(true);
+        gerarBackground();
+        home();
+    }
+
+    private int readTableListaServico(Segurado segurado) {
         DefaultTableModel modelo = (DefaultTableModel) jTabelaListaServicos.getModel();
         modelo.setNumRows(0);
         listaDeServico = gerenciador.servicoPorCliente(segurado);
@@ -1379,11 +1392,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
         //try{
         //    controlador.verificarSeguro(candidato.getCodPessoa());
-            painelSinistro.setVisible(true);
+        painelSinistro.setVisible(true);
         //}catch(Exception e){
         //    JOptionPane.showMessageDialog(painelP, "Você não possui residências seguradas!");
         //}
-        
+
     }//GEN-LAST:event_relatarSinistroActionPerformed
 
     private void contratarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarServicoActionPerformed
@@ -1536,7 +1549,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Este bem não foi adicionado!");
-        } catch (IndexOutOfBoundsException e) {
+        } catch (IndexOutOfBoundsException et) {
             JOptionPane.showMessageDialog(null, "Nenhum bem foi encontrado!");
         }        // TODO add your handling code here:
     }//GEN-LAST:event_removerActionPerformed
@@ -1549,12 +1562,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 descBem.setText("");
                 valor.setText("");
             }
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(rootPane, e.getMessage());
+        } catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(rootPane, ex.getMessage());
         }
         // TODO add your handling code here:
     }//GEN-LAST:event_addActionPerformed
-    public void gerarBackground() {
+    private void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
 
@@ -1658,18 +1671,28 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja confirmar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            String campoImpressoNoCartao = campoImpressoNomeCartao.getText();
+            String nomeImpressoCartao = campoImpressoNomeCartao.getText();
             String numeroCartao = campoNumeroDoCartao.getText();
-            String validadeCartao = mesComboBox.getActionCommand() + "/" + anoComboBox.getActionCommand();
+            String validadeCartao = mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
             long codSeguranca = Long.parseLong(campoCodSegurancaCartao.getText());
-            float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
+            //float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
+            float premioApolice = 200;
             String bandeiraCartao = null;
             long numeroApolice = 2536;
             Date dataContratacaoApolice = new Date();
-            gerenciador.registrarApolice(bandeiraCartao, numeroApolice, premioApolice, dataContratacaoApolice, bandeiraCartao, numeroCartao, codSeguranca, numeroCartao);
+            gerenciador.registrarApolice(bandeiraCartao, numeroApolice,
+                    premioApolice, dataContratacaoApolice, numeroCartao,
+                    validadeCartao, codSeguranca, nomeImpressoCartao, candidato.getCpf());
             JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
+            gerenciador.transformaCandidatoEmSegurado(candidato.getCpf());
             visualizarSolicitacao();
         }
+        /*
+        (String bandeiraCartão, long numeroApolice, 
+        float premioApolice, Date dataContratacaoApolice, 
+        String cartaoCreditoPagamento, String vencimentoCartao, 
+        long codSegurancaCartao, String nomeNoCartao
+         */
     }//GEN-LAST:event_buttonConfirmarActionPerformed
 
     private void buttonCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonCancelarActionPerformed
@@ -1705,7 +1728,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
             qnt = escolhido.split(",").length;
             controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             JOptionPane.showInternalInputDialog(painelP, "Qual data que você deseja ser atendido?");
-            
 
             controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             JOptionPane.showMessageDialog(painelP, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
@@ -1792,88 +1814,89 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirSelecionadoActionPerformed
 
     private void rouboActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rouboActionPerformed
-            if (incendio.isSelected()) {
-                incendio.setSelected(false);
-            }
-            if (arrombamento.isSelected()) {
-                arrombamento.setSelected(false);
-            }
-            
-            if (explosao.isSelected()) {
-                explosao.setSelected(false);
-            }
+        if (incendio.isSelected()) {
+            incendio.setSelected(false);
+        }
+        if (arrombamento.isSelected()) {
+            arrombamento.setSelected(false);
+        }
+
+        if (explosao.isSelected()) {
+            explosao.setSelected(false);
+        }
     }//GEN-LAST:event_rouboActionPerformed
 
     private void enviarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSinistroActionPerformed
-         
+
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja relatar este sinistro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            try{
+            try {
                 controlador.verificarPacoteContratado();
-            String escolhido = "";
-            if (roubo.isSelected()) {
-                escolhido = roubo.getText();
-            }
-            if (incendio.isSelected()) {
-                escolhido = incendio.getText();
-            }
-            if (arrombamento.isSelected()) {
-                escolhido = arrombamento.getText();
-            }
-            if (explosao.isSelected()) {
-                escolhido = explosao.getText();
-            }
-            float valorSinistro = controlador.valorSinistroEscolhido(escolhido);
-            controlador.registrarSinistro(escolhido, valorSinistro, descricaoSinistro.getText());
-            JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! \n Valor Estimado para este tipo de sinistro: "+ valorSinistro);
-            painelSinistro.setVisible(false);
-            }catch(Exception e){
-                
+                String escolhido = "";
+                if (roubo.isSelected()) {
+                    escolhido = roubo.getText();
+                }
+                if (incendio.isSelected()) {
+                    escolhido = incendio.getText();
+                }
+                if (arrombamento.isSelected()) {
+                    escolhido = arrombamento.getText();
+                }
+                if (explosao.isSelected()) {
+                    escolhido = explosao.getText();
+                }
+                float valorSinistro = controlador.valorSinistroEscolhido(escolhido);
+                controlador.registrarSinistro(escolhido, valorSinistro, descricaoSinistro.getText());
+                JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! \n Valor Estimado para este tipo de sinistro: " + valorSinistro);
+                painelSinistro.setVisible(false);
+            } catch (Exception e) {
+
             }
         }
     }//GEN-LAST:event_enviarSinistroActionPerformed
 
     private void incendioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_incendioActionPerformed
         if (roubo.isSelected()) {
-                roubo.setSelected(false);
-            }
-            if (arrombamento.isSelected()) {
-                arrombamento.setSelected(false);
-            }
-            
-            if (explosao.isSelected()) {
-                explosao.setSelected(false);
-            }
+            roubo.setSelected(false);
+        }
+        if (arrombamento.isSelected()) {
+            arrombamento.setSelected(false);
+        }
+
+        if (explosao.isSelected()) {
+            explosao.setSelected(false);
+        }
     }//GEN-LAST:event_incendioActionPerformed
 
     private void explosaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explosaoActionPerformed
-            if (incendio.isSelected()) {
-                incendio.setSelected(false);
-            }
-            if (arrombamento.isSelected()) {
-                arrombamento.setSelected(false);
-            }
-            
-            if (roubo.isSelected()) {
-                roubo.setSelected(false);
-            }        // TODO add your handling code here:
+        if (incendio.isSelected()) {
+            incendio.setSelected(false);
+        }
+        if (arrombamento.isSelected()) {
+            arrombamento.setSelected(false);
+        }
+
+        if (roubo.isSelected()) {
+            roubo.setSelected(false);
+        }        // TODO add your handling code here:
     }//GEN-LAST:event_explosaoActionPerformed
 
     private void arrombamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrombamentoActionPerformed
-       if (incendio.isSelected()) {
-                incendio.setSelected(false);
-            }
-            if (roubo.isSelected()) {
-                roubo.setSelected(false);
-            }
-            
-            if (explosao.isSelected()) {
-                explosao.setSelected(false);
-            }
+        if (incendio.isSelected()) {
+            incendio.setSelected(false);
+        }
+        if (roubo.isSelected()) {
+            roubo.setSelected(false);
+        }
+
+        if (explosao.isSelected()) {
+            explosao.setSelected(false);
+        }
     }//GEN-LAST:event_arrombamentoActionPerformed
 
     private void cancelarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSinistroActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0)
-        painelSinistro.setVisible(false);
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            painelSinistro.setVisible(false);
+        }
     }//GEN-LAST:event_cancelarSinistroActionPerformed
 
     private void buttonDataServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDataServicoActionPerformed
@@ -2027,10 +2050,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         textB.setText(listaSolicitacao.get(selecionado).getResidencia().getBairro());
         textCidade.setText(listaSolicitacao.get(selecionado).getResidencia().getCidade());
         textEnd.setText(listaSolicitacao.get(selecionado).getResidencia().getRuaRes());
-        textValorSeguro.setText("" + df.format(gerenciador.calcularValorSolicitacao(listaSolicitacao.get(selecionado))));
+        textValorSeguro.setText("" + df.format(gerenciador.calcularValorSolicitacao(listaSolicitacao.get(selecionado).getResidencia())));
         textObs.setText(listaSolicitacao.get(selecionado).getMotivoAlteracao());
         campoValorSeguroPagamento.setText(textValorSeguro.getText());
-        textValorSeguro.setText("" + gerenciador.calcularValorSolicitacao(listaSolicitacao.get(selecionado)));
+        textValorSeguro.setText("" + gerenciador.calcularValorSolicitacao(listaSolicitacao.get(selecionado).getResidencia()));
         campoValorParcelado.setText(textValorSeguro.getText());
     }
 
@@ -2044,10 +2067,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }
 
     public void preencherCamposEdicao(Residencia selecionado) {
-         cep.setText("" + selecionado.getCepRes());
-    uf.setText(selecionado.getUfResidencia()); 
-        bairro.setText(selecionado.getBairro()); 
-        cidade.setText(selecionado.getCidade()); 
+        cep.setText("" + selecionado.getCepRes());
+        uf.setText(selecionado.getUfResidencia());
+        bairro.setText(selecionado.getBairro());
+        cidade.setText(selecionado.getCidade());
         rua.setText(selecionado.getRuaRes());
         //andares.setText(selecionado.getA);
         anoC.setText("" + selecionado.getAnoConstrucao());
@@ -2060,6 +2083,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         //numero
         //localizacaoP
         //estruturaA 
+    }
+
+    private void habilitarOpcoesSegurado(boolean condicao) {
+        relatarSinistro.setEnabled(condicao);
+        contratarServico.setEnabled(condicao);
+        //buttonContratarSeguro.setEnabled(condicao);
     }
 
     /**
@@ -2105,13 +2134,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            @Override
-            public void run() {
-                Painel_Candidato painel = new Painel_Candidato(candidato);
-                painel.gerarBackground();
-                painel.setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            Painel_Candidato painel = new Painel_Candidato(segurado);
+            painel.gerarBackground();
+            painel.setVisible(true);
         });
     }
 

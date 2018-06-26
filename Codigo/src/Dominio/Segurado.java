@@ -5,9 +5,6 @@
  */
 package Dominio;
 
-import Dominio.ItemServico;
-import Dominio.Sinistro;
-import Dominio.Residencia;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +14,7 @@ import java.util.List;
  */
 public class Segurado extends Candidato {
 
+    private int idSegurado;
     private List<Sinistro> sinistros;
     private List<ItemServico> servicos;
     private List<Residencia> residencias;
@@ -39,7 +37,11 @@ public class Segurado extends Candidato {
         this.residencias = residencias;
     }
 
-   
+    public Segurado(int idSegurado, String sexo, long cep, String dataNescimento, String uf, String cidade, String bairro, String nomePessoa, String cpf, String endereco, String telefone, String email, String usuarioCliente, String senhaCliente) {
+        super(sexo, cep, dataNescimento, uf, cidade, bairro, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+        this.idSegurado = idSegurado;
+    }
+
     /**
      * @return the sinistros
      */
@@ -80,6 +82,20 @@ public class Segurado extends Candidato {
      */
     public void setResidencias(List<Residencia> residencias) {
         this.residencias = residencias;
+    }
+
+    /**
+     * @return the idSegurado
+     */
+    public int getIdSegurado() {
+        return idSegurado;
+    }
+
+    /**
+     * @param idSegurado the idSegurado to set
+     */
+    public void setIdSegurado(int idSegurado) {
+        this.idSegurado = idSegurado;
     }
 
 }

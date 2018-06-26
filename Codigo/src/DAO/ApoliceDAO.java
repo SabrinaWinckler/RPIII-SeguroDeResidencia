@@ -7,7 +7,6 @@ package DAO;
 
 import Dominio.Apolice;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -21,17 +20,23 @@ import java.util.logging.Logger;
  * @author Débora Siqueira
  */
 public class ApoliceDAO {
-
-    public void create(Apolice apolice) {
+    
+    public void create(Apolice apolice, String cpf) {
         Connection conexao = ConnectionFactory.realizarConexao();
-        DateFormat dataFormatada = new SimpleDateFormat("dd/MM/yyyy");
+        DateFormat dataFormatada = new SimpleDateFormat("yyyy/MM/dd");
         PreparedStatement stm = null;
-        ResultSet rs;
+        ResultSet rs = null;
+        int idPessoa = -1;
         String data = dataFormatada.format(apolice.getDataContratacaoApolice());
         try {
+            stm = conexao.prepareStatement("select idPessoa from pessoa where pessoa.Cpf = " + cpf);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                idPessoa = rs.getInt(1);
+            }
             stm = conexao.prepareStatement("INSERT INTO apolice(bandeiraCartao, numeroApolice, premioApolice,"
-                    + " dataContratacaoApolice, cartaoCreditoPgto, vencimentoCartao, codSegurancaCartao, nomeNoCartao)"
-                    + "VALUES(?,?,?,?,?,?,?,?)");
+                    + " dataContratacaoApolice, cartaoCreditoPgto, vencimentoCartao, codSegurancaCartao, nomeNoCartao, idSegurado)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?)");
             stm.setString(1, apolice.getBandeiraCartão());
             stm.setLong(2, apolice.getNumeroApolice());
             stm.setFloat(3, apolice.getPremioApolice());
@@ -40,11 +45,15 @@ public class ApoliceDAO {
             stm.setString(6, apolice.getVencimentoCartao());
             stm.setLong(7, apolice.getCodSegurancaCartao());
             stm.setString(8, apolice.getNomeNoCartao());
+            stm.setInt(9, idPessoa);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            ConnectionFactory.fecharConexao(conexao, stm);
+            ConnectionFactory.fecharConexao(conexao, stm, rs);
         }
+    }
+    
+    public void createParcela(int codApolice) {
     }
 }

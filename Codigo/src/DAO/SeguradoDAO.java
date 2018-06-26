@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Dominio.Candidato;
+import Dominio.Segurado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,51 +17,44 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Débora Siqueira
+ * @author Matheus Montanha
  */
-public class CandidatoDAO {
+public class SeguradoDAO {
 
-    public void create(Candidato candidato) {
+    public void create(String cpf) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
         int idPessoa = -1;
         try {
-            stm = conexao.prepareStatement("select max(pessoa.idPessoa) from pessoa");
+            stm = conexao.prepareStatement("select idPessoa from pessoa where pessoa.Cpf = " + cpf);
             rs = stm.executeQuery();
             while (rs.next()) {
                 idPessoa = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("INSERT INTO candidato(cep, sexo, idPessoa, "
-                    + "ufCandidato, cidadeCandidato,"
-                    + " bairroCandidato, dataNascimento)VALUES(?,?,?,?,?,?,?)");
-            stm.setLong(1, candidato.getCep());
-            stm.setString(2, candidato.getSexo());
-            stm.setInt(3, idPessoa);
-            stm.setString(4, candidato.getUf());
-            stm.setString(5, candidato.getCidade());
-            stm.setString(6, candidato.getBairro());
-            stm.setString(7, candidato.getDataNescimento());
+            stm = conexao.prepareStatement("insert into segurado(idPessoa)value(?)");
+            stm.setInt(1, idPessoa);
             stm.executeUpdate();
         } catch (SQLException e) {
-            Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(SeguradoDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
 
-    public List<Candidato> read() {
+    public List<Segurado> read() {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<Segurado> listaDePessoa = new ArrayList<>();
         long cep;
         String dataNescimento, endereco, sexo, nome, cpf;
         String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
         int codPessoa;
-        Connection conexao = ConnectionFactory.realizarConexao();
-        PreparedStatement stmt = null;
-        ResultSet rs = null;
-        ArrayList<Candidato> listaDeCandidato = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM candidato inner join pessoa on "
-                    + "candidato.idPessoa = pessoa.idPessoa");
+            stmt = conexao.prepareStatement("select * from pessoa inner join "
+                    + "candidato on pessoa.idPessoa = candidato.idPessoa inner join "
+                    + "segurado on segurado.idPessoa = candidato.idPessoa");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 codPessoa = rs.getInt("idPessoa");
@@ -78,15 +71,16 @@ public class CandidatoDAO {
                 usuarioCliente = rs.getString("nomeLogin");
                 senhaCliente = rs.getString("senha");
                 nome = rs.getString("Nome");
-                Candidato candidato = new Candidato(sexo, cep, dataNescimento, uf, cidade, bairro,
-                        codPessoa, nome, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
-                listaDeCandidato.add(candidato);
+                Segurado segurado = new Segurado(codPessoa, sexo, cep,
+                        dataNescimento, uf, cidade, bairro, nome, cpf,
+                        endereco, telefone, email, usuarioCliente, senhaCliente);
+                listaDePessoa.add(segurado);
             }
         } catch (SQLException e) {
-            Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(SeguradoDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
-        return listaDeCandidato;
+        return listaDePessoa;
     }
 }

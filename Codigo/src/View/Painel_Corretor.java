@@ -5,6 +5,7 @@
  */
 package View;
 
+import Dominio.Corretor;
 import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import Motor.ControleSolicitacao;
@@ -12,7 +13,6 @@ import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.event.ActionEvent;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -30,22 +30,26 @@ import javax.swing.table.DefaultTableModel;
  * @author Matheus Montanha
  */
 public class Painel_Corretor extends javax.swing.JFrame {
-    
+
     int visivel = 0;
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
     String motivoReprovacao, motivoAlteracao, resultado;
     int selecionado = -1;
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     ControleSolicitacao controlador = new ControleSolicitacao();
+    static Corretor corretor;
 
     /**
      * Creates new form Painel_Corretor
+     *
+     * @param corretorOnline
      */
-    public Painel_Corretor() {
+    public Painel_Corretor(Corretor corretorOnline) {
         initComponents();
         runProgram();
+        corretor = corretorOnline;
     }
-    
+
     public int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
@@ -62,7 +66,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     public int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
@@ -79,7 +83,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     public int readTableListaDeSinistros() {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
@@ -1270,7 +1274,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 parecerDoAvaliadorSinistro.setText("Digite aqui o parecer técnico do sinistro...");
                 parecerDoAvaliadorSinistro.setFont(new Font("Arial", Font.ITALIC, 12));
                 parecerDoAvaliadorSinistro.setForeground(new Color(119, 119, 119));
-                
+
             }
         } else {
             JOptionPane.showConfirmDialog(rootPane, "O parecer não pode ser deixado em branco!", "Confirmação", JOptionPane.CLOSED_OPTION);
@@ -1517,7 +1521,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             solicitacaoEditada.getResidencia().setTerrenoPerigoso(terrenoPerigoso.getValue());
             solicitacaoEditada.getResidencia().setEstruturaAmeacada(estruturaAmeacada.getValue());
             solicitacaoEditada.getResidencia().setLocalizacaoPerigosa(localizacaoPerigosa.getValue());
-            solicitacaoEditada.setValorSolicitacao(gerenciador.calcularValorSolicitacao(solicitacaoEditada));
+            solicitacaoEditada.setValorSolicitacao(gerenciador.RecalcularValorSolicitacao(solicitacaoEditada.getResidencia()));
             solicitacaoEditada.setMotivoAlteracao(motivoAlteracaojTextArea.getText());
             gerenciador.editarSolicitacao(solicitacaoEditada);
             JOptionPane.showConfirmDialog(rootPane, "Solicitação editada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
@@ -1535,7 +1539,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             habilitarCamposTelaResidencia(true);
         }
     }//GEN-LAST:event_cancelarMotivoAlteracaoActionPerformed
-    
+
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
         campoCidadeResidencia.setText("");
@@ -1549,7 +1553,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAnoConstrucao.setText("");
         campoAreaTotal.setText("");
     }
-    
+
     private void limparCamposTelaSolicitacao() {
         campoNomeCandidato1.setText("");
         campoCPFCandidato1.setText("");
@@ -1561,26 +1565,26 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("");
         campoValorSolicitacao.setText("");
     }
-    
+
     private void limparCamposTelaSinistro() {
         campoDataSinistroFormat.setText("");
         campoDescricaoSinistro.setText("");
         campoTipoSinistro.setText("");
         campoValorSinistroFormt.setText("");
     }
-    
+
     private void habilitarButtonsTelaSolicitacao(Boolean condicao) {
         ButtonAgendarVisitaResidencia.setEnabled(condicao);
         buttonRecusarSeguro.setEnabled(condicao);
     }
-    
+
     private void habiltarButtonsTelaResidencia(Boolean condicao) {
         buttonEditarDadosResidencia.setEnabled(condicao);
         buttonAprovarResidencia.setEnabled(condicao);
         buttonRecusarResidencia.setEnabled(condicao);
         jToggleButtonDadosProprietario.setEnabled(condicao);
     }
-    
+
     private void habilitarCamposEdicaoResidencia(Boolean condicao) {
         campoQuantidadeComodos.setEditable(condicao);
         campoQuantidadeDeBanheiros.setEditable(condicao);
@@ -1594,7 +1598,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         estruturaAmeacada.setEnabled(condicao);
         localizacaoPerigosa.setEnabled(condicao);
     }
-    
+
     private void mudarFundoCamposEditadosResidencia(Color color, Font font) {
         campoQuantidadeComodos.setBackground(color);
         campoQuantidadeComodos.setFont(font);
@@ -1609,7 +1613,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoAreaTotal.setBackground(color);
         campoAreaTotal.setFont(font);
     }
-    
+
     private void buttonsTelaResidenciaVisivel(Boolean condicao) {
         buttonEditarDadosResidencia.setVisible(condicao);
         buttonAprovarResidencia.setVisible(condicao);
@@ -1617,12 +1621,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jToggleButtonDadosProprietario.setEnabled(condicao);
         listaDeResidencias.setEnabled(condicao);
     }
-    
+
     private void habilitarButtonsTelaSinistro(Boolean condicao) {
         ButtonAutorizarPagamento.setEnabled(condicao);
         buttonNegarPagamento.setEnabled(condicao);
     }
-    
+
     private void habilitarCamposTelaSolicitacao(Boolean condicao) {
         jLabelLocalizacaoPerigosa.setEnabled(condicao);
         jLabelTerrenoPerigoso.setEnabled(condicao);
@@ -1644,7 +1648,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setEnabled(condicao);
         campoValorSolicitacao.setEnabled(condicao);
     }
-    
+
     private void habilitarCamposTelaResidencia(Boolean condicao) {
         campoCepResidencia.setEnabled(condicao);
         campoCidadeResidencia.setEnabled(condicao);
@@ -1666,7 +1670,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         localizacaoPerigosa.setEnabled(condicao);
         terrenoPerigoso.setEnabled(condicao);
     }
-    
+
     private void habilitarCamposAvaliarSinistro(Boolean condicao) {
         campoDataSinistroFormat.setEnabled(condicao);
         campoDescricaoSinistro.setEnabled(condicao);
@@ -1675,7 +1679,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         parecerDoAvaliadorSinistro.setEnabled(condicao);
         habilitarButtonsTelaSinistro(condicao);
     }
-    
+
     private void preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
@@ -1699,7 +1703,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         estruturaAmeacada.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getEstruturaAmeacada());
         localizacaoPerigosa.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getLocalizacaoPerigosa());
     }
-    
+
     private void preencherCamposSolicitacaoSeguro(int numero) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
@@ -1713,7 +1717,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("" + listaDeSolicitacao.get(numero).getDataSolicitacao());
         campoValorSolicitacao.setText("" + listaDeSolicitacao.get(numero).getValorSolicitacao());
     }
-    
+
     private void preencherCamposAvaliarSinistro(int selecionado) {
         List<Sinistro> listaSinistro = gerenciador.listaDeSinistrosPendentes();
         campoDataSinistroFormat.setText("" + sdf.format(listaSinistro.get(selecionado).getDataSinistro()));
@@ -1728,7 +1732,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
         //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
-    
+
     private void runProgram() {
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
@@ -1739,7 +1743,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
     }
-    
+
     private void visualizarSolicitacao() {
         jPanelCorretor.setVisible(true);
         jPanelCalendarioAgendarVisitaResidencia.setVisible(false);
@@ -1750,7 +1754,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelBemVindo.setVisible(false);
         jPanelMotivoSolicitacaoRecusado.setVisible(false);
     }
-    
+
     private void visualizarResidencias() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarResidencia.setVisible(true);
@@ -1763,7 +1767,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         cancelarEditarButton.setVisible(false);
         motivoAlteracaojPanel.setVisible(false);
     }
-    
+
     private void visualizarSinistros() {
         jPanelCorretor.setVisible(true);
         jPanelAvaliarSinistro.setVisible(true);
@@ -1773,7 +1777,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelBemVindo.setVisible(false);
         jPanelMotivoNegarSinistro.setVisible(false);
     }
-    
+
     private void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));
@@ -1806,7 +1810,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            Painel_Corretor painelCorretor = new Painel_Corretor();
+            Painel_Corretor painelCorretor = new Painel_Corretor(corretor);
             painelCorretor.setVisible(true);
         });
     }

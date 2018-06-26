@@ -5,7 +5,6 @@
  */
 package Dominio;
 
-import Dominio.Residencia;
 
 /**
  *

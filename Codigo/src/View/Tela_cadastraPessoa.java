@@ -9,6 +9,8 @@ import Dominio.Candidato;
 import Motor.Gerenciador;
 import Excecoes.ExceptionCPFInvalid;
 import Excecoes.ExceptionEmailInvalid;
+import Motor.GerenciadorViewCorretor;
+import Motor.GerenciadorViewLogin;
 import java.awt.Cursor;
 import java.util.List;
 import javax.swing.JOptionPane;
@@ -19,7 +21,7 @@ import service.WebServiceCep;
  * @author Débora Siqueira
  */
 public class Tela_cadastraPessoa extends javax.swing.JFrame {
-    
+
     private String sexo;
     private long cep;
     private String dataNascimento;
@@ -33,6 +35,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     private String uf;
     private String cidade;
     private String bairro;
+    GerenciadorViewLogin gerenciadorLogin = new GerenciadorViewLogin();
     Gerenciador motor = new Gerenciador();
 
     /**
@@ -335,7 +338,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
     private void emailCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_emailCampoFocusLost
         List<Candidato> listaDeClientesCadastrados;
-        listaDeClientesCadastrados = motor.retornaCliente();
+        listaDeClientesCadastrados = gerenciadorLogin.retornaCliente();
         boolean existe = false;
         if (ExceptionEmailInvalid.informaEmail(emailCampo.getText()).equals("E-mail válido")) {
             for (Candidato candidato : listaDeClientesCadastrados) {
@@ -357,7 +360,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
 
     private void cpfCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_cpfCampoFocusLost
         List<Candidato> listaDeClientesCadastrados;
-        listaDeClientesCadastrados = motor.retornaCliente();
+        listaDeClientesCadastrados = gerenciadorLogin.retornaCliente();
         boolean existe = false;
         if (!cpfCampo.getText().isEmpty()) {
             if (ExceptionCPFInvalid.isValido(cpfCampo.getText())) {

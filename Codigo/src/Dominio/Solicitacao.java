@@ -16,7 +16,7 @@ public class Solicitacao {
     private int codSolicitacao;
 
     private Date dataSolicitacao;
-    
+
     private double valorSolicitacao;
 
     private Date dataVisitaResidencia;
@@ -35,7 +35,7 @@ public class Solicitacao {
         this.residencia = new Residencia();
     }
 
-    public Solicitacao(Date dataSolicitacao, Residencia residencia) {
+    public Solicitacao(Date dataSolicitacao, Residencia residencia, double valorSolicitacao) {
         this.dataSolicitacao = dataSolicitacao;
         this.residencia = residencia;
         this.valorSolicitacao = 0;
@@ -43,7 +43,7 @@ public class Solicitacao {
         this.dataVisitaResidencia = null;
         this.motivoAlteracao = null;
         this.motivoReprovacao = null;
-        this.valorSolicitacao = 0;
+        this.valorSolicitacao = valorSolicitacao;
     }
 
     public Solicitacao(Date dataSolicitacao, double valorSolicitacao, Date dataVisitaResidencia, String aprovadaSolicitacao, String motivoReprovacao, String motivoAlteracao, Residencia residencia) {
