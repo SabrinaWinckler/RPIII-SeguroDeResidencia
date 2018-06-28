@@ -10,8 +10,6 @@ import Dominio.Bem;
 import Dominio.Candidato;
 import Dominio.ItemServico;
 import Dominio.Segurado;
-import com.sun.javafx.geom.Quat4f;
-import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -48,26 +46,42 @@ public class ServicoDAO {
         }
     }
 
-    public Servico read() {
+    public List<Segurado> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
+        List<Segurado> listaDeSegurados = new ArrayList<>();
+        List<ItemServico> listDeServicos = new ArrayList<>();
         Servico servico = new Servico();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM bem");
+            stmt = conexao.prepareStatement("select * from servico inner join itemservico on "
+                    + "servico.idServico = itemservico.idServico inner join seguradosolicitaservico on "
+                    + "seguradosolicitaservico.idServico = servico.idServico inner join pessoa on "
+                    + "pessoa.idPessoa = seguradosolicitaservico.idSegurado inner join residencia on "
+                    + "residencia.idProprietario = pessoa.idPessoa");
             rs = stmt.executeQuery();
-
-            //servico.setCodServico(rs.getInt("idServico"));
-            //servico.setCodResidenciaPertencente(rs.getInt("idResidenciaPertencente"));
-            servico.setDesc(rs.getString("desc"));
-            servico.setQnt(rs.getInt("qnt"));
-
+            while (rs.next()) {
+                Segurado segurado = new Segurado();
+                ItemServico itemServico = new ItemServico();
+                itemServico.setDesc(rs.getString("descricaoServico"));
+                itemServico.setIdCodServico(rs.getInt("idServico"));
+                itemServico.setDescricaoRecusa(rs.getString("descricaoRecusa"));
+                itemServico.setDescricaoAtendimento(rs.getString("descricaoAtendimento"));
+                itemServico.setAtendidaSolicitacaoServico(rs.getString("atendidaSolicitacao"));
+                itemServico.setAceitaSolicitacao(rs.getString("aceitaSolicitacao"));
+                itemServico.setDescricaoSolicitacao(rs.getString("descricaoSolicitacao"));
+                itemServico.setIdItemServico(rs.getInt("idItemServiço"));
+                itemServico.setDataDeSolitacao(rs.getDate("dataDeSolicitacao"));
+                listDeServicos.add(itemServico);
+                segurado.setServicos(listDeServicos);
+                listaDeSegurados.add(segurado);
+            }
         } catch (SQLException e) {
             Logger.getLogger(Bem.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
-        return servico;
+        return listaDeSegurados;
     }
 
     public List<ItemServico> servicosSegurados(Candidato segurado) {
@@ -76,8 +90,10 @@ public class ServicoDAO {
         ResultSet rs = null;
         List<ItemServico> listaDeServico = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select * from servico inner join "
-                    + "itemservico on servico.idServico = itemservico.idItemServiço;");
+            stmt = conexao.prepareStatement("select * from servico inner join itemservico on "
+                    + "servico.idServico = itemservico.idServico inner join seguradosolicitaservico on "
+                    + "seguradosolicitaservico.idServico = servico.idServico and \n"
+                    + "seguradosolicitaservico.idSegurado = " + segurado.getCodPessoa());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ItemServico itemServico = new ItemServico();

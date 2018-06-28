@@ -5,9 +5,13 @@
  */
 package Motor;
 
+import DAO.ServicoDAO;
 import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
+import Dominio.ItemServico;
 import Dominio.Residencia;
+import Dominio.Segurado;
+import Dominio.Servico;
 import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import java.util.ArrayList;
@@ -24,6 +28,7 @@ public class GerenciadorViewCorretor {
     List<Sinistro> listaDeSinistro;
     SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
     SinistroDAO daoSinistro = new SinistroDAO();
+    ServicoDAO daoServico = new ServicoDAO();
 
     public GerenciadorViewCorretor(List lista) {
         listaDeSolicitacao = lista;
@@ -63,7 +68,7 @@ public class GerenciadorViewCorretor {
 
     public List<Solicitacao> listaDeSolicitacoesPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
-        listaDeSolicitacao = organizarListaDeSolicitacoes();
+        //listaDeSolicitacao = organizarListaDeSolicitacoes();
         List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
         listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() == null && solicitacao.getMotivoReprovacao() == null)).forEachOrdered((solicitacao) -> {
             listaDeSolicitacoesPendendes.add(solicitacao);
@@ -183,5 +188,9 @@ public class GerenciadorViewCorretor {
 
     public void editarSolicitacao(Solicitacao solicitacao) {
         daoSolicitacao.editarSolicitacao(solicitacao);
+    }
+
+    public List<Segurado> servicosPendentes() {
+        return daoServico.read();
     }
 }

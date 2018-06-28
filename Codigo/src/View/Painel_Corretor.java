@@ -6,6 +6,8 @@
 package View;
 
 import Dominio.Corretor;
+import Dominio.ItemServico;
+import Dominio.Segurado;
 import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import Motor.ControleSolicitacao;
@@ -50,7 +52,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         corretor = corretorOnline;
     }
 
-    public int readTableListaDeResidencia() {
+    private int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
         int tamanhoLista = gerenciador.listaDeResidenciasPendentes().size();
@@ -67,7 +69,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         }
     }
 
-    public int readTableListaDeSolicitacaoSeguro() {
+    private int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
         int tamanho = gerenciador.listaDeSolicitacoesPendentes().size();
@@ -84,7 +86,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         }
     }
 
-    public int readTableListaDeSinistros() {
+    private int readTableListaDeSinistros() {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
         int tamanhoLista = gerenciador.listaDeSinistrosPendentes().size();
@@ -95,6 +97,23 @@ public class Painel_Corretor extends javax.swing.JFrame {
                     sdf.format(sinistro.getDataSinistro())
                 });
             });
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
+    private int readTableListaDeServicos() {
+        DefaultTableModel modelo = (DefaultTableModel) listaDeServicosSolicitacados.getModel();
+        modelo.setNumRows(0);
+        int tamanhoLista = gerenciador.servicosPendentes().size();
+        if (tamanhoLista > 0) {
+            for (Segurado servicosPendente : gerenciador.servicosPendentes()) {
+                modelo.addRow(new Object[]{
+                    servicosPendente.getServicos().get(0).getDesc(),
+                    sdf.format(servicosPendente.getServicos().get(0).getDataDeSolitacao())
+                });
+            }
             return 1;
         } else {
             return 0;
@@ -247,6 +266,23 @@ public class Painel_Corretor extends javax.swing.JFrame {
         ButtonAgendarVisitaResidencia = new javax.swing.JButton();
         jScrollPane5 = new javax.swing.JScrollPane();
         listaDeSolicitacoesSeguro = new javax.swing.JTable();
+        jPanelGerenciarServico = new javax.swing.JPanel();
+        jScrollPane8 = new javax.swing.JScrollPane();
+        listaDeServicosSolicitacados = new javax.swing.JTable();
+        jLabel32 = new javax.swing.JLabel();
+        jLabel36 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
+        jLabel38 = new javax.swing.JLabel();
+        jLabel39 = new javax.swing.JLabel();
+        jLabel40 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        buttonRecusarServico = new javax.swing.JButton();
+        campoDataAtendimentoCliente = new javax.swing.JTextField();
+        campoNomeSegurado = new javax.swing.JTextField();
+        campoCPFSegurado = new javax.swing.JTextField();
+        campoEmailSegurado = new javax.swing.JTextField();
+        campoEndResidenciaSegurado = new javax.swing.JTextField();
+        campoDescricaoServico = new javax.swing.JTextField();
         jLabelBarraSup = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -309,6 +345,11 @@ public class Painel_Corretor extends javax.swing.JFrame {
         gerenciarServicosButton.setForeground(new java.awt.Color(110, 48, 110));
         gerenciarServicosButton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/tools.png"))); // NOI18N
         gerenciarServicosButton.setText("Gerenciar Serviços ");
+        gerenciarServicosButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                gerenciarServicosButtonActionPerformed(evt);
+            }
+        });
         getContentPane().add(gerenciarServicosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 180, 40));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -642,10 +683,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabelCep.setText("Cep:");
         jPanelAvaliarResidencia.add(jLabelCep, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 190, 30, -1));
 
+        campoCepResidencia.setEditable(false);
         campoCepResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoCepResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoCepResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 180, 200, 30));
 
+        campoRuaResidencia.setEditable(false);
         campoRuaResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoRuaResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoRuaResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 230, 200, 30));
@@ -658,10 +701,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabel2.setText("Cidade:");
         jPanelAvaliarResidencia.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 50, -1));
 
+        campoCidadeResidencia.setEditable(false);
         campoCidadeResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoCidadeResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoCidadeResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 280, 200, 30));
 
+        campoUFResidencia.setEditable(false);
         campoUFResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoUFResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoUFResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 330, 50, 30));
@@ -674,6 +719,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jLabelDescr.setText("Descrição:");
         jPanelAvaliarResidencia.add(jLabelDescr, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 380, 70, 20));
 
+        campoDescricaoResidencia.setEditable(false);
         campoDescricaoResidencia.setBackground(new java.awt.Color(213, 213, 213));
         campoDescricaoResidencia.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         jPanelAvaliarResidencia.add(campoDescricaoResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 380, 190, 50));
@@ -1121,15 +1167,115 @@ public class Painel_Corretor extends javax.swing.JFrame {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaDeSolicitacoesSeguroMouseClicked(evt);
             }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                listaDeSolicitacoesSeguroMouseExited(evt);
-            }
         });
         jScrollPane5.setViewportView(listaDeSolicitacoesSeguro);
 
         jPanelSolicitacaoDeSeguro.add(jScrollPane5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 690, 110));
 
         jPanelCorretor.add(jPanelSolicitacaoDeSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
+
+        jPanelGerenciarServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        listaDeServicosSolicitacados.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Serviço", "Data da Solicitação", "Nome do Segurado"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        listaDeServicosSolicitacados.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                listaDeServicosSolicitacadosMouseClicked(evt);
+            }
+        });
+        jScrollPane8.setViewportView(listaDeServicosSolicitacados);
+
+        jPanelGerenciarServico.add(jScrollPane8, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 30, 670, 100));
+
+        jLabel32.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel32.setText("Nome do Segurado:");
+        jPanelGerenciarServico.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, -1, -1));
+
+        jLabel36.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel36.setText("CPF:");
+        jPanelGerenciarServico.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 260, 30, -1));
+
+        jLabel37.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel37.setText("Email:");
+        jPanelGerenciarServico.add(jLabel37, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 300, 40, -1));
+
+        jLabel38.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel38.setText("End da Residencia:");
+        jPanelGerenciarServico.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 340, 110, -1));
+
+        jLabel39.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel39.setText("Descrição do Serviço:");
+        jPanelGerenciarServico.add(jLabel39, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 250, -1, -1));
+
+        jLabel40.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jLabel40.setText("Data de atendimento escolhido pelo cliente:");
+        jPanelGerenciarServico.add(jLabel40, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 310, -1, -1));
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 255));
+        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Aceitar Pedido");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanelGerenciarServico.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 440, 120, 30));
+
+        buttonRecusarServico.setBackground(new java.awt.Color(153, 51, 255));
+        buttonRecusarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonRecusarServico.setForeground(new java.awt.Color(255, 255, 255));
+        buttonRecusarServico.setText("Recusar");
+        jPanelGerenciarServico.add(buttonRecusarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 440, 100, 30));
+
+        campoDataAtendimentoCliente.setEditable(false);
+        campoDataAtendimentoCliente.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanelGerenciarServico.add(campoDataAtendimentoCliente, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 300, 90, 30));
+
+        campoNomeSegurado.setEditable(false);
+        campoNomeSegurado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanelGerenciarServico.add(campoNomeSegurado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 210, 90, 30));
+
+        campoCPFSegurado.setEditable(false);
+        campoCPFSegurado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanelGerenciarServico.add(campoCPFSegurado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 251, 90, 30));
+
+        campoEmailSegurado.setEditable(false);
+        campoEmailSegurado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanelGerenciarServico.add(campoEmailSegurado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 291, 90, 30));
+
+        campoEndResidenciaSegurado.setEditable(false);
+        campoEndResidenciaSegurado.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jPanelGerenciarServico.add(campoEndResidenciaSegurado, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 331, 90, 30));
+
+        campoDescricaoServico.setEditable(false);
+        jPanelGerenciarServico.add(campoDescricaoServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 240, 100, 30));
+
+        jPanelCorretor.add(jPanelGerenciarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
         getContentPane().add(jPanelCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 70, 730, 490));
 
@@ -1323,7 +1469,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             listaDeSolicitacoesSeguro.setEnabled(false);
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você pode avaliar apenas uma"
-                    + " solicitação por vez!", "Alerta", JOptionPane.OK_OPTION);
+                    + " solicitação por vez!", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseClicked
 
@@ -1402,12 +1548,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_cancelarMotivoReprovacaojButton2ActionPerformed
 
     private void listaDeSolicitacoesSeguroMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseMoved
-        listaDeSolicitacoesSeguro.setBackground(new Color(126, 87, 194));
+        listaDeSolicitacoesSeguro.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseMoved
-
-    private void listaDeSolicitacoesSeguroMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseExited
-        listaDeSolicitacoesSeguro.setBackground(new Color(204, 204, 255));
-    }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseExited
 
     private void confirmarMotivoReprovacaojButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarMotivoReprovacaojButton1ActionPerformed
         if (motivoReprovacaoSolicitacaojTextArea.getText().length() == 0) {
@@ -1489,7 +1631,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_localizacaoPerigosaStateChanged
 
     private void listaDeResidenciasMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseEntered
-        //listaDeResidencias.setBackground(new Color(126, 87, 194));
         listaDeResidencias.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_listaDeResidenciasMouseEntered
 
@@ -1539,6 +1680,23 @@ public class Painel_Corretor extends javax.swing.JFrame {
             habilitarCamposTelaResidencia(true);
         }
     }//GEN-LAST:event_cancelarMotivoAlteracaoActionPerformed
+
+    private void gerenciarServicosButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_gerenciarServicosButtonActionPerformed
+        if (readTableListaDeServicos() == 0) {
+            JOptionPane.showConfirmDialog(rootPane, "Não possui serviços para avaliar", "Alerta!", JOptionPane.CLOSED_OPTION);
+        } else {
+            visualizarServicos();
+        }
+    }//GEN-LAST:event_gerenciarServicosButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void listaDeServicosSolicitacadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeServicosSolicitacadosMouseClicked
+        selecionado = listaDeServicosSolicitacados.getSelectedRow();
+        preencherCamposAvaliarServico(selecionado);
+    }//GEN-LAST:event_listaDeServicosSolicitacadosMouseClicked
 
     private void limparCamposTelaResidencia() {
         campoCepResidencia.setText("");
@@ -1733,11 +1891,21 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
 
+    private void preencherCamposAvaliarServico(int selecionado) {
+        List<Segurado> listaDeSegurado = gerenciador.servicosPendentes();
+        campoNomeSegurado.setText(listaDeSegurado.get(selecionado).getNomePessoa());
+        campoCPFSegurado.setText(listaDeSegurado.get(selecionado).getCpf());
+        campoEndResidenciaSegurado.setText(listaDeSegurado.get(selecionado).getEndereco());
+        campoDescricaoServico.setText(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDescricaoSolicitacao());
+        campoDataAtendimentoCliente.setText(sdf.format(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDataDeVisita()));
+    }
+
     private void runProgram() {
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
         jPanelDadosProprietario.setVisible(false);
         jPanelSolicitacaoDeSeguro.setVisible(false);
+        jPanelGerenciarServico.setVisible(false);
         jPanelCorretor.setVisible(true);
         jPanelBemVindo.setVisible(true);
         buttonConfiguracao.setVisible(true);
@@ -1776,6 +1944,17 @@ public class Painel_Corretor extends javax.swing.JFrame {
         jPanelDadosProprietario.setVisible(false);
         jPanelBemVindo.setVisible(false);
         jPanelMotivoNegarSinistro.setVisible(false);
+    }
+
+    private void visualizarServicos() {
+        jPanelCorretor.setVisible(true);
+        jPanelAvaliarSinistro.setVisible(false);
+        jPanelAvaliarResidencia.setVisible(false);
+        jPanelSolicitacaoDeSeguro.setVisible(false);
+        jPanelDadosProprietario.setVisible(false);
+        jPanelBemVindo.setVisible(false);
+        jPanelMotivoNegarSinistro.setVisible(false);
+        jPanelGerenciarServico.setVisible(true);
     }
 
     private void gerarBackground() {
@@ -1826,23 +2005,30 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JButton buttonNegarPagamento;
     private javax.swing.JButton buttonRecusarResidencia;
     private javax.swing.JButton buttonRecusarSeguro;
+    private javax.swing.JButton buttonRecusarServico;
     private javax.swing.JTextField campoAnoConstrucao;
     private javax.swing.JTextField campoAreaConstruida;
     private javax.swing.JTextField campoAreaTotal;
     private javax.swing.JTextField campoCPFCandidato;
     private javax.swing.JTextField campoCPFCandidato1;
+    private javax.swing.JTextField campoCPFSegurado;
     public javax.swing.JTextField campoCepResidencia;
     private javax.swing.JTextField campoCidadeResidencia;
+    private javax.swing.JTextField campoDataAtendimentoCliente;
     private javax.swing.JFormattedTextField campoDataSinistroFormat;
     private javax.swing.JTextField campoDataSolicitacao;
     public javax.swing.JTextField campoDescricaoResidencia;
+    private javax.swing.JTextField campoDescricaoServico;
     private javax.swing.JTextArea campoDescricaoSinistro;
     private javax.swing.JTextField campoEmailCandidato;
     private javax.swing.JTextField campoEmailCandidato1;
+    private javax.swing.JTextField campoEmailSegurado;
+    private javax.swing.JTextField campoEndResidenciaSegurado;
     private javax.swing.JTextField campoEstruturaAmeacada;
     private javax.swing.JTextField campoLocalizacaoPerigosa;
     private javax.swing.JTextField campoNomeCandidato;
     private javax.swing.JTextField campoNomeCandidato1;
+    private javax.swing.JTextField campoNomeSegurado;
     private javax.swing.JTextField campoQuantidadeComodos;
     private javax.swing.JTextField campoQuantidadeDeBanheiros;
     private javax.swing.JTextField campoQuantidadeDeGaragens;
@@ -1866,6 +2052,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JSlider estruturaAmeacada;
     private javax.swing.JButton gerenciarServicosButton;
     private javax.swing.JButton homeButton;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButtonCancelarRegistroDeData;
     private javax.swing.JButton jButtonConfirmarData;
     private com.toedter.calendar.JCalendar jCalendarAgendarVisitaResidencia;
@@ -1894,10 +2081,16 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
     private javax.swing.JLabel jLabel35;
+    private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
+    private javax.swing.JLabel jLabel38;
+    private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel40;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -1923,6 +2116,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelCorretor;
     private javax.swing.JPanel jPanelDadosProprietario;
     private javax.swing.JPanel jPanelDadosSolicitante;
+    private javax.swing.JPanel jPanelGerenciarServico;
     private javax.swing.JPanel jPanelMotivoNegarSinistro;
     private javax.swing.JPanel jPanelMotivoReprovacao;
     private javax.swing.JPanel jPanelMotivoSolicitacaoRecusado;
@@ -1935,10 +2129,12 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
+    private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JToggleButton jToggleButtonDadosProprietario;
     private javax.swing.JLabel labelFundoHomePainelCorretor;
     public javax.swing.JTable listaDeResidencias;
+    private javax.swing.JTable listaDeServicosSolicitacados;
     public javax.swing.JTable listaDeSolicitacoesSeguro;
     private javax.swing.JTable listaSinistrosPendentes;
     private javax.swing.JSlider localizacaoPerigosa;
