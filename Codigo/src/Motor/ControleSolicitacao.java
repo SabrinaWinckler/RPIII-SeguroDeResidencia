@@ -133,9 +133,9 @@ public class ControleSolicitacao {
         return sinistro;
     }
 
-    public void registrarSinistro(String tipo, float valor, String descricao) {
+    public void registrarSinistro(String tipo, float valor, String descricao, int residencia) {
         Date dataSinistro = new Date();
-        Sinistro temp = new Sinistro(dataSinistro, descricao, valor, tipo);
+        Sinistro temp = new Sinistro(dataSinistro, descricao, valor, tipo, residencia);
         geraDAOSinistro().create(temp);
     }
 

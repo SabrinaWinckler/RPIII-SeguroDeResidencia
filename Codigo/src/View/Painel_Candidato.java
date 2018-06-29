@@ -133,6 +133,23 @@ public class Painel_Candidato extends javax.swing.JFrame {
             return 0;
         }
     }
+        private int readTableResidencia(Candidato candidato) {
+        DefaultTableModel modelo = (DefaultTableModel) residencias.getModel();
+        modelo.setNumRows(0);
+        listaSolicitacao = gerenciador.listaSolicitacaoCliente(candidato);
+        int tamanhoLista = listaSolicitacao.size();
+        if (tamanhoLista > 0) {
+            for (Solicitacao solicitacao : listaSolicitacao) {
+                modelo.addRow(new Object[]{
+                    solicitacao.getResidencia().getDescricaoRes(),
+                    solicitacao.getResidencia().getCepRes()
+                });
+            }
+            return 1;
+        } else {
+            return 0;
+        }
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -158,6 +175,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
+        painelResidencias = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        residencias = new javax.swing.JTable();
+        jLabel59 = new javax.swing.JLabel();
+        confirmResidencia = new javax.swing.JButton();
+        cancelarRes = new javax.swing.JButton();
         painelSinistro = new javax.swing.JPanel();
         roubo = new javax.swing.JCheckBox();
         incendio = new javax.swing.JCheckBox();
@@ -169,6 +192,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         enviarSinistro = new javax.swing.JButton();
         cancelarSinistro = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
+        outro = new javax.swing.JCheckBox();
+        outroDesc = new javax.swing.JTextField();
         jPanelHome = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jPanelListaSeguros = new javax.swing.JPanel();
@@ -367,6 +392,81 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        residencias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null},
+                {null, null},
+                {null, null},
+                {null, null}
+            },
+            new String [] {
+                "Descrição", "CEP"
+            }
+        ));
+        residencias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                residenciasMouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(residencias);
+
+        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        jLabel59.setText("Escolha qual residência deseja gerenciar:");
+
+        confirmResidencia.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
+        confirmResidencia.setForeground(new java.awt.Color(110, 48, 110));
+        confirmResidencia.setText("Confirmar");
+        confirmResidencia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmResidenciaActionPerformed(evt);
+            }
+        });
+
+        cancelarRes.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        cancelarRes.setForeground(new java.awt.Color(110, 48, 110));
+        cancelarRes.setText("Cancelar");
+        cancelarRes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarResActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painelResidenciasLayout = new javax.swing.GroupLayout(painelResidencias);
+        painelResidencias.setLayout(painelResidenciasLayout);
+        painelResidenciasLayout.setHorizontalGroup(
+            painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(painelResidenciasLayout.createSequentialGroup()
+                .addGroup(painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelResidenciasLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(cancelarRes)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirmResidencia))
+                    .addGroup(painelResidenciasLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
+                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(48, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelResidenciasLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel59)
+                .addGap(98, 98, 98))
+        );
+        painelResidenciasLayout.setVerticalGroup(
+            painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelResidenciasLayout.createSequentialGroup()
+                .addContainerGap(31, Short.MAX_VALUE)
+                .addComponent(jLabel59)
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirmResidencia)
+                    .addComponent(cancelarRes))
+                .addGap(27, 27, 27))
+        );
+
+        painelP.add(painelResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
+
         roubo.setText("Roubo");
         roubo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -418,26 +518,44 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         jLabel34.setText("Descreva Brevemente o que aconteceu:");
 
+        outro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                outroActionPerformed(evt);
+            }
+        });
+
+        outroDesc.setText("Outro");
+
         javax.swing.GroupLayout painelSinistroLayout = new javax.swing.GroupLayout(painelSinistro);
         painelSinistro.setLayout(painelSinistroLayout);
         painelSinistroLayout.setHorizontalGroup(
             painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSinistroLayout.createSequentialGroup()
                 .addGap(0, 88, Short.MAX_VALUE)
-                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(explosao)
-                    .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(painelSinistroLayout.createSequentialGroup()
+                        .addComponent(cancelarSinistro)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(enviarSinistro))
+                    .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(painelSinistroLayout.createSequentialGroup()
+                                .addComponent(jLabel34)
+                                .addGap(43, 43, 43)))
                         .addGroup(painelSinistroLayout.createSequentialGroup()
-                            .addComponent(cancelarSinistro)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(enviarSinistro))
-                        .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel34)
-                            .addComponent(roubo)
-                            .addComponent(incendio)
-                            .addComponent(arrombamento)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel33)
+                                .addComponent(roubo)
+                                .addComponent(incendio)
+                                .addComponent(explosao)
+                                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelSinistroLayout.createSequentialGroup()
+                                        .addComponent(outro)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(outroDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(arrombamento, javax.swing.GroupLayout.Alignment.LEADING)))
+                            .addGap(43, 43, 43))))
                 .addGap(78, 78, 78))
         );
         painelSinistroLayout.setVerticalGroup(
@@ -445,23 +563,27 @@ public class Painel_Candidato extends javax.swing.JFrame {
             .addGroup(painelSinistroLayout.createSequentialGroup()
                 .addGap(38, 38, 38)
                 .addComponent(jLabel33)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(roubo)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(incendio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(explosao)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(arrombamento)
-                .addGap(10, 10, 10)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(outro)
+                    .addComponent(outroDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(enviarSinistro)
                     .addComponent(cancelarSinistro))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         painelP.add(painelSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 440, 360));
@@ -1482,9 +1604,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
+        readTableResidencia(candidato);
+        painelResidencias.setVisible(true);
         //try{
         //    controlador.verificarSeguro(candidato.getCodPessoa());
-        painelSinistro.setVisible(true);
         //}catch(Exception e){
         //    JOptionPane.showMessageDialog(painelP, "Você não possui residências seguradas!");
         //}
@@ -1922,6 +2045,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         if (explosao.isSelected()) {
             explosao.setSelected(false);
         }
+        if (outro.isSelected()) {
+            outro.setSelected(false);
+        }
     }//GEN-LAST:event_rouboActionPerformed
 
     private void enviarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSinistroActionPerformed
@@ -1942,8 +2068,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 if (explosao.isSelected()) {
                     escolhido = explosao.getText();
                 }
+                if(outro.isSelected()){
+                    escolhido = outroDesc.getText();
+                }
                 float valorSinistro = controlador.valorSinistroEscolhido(escolhido);
-                controlador.registrarSinistro(escolhido, valorSinistro, descricaoSinistro.getText());
+                controlador.registrarSinistro(escolhido, valorSinistro, descricaoSinistro.getText(), selecionado);
                 JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! \n Valor Estimado para este tipo de sinistro: " + valorSinistro);
                 painelSinistro.setVisible(false);
             } catch (Exception e) {
@@ -1963,6 +2092,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         if (explosao.isSelected()) {
             explosao.setSelected(false);
         }
+        if (outro.isSelected()) {
+            outro.setSelected(false);
+        }
     }//GEN-LAST:event_incendioActionPerformed
 
     private void explosaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_explosaoActionPerformed
@@ -1975,7 +2107,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         
         if (roubo.isSelected()) {
             roubo.setSelected(false);
-        }        // TODO add your handling code here:
+        }  
+        if (outro.isSelected()) {
+            outro.setSelected(false);
+        }// TODO add your handling code here:
     }//GEN-LAST:event_explosaoActionPerformed
 
     private void arrombamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_arrombamentoActionPerformed
@@ -1988,6 +2123,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
         
         if (explosao.isSelected()) {
             explosao.setSelected(false);
+        }
+        if (outro.isSelected()) {
+            outro.setSelected(false);
         }
     }//GEN-LAST:event_arrombamentoActionPerformed
 
@@ -2044,6 +2182,37 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void jListaDeApolicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListaDeApolicesMouseClicked
         visualizarServico();
     }//GEN-LAST:event_jListaDeApolicesMouseClicked
+
+    private void outroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_outroActionPerformed
+        if (incendio.isSelected()) {
+            incendio.setSelected(false);
+        }
+        if (roubo.isSelected()) {
+            roubo.setSelected(false);
+        }
+        
+        if (explosao.isSelected()) {
+            explosao.setSelected(false);
+        }
+        if (arrombamento.isSelected()) {
+            arrombamento.setSelected(false);
+        }
+    }//GEN-LAST:event_outroActionPerformed
+
+    private void confirmResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmResidenciaActionPerformed
+        painelResidencias.setVisible(false);
+        painelSinistro.setVisible(true);
+    }//GEN-LAST:event_confirmResidenciaActionPerformed
+
+    private void cancelarResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarResActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            painelResidencias.setVisible(false);
+        }       
+    }//GEN-LAST:event_cancelarResActionPerformed
+
+    private void residenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_residenciasMouseClicked
+       selecionado = residencias.getSelectedRow();
+    }//GEN-LAST:event_residenciasMouseClicked
     
     private void home() {
         painelP.setVisible(true);
@@ -2054,6 +2223,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelPagamento.setVisible(false);
         jPanelSolicitacaoReprovada.setVisible(false);
         jPanelListaSeguros.setVisible(false);
+        painelResidencias.setVisible(false);
         editar.setVisible(false);
         editarSelecionado.setVisible(false);
         excluirSelecionado.setVisible(false);
@@ -2294,6 +2464,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorParcelado;
     private javax.swing.JTextField campoValorSeguroPagamento;
     private javax.swing.JButton cancelar;
+    private javax.swing.JButton cancelarRes;
     private javax.swing.JButton cancelarServico;
     private javax.swing.JButton cancelarSinistro;
     private javax.swing.JButton cancelarSolicitacao;
@@ -2301,6 +2472,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JCheckBox chaveiro;
     private javax.swing.JTextField cidade;
     private javax.swing.JTextField comodos;
+    private javax.swing.JButton confirmResidencia;
     private javax.swing.JButton confirmarEdicao;
     private javax.swing.JButton contratarServico;
     private javax.swing.JTextField descBem;
@@ -2375,6 +2547,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
+    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -2398,6 +2571,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -2428,7 +2602,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> mesComboBox;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
+    private javax.swing.JCheckBox outro;
+    private javax.swing.JTextField outroDesc;
     private javax.swing.JPanel painelP;
+    private javax.swing.JPanel painelResidencias;
     private javax.swing.JPanel painelServico;
     private javax.swing.JPanel painelSinistro;
     private javax.swing.JPanel painelSolicitacao;
@@ -2436,6 +2613,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> quantidadeVezesParcela;
     private javax.swing.JButton relatarSinistro;
     private javax.swing.JButton remover;
+    private javax.swing.JTable residencias;
     private javax.swing.JCheckBox roubo;
     private javax.swing.JTextField rua;
     private javax.swing.JButton sairButton;
