@@ -339,9 +339,9 @@ DROP TABLE IF EXISTS `segurado`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `segurado` (
-  `idPessoa` int(11) NOT NULL AUTO_INCREMENT,
+  `idPessoa` int(11) DEFAULT NULL,
   KEY `idPessoa` (`idPessoa`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -350,6 +350,7 @@ CREATE TABLE `segurado` (
 
 LOCK TABLES `segurado` WRITE;
 /*!40000 ALTER TABLE `segurado` DISABLE KEYS */;
+INSERT INTO `segurado` VALUES (40);
 /*!40000 ALTER TABLE `segurado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -374,6 +375,7 @@ CREATE TABLE `seguradosolicitaservico` (
 
 LOCK TABLES `seguradosolicitaservico` WRITE;
 /*!40000 ALTER TABLE `seguradosolicitaservico` DISABLE KEYS */;
+INSERT INTO `seguradosolicitaservico` VALUES (40,1);
 /*!40000 ALTER TABLE `seguradosolicitaservico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -432,7 +434,7 @@ CREATE TABLE `sinistro` (
 
 LOCK TABLES `sinistro` WRITE;
 /*!40000 ALTER TABLE `sinistro` DISABLE KEYS */;
-INSERT INTO `sinistro` VALUES ('Sinistro muito louco','2018-05-23','Dois homens com mascara.','Autorizado',250,4,4);
+INSERT INTO `sinistro` VALUES ('Sinistro muito louco','2018-05-23','Dois homens com mascara.',NULL,250,4,4);
 /*!40000 ALTER TABLE `sinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -503,4 +505,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-06-23 10:18:07
+-- Dump completed on 2018-06-29 17:52:18
