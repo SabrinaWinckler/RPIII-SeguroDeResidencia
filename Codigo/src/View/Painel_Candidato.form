@@ -137,17 +137,14 @@
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
+                      <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
                           <Group type="102" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
                               <Component id="cancelarRes" min="-2" max="-2" attributes="0"/>
                               <EmptySpace max="-2" attributes="0"/>
                               <Component id="confirmResidencia" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" attributes="0">
-                              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
-                              <Component id="jScrollPane11" min="-2" pref="402" max="-2" attributes="0"/>
-                          </Group>
+                          <Component id="jScrollPane11" min="-2" pref="402" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="48" max="32767" attributes="0"/>
                   </Group>
@@ -316,9 +313,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="arrombamento" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="outro" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="outroDesc" alignment="0" min="-2" pref="20" max="-2" attributes="0"/>
+                          <Component id="outro" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Component id="jLabel34" min="-2" max="-2" attributes="0"/>

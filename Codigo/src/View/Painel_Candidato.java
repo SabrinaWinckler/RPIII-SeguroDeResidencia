@@ -436,15 +436,13 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelResidenciasLayout.setHorizontalGroup(
             painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelResidenciasLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
                 .addGroup(painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(painelResidenciasLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(cancelarRes)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(confirmResidencia))
-                    .addGroup(painelResidenciasLayout.createSequentialGroup()
-                        .addGap(36, 36, 36)
-                        .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(48, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelResidenciasLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -572,9 +570,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(arrombamento)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(outro)
-                    .addComponent(outroDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(outroDesc, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(outro))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel34)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1652,7 +1650,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
         editarSelecionado.setVisible(true);
-        
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
@@ -2360,22 +2357,24 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }
     
     public void preencherCamposEdicao(Residencia selecionado) {
+       
         cep.setText("" + selecionado.getCepRes());
-        uf.setText(selecionado.getUfResidencia());
-        bairro.setText(selecionado.getBairro());
-        cidade.setText(selecionado.getCidade());
+        uf.setText(selecionado.getUfResidencia()); 
+        bairro.setText(selecionado.getBairro()); 
+        cidade.setText(selecionado.getCidade()); 
         rua.setText(selecionado.getRuaRes());
-        //andares.setText(selecionado.getA);
-        anoC.setText("" + selecionado.getAnoConstrucao());
-        areaConstruida.setText("" + selecionado.getAreaConstruida());
-        //areaT
-        //banheiro.setText("" + selecionado.get);
-        //comodos
-        //garagem
-        //terrenoP
-        //numero
-        //localizacaoP
-        //estruturaA 
+        andares.setText(String.valueOf(selecionado.getNumAndares()));
+        anoC.setText(String.valueOf(selecionado.getAnoConstrucao()));
+        areaConstruida.setText(String.valueOf(selecionado.getAreaConstruida()));
+        areat.setText(String.valueOf(selecionado.getAreaTotal()));
+        banheiro.setText(String.valueOf(selecionado.getQntBanheiros()));
+        comodos.setText(String.valueOf(selecionado.getQntComodos()));
+        garagem.setText(String.valueOf(selecionado.getQntGaragens()));
+        terrenoP.setValue(selecionado.getTerrenoPerigoso());
+        numero.setText(String.valueOf(selecionado.getNumRes()));
+        localizacaoP.setValue(selecionado.getLocalizacaoPerigosa());
+        estruturaA.setValue(selecionado.getEstruturaAmeacada());
+    
     }
     
     private void habilitarOpcoesSegurado(boolean condicao) {
