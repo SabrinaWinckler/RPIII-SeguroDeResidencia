@@ -37,6 +37,8 @@ public class Gerenciador {
     List<Object> listaCliente;
     List<Solicitacao> listaDeSolicitacao;
     SeguradoDAO daoSegurado = new SeguradoDAO();
+    ApoliceDAO daoApolice = new ApoliceDAO();
+    ServicoDAO servicoDAO = new ServicoDAO();
 
     public Gerenciador() {
     }
@@ -86,12 +88,11 @@ public class Gerenciador {
 
     public void registrarApolice(String bandeiraCartao, long numeroApolice,
             float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento,
-            String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao, String cpf) {
+            String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao, int codSolicitacao) {
         Apolice apolice = new Apolice(bandeiraCartao, numeroApolice, premioApolice,
                 dataContratacaoApolice, cartaoCreditoPagamento, vencimentoCartao,
                 codSegurancaCartao, nomeNoCartao);
-        ApoliceDAO daoApolice = new ApoliceDAO();
-        daoApolice.create(apolice, cpf);
+        daoApolice.create(apolice, codSolicitacao);
     }
 
     public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
@@ -167,9 +168,12 @@ public class Gerenciador {
         return valorComTaxas;
     }
 
-    public List<ItemServico> servicoPorCliente(Candidato segurado) {
-        ServicoDAO servicoDAO = new ServicoDAO();
+    public List<ItemServico> servicoPorCliente(Segurado segurado) {
         return servicoDAO.servicosSegurados(segurado);
+    }
+
+    public List<String> apolicePorCliente(Segurado segurado) {
+        return daoApolice.apolicePorSegurado(segurado);
     }
 
     public void transformaCandidatoEmSegurado(String cpf) {

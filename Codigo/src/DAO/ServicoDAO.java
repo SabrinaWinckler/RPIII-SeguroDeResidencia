@@ -84,7 +84,7 @@ public class ServicoDAO {
         return listaDeSegurados;
     }
 
-    public List<ItemServico> servicosSegurados(Candidato segurado) {
+    public List<ItemServico> servicosSegurados(Segurado segurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
@@ -92,8 +92,8 @@ public class ServicoDAO {
         try {
             stmt = conexao.prepareStatement("select * from servico inner join itemservico on "
                     + "servico.idServico = itemservico.idServico inner join seguradosolicitaservico on "
-                    + "seguradosolicitaservico.idServico = servico.idServico and \n"
-                    + "seguradosolicitaservico.idSegurado = " + segurado.getCodPessoa());
+                    + "seguradosolicitaservico.idServico = servico.idServico and "
+                    + "seguradosolicitaservico.idSegurado = " + segurado.getIdSegurado());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ItemServico itemServico = new ItemServico();
