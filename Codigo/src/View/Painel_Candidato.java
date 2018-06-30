@@ -64,7 +64,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         candidato = seguradoOnline;
         gerarBackground();
         quantidadeDeSolicitacao = readTableListaSolicitacao(seguradoOnline);
-        habilitarOpcoesSegurado(false);
+//        habilitarOpcoesSegurado(false);
         home();
     }
     
@@ -73,7 +73,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         segurado = seguradoOnline;
         readTableListaServico(seguradoOnline);
         readTableApolices(seguradoOnline);
-        habilitarOpcoesSegurado(true);
+//        habilitarOpcoesSegurado(true);
         gerarBackground();
         home();
     }
@@ -2377,11 +2377,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
     
     }
     
-    private void habilitarOpcoesSegurado(boolean condicao) {
-        relatarSinistro.setEnabled(condicao);
-        contratarServico.setEnabled(condicao);
-        //buttonContratarSeguro.setEnabled(condicao);
-    }
+//   private void habilitarOpcoesSegurado(boolean condicao) {
+//        relatarSinistro.setEnabled(condicao);
+//        contratarServico.setEnabled(condicao);
+//        //buttonContratarSeguro.setEnabled(condicao);
+//    }
 
     /**
      * @param args the command line arguments
