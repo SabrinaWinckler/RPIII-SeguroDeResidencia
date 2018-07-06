@@ -155,6 +155,9 @@ public class ControleSolicitacao {
         sinistros.add(sinistro);
     }
 
+    public void lerSinistro(){
+    
+    }
     public void verificarPacoteContratado() {
 
     }
