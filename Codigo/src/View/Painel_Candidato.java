@@ -65,6 +65,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         gerarBackground();
         quantidadeDeSolicitacao = readTableListaSolicitacao(seguradoOnline);
 //        habilitarOpcoesSegurado(false);
+        preencherComboBox();
         home();
     }
     
@@ -175,6 +176,15 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
+        painelContato = new javax.swing.JPanel();
+        enviarContato = new javax.swing.JButton();
+        cancelarContato = new javax.swing.JButton();
+        email = new javax.swing.JTextField();
+        jScrollPane12 = new javax.swing.JScrollPane();
+        mensagem = new javax.swing.JTextArea();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
+        jLabel58 = new javax.swing.JLabel();
         painelResidencias = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         residencias = new javax.swing.JTable();
@@ -349,6 +359,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         solicitarSeguro = new javax.swing.JButton();
         buttonContratarSeguro = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
+        buttonContato = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -381,6 +392,83 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setBackground(new java.awt.Color(255, 255, 255));
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        enviarContato.setText("Enviar");
+        enviarContato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                enviarContatoActionPerformed(evt);
+            }
+        });
+
+        cancelarContato.setText("Cancelar");
+        cancelarContato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarContatoActionPerformed(evt);
+            }
+        });
+
+        email.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                emailActionPerformed(evt);
+            }
+        });
+
+        mensagem.setColumns(20);
+        mensagem.setRows(5);
+        jScrollPane12.setViewportView(mensagem);
+
+        jLabel56.setText("Contato:");
+
+        jLabel57.setText("Email:");
+
+        jLabel58.setText("Mensagem:");
+
+        javax.swing.GroupLayout painelContatoLayout = new javax.swing.GroupLayout(painelContato);
+        painelContato.setLayout(painelContatoLayout);
+        painelContatoLayout.setHorizontalGroup(
+            painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContatoLayout.createSequentialGroup()
+                .addContainerGap(242, Short.MAX_VALUE)
+                .addComponent(cancelarContato)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(enviarContato)
+                .addGap(32, 32, 32))
+            .addGroup(painelContatoLayout.createSequentialGroup()
+                .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelContatoLayout.createSequentialGroup()
+                        .addGap(188, 188, 188)
+                        .addComponent(jLabel56))
+                    .addGroup(painelContatoLayout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel57)
+                            .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(email)
+                                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
+                            .addComponent(jLabel58))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        painelContatoLayout.setVerticalGroup(
+            painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContatoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel56)
+                .addGap(8, 8, 8)
+                .addComponent(jLabel57)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel58)
+                .addGap(9, 9, 9)
+                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
+                .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(enviarContato)
+                    .addComponent(cancelarContato))
+                .addGap(29, 29, 29))
+        );
+
+        painelP.add(painelContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         residencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -433,7 +521,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(confirmResidencia))
                     .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(53, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelResidenciasLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel59)
@@ -442,7 +530,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelResidenciasLayout.setVerticalGroup(
             painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelResidenciasLayout.createSequentialGroup()
-                .addContainerGap(31, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel59)
                 .addGap(27, 27, 27)
                 .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -478,7 +566,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         jLabel34.setText("Descreva Brevemente o que aconteceu:");
 
-        comboSinistro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         comboSinistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboSinistroActionPerformed(evt);
@@ -936,7 +1023,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         encanador.setText("Encanador");
         painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 140, -1));
 
-        comboServico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         painelServico.add(comboServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 100, -1));
 
         painelP.add(painelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
@@ -1434,7 +1520,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 buttonHomeActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 150, 180, 40));
+        getContentPane().add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
 
         relatarSinistro.setBackground(new java.awt.Color(255, 255, 255));
         relatarSinistro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1447,7 +1533,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 relatarSinistroActionPerformed(evt);
             }
         });
-        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 290, 180, 40));
+        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 180, 40));
 
         contratarServico.setBackground(new java.awt.Color(255, 255, 255));
         contratarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1460,7 +1546,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 contratarServicoActionPerformed(evt);
             }
         });
-        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 180, 40));
+        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 180, 40));
 
         solicitarSeguro.setBackground(new java.awt.Color(255, 255, 255));
         solicitarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1472,7 +1558,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 solicitarSeguroActionPerformed(evt);
             }
         });
-        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 220, 180, 40));
+        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 180, 40));
         solicitarSeguro.getAccessibleContext().setAccessibleDescription("");
 
         buttonContratarSeguro.setBackground(new java.awt.Color(255, 255, 255));
@@ -1498,6 +1584,17 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         });
         getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 110, 30));
+
+        buttonContato.setBackground(new java.awt.Color(255, 255, 255));
+        buttonContato.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonContato.setForeground(new java.awt.Color(110, 48, 110));
+        buttonContato.setText("Contato");
+        buttonContato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonContatoActionPerformed(evt);
+            }
+        });
+        getContentPane().add(buttonContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 180, 40));
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -2021,6 +2118,27 @@ public class Painel_Candidato extends javax.swing.JFrame {
        
       
     }//GEN-LAST:event_comboSinistroActionPerformed
+
+    private void buttonContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonContatoActionPerformed
+        painelContato.setVisible(true);
+    }//GEN-LAST:event_buttonContatoActionPerformed
+
+    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_emailActionPerformed
+
+    private void enviarContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarContatoActionPerformed
+         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja enviar esta mensagem?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+             controlador.mensagemCandidato(email.getText(), mensagem.getText());
+             painelContato.setVisible(false);
+         }
+    }//GEN-LAST:event_enviarContatoActionPerformed
+
+    private void cancelarContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarContatoActionPerformed
+         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+             painelContato.setVisible(false);
+         }
+    }//GEN-LAST:event_cancelarContatoActionPerformed
     
     private void home() {
         painelP.setVisible(true);
@@ -2039,6 +2157,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(false);
         painelSinistro.setVisible(false);
         jPanelListaApoliceServico.setVisible(false);
+         painelContato.setVisible(false);
         //buttonVoltar.setVisible(false);
     }
     
@@ -2188,11 +2307,14 @@ public class Painel_Candidato extends javax.swing.JFrame {
     
     }
     
-    public void preencherComboBox(String novoRegistro, String tipo){
-        if(tipo.equalsIgnoreCase("Sinisto"))
-            comboSinistro.addItem(novoRegistro);
-        else
-            comboServico.addItem(novoRegistro);
+    public void preencherComboBox(){
+        for(int i = 0 ; i < controlador.lerSinistro().size(); i++){
+            comboSinistro.addItem(String.valueOf(controlador.lerSinistro().get(i).getTipoSinistro()));
+        }
+        for(int i = 0 ; i< controlador.lerServico().size(); i++){
+            comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
+        }
+        
     }
 //   private void habilitarOpcoesSegurado(boolean condicao) {
 //        relatarSinistro.setEnabled(condicao);
@@ -2263,6 +2385,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel bg;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonConfirmar;
+    private javax.swing.JButton buttonContato;
     private javax.swing.JButton buttonContratarSeguro;
     private javax.swing.JToggleButton buttonDataServico;
     private javax.swing.JButton buttonFecharListaServicos;
@@ -2279,6 +2402,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorParcelado;
     private javax.swing.JTextField campoValorSeguroPagamento;
     private javax.swing.JButton cancelar;
+    private javax.swing.JButton cancelarContato;
     private javax.swing.JButton cancelarRes;
     private javax.swing.JButton cancelarServico;
     private javax.swing.JButton cancelarSinistro;
@@ -2299,8 +2423,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JButton editar;
     private javax.swing.JButton editarSelecionado;
     private javax.swing.JCheckBox eletricista;
+    private javax.swing.JTextField email;
     private javax.swing.JCheckBox encanador;
     private javax.swing.JButton enviar;
+    private javax.swing.JButton enviarContato;
     private javax.swing.JButton enviarServico;
     private javax.swing.JButton enviarSinistro;
     private javax.swing.JSlider estruturaA;
@@ -2359,6 +2485,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
+    private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2384,6 +2513,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
+    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -2403,6 +2533,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTable listaSolicitacaoCandidato;
     private javax.swing.JComboBox<String> listaTurnosServico;
     private javax.swing.JSlider localizacaoP;
+    private javax.swing.JTextArea mensagem;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.Menu menu3;
@@ -2412,6 +2543,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> mesComboBox;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
+    private javax.swing.JPanel painelContato;
     private javax.swing.JPanel painelP;
     private javax.swing.JPanel painelResidencias;
     private javax.swing.JPanel painelServico;

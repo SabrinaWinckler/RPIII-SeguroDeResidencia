@@ -155,11 +155,14 @@ public class ControleSolicitacao {
         sinistros.add(sinistro);
     }
 
-    public void lerSinistro(){
-    
+    public List<Sinistro> lerSinistro(){
+        return geraDAOSinistro().read();
     }
-    public void verificarPacoteContratado() {
-
+    public List<Servico> lerServico(){
+        return geraDAOServico().servicosCadastrados();
+    }
+    public void mensagemCandidato(String email, String mensagem){
+        
     }
 
     @Override

@@ -120,4 +120,27 @@ public class ServicoDAO {
         return listaDeServico;
 
     }
+     public List<Servico> servicosCadastrados() {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        List<Servico> listaDeServico = new ArrayList<>();
+        try {
+            stmt = conexao.prepareStatement("select * from servico" );
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                Servico servico = new Servico();
+                servico.setDesc(rs.getString("descricaoServico"));
+                servico.setIdCodServico(rs.getInt("idServico"));
+                listaDeServico.add(servico);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(Bem.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stmt, rs);
+        }
+
+        return listaDeServico;
+
+    }
 }
