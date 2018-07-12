@@ -95,72 +95,47 @@ public class Gerenciador {
         return daoSolicitacao.listaSolicitacaoCliente(candidato);
     }
 
-    public double calcularValorSolicitacao(Residencia residencia) {
-        double valorBaseSolicitacao = 0, valorComTaxas = 0;
+    public double calculaValorSolicitacao(Residencia residencia) {
         WebServiceCep webServiceCep = WebServiceCep.searchCep("" + residencia.getCepRes());
         String Uf = webServiceCep.getUf();
+        double valorBaseSolicitacao = 0;
         if (Uf.equalsIgnoreCase("RS") || Uf.equalsIgnoreCase("SC") || Uf.equalsIgnoreCase("PR")) {
             valorBaseSolicitacao = 346.00;
-            valorComTaxas = valorBaseSolicitacao * 3 / 100 * residencia.getQntComodos();
-            valorComTaxas += residencia.getAreaConstruida() * 8.54;
-            valorComTaxas += valorBaseSolicitacao * 3 / 100 * residencia.getBens().size();
-            valorComTaxas += valorBaseSolicitacao * residencia.getLocalizacaoPerigosa() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getEstruturaAmeacada() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getTerrenoPerigoso() / 100;
-            valorComTaxas += valorBaseSolicitacao;
-            return valorComTaxas;
+            return calculoGeral(residencia, valorBaseSolicitacao);
         } else if (Uf.equalsIgnoreCase("SP") || Uf.equalsIgnoreCase("RJ")
                 || Uf.equalsIgnoreCase("ES") || Uf.equalsIgnoreCase("MG")) {
             valorBaseSolicitacao = 394.80;
-            valorComTaxas = valorBaseSolicitacao * 3 / 100 * residencia.getQntComodos();
-            valorComTaxas += residencia.getAreaConstruida() * 8.54;
-            valorComTaxas += valorBaseSolicitacao * 3 / 100 * residencia.getBens().size();
-            valorComTaxas += valorBaseSolicitacao * residencia.getLocalizacaoPerigosa() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getEstruturaAmeacada() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getTerrenoPerigoso() / 100;
-            valorComTaxas += valorBaseSolicitacao;
-            return valorComTaxas;
+            return calculoGeral(residencia, valorBaseSolicitacao);
         } else if (Uf.equalsIgnoreCase("AC") || Uf.equalsIgnoreCase("AM")
                 || Uf.equalsIgnoreCase("RO") || Uf.equalsIgnoreCase("RR")
                 || Uf.equalsIgnoreCase("PA") || Uf.equalsIgnoreCase("AP")
                 || Uf.equalsIgnoreCase("TO")) {
             valorBaseSolicitacao = 302.00;
-            valorComTaxas = valorBaseSolicitacao * 3 / 100 * residencia.getQntComodos();
-            valorComTaxas += residencia.getAreaConstruida() * 8.54;
-            valorComTaxas += valorBaseSolicitacao * 3 / 100 * residencia.getBens().size();
-            valorComTaxas += valorBaseSolicitacao * residencia.getLocalizacaoPerigosa() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getEstruturaAmeacada() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getTerrenoPerigoso() / 100;
-            valorComTaxas += valorBaseSolicitacao;
-            return valorComTaxas;
+            return calculoGeral(residencia, valorBaseSolicitacao);
         } else if (Uf.equalsIgnoreCase("MA") || Uf.equalsIgnoreCase("PI")
                 || Uf.equalsIgnoreCase("BA") || Uf.equalsIgnoreCase("CE")
                 || Uf.equalsIgnoreCase("PE") || Uf.equalsIgnoreCase("SE")
                 || Uf.equalsIgnoreCase("AL") || Uf.equalsIgnoreCase("PB")
                 || Uf.equalsIgnoreCase("RN")) {
             valorBaseSolicitacao = 327.90;
-            valorComTaxas = valorBaseSolicitacao * 3 / 100 * residencia.getQntComodos();
-            valorComTaxas += residencia.getAreaConstruida() * 8.54;
-            valorComTaxas += valorBaseSolicitacao * 3 / 100 * residencia.getBens().size();
-            valorComTaxas += valorBaseSolicitacao * residencia.getLocalizacaoPerigosa() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getEstruturaAmeacada() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getTerrenoPerigoso() / 100;
-            valorComTaxas += valorBaseSolicitacao;
-            return valorComTaxas;
+            return calculoGeral(residencia, valorBaseSolicitacao);
         } else if (Uf.equalsIgnoreCase("MT") || Uf.equalsIgnoreCase("GO")
                 || Uf.equalsIgnoreCase("MS")) {
             valorBaseSolicitacao = 341.55;
-            valorComTaxas = valorBaseSolicitacao * 3 / 100 * residencia.getQntComodos();
-            valorComTaxas += residencia.getAreaConstruida() * 8.54;
-            valorComTaxas += valorBaseSolicitacao * 3 / 100 * residencia.getBens().size();
-            valorComTaxas += valorBaseSolicitacao * residencia.getLocalizacaoPerigosa() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getEstruturaAmeacada() / 100;
-            valorComTaxas += valorBaseSolicitacao * residencia.getTerrenoPerigoso() / 100;
-            valorComTaxas += valorBaseSolicitacao;
-            return valorComTaxas;
+            return calculoGeral(residencia, valorBaseSolicitacao);
         }
+        return valorBaseSolicitacao;
+    }
 
-        return valorComTaxas;
+    public double calculoGeral(Residencia residencia, double valorBase) {
+        double valorBaseSolicitacao = valorBase, valorComTaxas = 0;
+        valorComTaxas = valorBaseSolicitacao * 3 / 100 * residencia.getQntComodos();
+        valorComTaxas += residencia.getAreaConstruida() * 8.54;
+        valorComTaxas += valorBaseSolicitacao * 3 / 100 * residencia.getBens().size();
+        valorComTaxas += valorBaseSolicitacao * residencia.getLocalizacaoPerigosa() / 100;
+        valorComTaxas += valorBaseSolicitacao * residencia.getEstruturaAmeacada() / 100;
+        valorComTaxas += valorBaseSolicitacao * residencia.getTerrenoPerigoso() / 100;
+        return valorComTaxas += valorBaseSolicitacao;
     }
 
     public List<ItemServico> servicoPorCliente(Segurado segurado) {

@@ -106,7 +106,7 @@ public class ControleSolicitacao {
         for (int i = 0; i < bens.size(); i++) {
             daoBem.create(bens.get(i));
         }
-        valorSolicitacao = gerenciador.calcularValorSolicitacao(temp);
+        valorSolicitacao = gerenciador.calculaValorSolicitacao(temp);
         Solicitacao tempS = new Solicitacao(data, residencia, valorSolicitacao);
         geraDAOSolicitacao().create(tempS, GerenciadorViewLogin.getInstance().getUsuarioOnline().getCpf());
     }
@@ -122,7 +122,6 @@ public class ControleSolicitacao {
     }
 
     public void registrarServico(String desc, int qnt, Date data, Date visitaResidencia) {
-
         Servico temp = new Servico(desc, qnt, data, visitaResidencia);
         this.setServico(temp);
         geraDAOServico().create(temp);
