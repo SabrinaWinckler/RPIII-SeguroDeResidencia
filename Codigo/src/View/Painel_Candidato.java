@@ -65,7 +65,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         candidato = seguradoOnline;
         gerarBackground();
         quantidadeDeSolicitacao = readTableListaSolicitacao(seguradoOnline);
-//        habilitarOpcoesSegurado(false);
+        habilitarOpcoesSegurado(false);
         preencherComboBox();
         home();
     }
@@ -75,7 +75,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         segurado = seguradoOnline;
         readTableListaServico(seguradoOnline);
         readTableApolices(seguradoOnline);
-//        habilitarOpcoesSegurado(true);
+        habilitarOpcoesSegurado(true);
         gerarBackground();
         home();
     }
@@ -2170,153 +2170,59 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelSinistro.setVisible(false);
         jPanelListaApoliceServico.setVisible(false);
         painelContato.setVisible(false);
+        buttonVoltar.setVisible(false);
+        jPanelListaServicos.setVisible(false);
+        calendarServico.setVisible(false);
     }
 
     private void home() {
-        painelP.setVisible(true);
+        ocultarTudo();
         jPanelHome.setVisible(true);
-        painelServico.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
-        jPanelPagamento.setVisible(false);
-        jPanelSolicitacaoReprovada.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
-        painelResidencias.setVisible(false);
-        editar.setVisible(false);
-        editarSelecionado.setVisible(false);
-        excluirSelecionado.setVisible(false);
-        nova.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
-        painelSinistro.setVisible(false);
-        jPanelListaApoliceServico.setVisible(false);
-        painelContato.setVisible(false);
-        //buttonVoltar.setVisible(false);
     }
 
     private void visualizarListaDeApolices(String solicitante) {
-        painelP.setVisible(true);
-        jPanelHome.setVisible(false);
-        painelServico.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
-        jPanelPagamento.setVisible(false);
-        jPanelSolicitacaoReprovada.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
-        editar.setVisible(false);
-        editarSelecionado.setVisible(false);
-        excluirSelecionado.setVisible(false);
-        nova.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
-        painelSinistro.setVisible(false);
-        jPanelListaApoliceServico.setVisible(false);
+        ocultarTudo();
         jPanelListaApoliceServico.setVisible(true);
         caminho = solicitante;
     }
 
     public void visualizarOpcoesSolicitacao() {
+        ocultarTudo();
         editar.setVisible(true);
         nova.setVisible(true);
         cancelarSolicitacao.setVisible(true);
-        jPanelHome.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
-        painelServico.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
-        jPanelPagamento.setVisible(false);
-        jPanelSolicitacaoReprovada.setVisible(false);
     }
 
     private void visualizarSolicitacao() {
-        painelP.setVisible(true);
-        jPanelHome.setVisible(false);
-        painelServico.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
-        jPanelPagamento.setVisible(false);
-        jPanelSolicitacaoReprovada.setVisible(false);
+        ocultarTudo();
         jPanelListaSeguros.setVisible(true);
-        buttonVoltar.setVisible(false);
-        editar.setVisible(false);
-        nova.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
+
     }
 
     public void visualizarServico() {
+        ocultarTudo();
         painelServico.setVisible(true);
-        painelSolicitacao.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
-        editar.setVisible(false);
-        nova.setVisible(false);
-        painelP.setVisible(true);
-        jPanelHome.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
-        jPanelPagamento.setVisible(false);
-        jPanelSolicitacaoReprovada.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
-        buttonVoltar.setVisible(false);
-        editar.setVisible(false);
-        jPanelListaApoliceServico.setVisible(false);
-        nova.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
-        calendarServico.setVisible(false);
-        jPanelListaServicos.setVisible(false);
     }
 
     private void visualizarSinistro() {
-        painelServico.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
-        editar.setVisible(false);
-        nova.setVisible(false);
-        painelP.setVisible(true);
-        jPanelHome.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
-        jPanelPagamento.setVisible(false);
-        jPanelSolicitacaoReprovada.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
-        buttonVoltar.setVisible(false);
-        editar.setVisible(false);
-        jPanelListaApoliceServico.setVisible(false);
-        nova.setVisible(false);
-        cancelarSolicitacao.setVisible(false);
-        calendarServico.setVisible(false);
-        jPanelListaServicos.setVisible(false);
+        ocultarTudo();
         painelSinistro.setVisible(true);
     }
 
     private void solicitacaoAprovada() {
-        painelP.setVisible(true);
-        jPanelHome.setVisible(false);
-        painelServico.setVisible(false);
-        painelSolicitacao.setVisible(false);
+        ocultarTudo();
         jPanelSolicitacaoAprovada.setVisible(true);
-        jPanelPagamento.setVisible(false);
-        jPanelSolicitacaoReprovada.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
         buttonVoltar.setVisible(true);
     }
 
     private void pagamento() {
-        painelP.setVisible(true);
-        jPanelHome.setVisible(false);
-        painelServico.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
+        ocultarTudo();
         jPanelPagamento.setVisible(true);
-        jPanelSolicitacaoReprovada.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
     }
 
     private void solicitacaoRecusada() {
-        painelP.setVisible(true);
-        jPanelHome.setVisible(false);
-        painelServico.setVisible(false);
-        painelSolicitacao.setVisible(false);
-        jPanelSolicitacaoAprovada.setVisible(false);
-        jPanelPagamento.setVisible(false);
+        ocultarTudo();
         jPanelSolicitacaoReprovada.setVisible(true);
-        jPanelListaSeguros.setVisible(false);
     }
 
     private void preencherCamposResultado(int selecionado) {
@@ -2371,11 +2277,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         }
 
     }
-//   private void habilitarOpcoesSegurado(boolean condicao) {
-//        relatarSinistro.setEnabled(condicao);
-//        contratarServico.setEnabled(condicao);
-//        //buttonContratarSeguro.setEnabled(condicao);
-//    }
+
+    private void habilitarOpcoesSegurado(boolean condicao) {
+        relatarSinistro.setEnabled(condicao);
+        contratarServico.setEnabled(condicao);
+        buttonContratarSeguro.setEnabled(condicao);
+    }
 
     /**
      * @param args the command line arguments
