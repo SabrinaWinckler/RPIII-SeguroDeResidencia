@@ -5,6 +5,7 @@
  */
 package DAO;
 
+import Dominio.Apolice;
 import Dominio.Servico;
 import Dominio.Bem;
 import Dominio.Candidato;
@@ -17,6 +18,7 @@ import java.sql.SQLException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,12 +34,8 @@ public class ServicoDAO {
         PreparedStatement stm = null;
         DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         try {
-            stm = conexao.prepareStatement("INSERT INTO servico(descricaoServico, "
-                    + "quantidadeServico, dataDeSolicitacao, dataVisita)VALUES(?,?,?,?)");
+            stm = conexao.prepareStatement("INSERT INTO servico(descricaoServico)VALUES(?)");
             stm.setString(1, servico.getDesc());
-            stm.setFloat(2, servico.getQnt());
-            stm.setDate(3, java.sql.Date.valueOf(sdf.format(servico.getDataDeSolitacao())));
-            stm.setDate(4, java.sql.Date.valueOf(sdf.format(servico.getDataDeVisita())));
             stm.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, ex);
@@ -120,13 +118,14 @@ public class ServicoDAO {
         return listaDeServico;
 
     }
-     public List<Servico> servicosCadastrados() {
+
+    public List<Servico> servicosCadastrados() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Servico> listaDeServico = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select * from servico" );
+            stmt = conexao.prepareStatement("select * from servico");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Servico servico = new Servico();
@@ -142,5 +141,24 @@ public class ServicoDAO {
 
         return listaDeServico;
 
+    }
+
+    public void registrarServicoNaApolice(int idApolice, int idServico, Date dataSolicitacao) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        java.sql.Date dataSql = new java.sql.Date(dataSolicitacao.getTime());
+        try {
+            stm = conexao.prepareStatement("insert into apoliceservico(idApolice, idServico, dataEHoraSolicitacao)"
+                    + "values(?,?,?)");
+            stm.setInt(1, idApolice);
+            stm.setInt(2, idServico);
+            stm.setDate(3, dataSql);
+        } catch (SQLException e) {
+            Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stm, rs);
+
+        }
     }
 }

@@ -70,12 +70,37 @@ public class ApoliceDAO {
                 listApolicePorResidencia.add(rs.getString("enderecoResidencia"));
             }
         } catch (SQLException e) {
-            Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
+            Logger.getLogger(ApoliceDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
 
         }
         return listApolicePorResidencia;
 
+    }
+
+    public int qtdServicosSolicitacosPorApolice(int idApolice, int idServico) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        int quantidade = -1;
+        try {
+            stm = conexao.prepareStatement("select count(servico.idServico) from"
+                    + " servico inner join solicitacaoservico on "
+                    + "solicitacaoservico.idServico = servico.idServico inner join apolice on "
+                    + "apolice.idApolice = solicitacaoservico.idApolice where servico.idServico = " + idServico
+                    + " and apolice.idApolice = " + idApolice);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                quantidade = rs.getInt("idServico");
+            }
+            return quantidade;
+        } catch (SQLException e) {
+            Logger.getLogger(ApoliceDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stm, rs);
+
+        }
+        return quantidade;
     }
 }

@@ -918,6 +918,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         });
         jScrollPane4.setViewportView(jTabelaListaServicos);
+        if (jTabelaListaServicos.getColumnModel().getColumnCount() > 0) {
+            jTabelaListaServicos.getColumnModel().getColumn(0).setResizable(false);
+            jTabelaListaServicos.getColumnModel().getColumn(1).setResizable(false);
+        }
 
         jPanelListaServicos.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 210));
 
@@ -938,7 +942,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         });
         jPanelListaServicos.add(buttonFecharListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
-        painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 30, 460, 300));
+        painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 460, 270));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 45, 90));
