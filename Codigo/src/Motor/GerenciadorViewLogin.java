@@ -11,7 +11,6 @@ import DAO.PessoaDAO;
 import DAO.SeguradoDAO;
 import Dominio.Candidato;
 import Dominio.Corretor;
-import Dominio.Pessoa;
 import Dominio.Segurado;
 import java.util.List;
 
@@ -76,5 +75,9 @@ public final class GerenciadorViewLogin {
     public List<Corretor> retornarCorretor() {
         CorretorDAO daoCorretor = new CorretorDAO();
         return daoCorretor.read();
+    }
+
+    public List<String> listDeUserName() {
+        return daoPessoa.readUserName();
     }
 }

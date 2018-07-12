@@ -9,11 +9,16 @@ import Dominio.Candidato;
 import Motor.Gerenciador;
 import Excecoes.ExceptionCPFInvalid;
 import Excecoes.ExceptionEmailInvalid;
-import Motor.GerenciadorViewCorretor;
+import Excecoes.ExceptionEmptySpace;
 import Motor.GerenciadorViewLogin;
+import java.awt.Color;
 import java.awt.Cursor;
 import java.util.List;
+import javafx.scene.control.ComboBox;
+import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+import javax.swing.border.LineBorder;
 import service.WebServiceCep;
 
 /**
@@ -99,6 +104,11 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 150, 50, -1));
 
         campoNome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        campoNome.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                campoNomeFocusLost(evt);
+            }
+        });
         getContentPane().add(campoNome, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 150, 240, 30));
 
         jLabel2.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -194,6 +204,11 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         mesComboBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         mesComboBox.setForeground(new java.awt.Color(255, 255, 255));
         mesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" }));
+        mesComboBox.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                mesComboBoxItemStateChanged(evt);
+            }
+        });
         getContentPane().add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 240, 60, -1));
 
         anoComboBox.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -275,6 +290,11 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         getContentPane().add(jLabel11, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 320, -1, -1));
 
         telefoneCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        telefoneCampo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                telefoneCampoFocusLost(evt);
+            }
+        });
         getContentPane().add(telefoneCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 320, 230, 30));
 
         jLabel12.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -283,6 +303,11 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         getContentPane().add(jLabel12, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 160, -1, -1));
 
         usuarioCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        usuarioCampo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                usuarioCampoFocusLost(evt);
+            }
+        });
         getContentPane().add(usuarioCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 150, 200, 30));
 
         jLabel13.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
@@ -291,6 +316,11 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         getContentPane().add(jLabel13, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 200, 50, -1));
 
         senhaCampo.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        senhaCampo.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                senhaCampoFocusLost(evt);
+            }
+        });
         getContentPane().add(senhaCampo, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 190, 200, 30));
 
         jLabel14.setFont(new java.awt.Font("Arial", 1, 28)); // NOI18N
@@ -309,22 +339,25 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void confirmarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarButtonActionPerformed
-        nomePessoa = campoNome.getText();
-        dataNascimento = diaComboBox.getSelectedItem().toString() + mesComboBox.getSelectedItem().toString() + anoComboBox.getSelectedItem().toString();
-        cep = Long.parseLong(campoCep.getText());
-        endereco = campoEndereco.getText();
-        telefone = telefoneCampo.getText();
-        usuarioCliente = usuarioCampo.getText();
-        senhaCliente = senhaCampo.getText();
-        uf = ufComboBox.getSelectedItem().toString();
-        cidade = campoCidade.getText();
-        bairro = campoBairro.getText();
-        motor.cadastrarCliente(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
-        JOptionPane.showConfirmDialog(rootPane, "Cadastrado com sucesso!", "Aviso", JOptionPane.CLOSED_OPTION);
-        Painel_Candidato candidatoPainel = new Painel_Candidato();
-        candidatoPainel.setVisible(true);
-        dispose();
-
+        if (verificarTodosOsCampos()) {
+            nomePessoa = campoNome.getText();
+            dataNascimento = diaComboBox.getSelectedItem().toString() + mesComboBox.getSelectedItem().toString() + anoComboBox.getSelectedItem().toString();
+            cep = Long.parseLong(campoCep.getText());
+            endereco = campoEndereco.getText();
+            telefone = telefoneCampo.getText();
+            usuarioCliente = usuarioCampo.getText();
+            senhaCliente = senhaCampo.getText();
+            uf = ufComboBox.getSelectedItem().toString();
+            cidade = campoCidade.getText();
+            bairro = campoBairro.getText();
+            motor.cadastrarCliente(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
+            JOptionPane.showConfirmDialog(rootPane, "Cadastrado com sucesso!", "Aviso", JOptionPane.CLOSED_OPTION);
+            Painel_Candidato candidatoPainel = new Painel_Candidato();
+            candidatoPainel.setVisible(true);
+            dispose();
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "Preencha todos os campos!", "Aviso", JOptionPane.CLOSED_OPTION);
+        }
     }//GEN-LAST:event_confirmarButtonActionPerformed
 
     private void cancelarButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarButtonActionPerformed
@@ -341,6 +374,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         listaDeClientesCadastrados = gerenciadorLogin.retornaCliente();
         boolean existe = false;
         if (ExceptionEmailInvalid.informaEmail(emailCampo.getText()).equals("E-mail válido")) {
+            emailCampo.setBorder(new LineBorder(Color.BLACK));
             for (Candidato candidato : listaDeClientesCadastrados) {
                 if (emailCampo.getText().equalsIgnoreCase(candidato.getEmail())) {
                     existe = true;
@@ -353,8 +387,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
                 email = emailCampo.getText();
             }
         } else {
-            JOptionPane.showConfirmDialog(rootPane, "Email informado é inválido!",
-                    "Aviso", JOptionPane.CLOSED_OPTION);
+            emailCampo.setBorder(new LineBorder(Color.RED));
         }
     }//GEN-LAST:event_emailCampoFocusLost
 
@@ -373,14 +406,14 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
                 }
                 if (!existe) {
                     cpf = cpfCampo.getText();
+                    cpfCampo.setBorder(new LineBorder(Color.BLACK));
                 }
             } else {
                 JOptionPane.showConfirmDialog(rootPane, "CPF informado é inválido!",
                         "Aviso", JOptionPane.CLOSED_OPTION);
             }
         } else {
-            JOptionPane.showConfirmDialog(rootPane, "O campo CPF não pode ser deixado em branco!",
-                    "Aviso", JOptionPane.CLOSED_OPTION);
+            cpfCampo.setBorder(new LineBorder(Color.RED));
         }
     }//GEN-LAST:event_cpfCampoFocusLost
 
@@ -421,6 +454,81 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
             feminino.setSelected(false);
         }
     }//GEN-LAST:event_masculinoActionPerformed
+
+    private void mesComboBoxItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_mesComboBoxItemStateChanged
+        //TEM QUE MUDAR OS DIAS DEPENDENDO DO MES
+    }//GEN-LAST:event_mesComboBoxItemStateChanged
+
+    private void campoNomeFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_campoNomeFocusLost
+        if (campoNome.getText().isEmpty()) {
+            campoNome.setBorder(new LineBorder(Color.RED));
+        } else {
+            campoNome.setBorder(new LineBorder(Color.BLACK));
+        }
+    }//GEN-LAST:event_campoNomeFocusLost
+
+    private void telefoneCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_telefoneCampoFocusLost
+        if (telefoneCampo.getText().isEmpty()) {
+            telefoneCampo.setBorder(new LineBorder(Color.RED));
+        } else {
+            telefoneCampo.setBorder(new LineBorder(Color.BLACK));
+        }
+    }//GEN-LAST:event_telefoneCampoFocusLost
+
+    private void usuarioCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_usuarioCampoFocusLost
+        List<String> userNameCadastrados;
+        userNameCadastrados = gerenciadorLogin.listDeUserName();
+        boolean existe = false;
+        if (!usuarioCampo.getText().isEmpty()) {
+            for (String user : userNameCadastrados) {
+                if (usuarioCampo.getText().equalsIgnoreCase(user)) {
+                    usuarioCampo.setBorder(new LineBorder(Color.RED));
+                    existe = true;
+                    JOptionPane.showConfirmDialog(rootPane, "Usuário informado já foi cadastrado no sistema!",
+                            "Aviso", JOptionPane.CLOSED_OPTION);
+                }
+            }
+            if (!existe) {
+                usuarioCliente = usuarioCampo.getText();
+                usuarioCampo.setBorder(new LineBorder(Color.black));
+            }
+        } else {
+            usuarioCampo.setBorder(new LineBorder(Color.RED));
+        }
+    }//GEN-LAST:event_usuarioCampoFocusLost
+
+    private void senhaCampoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_senhaCampoFocusLost
+        if (senhaCampo.getText().isEmpty()) {
+            senhaCampo.setBorder(new LineBorder(Color.RED));
+        } else {
+            senhaCampo.setBorder(new LineBorder(Color.BLACK));
+        }
+    }//GEN-LAST:event_senhaCampoFocusLost
+    private boolean verificarTodosOsCampos() {
+        try {
+            ExceptionEmptySpace.informaDado(campoNome.getText());
+            ExceptionEmptySpace.informaDado(cpfCampo.getText());
+            ExceptionEmptySpace.informaDado(telefoneCampo.getText());
+            ExceptionEmptySpace.informaDado(emailCampo.getText());
+            ExceptionEmptySpace.informaDado(usuarioCampo.getText());
+            ExceptionEmptySpace.informaDado(senhaCampo.getText());
+            ExceptionEmptySpace.informaDado(campoCep.getText());
+            ExceptionEmptySpace.informaDado(cpf);
+            ExceptionEmptySpace.informaDado(usuarioCliente);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
+
+    private void verificar(java.awt.event.FocusEvent evt, JTextField campo) {
+        if (campo.getText().isEmpty()) {
+            campo.setBorder(new LineBorder(Color.RED));
+        } else {
+            campo.setBorder(new LineBorder(Color.BLACK));
+        }
+    }
+
     /**
      * @param args the command line arguments
      */

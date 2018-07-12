@@ -49,6 +49,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     List<ItemServico> listaDeServico = new ArrayList<>();
     GerenciadorViewLogin gerenciadorLogin = new GerenciadorViewLogin();
     List<Apolice> listaDeApolices = new ArrayList<>();
+    String caminho;
 
     /**
      * Creates new form Painel_Corretor
@@ -134,7 +135,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
             return 0;
         }
     }
-        private int readTableResidencia(Candidato candidato) {
+    
+    private int readTableResidencia(Candidato candidato) {
         DefaultTableModel modelo = (DefaultTableModel) residencias.getModel();
         modelo.setNumRows(0);
         listaSolicitacao = gerenciador.listaSolicitacaoCliente(candidato);
@@ -1624,8 +1626,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
-        readTableResidencia(candidato);
-        painelResidencias.setVisible(true);
+        readTableApolices(segurado);
+        visualizarListaDeApolices("Relatar Sinistro");
+        //painelResidencias.setVisible(true);
+
         //try{
         //    controlador.verificarSeguro(candidato.getCodPessoa());
         //}catch(Exception e){
@@ -1635,7 +1639,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_relatarSinistroActionPerformed
 
     private void contratarServicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratarServicoActionPerformed
-        visualizarListaDeApolices();
+        visualizarListaDeApolices("Contratar Serviço");
     }//GEN-LAST:event_contratarServicoActionPerformed
 
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
@@ -1954,7 +1958,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             qnt = escolhido.split(",").length;
             controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             //JOptionPane.showInternalInputDialog(painelP, "Qual data que você deseja ser atendido?");
-            
+
             controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             JOptionPane.showMessageDialog(rootPane, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
             painelServico.setVisible(false);
@@ -2038,10 +2042,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void enviarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSinistroActionPerformed
         
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja relatar este sinistro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-             float valorSinistro = controlador.valorSinistroEscolhido(String.valueOf(comboSinistro.getSelectedItem()));
-                controlador.registrarSinistro(String.valueOf(comboSinistro.getSelectedItem()), valorSinistro, descricaoSinistro.getText(), selecionado);
-                JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! \n Valor Estimado para este tipo de sinistro: " + valorSinistro);
-                painelSinistro.setVisible(false);
+            float valorSinistro = controlador.valorSinistroEscolhido(String.valueOf(comboSinistro.getSelectedItem()));
+            controlador.registrarSinistro(String.valueOf(comboSinistro.getSelectedItem()), valorSinistro, descricaoSinistro.getText(), selecionado);
+            JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! \n Valor Estimado para este tipo de sinistro: " + valorSinistro);
+            painelSinistro.setVisible(false);
         }
     }//GEN-LAST:event_enviarSinistroActionPerformed
 
@@ -2096,7 +2100,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_jTabelaListaServicosMouseClicked
 
     private void jListaDeApolicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListaDeApolicesMouseClicked
-        visualizarServico();
+        if (caminho.contains("Serviço")) {
+            visualizarServico();
+        } else if (caminho.contains("Sinistro")) {
+            visualizarSinistro();
+        }
     }//GEN-LAST:event_jListaDeApolicesMouseClicked
 
     private void confirmResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmResidenciaActionPerformed
@@ -2107,16 +2115,16 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void cancelarResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarResActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             painelResidencias.setVisible(false);
-        }       
+        }
     }//GEN-LAST:event_cancelarResActionPerformed
 
     private void residenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_residenciasMouseClicked
-       selecionado = residencias.getSelectedRow();
+        selecionado = residencias.getSelectedRow();
     }//GEN-LAST:event_residenciasMouseClicked
 
     private void comboSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSinistroActionPerformed
-       
-      
+        
+
     }//GEN-LAST:event_comboSinistroActionPerformed
 
     private void buttonContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonContatoActionPerformed
@@ -2128,16 +2136,16 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_emailActionPerformed
 
     private void enviarContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarContatoActionPerformed
-         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja enviar esta mensagem?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-             controlador.mensagemCandidato(email.getText(), mensagem.getText());
-             painelContato.setVisible(false);
-         }
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja enviar esta mensagem?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            controlador.mensagemCandidato(email.getText(), mensagem.getText());
+            painelContato.setVisible(false);
+        }
     }//GEN-LAST:event_enviarContatoActionPerformed
 
     private void cancelarContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarContatoActionPerformed
-         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-             painelContato.setVisible(false);
-         }
+        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+            painelContato.setVisible(false);
+        }
     }//GEN-LAST:event_cancelarContatoActionPerformed
     
     private void home() {
@@ -2157,11 +2165,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(false);
         painelSinistro.setVisible(false);
         jPanelListaApoliceServico.setVisible(false);
-         painelContato.setVisible(false);
+        painelContato.setVisible(false);
         //buttonVoltar.setVisible(false);
     }
     
-    private void visualizarListaDeApolices() {
+    private void visualizarListaDeApolices(String solicitante) {
         painelP.setVisible(true);
         jPanelHome.setVisible(false);
         painelServico.setVisible(false);
@@ -2178,6 +2186,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelSinistro.setVisible(false);
         jPanelListaApoliceServico.setVisible(false);
         jPanelListaApoliceServico.setVisible(true);
+        caminho = solicitante;
     }
     
     public void visualizarOpcoesSolicitacao() {
@@ -2227,6 +2236,29 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(false);
         calendarServico.setVisible(false);
         jPanelListaServicos.setVisible(false);
+    }
+    
+    private void visualizarSinistro() {
+        painelServico.setVisible(false);
+        painelSolicitacao.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
+        editar.setVisible(false);
+        nova.setVisible(false);
+        painelP.setVisible(true);
+        jPanelHome.setVisible(false);
+        painelSolicitacao.setVisible(false);
+        jPanelSolicitacaoAprovada.setVisible(false);
+        jPanelPagamento.setVisible(false);
+        jPanelSolicitacaoReprovada.setVisible(false);
+        jPanelListaSeguros.setVisible(false);
+        buttonVoltar.setVisible(false);
+        editar.setVisible(false);
+        jPanelListaApoliceServico.setVisible(false);
+        nova.setVisible(false);
+        cancelarSolicitacao.setVisible(false);
+        calendarServico.setVisible(false);
+        jPanelListaServicos.setVisible(false);
+        painelSinistro.setVisible(true);
     }
     
     private void solicitacaoAprovada() {
@@ -2287,11 +2319,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }
     
     public void preencherCamposEdicao(Residencia selecionado) {
-       
         cep.setText("" + selecionado.getCepRes());
-        uf.setText(selecionado.getUfResidencia()); 
-        bairro.setText(selecionado.getBairro()); 
-        cidade.setText(selecionado.getCidade()); 
+        uf.setText(selecionado.getUfResidencia());
+        bairro.setText(selecionado.getBairro());
+        cidade.setText(selecionado.getCidade());
         rua.setText(selecionado.getRuaRes());
         andares.setText(String.valueOf(selecionado.getNumAndares()));
         anoC.setText(String.valueOf(selecionado.getAnoConstrucao()));
@@ -2304,14 +2335,14 @@ public class Painel_Candidato extends javax.swing.JFrame {
         numero.setText(String.valueOf(selecionado.getNumRes()));
         localizacaoP.setValue(selecionado.getLocalizacaoPerigosa());
         estruturaA.setValue(selecionado.getEstruturaAmeacada());
-    
+        
     }
     
-    public void preencherComboBox(){
-        for(int i = 0 ; i < controlador.lerSinistro().size(); i++){
+    public void preencherComboBox() {
+        for (int i = 0; i < controlador.lerSinistro().size(); i++) {
             comboSinistro.addItem(String.valueOf(controlador.lerSinistro().get(i).getTipoSinistro()));
         }
-        for(int i = 0 ; i< controlador.lerServico().size(); i++){
+        for (int i = 0; i < controlador.lerServico().size(); i++) {
             comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
         }
         

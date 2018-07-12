@@ -7,7 +7,6 @@ package DAO;
 
 import Dominio.Apolice;
 import Dominio.Segurado;
-import Dominio.Solicitacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -61,10 +60,11 @@ public class ApoliceDAO {
         ResultSet rs = null;
         List<String> listApolicePorResidencia = new ArrayList<>();
         try {
-            stm = conexao.prepareStatement("select enderecoResidencia from residencia inner join solicitacaoseguro on "
-                    + "residencia.idResidencia = solicitacaoseguro.idResidencia inner join apolice on "
+            stm = conexao.prepareStatement("select residencia.enderecoResidencia "
+                    + "from residencia inner join solicitacaoseguro on "
+                    + "solicitacaoseguro.idResidencia = residencia.idResidencia inner join apolice on "
                     + "apolice.idSolicitacao = solicitacaoseguro.idSolicitacao inner join segurado on "
-                    + "solicitacaoseguro.idPessoa =" + segurado.getIdSegurado());
+                    + "segurado.idPessoa = " + segurado.getIdSegurado());
             rs = stm.executeQuery();
             while (rs.next()) {
                 listApolicePorResidencia.add(rs.getString("enderecoResidencia"));
