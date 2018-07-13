@@ -6,15 +6,17 @@
 package View;
 
 import Dominio.Corretor;
-import Dominio.ItemServico;
 import Dominio.Segurado;
 import Dominio.Sinistro;
 import Dominio.Solicitacao;
+import Excecoes.ExceptionDateInvalid;
 import Motor.ControleSolicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
+import java.awt.Frame;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -25,6 +27,9 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -50,6 +55,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         initComponents();
         runProgram();
         corretor = corretorOnline;
+
     }
 
     private int readTableListaDeResidencia() {
@@ -1372,7 +1378,13 @@ public class Painel_Corretor extends javax.swing.JFrame {
         gerenciador.updateStatusSolicitacao(listaDeSolicitacao.get(selecionado));
         JOptionPane.showConfirmDialog(rootPane, "Residencia Avaliada com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
         selecionado = -1;
-        runProgram();
+        if (readTableListaDeResidencia() == 0) {
+            runProgram();
+        } else {
+            limparCamposTelaResidencia();
+            habiltarButtonsTelaResidencia(false);
+            listaDeResidencias.setEnabled(true);
+        }
     }//GEN-LAST:event_buttonAprovarResidenciaActionPerformed
 
     private void buttonRecusarResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarResidenciaActionPerformed
@@ -1441,7 +1453,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void ButtonAgendarVisitaResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgendarVisitaResidenciaActionPerformed
         jPanelCalendarioAgendarVisitaResidencia.setVisible(true);
         habilitarCamposTelaSolicitacao(false);
-        /*int controle = 0;
+        /*
+        int controle = 0;
         while (controle == 0) {
             try {
                 List<Solicitacao> listaDeSolicitacao;
@@ -1459,6 +1472,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             }
         }
          */
+
     }//GEN-LAST:event_ButtonAgendarVisitaResidenciaActionPerformed
 
     private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
@@ -1698,37 +1712,51 @@ public class Painel_Corretor extends javax.swing.JFrame {
         preencherCamposAvaliarServico(selecionado);
     }//GEN-LAST:event_listaDeServicosSolicitacadosMouseClicked
 
+    private void limparCamposGeral(List<JTextField> lista) {
+        for (int i = 0; i < lista.size(); i++) {
+            lista.get(i).setText("");
+        }
+    }
+
+    private void habilitarCamposGeral(List<Component> lista, boolean condicao) {
+        for (int i = 0; i < lista.size(); i++) {
+            lista.get(i).setEnabled(condicao);
+        }
+    }
+
+    private void guardarCamposPainel(List<JTextField> lista, JPanel painel) {
+        Component components[] = painel.getComponents();
+        for (Component component : components) {
+            if (component instanceof JTextField) {
+                lista.add((JTextField) component);
+            }
+        }
+    }
+
+    private void guardarComponentesPanel(List<Component> lista, JPanel painel) {
+        Component components[] = painel.getComponents();
+        for (Component component : components) {
+            if (!(component instanceof JTable)) {
+                lista.add(component);
+            }
+        }
+    }
     private void limparCamposTelaResidencia() {
-        campoCepResidencia.setText("");
-        campoCidadeResidencia.setText("");
-        campoRuaResidencia.setText("");
-        campoDescricaoResidencia.setText("");
-        campoUFResidencia.setText("");
-        campoQuantidadeComodos.setText("");
-        campoQuantidadeDeBanheiros.setText("");
-        campoQuantidadeDeGaragens.setText("");
-        campoAreaConstruida.setText("");
-        campoAnoConstrucao.setText("");
-        campoAreaTotal.setText("");
+        List<JTextField> listaCamposTelaResidencia = new ArrayList<>();
+        guardarCamposPainel(listaCamposTelaResidencia, jPanelAvaliarResidencia);
+        limparCamposGeral(listaCamposTelaResidencia);
     }
 
     private void limparCamposTelaSolicitacao() {
-        campoNomeCandidato1.setText("");
-        campoCPFCandidato1.setText("");
-        campoEmailCandidato1.setText("");
-        campoTelefoneCandidato1.setText("");
-        campoLocalizacaoPerigosa.setText("");
-        campoTerrenoPerigoso.setText("");
-        campoEstruturaAmeacada.setText("");
-        campoDataSolicitacao.setText("");
-        campoValorSolicitacao.setText("");
+        List<JTextField> listaCamposTelaSolicitacao = new ArrayList<>();
+        guardarCamposPainel(listaCamposTelaSolicitacao, jPanelSolicitacaoDeSeguro);
+        limparCamposGeral(listaCamposTelaSolicitacao);
     }
 
     private void limparCamposTelaSinistro() {
-        campoDataSinistroFormat.setText("");
-        campoDescricaoSinistro.setText("");
-        campoTipoSinistro.setText("");
-        campoValorSinistroFormt.setText("");
+        List<JTextField> listaCamposTelaSinistro = new ArrayList<>();
+        guardarCamposPainel(listaCamposTelaSinistro, jPanelAvaliarSinistro);
+        limparCamposGeral(listaCamposTelaSinistro);
     }
 
     private void habilitarButtonsTelaSolicitacao(Boolean condicao) {
@@ -1786,56 +1814,22 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }
 
     private void habilitarCamposTelaSolicitacao(Boolean condicao) {
-        jLabelLocalizacaoPerigosa.setEnabled(condicao);
-        jLabelTerrenoPerigoso.setEnabled(condicao);
-        jLabelEstruturaPerigosa.setEnabled(condicao);
-        jLabelDataSolicitacao.setEnabled(condicao);
-        jLabelValorSolicitacao.setEnabled(condicao);
-        campoNomeCandidato1.setEnabled(condicao);
-        campoCPFCandidato1.setEnabled(condicao);
-        campoEmailCandidato1.setEnabled(condicao);
-        campoTelefoneCandidato1.setEnabled(condicao);
-        jLabelTituloDadosSolicitante.setEnabled(condicao);
-        jLabelTituloDadosSolicitacao.setEnabled(condicao);
-        ButtonAgendarVisitaResidencia.setEnabled(condicao);
-        buttonRecusarSeguro.setEnabled(condicao);
-        listaDeSolicitacoesSeguro.setEnabled(condicao);
-        campoLocalizacaoPerigosa.setEnabled(condicao);
-        campoTerrenoPerigoso.setEnabled(condicao);
-        campoEstruturaAmeacada.setEnabled(condicao);
-        campoDataSolicitacao.setEnabled(condicao);
-        campoValorSolicitacao.setEnabled(condicao);
+        List<Component> listaDeComponentes = new ArrayList<>();
+        guardarComponentesPanel(listaDeComponentes, jPanelSolicitacaoDeSeguro);
+        habilitarCamposGeral(listaDeComponentes, condicao);
     }
 
     private void habilitarCamposTelaResidencia(Boolean condicao) {
-        campoCepResidencia.setEnabled(condicao);
-        campoCidadeResidencia.setEnabled(condicao);
-        campoRuaResidencia.setEnabled(condicao);
-        campoDescricaoResidencia.setEnabled(condicao);
-        campoUFResidencia.setEnabled(condicao);
-        jToggleButtonDadosProprietario.setEnabled(condicao);
-        campoQuantidadeComodos.setEnabled(condicao);
-        campoQuantidadeDeBanheiros.setEnabled(condicao);
-        campoQuantidadeDeGaragens.setEnabled(condicao);
-        campoAreaConstruida.setEnabled(condicao);
-        campoAnoConstrucao.setEnabled(condicao);
-        campoAreaTotal.setEnabled(condicao);
-        listaDeResidencias.setEnabled(condicao);
-        buttonAprovarResidencia.setEnabled(condicao);
-        buttonRecusarResidencia.setEnabled(condicao);
-        buttonEditarDadosResidencia.setEnabled(condicao);
-        estruturaAmeacada.setEnabled(condicao);
-        localizacaoPerigosa.setEnabled(condicao);
-        terrenoPerigoso.setEnabled(condicao);
+        List<Component> listDeComponentes = new ArrayList<>();
+        guardarComponentesPanel(listDeComponentes, jPanelAvaliarResidencia);
+        habilitarCamposGeral(listDeComponentes, condicao);
     }
 
     private void habilitarCamposAvaliarSinistro(Boolean condicao) {
-        campoDataSinistroFormat.setEnabled(condicao);
-        campoDescricaoSinistro.setEnabled(condicao);
-        campoTipoSinistro.setEnabled(condicao);
-        campoValorSinistroFormt.setEnabled(condicao);
-        parecerDoAvaliadorSinistro.setEnabled(condicao);
-        habilitarButtonsTelaSinistro(condicao);
+        List<Component> listDeComponentes = new ArrayList<>();
+        guardarComponentesPanel(listDeComponentes, jPanelAvaliarSinistro);
+        habilitarCamposGeral(listDeComponentes, condicao);
+        //habilitarButtonsTelaSinistro(condicao);
     }
 
     private void preencherCamposAvaliarResidencia(int numeroLinha) {
@@ -1900,60 +1894,51 @@ public class Painel_Corretor extends javax.swing.JFrame {
         campoDataAtendimentoCliente.setText(sdf.format(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDataDeVisita()));
     }
 
-    private void runProgram() {
+    private void ocultarTudo() {
+
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
         jPanelDadosProprietario.setVisible(false);
         jPanelSolicitacaoDeSeguro.setVisible(false);
         jPanelGerenciarServico.setVisible(false);
         jPanelCorretor.setVisible(true);
-        jPanelBemVindo.setVisible(true);
+        jPanelBemVindo.setVisible(false);
         buttonConfiguracao.setVisible(true);
         jComboBoxOpcoesCorretor.setVisible(false);
-    }
-
-    private void visualizarSolicitacao() {
-        jPanelCorretor.setVisible(true);
-        jPanelCalendarioAgendarVisitaResidencia.setVisible(false);
-        jPanelSolicitacaoDeSeguro.setVisible(true);
-        jPanelAvaliarResidencia.setVisible(false);
-        jPanelAvaliarSinistro.setVisible(false);
-        jPanelDadosProprietario.setVisible(false);
-        jPanelBemVindo.setVisible(false);
         jPanelMotivoSolicitacaoRecusado.setVisible(false);
-    }
-
-    private void visualizarResidencias() {
-        jPanelCorretor.setVisible(true);
-        jPanelAvaliarResidencia.setVisible(true);
-        jPanelSolicitacaoDeSeguro.setVisible(false);
-        jPanelAvaliarSinistro.setVisible(false);
-        jPanelDadosProprietario.setVisible(false);
-        jPanelBemVindo.setVisible(false);
-        jPanelMotivoReprovacao.setVisible(false);
+        jPanelCalendarioAgendarVisitaResidencia.setVisible(false);
         salvarEditacao.setVisible(false);
         cancelarEditarButton.setVisible(false);
         motivoAlteracaojPanel.setVisible(false);
+        jPanelMotivoReprovacao.setVisible(false);
+        jPanelMotivoNegarSinistro.setVisible(false);
+    }
+
+    private void runProgram() {
+        ocultarTudo();
+        jPanelCorretor.setVisible(true);
+        jPanelBemVindo.setVisible(true);
+    }
+
+    private void visualizarSolicitacao() {
+        ocultarTudo();
+        jPanelSolicitacaoDeSeguro.setVisible(true);
+    }
+
+    private void visualizarResidencias() {
+        ocultarTudo();
+        jPanelAvaliarResidencia.setVisible(true);
+
     }
 
     private void visualizarSinistros() {
-        jPanelCorretor.setVisible(true);
+        ocultarTudo();
         jPanelAvaliarSinistro.setVisible(true);
-        jPanelAvaliarResidencia.setVisible(false);
-        jPanelSolicitacaoDeSeguro.setVisible(false);
-        jPanelDadosProprietario.setVisible(false);
-        jPanelBemVindo.setVisible(false);
-        jPanelMotivoNegarSinistro.setVisible(false);
+
     }
 
     private void visualizarServicos() {
-        jPanelCorretor.setVisible(true);
-        jPanelAvaliarSinistro.setVisible(false);
-        jPanelAvaliarResidencia.setVisible(false);
-        jPanelSolicitacaoDeSeguro.setVisible(false);
-        jPanelDadosProprietario.setVisible(false);
-        jPanelBemVindo.setVisible(false);
-        jPanelMotivoNegarSinistro.setVisible(false);
+        ocultarTudo();
         jPanelGerenciarServico.setVisible(true);
     }
 

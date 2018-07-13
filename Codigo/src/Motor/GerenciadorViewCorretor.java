@@ -70,7 +70,7 @@ public class GerenciadorViewCorretor {
         listaDeSolicitacao = daoSolicitacao.read();
         //listaDeSolicitacao = organizarListaDeSolicitacoes();
         List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
-        listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() == null && solicitacao.getMotivoReprovacao() == null)).forEachOrdered((solicitacao) -> {
+        listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() == null)).forEachOrdered((solicitacao) -> {
             listaDeSolicitacoesPendendes.add(solicitacao);
         });
         return listaDeSolicitacoesPendendes;
