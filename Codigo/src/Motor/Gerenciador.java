@@ -53,7 +53,7 @@ public class Gerenciador {
         CandidatoDAO daoCandidato = new CandidatoDAO();
         daoCandidato.create(candidato);
     }
-    
+
     /*
     public void registrarSolicitacao(Date dataSolicitacao, double valorSolicitacao,
             Date dataVisitaResidencia, String aprovadaSolicitacao,
@@ -93,7 +93,8 @@ public class Gerenciador {
 
     public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        return daoSolicitacao.listaSolicitacaoCliente(candidato);
+        //return daoSolicitacao.listaSolicitacaoCliente(candidato);
+        return null;
     }
 
     public double calculaValorSolicitacao(Residencia residencia) {
@@ -150,9 +151,9 @@ public class Gerenciador {
     public void transformaCandidatoEmSegurado(String cpf) {
         daoSegurado.create(cpf);
     }
-    
-    public List<Solicitacao> minhasSolicitacoes (Candidato candidato){
-        return solicitacaoDAO.listaSolicitacaoCliente(candidato);
-        
-    }  
+
+    public List<Solicitacao> minhasSolicitacoes(int id) {
+        return solicitacaoDAO.listaSolicitacaoCliente(id);
+
+    }
 }

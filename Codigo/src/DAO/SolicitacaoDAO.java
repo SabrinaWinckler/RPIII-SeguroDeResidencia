@@ -6,6 +6,7 @@
 package DAO;
 
 import Dominio.Candidato;
+import Dominio.Segurado;
 import Dominio.Solicitacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -141,15 +142,16 @@ public class SolicitacaoDAO {
         }
     }
 
-    public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
+    public List<Solicitacao> listaSolicitacaoCliente(int idPessoa) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<Solicitacao> listDeSolicitacoes = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select * from solicitacaoseguro inner join residencia on "
+            stmt = conexao.prepareStatement("select * from solicitacaoseguro "
+                    + "inner join residencia on "
                     + "solicitacaoseguro.idResidencia = residencia.idResidencia "
-                    + "where solicitacaoseguro.idPessoa = " + candidato.getCodPessoa());
+                    + "where solicitacaoseguro.idPessoa = " + idPessoa);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao();

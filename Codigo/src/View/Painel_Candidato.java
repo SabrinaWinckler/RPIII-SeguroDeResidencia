@@ -94,30 +94,29 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } else {
             return 0;
         }
-       
 
     }
-     private int readTableMinhasSolicitacoes(Candidato candidato){
-      DefaultTableModel modelo = (DefaultTableModel) listaMinhasSolicitacoes.getModel();
-       modelo.setNumRows(0);
-       listaSolicitacao = gerenciador.minhasSolicitacoes (candidato);
-       int tamanhoLista = listaSolicitacao.size();
-       if (tamanhoLista > 0){
-           for (Solicitacao solicitacao : listaSolicitacao){
-               modelo.addRow(new Object[]{
-                   solicitacao.getResidencia().getDescricaoRes(),
-                   solicitacao.getDataSolicitacao(),
-                   solicitacao.getResidencia().getCepRes(),
-                   solicitacao.getAprovadaSolicitacao()
-               });
-           }
-           return 1;
-       } else {
-           return 0;
-       }
-        }
 
-     
+    private int readTableMinhasSolicitacoes(Segurado candidato) {
+        DefaultTableModel modelo = (DefaultTableModel) listaMinhasSolicitacoes.getModel();
+        modelo.setNumRows(0);
+        listaSolicitacao = gerenciador.minhasSolicitacoes(candidato.getIdSegurado());
+        int tamanhoLista = listaSolicitacao.size();
+        if (tamanhoLista > 0) {
+            for (Solicitacao solicitacao : listaSolicitacao) {
+                modelo.addRow(new Object[]{
+                    solicitacao.getResidencia().getDescricaoRes(),
+                    solicitacao.getDataSolicitacao(),
+                    solicitacao.getResidencia().getCepRes(),
+                    solicitacao.getAprovadaSolicitacao()
+                });
+            }
+            return 1;
+        } else {
+            return 0;
+        }
+    }
+
     private int readTableListaServico(Segurado segurado) {
         DefaultTableModel modelo = (DefaultTableModel) jTabelaListaServicos.getModel();
         modelo.setNumRows(0);
@@ -2058,9 +2057,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
             //qnt = escolhido.split(",").length;
             //controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             //JOptionPane.showInternalInputDialog(painelP, "Qual data que você deseja ser atendido?");
-
-           // controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
-           // JOptionPane.showMessageDialog(rootPane, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
+            // controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
+            // JOptionPane.showMessageDialog(rootPane, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
             //painelServico.setVisible(false);
         }
     }//GEN-LAST:event_enviarServicoActionPerformed
@@ -2253,11 +2251,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonFecharMinhasSolicitacoesActionPerformed
 
     private void minhasSolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minhasSolicitacoesActionPerformed
-       if( readTableMinhasSolicitacoes(segurado) == 1){
-           panelComListaSolicitacoes.setVisible(true);
-          }else{
-      JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações", "Alerta", JOptionPane.CLOSED_OPTION);      
-       }
+        if (readTableMinhasSolicitacoes(segurado) == 1) {
+            panelComListaSolicitacoes.setVisible(true);
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações", "Alerta", JOptionPane.CLOSED_OPTION);
+        }
     }//GEN-LAST:event_minhasSolicitacoesActionPerformed
 
     private void ocultarTudo() {
@@ -2385,7 +2383,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             comboSinistro.addItem(String.valueOf(controlador.lerSinistro().get(i).getTipoSinistro()));
         }
         for (int i = 0; i < controlador.lerServico().size(); i++) {
-           // comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
+            // comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
         }
 
     }
