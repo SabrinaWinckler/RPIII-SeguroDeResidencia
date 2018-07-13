@@ -270,7 +270,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonDataServico = new javax.swing.JToggleButton();
         visualizarSolicitacaoServico = new javax.swing.JLabel();
         encanador = new javax.swing.JCheckBox();
-        comboServico = new javax.swing.JComboBox<>();
         painelSolicitacao = new javax.swing.JPanel();
         cep = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -350,11 +349,13 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jLabel35 = new javax.swing.JLabel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jListaDeApolices = new javax.swing.JTable();
+        PanelSolicitarSeguro = new javax.swing.JPanel();
         editar = new javax.swing.JButton();
+        cancelarSolicitacao = new javax.swing.JButton();
+        nova = new javax.swing.JButton();
+        jLabel60 = new javax.swing.JLabel();
         editarSelecionado = new javax.swing.JButton();
         excluirSelecionado = new javax.swing.JButton();
-        nova = new javax.swing.JButton();
-        cancelarSolicitacao = new javax.swing.JButton();
         buttonHome = new javax.swing.JButton();
         relatarSinistro = new javax.swing.JButton();
         contratarServico = new javax.swing.JButton();
@@ -942,7 +943,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         });
         jPanelListaServicos.add(buttonFecharListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
-        painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(140, 80, 460, 270));
+        painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 460, 270));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 45, 90));
@@ -962,11 +963,11 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelServico.add(enviarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(480, 410, 100, 30));
 
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/house-key.png"))); // NOI18N
-        painelServico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 230, 30, 30));
+        painelServico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 30, 30));
 
         chaveiro.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         chaveiro.setText("Chaveiro");
-        painelServico.add(chaveiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 230, 140, -1));
+        painelServico.add(chaveiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 140, -1));
 
         cancelarServico.setBackground(new java.awt.Color(126, 87, 194));
         cancelarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -980,10 +981,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelServico.add(cancelarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 410, 100, 30));
 
         jLabel29.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/pipe.png"))); // NOI18N
-        painelServico.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 170, 30, -1));
+        painelServico.add(jLabel29, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 170, 30, -1));
 
         jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/flash.png"))); // NOI18N
-        painelServico.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 200, -1, -1));
+        painelServico.add(jLabel32, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 200, -1, -1));
 
         eletricista.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         eletricista.setText("Eletricista");
@@ -992,7 +993,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 eletricistaActionPerformed(evt);
             }
         });
-        painelServico.add(eletricista, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 200, 140, -1));
+        painelServico.add(eletricista, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, 140, -1));
 
         listaTurnosServico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manhã", "Tarde" }));
         painelServico.add(listaTurnosServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 130, -1, -1));
@@ -1027,9 +1028,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         encanador.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         encanador.setText("Encanador");
-        painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 170, 140, -1));
-
-        painelServico.add(comboServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 160, 100, -1));
+        painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 140, -1));
 
         painelP.add(painelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -1459,16 +1458,51 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         painelP.add(jPanelListaApoliceServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
-        editar.setBackground(new java.awt.Color(151, 53, 255));
-        editar.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
+        PanelSolicitarSeguro.setBackground(new java.awt.Color(255, 255, 255));
+        PanelSolicitarSeguro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        editar.setBackground(new java.awt.Color(0, 153, 255));
+        editar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         editar.setForeground(new java.awt.Color(255, 255, 255));
-        editar.setText("Editar Solicitação");
+        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/plus-circular-button.png"))); // NOI18N
+        editar.setText("    Editar Solicitação");
         editar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 editarActionPerformed(evt);
             }
         });
-        painelP.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 190, 160, -1));
+        PanelSolicitarSeguro.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 220, 40));
+
+        cancelarSolicitacao.setBackground(new java.awt.Color(0, 153, 255));
+        cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        cancelarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarSolicitacao.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/close.png"))); // NOI18N
+        cancelarSolicitacao.setText("Cancelar Solicitação");
+        cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelarSolicitacaoActionPerformed(evt);
+            }
+        });
+        PanelSolicitarSeguro.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 220, 40));
+
+        nova.setBackground(new java.awt.Color(0, 153, 255));
+        nova.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        nova.setForeground(new java.awt.Color(255, 255, 255));
+        nova.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/edit-interface-symbol-of-a-pencil-on-a-square-outline-paper.png"))); // NOI18N
+        nova.setText("   Nova Solicitação");
+        nova.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                novaActionPerformed(evt);
+            }
+        });
+        PanelSolicitarSeguro.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 220, 40));
+
+        jLabel60.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel60.setForeground(new java.awt.Color(1, 45, 90));
+        jLabel60.setText("Selecione a opção Desejada:");
+        PanelSolicitarSeguro.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
+
+        painelP.add(PanelSolicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
         editarSelecionado.setBackground(new java.awt.Color(153, 51, 255));
         editarSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1491,28 +1525,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         });
         painelP.add(excluirSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
-
-        nova.setBackground(new java.awt.Color(151, 53, 255));
-        nova.setFont(new java.awt.Font("Sylfaen", 1, 14)); // NOI18N
-        nova.setForeground(new java.awt.Color(255, 255, 255));
-        nova.setText("Nova Solicitação");
-        nova.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                novaActionPerformed(evt);
-            }
-        });
-        painelP.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 220, 160, -1));
-
-        cancelarSolicitacao.setBackground(new java.awt.Color(204, 0, 0));
-        cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        cancelarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
-        cancelarSolicitacao.setText("Cancelar Solicitação");
-        cancelarSolicitacao.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarSolicitacaoActionPerformed(evt);
-            }
-        });
-        painelP.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(330, 250, -1, -1));
 
         getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 730, -1));
 
@@ -1957,15 +1969,15 @@ public class Painel_Candidato extends javax.swing.JFrame {
             String escolhido;
             Date data = new Date();
             int qnt = 0;
-            escolhido = String.valueOf(comboServico.getSelectedItem());
+            //escolhido = String.valueOf(comboServico.getSelectedItem());
 
-            qnt = escolhido.split(",").length;
-            controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
+            //qnt = escolhido.split(",").length;
+            //controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             //JOptionPane.showInternalInputDialog(painelP, "Qual data que você deseja ser atendido?");
 
-            controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
-            JOptionPane.showMessageDialog(rootPane, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
-            painelServico.setVisible(false);
+           // controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
+           // JOptionPane.showMessageDialog(rootPane, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
+            //painelServico.setVisible(false);
         }
     }//GEN-LAST:event_enviarServicoActionPerformed
 
@@ -2188,9 +2200,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     public void visualizarOpcoesSolicitacao() {
         ocultarTudo();
+        PanelSolicitarSeguro.setVisible(true);
         editar.setVisible(true);
-        nova.setVisible(true);
         cancelarSolicitacao.setVisible(true);
+        nova.setVisible(true);
     }
 
     private void visualizarSolicitacao() {
@@ -2273,7 +2286,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
             comboSinistro.addItem(String.valueOf(controlador.lerSinistro().get(i).getTipoSinistro()));
         }
         for (int i = 0; i < controlador.lerServico().size(); i++) {
-            comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
+           // comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
         }
 
     }
@@ -2336,6 +2349,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton ButtonContratarSeguro;
+    private javax.swing.JPanel PanelSolicitarSeguro;
     private javax.swing.JButton add;
     private javax.swing.JTextField andares;
     private javax.swing.JTextField anoC;
@@ -2372,7 +2386,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField cep;
     private javax.swing.JCheckBox chaveiro;
     private javax.swing.JTextField cidade;
-    private javax.swing.JComboBox<String> comboServico;
     private javax.swing.JComboBox<String> comboSinistro;
     private javax.swing.JTextField comodos;
     private javax.swing.JButton confirmResidencia;
@@ -2452,6 +2465,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
