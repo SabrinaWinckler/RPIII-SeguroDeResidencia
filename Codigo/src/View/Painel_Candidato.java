@@ -1530,7 +1530,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         });
         panelComListaSolicitacoes.add(buttonFecharMinhasSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
 
-        PanelSolicitarSeguro.add(panelComListaSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 130, 510, 230));
+        PanelSolicitarSeguro.add(panelComListaSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 510, 230));
 
         editar.setBackground(new java.awt.Color(0, 153, 255));
         editar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -1749,6 +1749,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
         nova.setVisible(false);
+        minhasSolicitacoes.setVisible(false);
+        
     }//GEN-LAST:event_novaActionPerformed
 
     private void cancelarSolicitacaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSolicitacaoActionPerformed
@@ -1759,10 +1761,10 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
-        excluirSelecionado.setVisible(true);
+       /* excluirSelecionado.setVisible(true);
         cancelarSolicitacao.setVisible(false);
         editar.setVisible(false);
-        nova.setVisible(false);
+        nova.setVisible(false);*/
     }//GEN-LAST:event_cancelarSolicitacaoActionPerformed
 
     private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
@@ -1774,10 +1776,12 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
+        /*
         editarSelecionado.setVisible(true);
-        cancelarSolicitacao.setVisible(false);
-        editar.setVisible(false);
-        nova.setVisible(false);
+        cancelarSolicitacao.setVisible(true);
+        editar.setVisible(true);
+        nova.setVisible(true);
+        minhasSolicitacoes.setVisible(true); */
     }//GEN-LAST:event_editarActionPerformed
 
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
@@ -1839,7 +1843,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         this.esvaziarCampos();
         painelSolicitacao.setVisible(false);
-
+        minhasSolicitacoes.setVisible(true);
         cancelarSolicitacao.setVisible(true);
         editar.setVisible(true);
         nova.setVisible(true);
@@ -2281,6 +2285,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         calendarServico.setVisible(false);
         minhasSolicitacoes.setVisible(false);
         panelComListaSolicitacoes.setVisible(false);
+        
     }
 
     private void home() {
