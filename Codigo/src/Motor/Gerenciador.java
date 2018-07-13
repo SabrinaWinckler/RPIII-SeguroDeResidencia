@@ -34,6 +34,7 @@ public class Gerenciador {
     SeguradoDAO daoSegurado = new SeguradoDAO();
     ApoliceDAO daoApolice = new ApoliceDAO();
     ServicoDAO servicoDAO = new ServicoDAO();
+    SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 
     public Gerenciador() {
     }
@@ -52,7 +53,7 @@ public class Gerenciador {
         CandidatoDAO daoCandidato = new CandidatoDAO();
         daoCandidato.create(candidato);
     }
-
+    
     /*
     public void registrarSolicitacao(Date dataSolicitacao, double valorSolicitacao,
             Date dataVisitaResidencia, String aprovadaSolicitacao,
@@ -149,4 +150,9 @@ public class Gerenciador {
     public void transformaCandidatoEmSegurado(String cpf) {
         daoSegurado.create(cpf);
     }
+    
+    public List<Solicitacao> minhasSolicitacoes (Candidato candidato){
+        return solicitacaoDAO.listaSolicitacaoCliente(candidato);
+        
+    }  
 }

@@ -94,9 +94,30 @@ public class Painel_Candidato extends javax.swing.JFrame {
         } else {
             return 0;
         }
+       
 
     }
+     private int readTableMinhasSolicitacoes(Candidato candidato){
+      DefaultTableModel modelo = (DefaultTableModel) listaMinhasSolicitacoes.getModel();
+       modelo.setNumRows(0);
+       listaSolicitacao = gerenciador.minhasSolicitacoes (candidato);
+       int tamanhoLista = listaSolicitacao.size();
+       if (tamanhoLista > 0){
+           for (Solicitacao solicitacao : listaSolicitacao){
+               modelo.addRow(new Object[]{
+                   solicitacao.getResidencia().getDescricaoRes(),
+                   solicitacao.getDataSolicitacao(),
+                   solicitacao.getResidencia().getCepRes(),
+                   solicitacao.getAprovadaSolicitacao()
+               });
+           }
+           return 1;
+       } else {
+           return 0;
+       }
+        }
 
+     
     private int readTableListaServico(Segurado segurado) {
         DefaultTableModel modelo = (DefaultTableModel) jTabelaListaServicos.getModel();
         modelo.setNumRows(0);
@@ -350,10 +371,15 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jScrollPane5 = new javax.swing.JScrollPane();
         jListaDeApolices = new javax.swing.JTable();
         PanelSolicitarSeguro = new javax.swing.JPanel();
+        panelComListaSolicitacoes = new javax.swing.JPanel();
+        jScrollPane17 = new javax.swing.JScrollPane();
+        listaMinhasSolicitacoes = new javax.swing.JTable();
+        buttonFecharMinhasSolicitacoes = new javax.swing.JButton();
         editar = new javax.swing.JButton();
         cancelarSolicitacao = new javax.swing.JButton();
         nova = new javax.swing.JButton();
         jLabel60 = new javax.swing.JLabel();
+        minhasSolicitacoes = new javax.swing.JButton();
         editarSelecionado = new javax.swing.JButton();
         excluirSelecionado = new javax.swing.JButton();
         buttonHome = new javax.swing.JButton();
@@ -943,7 +969,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         });
         jPanelListaServicos.add(buttonFecharListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
 
-        painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 70, 460, 270));
+        painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 460, 270));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 45, 90));
@@ -1461,6 +1487,52 @@ public class Painel_Candidato extends javax.swing.JFrame {
         PanelSolicitarSeguro.setBackground(new java.awt.Color(255, 255, 255));
         PanelSolicitarSeguro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        panelComListaSolicitacoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        panelComListaSolicitacoes.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        listaMinhasSolicitacoes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Descrição", "Data", "CEP", "Status"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, true, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane17.setViewportView(listaMinhasSolicitacoes);
+
+        panelComListaSolicitacoes.add(jScrollPane17, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 170));
+
+        buttonFecharMinhasSolicitacoes.setBackground(new java.awt.Color(204, 0, 0));
+        buttonFecharMinhasSolicitacoes.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonFecharMinhasSolicitacoes.setForeground(new java.awt.Color(255, 255, 255));
+        buttonFecharMinhasSolicitacoes.setText("Fechar");
+        buttonFecharMinhasSolicitacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFecharMinhasSolicitacoesActionPerformed(evt);
+            }
+        });
+        panelComListaSolicitacoes.add(buttonFecharMinhasSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
+
+        PanelSolicitarSeguro.add(panelComListaSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(-50, 130, 510, 230));
+
         editar.setBackground(new java.awt.Color(0, 153, 255));
         editar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         editar.setForeground(new java.awt.Color(255, 255, 255));
@@ -1471,7 +1543,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 editarActionPerformed(evt);
             }
         });
-        PanelSolicitarSeguro.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 210, 220, 40));
+        PanelSolicitarSeguro.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 220, 40));
 
         cancelarSolicitacao.setBackground(new java.awt.Color(0, 153, 255));
         cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -1483,7 +1555,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 cancelarSolicitacaoActionPerformed(evt);
             }
         });
-        PanelSolicitarSeguro.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 270, 220, 40));
+        PanelSolicitarSeguro.add(cancelarSolicitacao, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 250, 220, 40));
 
         nova.setBackground(new java.awt.Color(0, 153, 255));
         nova.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -1495,12 +1567,24 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 novaActionPerformed(evt);
             }
         });
-        PanelSolicitarSeguro.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 150, 220, 40));
+        PanelSolicitarSeguro.add(nova, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 170, 220, 40));
 
         jLabel60.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel60.setForeground(new java.awt.Color(1, 45, 90));
         jLabel60.setText("Selecione a opção Desejada:");
-        PanelSolicitarSeguro.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
+        PanelSolicitarSeguro.add(jLabel60, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 90, -1, -1));
+
+        minhasSolicitacoes.setBackground(new java.awt.Color(0, 153, 255));
+        minhasSolicitacoes.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        minhasSolicitacoes.setForeground(new java.awt.Color(255, 255, 255));
+        minhasSolicitacoes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/text-documents.png"))); // NOI18N
+        minhasSolicitacoes.setText("Minhas Solicitações");
+        minhasSolicitacoes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                minhasSolicitacoesActionPerformed(evt);
+            }
+        });
+        PanelSolicitarSeguro.add(minhasSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 220, 40));
 
         painelP.add(PanelSolicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -1538,7 +1622,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 buttonHomeActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
+        getContentPane().add(buttonHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 120, 180, 40));
 
         relatarSinistro.setBackground(new java.awt.Color(255, 255, 255));
         relatarSinistro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1551,7 +1635,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 relatarSinistroActionPerformed(evt);
             }
         });
-        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 330, 180, 40));
+        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 180, 40));
 
         contratarServico.setBackground(new java.awt.Color(255, 255, 255));
         contratarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1564,7 +1648,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 contratarServicoActionPerformed(evt);
             }
         });
-        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 380, 180, 40));
+        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 180, 40));
 
         solicitarSeguro.setBackground(new java.awt.Color(255, 255, 255));
         solicitarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1576,7 +1660,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 solicitarSeguroActionPerformed(evt);
             }
         });
-        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 280, 180, 40));
+        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 180, 40));
         solicitarSeguro.getAccessibleContext().setAccessibleDescription("");
 
         buttonContratarSeguro.setBackground(new java.awt.Color(255, 255, 255));
@@ -1589,7 +1673,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 buttonContratarSeguroActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonContratarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 430, 180, 40));
+        getContentPane().add(buttonContratarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 420, 180, 40));
 
         sairButton.setBackground(new java.awt.Color(255, 255, 255));
         sairButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1612,7 +1696,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 buttonContatoActionPerformed(evt);
             }
         });
-        getContentPane().add(buttonContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 230, 180, 40));
+        getContentPane().add(buttonContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -2164,6 +2248,18 @@ public class Painel_Candidato extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_cancelarContatoActionPerformed
 
+    private void buttonFecharMinhasSolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharMinhasSolicitacoesActionPerformed
+        panelComListaSolicitacoes.setVisible(false);
+    }//GEN-LAST:event_buttonFecharMinhasSolicitacoesActionPerformed
+
+    private void minhasSolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minhasSolicitacoesActionPerformed
+       if( readTableMinhasSolicitacoes(segurado) == 1){
+           panelComListaSolicitacoes.setVisible(true);
+          }else{
+      JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações", "Alerta", JOptionPane.CLOSED_OPTION);      
+       }
+    }//GEN-LAST:event_minhasSolicitacoesActionPerformed
+
     private void ocultarTudo() {
         painelP.setVisible(true);
         jPanelHome.setVisible(false);
@@ -2185,6 +2281,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonVoltar.setVisible(false);
         jPanelListaServicos.setVisible(false);
         calendarServico.setVisible(false);
+        minhasSolicitacoes.setVisible(false);
+        panelComListaSolicitacoes.setVisible(false);
     }
 
     private void home() {
@@ -2204,6 +2302,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         editar.setVisible(true);
         cancelarSolicitacao.setVisible(true);
         nova.setVisible(true);
+        minhasSolicitacoes.setVisible(true);
     }
 
     private void visualizarSolicitacao() {
@@ -2365,6 +2464,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JButton buttonContratarSeguro;
     private javax.swing.JToggleButton buttonDataServico;
     private javax.swing.JButton buttonFecharListaServicos;
+    private javax.swing.JButton buttonFecharMinhasSolicitacoes;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton buttonHome;
@@ -2494,6 +2594,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
     private javax.swing.JScrollPane jScrollPane16;
+    private javax.swing.JScrollPane jScrollPane17;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
@@ -2506,6 +2607,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTabelaListaServicos;
     private javax.swing.JLabel l;
+    private javax.swing.JTable listaMinhasSolicitacoes;
     private javax.swing.JTable listaSolicitacaoCandidato;
     private javax.swing.JComboBox<String> listaTurnosServico;
     private javax.swing.JSlider localizacaoP;
@@ -2517,6 +2619,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private java.awt.MenuBar menuBar1;
     private java.awt.MenuBar menuBar2;
     private javax.swing.JComboBox<String> mesComboBox;
+    private javax.swing.JButton minhasSolicitacoes;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
     private javax.swing.JPanel painelContato;
@@ -2525,6 +2628,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JPanel painelServico;
     private javax.swing.JPanel painelSinistro;
     private javax.swing.JPanel painelSolicitacao;
+    private javax.swing.JPanel panelComListaSolicitacoes;
     private java.awt.PopupMenu popupMenu1;
     private javax.swing.JComboBox<String> quantidadeVezesParcela;
     private javax.swing.JButton relatarSinistro;

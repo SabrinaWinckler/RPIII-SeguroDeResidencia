@@ -147,8 +147,9 @@ public class SolicitacaoDAO {
         ResultSet rs = null;
         List<Solicitacao> listDeSolicitacoes = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM solicitacaoseguro INNER JOIN RESIDENCIA ON "
-                    + "solicitacaoseguro.idResidencia = residencia.idResidencia AND solicitacaoseguro.idPessoa = " + candidato.getCodPessoa());
+            stmt = conexao.prepareStatement("select * from solicitacaoseguro inner join residencia on "
+                    + "solicitacaoseguro.idResidencia = residencia.idResidencia "
+                    + "where solicitacaoseguro.idPessoa = " + candidato.getCodPessoa());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao();
