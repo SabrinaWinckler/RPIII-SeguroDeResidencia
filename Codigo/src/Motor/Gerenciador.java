@@ -20,7 +20,7 @@ import Dominio.Apolice;
 import Dominio.ItemServico;
 import Dominio.Residencia;
 import java.util.Date;
-import java.util.List;
+import java.util.List; 
 import service.WebServiceCep;
 
 /**
