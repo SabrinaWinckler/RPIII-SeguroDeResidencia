@@ -14,8 +14,6 @@ import Motor.GerenciadorViewLogin;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.util.List;
-import javafx.scene.control.ComboBox;
-import javax.swing.ComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
