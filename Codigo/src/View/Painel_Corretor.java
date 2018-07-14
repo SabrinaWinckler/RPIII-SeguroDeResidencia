@@ -55,7 +55,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         initComponents();
         runProgram();
         corretor = corretorOnline;
-
     }
 
     private int readTableListaDeResidencia() {
@@ -1453,26 +1452,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     private void ButtonAgendarVisitaResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAgendarVisitaResidenciaActionPerformed
         jPanelCalendarioAgendarVisitaResidencia.setVisible(true);
         habilitarCamposTelaSolicitacao(false);
-        /*
-        int controle = 0;
-        while (controle == 0) {
-            try {
-                List<Solicitacao> listaDeSolicitacao;
-                listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
-                String dataVisita = JOptionPane.showInputDialog(rootPane, "Digite a data e a hora marcada, por favor:");
-                listaDeSolicitacao.get(selecionado).setDataVisitaResidencia(ExceptionDateInvalid.isValido(dataVisita));
-                gerenciador.registrarDateVisitaResidencia(listaDeSolicitacao.get(selecionado));
-                JOptionPane.showConfirmDialog(rootPane, "Data registrada com sucesso.",
-                        "Alerta", JOptionPane.CLOSED_OPTION);
-                controle = 1;
-                runProgram();
-            } catch (ParseException e) {
-                JOptionPane.showConfirmDialog(rootPane, "Data inválida. Por favor, digite novamente:",
-                        "Alerta", JOptionPane.CLOSED_OPTION);
-            }
-        }
-         */
-
     }//GEN-LAST:event_ButtonAgendarVisitaResidenciaActionPerformed
 
     private void listaDeSolicitacoesSeguroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeSolicitacoesSeguroMouseClicked
@@ -1741,6 +1720,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
             }
         }
     }
+
     private void limparCamposTelaResidencia() {
         List<JTextField> listaCamposTelaResidencia = new ArrayList<>();
         guardarCamposPainel(listaCamposTelaResidencia, jPanelAvaliarResidencia);
@@ -1879,10 +1859,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
         parecerDoAvaliadorSinistro.setText("Digite aqui o parecer técnico do sinistro...");
         parecerDoAvaliadorSinistro.setFont(new Font("Arial", Font.ITALIC, 12));
         parecerDoAvaliadorSinistro.setForeground(new Color(119, 119, 119));
-        //campoNomeSolicitante.setText(listaSinistro.get(selecionado).getNomePessoa());
-        //campoCPFSolicitante.setText("" + listaSinistro.get(selecionado).getCpf());
-        //campoEmailSolicitante.setText(listaSinistro.get(selecionado).getEmail());
-        //campoTelefone.setText(listaSinistro.get(selecionado).getTelefone());
     }
 
     private void preencherCamposAvaliarServico(int selecionado) {
@@ -1895,7 +1871,6 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }
 
     private void ocultarTudo() {
-
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
         jPanelDadosProprietario.setVisible(false);
@@ -1918,6 +1893,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         ocultarTudo();
         jPanelCorretor.setVisible(true);
         jPanelBemVindo.setVisible(true);
+
     }
 
     private void visualizarSolicitacao() {
