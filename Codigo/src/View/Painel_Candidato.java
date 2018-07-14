@@ -7,7 +7,7 @@ package View;
 
 import Dominio.Apolice;
 import Dominio.Candidato;
-import Motor.ControleSolicitacao;
+import Motor.RepositorioSolicitacao;
 import Motor.Gerenciador;
 import Dominio.Solicitacao;
 import Dominio.Bem;
@@ -40,7 +40,7 @@ import javax.swing.table.DefaultTableModel;
 public class Painel_Candidato extends javax.swing.JFrame {
     
     int visivel = 0;
-    ControleSolicitacao controlador = new ControleSolicitacao();
+    RepositorioSolicitacao controlador = new RepositorioSolicitacao();
     List<Solicitacao> listaSolicitacao = new ArrayList<>();
     Gerenciador gerenciador = new Gerenciador();
     private int quantidadeDeSolicitacao, selecionado;
@@ -1753,7 +1753,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         /*Tela_ListaSolicitacoes telaSolicitacoes = new Tela_ListaSolicitacoes();
         telaSolicitacoes.setVisible(true);
         dispose();
-        this.controlador = new ControleSolicitacao();
+        this.controlador = new RepositorioSolicitacao();
         editar.setVisible(true);
         nova.setVisible(true);
         cancelarSolicitacao.setVisible(true);

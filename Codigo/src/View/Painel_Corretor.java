@@ -10,7 +10,7 @@ import Dominio.Segurado;
 import Dominio.Sinistro;
 import Dominio.Solicitacao;
 import Excecoes.ExceptionDateInvalid;
-import Motor.ControleSolicitacao;
+import Motor.RepositorioSolicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
 import java.awt.Component;
@@ -43,7 +43,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
     String motivoReprovacao, motivoAlteracao, resultado;
     int selecionado = -1;
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    ControleSolicitacao controlador = new ControleSolicitacao();
+    RepositorioSolicitacao controlador = new RepositorioSolicitacao();
     static Corretor corretor;
 
     /**

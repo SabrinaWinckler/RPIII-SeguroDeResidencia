@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class ControleSolicitacao {
+public class RepositorioSolicitacao {
 
     private Date dataSolicitacao;
 
@@ -32,7 +32,7 @@ public class ControleSolicitacao {
     
     private Gerenciador gerenciador = new Gerenciador();
 
-    public ControleSolicitacao() {
+    public RepositorioSolicitacao() {
         bens = new ArrayList<Bem>();
         sinistros = new ArrayList();
     }
