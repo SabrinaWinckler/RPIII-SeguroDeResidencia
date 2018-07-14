@@ -650,7 +650,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         jPanelHome.setBackground(new java.awt.Color(255, 255, 255));
         jPanelHome.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/familia.jpeg"))); // NOI18N
+        jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/TelaInicial.png"))); // NOI18N
         jLabel28.setText("jLabel28");
         jPanelHome.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, -1));
 
