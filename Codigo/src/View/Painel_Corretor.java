@@ -9,14 +9,12 @@ import Dominio.Corretor;
 import Dominio.Segurado;
 import Dominio.Sinistro;
 import Dominio.Solicitacao;
-import Excecoes.ExceptionDateInvalid;
 import Motor.RepositorioSolicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
 import java.awt.Font;
-import java.awt.Frame;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1349,15 +1347,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_jComboBoxOpcoesCorretorActionPerformed
 
     private void listaDeResidenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseClicked
-        if (selecionado == -1) {
             selecionado = listaDeResidencias.getSelectedRow();
             listaDeResidencias.setSelectionBackground(new Color(1, 45, 90));
             preencherCamposAvaliarResidencia(selecionado);
             habiltarButtonsTelaResidencia(true);
-            listaDeResidencias.setEnabled(false);
-        } else {
-            JOptionPane.showConfirmDialog(rootPane, "Você pode selecionar uma solicitação por vez!", "Alerta", JOptionPane.CLOSED_OPTION);
-        }
     }//GEN-LAST:event_listaDeResidenciasMouseClicked
 
     private void buttonEditarDadosResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarDadosResidenciaActionPerformed
@@ -1408,8 +1401,8 @@ public class Painel_Corretor extends javax.swing.JFrame {
             habilitarButtonsTelaSinistro(true);
             listaSinistrosPendentes.setEnabled(false);
         } else {
-            JOptionPane.showConfirmDialog(rootPane, "Você pode selecionar apenas um sinistro por vez. Por favor, se deseja selecionar"
-                    + " selecionar outro sinistro, click no botão (Cancelar avaliação) e selecione a solicitação desejada!", "Confirmação", JOptionPane.CLOSED_OPTION);
+            JOptionPane.showConfirmDialog(rootPane, "Você pode selecionar apenas"
+                    + " um sinistro por vez!", "Confirmação", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked
 
@@ -1467,7 +1460,15 @@ public class Painel_Corretor extends javax.swing.JFrame {
     }//GEN-LAST:event_listaDeSolicitacoesSeguroMouseClicked
 
     private void homeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_homeButtonActionPerformed
-        runProgram();
+        if (verificarAtividadeEmJPanels() != null) {
+            if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza"
+                    + "que deseja sair do atual processo?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                List<JTextField> listaDeCampos = new ArrayList<>();
+                guardarCamposPainel(listaDeCampos, verificarAtividadeEmJPanels());
+                limparCamposGeral(listaDeCampos);
+                runProgram();
+            }
+        }
     }//GEN-LAST:event_homeButtonActionPerformed
 
     private void jButtonConfirmarDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonConfirmarDataActionPerformed
@@ -1691,6 +1692,19 @@ public class Painel_Corretor extends javax.swing.JFrame {
         preencherCamposAvaliarServico(selecionado);
     }//GEN-LAST:event_listaDeServicosSolicitacadosMouseClicked
 
+    private JPanel verificarAtividadeEmJPanels() {
+        if (jPanelAvaliarResidencia.isEnabled()) {
+            listaDeResidencias.setEnabled(true);
+            return jPanelAvaliarResidencia;
+        } else if (jPanelAvaliarSinistro.isEnabled()) {
+            return jPanelAvaliarSinistro;
+        } else if (jPanelSolicitacaoDeSeguro.isEnabled()) {
+            return jPanelSolicitacaoDeSeguro;
+        } else {
+            return jPanelGerenciarServico;
+        }
+    }
+
     private void limparCamposGeral(List<JTextField> lista) {
         for (int i = 0; i < lista.size(); i++) {
             lista.get(i).setText("");
@@ -1812,7 +1826,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         //habilitarButtonsTelaSinistro(condicao);
     }
 
-    private void preencherCamposAvaliarResidencia(int numeroLinha) {
+    private boolean preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
         String cep = "" + listaDeSolicitacao.get(numeroLinha).getResidencia().getCepRes();
@@ -1834,6 +1848,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
         terrenoPerigoso.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getTerrenoPerigoso());
         estruturaAmeacada.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getEstruturaAmeacada());
         localizacaoPerigosa.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getLocalizacaoPerigosa());
+        return true;
     }
 
     private void preencherCamposSolicitacaoSeguro(int numero) {

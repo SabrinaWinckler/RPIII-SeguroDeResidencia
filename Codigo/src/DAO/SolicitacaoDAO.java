@@ -26,6 +26,7 @@ import java.util.logging.Logger;
 public class SolicitacaoDAO {
 
     ResidenciaDAO daoResidencia = new ResidenciaDAO();
+    CandidatoDAO daoCandidato = new CandidatoDAO();
     DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
     public void create(Solicitacao solicitacao, String cpfPessoa) {
@@ -71,21 +72,22 @@ public class SolicitacaoDAO {
         List<Solicitacao> listDeSolicitacoes = new ArrayList<>();
         try {
             stmt = conexao.prepareStatement("SELECT * FROM solicitacaoseguro inner join residencia on "
-                    + "solicitacaoseguro.idResidencia = residencia.idResidencia inner join pessoa on "
-                    + "pessoa.idPessoa = solicitacaoseguro.idPessoa inner join candidato on "
-                    + "candidato.idPessoa = pessoa.idPessoa");
+                    + "solicitacaoseguro.idResidencia = residencia.idResidencia inner join candidato on "
+                    + "residencia.idProprietario = candidato.idCandidato");
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao();
                 solicitacao.setCodSolicitacao(rs.getInt("idSolicitacao"));
                 solicitacao.setDataSolicitacao(rs.getDate("dataSolicitacao"));
-                solicitacao.setValorSolicitacao(rs.getFloat("valorSolicitacao"));
                 solicitacao.setDataVisitaResidencia(rs.getDate("dataVisitaResidenciia"));
+                solicitacao.setValorSolicitacao(rs.getFloat("valorSolicitacao"));
                 solicitacao.setAprovadaSolicitacao(rs.getString("aprovada"));
                 solicitacao.setMotivoReprovacao(rs.getString("motivoReprovacao"));
                 solicitacao.setMotivoAlteracao(rs.getString("motivoAlterecao"));
                 solicitacao.setIdResidencia(rs.getInt("idResidencia"));
                 solicitacao.setResidencia(daoResidencia.read(solicitacao));
+                solicitacao.getResidencia().setCandidato(daoCandidato.readCandidato(rs.getInt("idCandidato")));
+                /*
                 solicitacao.getResidencia().getCandidato().setCodPessoa(rs.getInt("idPessoa"));
                 solicitacao.getResidencia().getCandidato().setCep(rs.getLong("cep"));
                 solicitacao.getResidencia().getCandidato().setSexo(rs.getString("sexo"));
@@ -100,6 +102,7 @@ public class SolicitacaoDAO {
                 solicitacao.getResidencia().getCandidato().setUsuarioCliente(rs.getString("nomeLogin"));
                 solicitacao.getResidencia().getCandidato().setSenhaCliente(rs.getString("senha"));
                 solicitacao.getResidencia().getCandidato().setEmail(rs.getString("email"));
+                 */
                 listDeSolicitacoes.add(solicitacao);
             }
         } catch (SQLException e) {
@@ -132,7 +135,7 @@ public class SolicitacaoDAO {
         try {
             stm = conexao.prepareStatement("update solicitacaoseguro set aprovada = '" + solicitacao.getAprovadaSolicitacao() + "',"
                     + " motivoReprovacao ='" + solicitacao.getMotivoReprovacao() + "' "
-                    + "where solicitacaoseguro.idPessoa =" + solicitacao.getResidencia().getCandidato().getCodPessoa()
+                    + "where solicitacaoseguro.idCandidato =" + solicitacao.getResidencia().getCandidato().getCodPessoa()
                     + " and solicitacaoseguro.idResidencia =" + solicitacao.getResidencia().getCodResidencia());
             stm.executeUpdate();
         } catch (SQLException e) {
@@ -151,7 +154,7 @@ public class SolicitacaoDAO {
             stmt = conexao.prepareStatement("select * from solicitacaoseguro "
                     + "inner join residencia on "
                     + "solicitacaoseguro.idResidencia = residencia.idResidencia "
-                    + "where solicitacaoseguro.idPessoa = " + idPessoa);
+                    + "where solicitacaoseguro.idCandidato = " + idPessoa);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 Solicitacao solicitacao = new Solicitacao();

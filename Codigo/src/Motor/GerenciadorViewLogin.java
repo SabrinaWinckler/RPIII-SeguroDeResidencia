@@ -21,12 +21,13 @@ public final class GerenciadorViewLogin {
 
     private static final GerenciadorViewLogin INSTANCE = new GerenciadorViewLogin();
     private final SeguradoDAO daoSegurado = new SeguradoDAO();
+    private final CandidatoDAO daoCandidato = new CandidatoDAO();
     private Candidato candidatoOnline;
     private Segurado seguradoOnline;
     private Corretor corretorOnline;
 
     public List<String> esqueciASenha() {
-        return null;
+        return daoCandidato.readUserNames();
     }
 
     public static GerenciadorViewLogin getInstance() {
@@ -34,7 +35,7 @@ public final class GerenciadorViewLogin {
     }
 
     public void updatePassword(String userName, String password) {
-        
+
     }
 
     public void setCandidatoOnline(Candidato pessoa) {
@@ -66,7 +67,6 @@ public final class GerenciadorViewLogin {
     }
 
     public List<Candidato> retornaCliente() {
-        CandidatoDAO daoCandidato = new CandidatoDAO();
         return daoCandidato.read();
     }
 

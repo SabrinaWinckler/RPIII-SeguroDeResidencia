@@ -33,7 +33,7 @@ public class Tela_Login extends javax.swing.JFrame {
         initComponents();
         usuarioEsqueciASenhajPanel.setVisible(false);
         EsqueciASenhajPanel.setVisible(false);
-        campoUsuario.setText("jojopaulin");
+        campoUsuario.setText("paulo");
         campoSenha.setText("0352635");
     }
 

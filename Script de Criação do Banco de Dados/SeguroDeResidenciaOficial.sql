@@ -37,7 +37,7 @@ CREATE TABLE `apolice` (
   `valorParcela` float DEFAULT NULL,
   PRIMARY KEY (`idApolice`),
   KEY `idSolicitacao` (`idSolicitacao`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,6 +46,7 @@ CREATE TABLE `apolice` (
 
 LOCK TABLES `apolice` WRITE;
 /*!40000 ALTER TABLE `apolice` DISABLE KEYS */;
+INSERT INTO `apolice` VALUES (1,1,NULL,2536,200,'2018/07/15',123456,'Jan/2018',125,'Paulo',4,50);
 /*!40000 ALTER TABLE `apolice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -101,7 +102,7 @@ CREATE TABLE `candidato` (
   UNIQUE KEY `Cpf` (`Cpf`),
   UNIQUE KEY `nomeLogin` (`nomeLogin`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -110,6 +111,7 @@ CREATE TABLE `candidato` (
 
 LOCK TABLES `candidato` WRITE;
 /*!40000 ALTER TABLE `candidato` DISABLE KEYS */;
+INSERT INTO `candidato` VALUES ('Paulo da Silva','Joao Aurelio, 55','55996856425','123456789-12','paulo','0352635','paulosilva@gmail.com','97547580','Masculino',1,'RS','Alegrete','Centro','1970-02-10');
 /*!40000 ALTER TABLE `candidato` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -123,19 +125,19 @@ DROP TABLE IF EXISTS `corretor`;
 CREATE TABLE `corretor` (
   `Nome` varchar(45) DEFAULT NULL,
   `Endereco` varchar(45) DEFAULT NULL,
-  `Telefone` bigint(12) DEFAULT NULL,
+  `Telefone` varchar(20) DEFAULT NULL,
   `Cpf` varchar(14) DEFAULT NULL,
   `nomeLogin` varchar(10) DEFAULT NULL,
   `senha` varchar(45) DEFAULT NULL,
   `email` varchar(45) DEFAULT NULL,
   `ativoCorretor` varchar(10) DEFAULT NULL,
-  `dataContratacao` datetime DEFAULT NULL,
-  `idCorretor` int(11) NOT NULL,
+  `dataContratacao` date DEFAULT NULL,
+  `idCorretor` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idCorretor`),
   UNIQUE KEY `Cpf` (`Cpf`),
   UNIQUE KEY `nomeLogin` (`nomeLogin`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -144,6 +146,7 @@ CREATE TABLE `corretor` (
 
 LOCK TABLES `corretor` WRITE;
 /*!40000 ALTER TABLE `corretor` DISABLE KEYS */;
+INSERT INTO `corretor` VALUES ('Matheus Montanha Paulon','Joaquim Rodrigues Paim, 410','55984564630','123456789-12','math','742617','matheusmontanhakk@gmail.com','offline','2018-07-14',1);
 /*!40000 ALTER TABLE `corretor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -161,10 +164,7 @@ CREATE TABLE `itemservico` (
   `aceitaSolicitacao` varchar(10) DEFAULT NULL,
   `descricaoSolicitacao` varchar(145) DEFAULT NULL,
   `idItemServico` int(11) NOT NULL AUTO_INCREMENT,
-  `idResidencia` int(11) NOT NULL,
-  PRIMARY KEY (`idItemServico`),
-  KEY `idResidencia` (`idResidencia`),
-  CONSTRAINT `itemservico_ibfk_1` FOREIGN KEY (`idResidencia`) REFERENCES `residencia` (`idResidencia`)
+  PRIMARY KEY (`idItemServico`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -205,7 +205,7 @@ CREATE TABLE `residencia` (
   `numeroAndares` decimal(45,0) DEFAULT NULL,
   PRIMARY KEY (`idResidencia`),
   KEY `idProprietario` (`idProprietario`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -214,6 +214,7 @@ CREATE TABLE `residencia` (
 
 LOCK TABLES `residencia` WRITE;
 /*!40000 ALTER TABLE `residencia` DISABLE KEYS */;
+INSERT INTO `residencia` VALUES (1,1,'RS','Alegrete','Centro','Casa Verde','97547580','Joao Aurelio, 55','200','75',2010,4,2,4,4,1,1,1);
 /*!40000 ALTER TABLE `residencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -236,6 +237,7 @@ CREATE TABLE `segurado` (
 
 LOCK TABLES `segurado` WRITE;
 /*!40000 ALTER TABLE `segurado` DISABLE KEYS */;
+INSERT INTO `segurado` VALUES (1);
 /*!40000 ALTER TABLE `segurado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -318,7 +320,7 @@ CREATE TABLE `solicitacaoseguro` (
   KEY `idResidencia` (`idResidencia`),
   KEY `idCandidato` (`idCandidato`),
   KEY `idCorretor` (`idCorretor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,6 +329,7 @@ CREATE TABLE `solicitacaoseguro` (
 
 LOCK TABLES `solicitacaoseguro` WRITE;
 /*!40000 ALTER TABLE `solicitacaoseguro` DISABLE KEYS */;
+INSERT INTO `solicitacaoseguro` VALUES (1,'2018-07-14','2018-07-15',500,'aprovada','null',NULL,1,1,1);
 /*!40000 ALTER TABLE `solicitacaoseguro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -341,10 +344,13 @@ CREATE TABLE `solicitacaoservico` (
   `idSolicitacaoServico` int(11) NOT NULL AUTO_INCREMENT,
   `idServico` int(11) NOT NULL,
   `idItemServico` int(11) NOT NULL,
+  `idApolice` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSolicitacaoServico`),
   KEY `idServico` (`idServico`),
-  KEY `idItemServico` (`idItemServico`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+  KEY `idItemServico` (`idItemServico`),
+  KEY `idApolice` (`idApolice`),
+  CONSTRAINT `solicitacaoservico_ibfk_1` FOREIGN KEY (`idApolice`) REFERENCES `apolice` (`idApolice`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -354,6 +360,32 @@ CREATE TABLE `solicitacaoservico` (
 LOCK TABLES `solicitacaoservico` WRITE;
 /*!40000 ALTER TABLE `solicitacaoservico` DISABLE KEYS */;
 /*!40000 ALTER TABLE `solicitacaoservico` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `solicitacaosinistro`
+--
+
+DROP TABLE IF EXISTS `solicitacaosinistro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `solicitacaosinistro` (
+  `idSolicitacaoSinistro` int(11) NOT NULL AUTO_INCREMENT,
+  `idSegurado` int(11) DEFAULT NULL,
+  `idSinistro` int(11) DEFAULT NULL,
+  PRIMARY KEY (`idSolicitacaoSinistro`),
+  KEY `idSegurado` (`idSegurado`),
+  KEY `idSinistro` (`idSinistro`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `solicitacaosinistro`
+--
+
+LOCK TABLES `solicitacaosinistro` WRITE;
+/*!40000 ALTER TABLE `solicitacaosinistro` DISABLE KEYS */;
+/*!40000 ALTER TABLE `solicitacaosinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -388,4 +420,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-14 17:46:55
+-- Dump completed on 2018-07-15  0:48:32

@@ -19,7 +19,7 @@ import Dominio.Apolice;
 import Dominio.ItemServico;
 import Dominio.Residencia;
 import java.util.Date;
-import java.util.List; 
+import java.util.List;
 import service.WebServiceCep;
 
 /**
@@ -42,7 +42,7 @@ public class Gerenciador {
             String nomePessoa, String cpf, String endereco, String telefone,
             String email, String usuarioCliente, String senhaCliente, String uf,
             String cidade, String bairro) throws NullPointerException {
-        
+
         Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa,
                 cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf,
                 cidade, bairro);
@@ -80,17 +80,16 @@ public class Gerenciador {
 
     public void registrarApolice(String bandeiraCartao, long numeroApolice,
             float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento,
-            String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao, int codSolicitacao) {
-        Apolice apolice = new Apolice(bandeiraCartao, numeroApolice, premioApolice,
-                dataContratacaoApolice, cartaoCreditoPagamento, vencimentoCartao,
-                codSegurancaCartao, nomeNoCartao);
+            String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao, int codSolicitacao,
+            int quantidadeParcelas,
+            float valorParcela) {
+        Apolice apolice = new Apolice(codSolicitacao, bandeiraCartao, numeroApolice, premioApolice, dataContratacaoApolice, cartaoCreditoPagamento, vencimentoCartao, codSegurancaCartao, nomeNoCartao, quantidadeParcelas, valorParcela);
         daoApolice.create(apolice, codSolicitacao);
     }
 
     public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        //return daoSolicitacao.listaSolicitacaoCliente(candidato);
-        return null;
+        return daoSolicitacao.listaSolicitacaoCliente(candidato.getCodPessoa());
     }
 
     public double calculaValorSolicitacao(Residencia residencia) {

@@ -87,4 +87,32 @@ public class CandidatoDAO {
         }
         return listaDeCandidato;
     }
+
+    public Candidato readCandidato(int codCandidato) {
+        for (Candidato candidato : read()) {
+            if (candidato.getCodPessoa() == codCandidato) {
+                return candidato;
+            }
+        }
+        return null;
+    }
+
+    public List<String> readUserNames() {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<String> listaDeUserNames = new ArrayList<>();
+        try {
+            stmt = conexao.prepareStatement("SELECT nomeLogin FROM candidato");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                listaDeUserNames.add(rs.getString("nomeLogin"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stmt, rs);
+        }
+        return listaDeUserNames;
+    }
 }

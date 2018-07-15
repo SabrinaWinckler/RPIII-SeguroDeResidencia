@@ -32,6 +32,7 @@ public class GerenciadorViewCorretor {
         listaDeSolicitacao = lista;
     }
 
+    /*
     private List<Solicitacao> organizarListaDeSolicitacoes() {
         listaDeSolicitacao = daoSolicitacao.read();
         boolean houveTroca;
@@ -63,10 +64,9 @@ public class GerenciadorViewCorretor {
             return listaDeSolicitacao;
         }
     }
-
+     */
     public List<Solicitacao> listaDeSolicitacoesPendentes() {
         listaDeSolicitacao = daoSolicitacao.read();
-        //listaDeSolicitacao = organizarListaDeSolicitacoes();
         List<Solicitacao> listaDeSolicitacoesPendendes = new ArrayList<>();
         listaDeSolicitacao.stream().filter((solicitacao) -> (solicitacao.getDataVisitaResidencia() == null)).forEachOrdered((solicitacao) -> {
             listaDeSolicitacoesPendendes.add(solicitacao);

@@ -35,7 +35,7 @@ public class ApoliceDAO {
                     + "bandeiraCartao, numeroApolice, premioApolice, "
                     + "dataContratacaoApolice, cartaoCreditoPgto, "
                     + "vencimentoCartao, codSegurancaCartao, nomeNoCartao, "
-                    + "quantidadeParcelas)"
+                    + "quantidadeParcelas, valorParcela)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
             stm.setInt(1, codSolicitacao);
             stm.setString(2, apolice.getBandeiraCartão());

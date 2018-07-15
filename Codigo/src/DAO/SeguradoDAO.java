@@ -27,12 +27,12 @@ public class SeguradoDAO {
         ResultSet rs;
         int idPessoa = -1;
         try {
-            stm = conexao.prepareStatement("select idPessoa from pessoa where pessoa.Cpf = " + cpf);
+            stm = conexao.prepareStatement("select idCandidato from pessoa where candidato.Cpf = " + cpf);
             rs = stm.executeQuery();
             while (rs.next()) {
                 idPessoa = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("insert into segurado(idPessoa)value(?)");
+            stm = conexao.prepareStatement("insert into segurado(idCandidato)value(?)");
             stm.setInt(1, idPessoa);
             stm.executeUpdate();
         } catch (SQLException e) {
@@ -52,12 +52,11 @@ public class SeguradoDAO {
         String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
         int codPessoa;
         try {
-            stmt = conexao.prepareStatement("select * from pessoa inner join "
-                    + "candidato on pessoa.idPessoa = candidato.idPessoa inner join "
-                    + "segurado on segurado.idPessoa = candidato.idPessoa");
+            stmt = conexao.prepareStatement("select * from candidato inner join "
+                    + "segurado on segurado.idSegurado = candidato.idCandidato");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                codPessoa = rs.getInt("idPessoa");
+                codPessoa = rs.getInt("idSegurado");
                 cep = rs.getLong("cep");
                 sexo = rs.getString("sexo");
                 uf = rs.getString("ufCandidato");
