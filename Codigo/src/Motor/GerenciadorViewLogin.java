@@ -7,7 +7,6 @@ package Motor;
 
 import DAO.CandidatoDAO;
 import DAO.CorretorDAO;
-import DAO.PessoaDAO;
 import DAO.SeguradoDAO;
 import Dominio.Candidato;
 import Dominio.Corretor;
@@ -21,14 +20,13 @@ import java.util.List;
 public final class GerenciadorViewLogin {
 
     private static final GerenciadorViewLogin INSTANCE = new GerenciadorViewLogin();
-    private final PessoaDAO daoPessoa = new PessoaDAO();
     private final SeguradoDAO daoSegurado = new SeguradoDAO();
     private Candidato candidatoOnline;
     private Segurado seguradoOnline;
     private Corretor corretorOnline;
 
     public List<String> esqueciASenha() {
-        return daoPessoa.readUserName();
+        return null;
     }
 
     public static GerenciadorViewLogin getInstance() {
@@ -36,7 +34,7 @@ public final class GerenciadorViewLogin {
     }
 
     public void updatePassword(String userName, String password) {
-        daoPessoa.updatePassword(userName, password);
+        
     }
 
     public void setCandidatoOnline(Candidato pessoa) {
@@ -78,6 +76,6 @@ public final class GerenciadorViewLogin {
     }
 
     public List<String> listDeUserName() {
-        return daoPessoa.readUserName();
+        return null;
     }
 }

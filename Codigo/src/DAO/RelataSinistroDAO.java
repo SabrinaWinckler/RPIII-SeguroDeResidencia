@@ -25,19 +25,21 @@ public class RelataSinistroDAO {
     public void create(String cpfSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-        int idPessoa = -1;
+        int idSegurado = -1;
         int idSinistro = -1;
         ResultSet rs;
         try {
-            stm = conexao.prepareStatement("select idPessoa, max(idSinistro) from pessoa, sinistro where pessoa.Cpf =" + "'" + cpfSegurado + "'");
+            stm = conexao.prepareStatement("select idSegurado, max(idSinistro) from segurado,"
+                    + " sinistro where pessoa.Cpf =" + "'" + cpfSegurado + "'");
             rs = stm.executeQuery();
             while (rs.next()) {
-                idPessoa = rs.getInt("idPessoa");
+                idSegurado = rs.getInt("idSegurado");
                 idSinistro = rs.getInt("idSinistro");
             }
-            stm = conexao.prepareStatement("insert into relatasinistro");
-            stm.setInt(1, idSinistro);
-            stm.setInt(2, idPessoa);
+            stm = conexao.prepareStatement("insert into solicitacaosinistro(idSegurado, idSinistro)"
+                    + "values(?,?)");
+            stm.setInt(1, idSegurado);
+            stm.setInt(2, idSinistro);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(RelataSinistroDAO.class.getName()).log(Level.SEVERE, null, e);

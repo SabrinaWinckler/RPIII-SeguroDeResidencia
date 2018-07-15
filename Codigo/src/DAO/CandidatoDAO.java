@@ -24,24 +24,23 @@ public class CandidatoDAO {
     public void create(Candidato candidato) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
-        ResultSet rs;
-        int idPessoa = -1;
         try {
-            stm = conexao.prepareStatement("select max(pessoa.idPessoa) from pessoa");
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                idPessoa = rs.getInt(1);
-            }
-            stm = conexao.prepareStatement("INSERT INTO candidato(cep, sexo, idPessoa, "
-                    + "ufCandidato, cidadeCandidato,"
-                    + " bairroCandidato, dataNascimento)VALUES(?,?,?,?,?,?,?)");
-            stm.setLong(1, candidato.getCep());
-            stm.setString(2, candidato.getSexo());
-            stm.setInt(3, idPessoa);
-            stm.setString(4, candidato.getUf());
-            stm.setString(5, candidato.getCidade());
-            stm.setString(6, candidato.getBairro());
-            stm.setString(7, candidato.getDataNescimento());
+            stm = conexao.prepareStatement("INSERT INTO candidato(Nome, Endereco, Telefone, Cpf, nomeLogin,"
+                    + " senha, email, cep, sexo, ufCandidato, cidadeCandidato,"
+                    + " bairroCandidato, dataNascimento)VALUES(?,?,?,?,?,?,?,?,?,?,?,?,?)");
+            stm.setString(1, candidato.getNomePessoa());
+            stm.setString(2, candidato.getEndereco());
+            stm.setString(3, candidato.getTelefone());
+            stm.setString(4, candidato.getCpf());
+            stm.setString(5, candidato.getUsuarioCliente());
+            stm.setString(6, candidato.getSenhaCliente());
+            stm.setString(7, candidato.getEmail());
+            stm.setString(8, String.valueOf(candidato.getCep()));
+            stm.setString(9, candidato.getSexo());
+            stm.setString(11, candidato.getUf());
+            stm.setString(12, candidato.getCidade());
+            stm.setString(13, candidato.getBairro());
+            stm.setString(14, candidato.getDataNescimento());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -60,11 +59,10 @@ public class CandidatoDAO {
         ResultSet rs = null;
         ArrayList<Candidato> listaDeCandidato = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM candidato inner join pessoa on "
-                    + "candidato.idPessoa = pessoa.idPessoa");
+            stmt = conexao.prepareStatement("SELECT * FROM candidato");
             rs = stmt.executeQuery();
             while (rs.next()) {
-                codPessoa = rs.getInt("idPessoa");
+                codPessoa = rs.getInt("idCandidato");
                 cep = rs.getLong("cep");
                 sexo = rs.getString("sexo");
                 uf = rs.getString("ufCandidato");

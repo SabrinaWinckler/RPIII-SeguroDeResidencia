@@ -31,18 +31,23 @@ public class ApoliceDAO {
         ResultSet rs = null;
         String data = dataFormatada.format(apolice.getDataContratacaoApolice());
         try {
-            stm = conexao.prepareStatement("INSERT INTO apolice(bandeiraCartao, numeroApolice, premioApolice,"
-                    + " dataContratacaoApolice, cartaoCreditoPgto, vencimentoCartao, codSegurancaCartao, nomeNoCartao, idSegurado)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?)");
-            stm.setString(1, apolice.getBandeiraCartão());
-            stm.setLong(2, apolice.getNumeroApolice());
-            stm.setFloat(3, apolice.getPremioApolice());
-            stm.setString(4, data);
-            stm.setString(5, apolice.getCartaoCreditoPagamento());
-            stm.setString(6, apolice.getVencimentoCartao());
-            stm.setLong(7, apolice.getCodSegurancaCartao());
-            stm.setString(8, apolice.getNomeNoCartao());
-            stm.setInt(9, codSolicitacao);
+            stm = conexao.prepareStatement("INSERT INTO apolice(idSolicitacao, "
+                    + "bandeiraCartao, numeroApolice, premioApolice, "
+                    + "dataContratacaoApolice, cartaoCreditoPgto, "
+                    + "vencimentoCartao, codSegurancaCartao, nomeNoCartao, "
+                    + "quantidadeParcelas)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+            stm.setInt(1, codSolicitacao);
+            stm.setString(2, apolice.getBandeiraCartão());
+            stm.setLong(3, apolice.getNumeroApolice());
+            stm.setFloat(4, apolice.getPremioApolice());
+            stm.setString(5, data);
+            stm.setString(6, apolice.getCartaoCreditoPagamento());
+            stm.setString(7, apolice.getVencimentoCartao());
+            stm.setLong(8, apolice.getCodSegurancaCartao());
+            stm.setString(9, apolice.getNomeNoCartao());
+            stm.setInt(10, apolice.getQuantidadeParcelas());
+            stm.setFloat(11, apolice.getValorParcela());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -64,7 +69,7 @@ public class ApoliceDAO {
                     + "from residencia inner join solicitacaoseguro on "
                     + "solicitacaoseguro.idResidencia = residencia.idResidencia inner join apolice on "
                     + "apolice.idSolicitacao = solicitacaoseguro.idSolicitacao inner join segurado on "
-                    + "segurado.idPessoa = " + segurado.getIdSegurado());
+                    + "segurado.idSegurado = " + segurado.getIdSegurado());
             rs = stm.executeQuery();
             while (rs.next()) {
                 listApolicePorResidencia.add(rs.getString("enderecoResidencia"));
@@ -73,7 +78,6 @@ public class ApoliceDAO {
             Logger.getLogger(ApoliceDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
-
         }
         return listApolicePorResidencia;
 
@@ -85,11 +89,11 @@ public class ApoliceDAO {
         ResultSet rs = null;
         int quantidade = -1;
         try {
-            stm = conexao.prepareStatement("select count(servico.idServico) from"
-                    + " servico inner join solicitacaoservico on "
-                    + "solicitacaoservico.idServico = servico.idServico inner join apolice on "
-                    + "apolice.idApolice = solicitacaoservico.idApolice where servico.idServico = " + idServico
-                    + " and apolice.idApolice = " + idApolice);
+            stm = conexao.prepareStatement("select count(servico.idServico) "
+                    + "from servico inner join solicitacaoservico on "
+                    + "solicitacaoservico.idServico = " + idServico + " inner join itemservico on "
+                    + "itemservico.idItemServico = solicitacaoservico.idItemServico inner join apolice on "
+                    + "solicitacaoservico.idApolice = " + idApolice);
             rs = stm.executeQuery();
             while (rs.next()) {
                 quantidade = rs.getInt("idServico");

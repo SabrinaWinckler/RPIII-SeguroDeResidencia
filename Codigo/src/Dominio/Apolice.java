@@ -14,6 +14,7 @@ import java.util.Date;
 public class Apolice {
 
     private int codApolice;
+    private int codSolicitacao;
     private String bandeiraCartão;
     private long numeroApolice;
     private float premioApolice;
@@ -22,6 +23,23 @@ public class Apolice {
     private String vencimentoCartao;
     private long codSegurancaCartao;
     private String nomeNoCartao;
+    private int quantidadeParcelas;
+    private float valorParcela;
+
+    public Apolice(int codApolice, int codSolicitacao, String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao, int quantidadeParcelas, float valorParcela) {
+        this.codApolice = codApolice;
+        this.codSolicitacao = codSolicitacao;
+        this.bandeiraCartão = bandeiraCartão;
+        this.numeroApolice = numeroApolice;
+        this.premioApolice = premioApolice;
+        this.dataContratacaoApolice = dataContratacaoApolice;
+        this.cartaoCreditoPagamento = cartaoCreditoPagamento;
+        this.vencimentoCartao = vencimentoCartao;
+        this.codSegurancaCartao = codSegurancaCartao;
+        this.nomeNoCartao = nomeNoCartao;
+        this.quantidadeParcelas = quantidadeParcelas;
+        this.valorParcela = valorParcela;
+    }
 
     public Apolice(int codApolice, String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao) {
         this.codApolice = codApolice;
@@ -170,6 +188,48 @@ public class Apolice {
      */
     public void setNomeNoCartao(String nomeNoCartao) {
         this.nomeNoCartao = nomeNoCartao;
+    }
+
+    /**
+     * @return the codSolicitacao
+     */
+    public int getCodSolicitacao() {
+        return codSolicitacao;
+    }
+
+    /**
+     * @param codSolicitacao the codSolicitacao to set
+     */
+    public void setCodSolicitacao(int codSolicitacao) {
+        this.codSolicitacao = codSolicitacao;
+    }
+
+    /**
+     * @return the quantidadeParcelas
+     */
+    public int getQuantidadeParcelas() {
+        return quantidadeParcelas;
+    }
+
+    /**
+     * @param quantidadeParcelas the quantidadeParcelas to set
+     */
+    public void setQuantidadeParcelas(int quantidadeParcelas) {
+        this.quantidadeParcelas = quantidadeParcelas;
+    }
+
+    /**
+     * @return the valorParcela
+     */
+    public float getValorParcela() {
+        return valorParcela;
+    }
+
+    /**
+     * @param valorParcela the valorParcela to set
+     */
+    public void setValorParcela(float valorParcela) {
+        this.valorParcela = valorParcela;
     }
 
 }
