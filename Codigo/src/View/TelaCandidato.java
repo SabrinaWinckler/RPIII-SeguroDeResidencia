@@ -273,6 +273,8 @@ public class TelaCandidato extends javax.swing.JFrame {
         jLabel38 = new javax.swing.JLabel();
         jLabel36 = new javax.swing.JLabel();
         campoValorParcelado = new javax.swing.JTextField();
+        comboBoxBandeira = new javax.swing.JComboBox<>();
+        jLabel58 = new javax.swing.JLabel();
         painelServico = new javax.swing.JPanel();
         jPanelListaServicos = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
@@ -738,8 +740,8 @@ public class TelaCandidato extends javax.swing.JFrame {
         jPanelPagamento.add(campoImpressoNomeCartao, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 250, 30));
 
         campoValorSeguroPagamento.setEditable(false);
-        jPanelPagamento.add(campoValorSeguroPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(530, 290, 70, 30));
-        jPanelPagamento.add(campoCodSegurancaCartao, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, 60, 30));
+        jPanelPagamento.add(campoValorSeguroPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 270, 70, 30));
+        jPanelPagamento.add(campoCodSegurancaCartao, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 60, 30));
 
         jLabel42.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel42.setText("Número Cartão:");
@@ -750,24 +752,24 @@ public class TelaCandidato extends javax.swing.JFrame {
         jPanelPagamento.add(jLabel43, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 240, 190, -1));
 
         jLabel44.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel44.setText("Código de Segurança:");
-        jPanelPagamento.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 340, 170, -1));
+        jLabel44.setText("Bandeira do Cartão:");
+        jPanelPagamento.add(jLabel44, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 340, 150, -1));
 
         jLabel45.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel45.setText("Validade:");
-        jPanelPagamento.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 300, 70, -1));
+        jPanelPagamento.add(jLabel45, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 270, 70, -1));
 
         mesComboBox.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         mesComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez" }));
-        jPanelPagamento.add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 300, 60, -1));
+        jPanelPagamento.add(mesComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 270, 60, -1));
 
         anoComboBox.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         anoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "2018", "2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026", "2027", "2028", "2029", "2030", " " }));
-        jPanelPagamento.add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 300, -1, -1));
+        jPanelPagamento.add(anoComboBox, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 270, -1, -1));
 
         jLabel46.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel46.setText("Parcelar em:");
-        jPanelPagamento.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 90, -1));
+        jPanelPagamento.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 310, 90, -1));
 
         quantidadeVezesParcela.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         quantidadeVezesParcela.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
@@ -776,7 +778,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 quantidadeVezesParcelaItemStateChanged(evt);
             }
         });
-        jPanelPagamento.add(quantidadeVezesParcela, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 50, 20));
+        jPanelPagamento.add(quantidadeVezesParcela, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 310, 50, 20));
 
         buttonConfirmar.setBackground(new java.awt.Color(0, 153, 255));
         buttonConfirmar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -802,11 +804,11 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         jLabel38.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel38.setText("Valor do Seguro:");
-        jPanelPagamento.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
+        jPanelPagamento.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 280, -1, -1));
 
         jLabel36.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel36.setText("de R$:");
-        jPanelPagamento.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 50, -1));
+        jPanelPagamento.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 310, 50, -1));
 
         campoValorParcelado.setEditable(false);
         campoValorParcelado.addActionListener(new java.awt.event.ActionListener() {
@@ -814,7 +816,15 @@ public class TelaCandidato extends javax.swing.JFrame {
                 campoValorParceladoActionPerformed(evt);
             }
         });
-        jPanelPagamento.add(campoValorParcelado, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 340, 70, 30));
+        jPanelPagamento.add(campoValorParcelado, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 310, 70, 30));
+
+        comboBoxBandeira.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        comboBoxBandeira.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Visa", "MasterCard", "Elo", "HiperCard" }));
+        jPanelPagamento.add(comboBoxBandeira, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 340, -1, -1));
+
+        jLabel58.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel58.setText("Código de Segurança:");
+        jPanelPagamento.add(jLabel58, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 300, 170, -1));
 
         painelP.add(jPanelPagamento, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -2429,6 +2439,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JTextField cep;
     private javax.swing.JCheckBox chaveiro;
     private javax.swing.JTextField cidade;
+    private javax.swing.JComboBox<String> comboBoxBandeira;
     private javax.swing.JComboBox<String> comboSinistro;
     private javax.swing.JTextField comodos;
     private javax.swing.JButton confirmResidencia;
@@ -2503,6 +2514,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
+    private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
