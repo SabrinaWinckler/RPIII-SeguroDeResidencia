@@ -355,12 +355,10 @@ public class TelaCandidato extends javax.swing.JFrame {
         jScrollPane17 = new javax.swing.JScrollPane();
         listaMinhasSolicitacoes = new javax.swing.JTable();
         buttonFecharMinhasSolicitacoes = new javax.swing.JButton();
-        editar = new javax.swing.JButton();
         cancelarSolicitacao = new javax.swing.JButton();
         nova = new javax.swing.JButton();
         jLabel60 = new javax.swing.JLabel();
         minhasSolicitacoes = new javax.swing.JButton();
-        editarSelecionado = new javax.swing.JButton();
         excluirSelecionado = new javax.swing.JButton();
         buttonHome = new javax.swing.JButton();
         relatarSinistro = new javax.swing.JButton();
@@ -513,10 +511,9 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         jPanelListaSeguros.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 560, 160));
 
-        jLabel23.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel23.setForeground(new java.awt.Color(1, 45, 90));
+        jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
         jLabel23.setText("Selecione a Solicitação Desejada:");
-        jPanelListaSeguros.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
+        jPanelListaSeguros.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
 
         painelP.add(jPanelListaSeguros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -974,7 +971,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         add.setBackground(new java.awt.Color(151, 53, 255));
         add.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
-        add.setText("Concluir");
+        add.setText("Adicionar");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
@@ -1128,7 +1125,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 confirmarEdicaoActionPerformed(evt);
             }
         });
-        painelSolicitacao.add(confirmarEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 110, -1));
+        painelSolicitacao.add(confirmarEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 110, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Lista de Bens de sua Residência:");
@@ -1376,18 +1373,6 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         PanelSolicitarSeguro.add(panelComListaSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 510, 230));
 
-        editar.setBackground(new java.awt.Color(0, 153, 255));
-        editar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        editar.setForeground(new java.awt.Color(255, 255, 255));
-        editar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/plus-circular-button.png"))); // NOI18N
-        editar.setText("    Editar Solicitação");
-        editar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarActionPerformed(evt);
-            }
-        });
-        PanelSolicitarSeguro.add(editar, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 250, 220, 40));
-
         cancelarSolicitacao.setBackground(new java.awt.Color(0, 153, 255));
         cancelarSolicitacao.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         cancelarSolicitacao.setForeground(new java.awt.Color(255, 255, 255));
@@ -1430,17 +1415,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         PanelSolicitarSeguro.add(minhasSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 220, 40));
 
         painelP.add(PanelSolicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
-
-        editarSelecionado.setBackground(new java.awt.Color(153, 51, 255));
-        editarSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        editarSelecionado.setForeground(new java.awt.Color(255, 255, 255));
-        editarSelecionado.setText("Editar");
-        editarSelecionado.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarSelecionadoActionPerformed(evt);
-            }
-        });
-        painelP.add(editarSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
 
         excluirSelecionado.setBackground(new java.awt.Color(153, 51, 255));
         excluirSelecionado.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1584,7 +1558,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         confirmarEdicao.setVisible(true);
         painelSolicitacao.setVisible(true);
         cancelarSolicitacao.setVisible(false);
-        editar.setVisible(false);
+
         nova.setVisible(false);
         minhasSolicitacoes.setVisible(false);
 
@@ -1604,18 +1578,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         nova.setVisible(false);*/
     }//GEN-LAST:event_cancelarSolicitacaoActionPerformed
 
-    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
-        //recuperar dados da solicitação que ele deseja editar
-        //gerenciador.listaSolicitacaoCliente(candidato);
-        if (quantidadeDeSolicitacao > 0) {
-            visualizarSolicitacao();
-            
-        } else {
-            JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
-        }
-
-    }//GEN-LAST:event_editarActionPerformed
-
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_areaConstruidaActionPerformed
@@ -1627,7 +1589,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         painelSolicitacao.setVisible(false);
         minhasSolicitacoes.setVisible(true);
         cancelarSolicitacao.setVisible(true);
-        editar.setVisible(true);
+
         nova.setVisible(true);
     }//GEN-LAST:event_cancelarActionPerformed
 
@@ -1747,18 +1709,10 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
         selecionado = listaSolicitacaoCandidato.getSelectedRow();
-        if (!editarSelecionado.isVisible() && !excluirSelecionado.isVisible()) {
-            if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().equalsIgnoreCase("aprovada")) {
-                solicitacaoAprovada();
-                preencherCamposResultado(selecionado);
-            } else {
-                solicitacaoRecusada();
-                preencherCamposReprovado(selecionado);
-            }
-        } else {
+        
             preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
             controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
-        }
+        
 
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
@@ -1783,17 +1737,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
         visualizarSolicitacao();
     }//GEN-LAST:event_buttonVoltarActionPerformed
-
-    private void editarSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarSelecionadoActionPerformed
-     
-        confirmarEdicao.setVisible(true);
-        cancelarSolicitacao.setVisible(false);
-        nova.setVisible(false);
-        jPanelListaSeguros.setVisible(false);
-        painelSolicitacao.setVisible(true);
-        editarSelecionado.setVisible(false);
-        excluirSelecionado.setVisible(false);
-    }//GEN-LAST:event_editarSelecionadoActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja confirmar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
@@ -1882,7 +1825,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHomeActionPerformed
 
     private void confirmarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEdicaoActionPerformed
-        try {
+      /*  try {
             ExceptionEmptySpace.informaDado(cep.getText()); //parse long
             ExceptionEmptySpace.informaDado(uf.getText());
             ExceptionEmptySpace.informaDado(cidade.getText());
@@ -1896,7 +1839,7 @@ public class TelaCandidato extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(areat.getText());//parse int
             ExceptionEmptySpace.informaDado(anoC.getText());///parse int
             ExceptionEmptySpace.informaDado(descRes.getText());
-            ExceptionEmptySpace.informaDado(areaConstruida.getText());
+            ExceptionEmptySpace.informaDado(areaConstruida.getText()); */
             
             int numeroCandidato = Integer.parseInt(numero.getText());
             long cepCandidato = Long.parseLong(cep.getText());
@@ -1913,19 +1856,20 @@ public class TelaCandidato extends javax.swing.JFrame {
             int localizacao = localizacaoP.getValue();
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
+            long cod = 56465486;
             
-            controlador.atualizarSolicitacaoResidenciaEditada(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
+            controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
-                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura);
-            JOptionPane.showMessageDialog(painelP, "Sua solicitação foi editada com susesso!");
+                    anoConstrucao, rua.getText(), Integer.parseInt(l.getText()), Integer.parseInt(t.getText()), Integer.parseInt(e.getText()), candidato.getCpf());
+            JOptionPane.showMessageDialog(painelP, "Sua solicitação foi enviada com susesso!");
             cancelarSolicitacao.setVisible(true);
-            editar.setVisible(true);
+         
             nova.setVisible(true);
             painelSolicitacao.setVisible(false);
             
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
-        }
+       // } catch (HeadlessException | NumberFormatException e) {
+      //      JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
+       // }
         
 
     }//GEN-LAST:event_confirmarEdicaoActionPerformed
@@ -2053,8 +1997,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         jPanelPagamento.setVisible(false);
         jPanelSolicitacaoReprovada.setVisible(false);
         jPanelListaSeguros.setVisible(false);
-        editar.setVisible(false);
-        editarSelecionado.setVisible(false);
+     
         excluirSelecionado.setVisible(false);
         nova.setVisible(false);
         cancelarSolicitacao.setVisible(false);
@@ -2082,7 +2025,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     public void visualizarOpcoesSolicitacao() {
         ocultarTudo();
         PanelSolicitarSeguro.setVisible(true);
-        editar.setVisible(true);
+     
         cancelarSolicitacao.setVisible(true);
         nova.setVisible(true);
         minhasSolicitacoes.setVisible(true);
@@ -2293,8 +2236,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JTextField descRes;
     private javax.swing.JTextArea descricaoSinistro;
     private javax.swing.JLabel e;
-    private javax.swing.JButton editar;
-    private javax.swing.JButton editarSelecionado;
     private javax.swing.JCheckBox eletricista;
     private javax.swing.JCheckBox encanador;
     private javax.swing.JButton enviarServico;

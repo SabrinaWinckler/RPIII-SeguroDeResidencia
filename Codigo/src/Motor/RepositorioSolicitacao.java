@@ -100,11 +100,11 @@ public class RepositorioSolicitacao {
             String desc, int numRes, long cepRes, int qntComodos,
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacao,
-            int terreno, int estrutura, long cpf) {
+            int terreno, int estrutura, String cpf) {
         
         Residencia temp = new Residencia(ruaRes, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, numAndares, anoConstrucao, ruaRes, ruaRes, cidade, bairro, areaC, bens, localizacao, terreno, estrutura);
         Date data = new Date();
-        geraDAOResidencia().create(temp, String.valueOf(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCpf()));
+        geraDAOResidencia().create(temp, cpf  );
         BemDAO daoBem = new BemDAO();
         for (int i = 0; i < bens.size(); i++) {
             daoBem.create(bens.get(i));
