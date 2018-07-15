@@ -461,7 +461,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         if (campoNome.getText().isEmpty()) {
             campoNome.setBorder(new LineBorder(Color.RED));
         } else {
-            campoNome.setBorder(new LineBorder(Color.BLACK));
+            campoNome.setBorder(null);
         }
     }//GEN-LAST:event_campoNomeFocusLost
 
@@ -469,7 +469,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         if (telefoneCampo.getText().isEmpty()) {
             telefoneCampo.setBorder(new LineBorder(Color.RED));
         } else {
-            telefoneCampo.setBorder(new LineBorder(Color.BLACK));
+            telefoneCampo.setBorder(null);
         }
     }//GEN-LAST:event_telefoneCampoFocusLost
 
@@ -488,7 +488,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
             }
             if (!existe) {
                 usuarioCliente = usuarioCampo.getText();
-                usuarioCampo.setBorder(new LineBorder(Color.black));
+                usuarioCampo.setBorder(null);
             }
         } else {
             usuarioCampo.setBorder(new LineBorder(Color.RED));
@@ -499,7 +499,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         if (senhaCampo.getText().isEmpty()) {
             senhaCampo.setBorder(new LineBorder(Color.RED));
         } else {
-            senhaCampo.setBorder(new LineBorder(Color.BLACK));
+            senhaCampo.setBorder(null);
         }
     }//GEN-LAST:event_senhaCampoFocusLost
     private boolean verificarTodosOsCampos() {
@@ -523,7 +523,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
         if (campo.getText().isEmpty()) {
             campo.setBorder(new LineBorder(Color.RED));
         } else {
-            campo.setBorder(new LineBorder(Color.BLACK));
+            campo.setBorder(null);
         }
     }
 

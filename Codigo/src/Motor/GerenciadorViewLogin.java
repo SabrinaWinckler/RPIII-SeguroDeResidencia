@@ -11,6 +11,7 @@ import DAO.SeguradoDAO;
 import entity.Candidato;
 import entity.Corretor;
 import entity.Segurado;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -22,6 +23,7 @@ public final class GerenciadorViewLogin {
     private static final GerenciadorViewLogin INSTANCE = new GerenciadorViewLogin();
     private final SeguradoDAO daoSegurado = new SeguradoDAO();
     private final CandidatoDAO daoCandidato = new CandidatoDAO();
+    private final CorretorDAO daoCorretor = new CorretorDAO();
     private Candidato candidatoOnline;
     private Segurado seguradoOnline;
     private Corretor corretorOnline;
@@ -76,6 +78,13 @@ public final class GerenciadorViewLogin {
     }
 
     public List<String> listDeUserName() {
-        return null;
+        List<String> listaComUserName = new ArrayList<>();
+        daoCandidato.readUserNames().forEach((string) -> {
+            listaComUserName.add(string);
+        });
+        daoCorretor.readUserNames().forEach((string) -> {
+            listaComUserName.add(string);
+        });
+        return listaComUserName;
     }
 }

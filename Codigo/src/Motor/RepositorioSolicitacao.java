@@ -157,9 +157,6 @@ public class RepositorioSolicitacao {
         
         return geraDAOServico().servicosCadastrados();
     }
-    public void mensagemCandidato(String email, String mensagem){
-        
-    }
 
     @Override
     public String toString() {

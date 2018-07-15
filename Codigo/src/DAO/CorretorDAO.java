@@ -74,4 +74,23 @@ public class CorretorDAO {
         }
         return listaDeCorretores;
     }
+
+    public List<String> readUserNames() {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        ArrayList<String> listaDeUserNames = new ArrayList<>();
+        try {
+            stmt = conexao.prepareStatement("SELECT nomeLogin FROM corretor");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                listaDeUserNames.add(rs.getString("nomeLogin"));
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stmt, rs);
+        }
+        return listaDeUserNames;
+    }
 }
