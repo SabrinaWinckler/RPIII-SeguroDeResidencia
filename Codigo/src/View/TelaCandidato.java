@@ -515,9 +515,10 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         jPanelListaSeguros.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 130, 560, 160));
 
-        jLabel23.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
+        jLabel23.setForeground(new java.awt.Color(1, 45, 90));
         jLabel23.setText("Selecione a Solicitação Desejada:");
-        jPanelListaSeguros.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 90, -1, -1));
+        jPanelListaSeguros.add(jLabel23, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 90, -1, -1));
 
         painelP.add(jPanelListaSeguros, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
