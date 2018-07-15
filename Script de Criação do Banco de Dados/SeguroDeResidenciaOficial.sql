@@ -16,6 +16,44 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Table structure for table `alteracaosolicitacaoseguro`
+--
+
+DROP TABLE IF EXISTS `alteracaosolicitacaoseguro`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `alteracaosolicitacaoseguro` (
+  `idRegistroAlteracao` int(11) NOT NULL AUTO_INCREMENT,
+  `idSolicitacao` int(11) NOT NULL,
+  `idCandidato` int(11) DEFAULT NULL,
+  `idCorretor` int(11) DEFAULT NULL,
+  `quantidadeComodos` int(11) DEFAULT NULL,
+  `quantidadeBanheiros` int(11) DEFAULT NULL,
+  `quantidadeGaragens` int(11) DEFAULT NULL,
+  `anoConstrucao` int(11) DEFAULT NULL,
+  `areaConstruida` varchar(45) DEFAULT NULL,
+  `areaTotal` varchar(45) DEFAULT NULL,
+  `terrenoPerigoso` int(11) DEFAULT NULL,
+  `estruturaAmeacada` int(11) DEFAULT NULL,
+  `localizacaoPerigosa` int(11) DEFAULT NULL,
+  `dataAlteracao` date DEFAULT NULL,
+  PRIMARY KEY (`idRegistroAlteracao`),
+  KEY `idSolicitacao` (`idSolicitacao`),
+  KEY `idCandidato` (`idCandidato`),
+  KEY `idCorretor` (`idCorretor`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `alteracaosolicitacaoseguro`
+--
+
+LOCK TABLES `alteracaosolicitacaoseguro` WRITE;
+/*!40000 ALTER TABLE `alteracaosolicitacaoseguro` DISABLE KEYS */;
+/*!40000 ALTER TABLE `alteracaosolicitacaoseguro` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `apolice`
 --
 
@@ -40,7 +78,7 @@ CREATE TABLE `apolice` (
   KEY `idSolicitacao` (`idSolicitacao`),
   KEY `idSegurado` (`idSegurado`),
   CONSTRAINT `apolice_ibfk_1` FOREIGN KEY (`idSegurado`) REFERENCES `segurado` (`idSegurado`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -49,6 +87,7 @@ CREATE TABLE `apolice` (
 
 LOCK TABLES `apolice` WRITE;
 /*!40000 ALTER TABLE `apolice` DISABLE KEYS */;
+INSERT INTO `apolice` VALUES (8,1,NULL,'2536',200,'2018/07/15','4545','Jan/2018',140,'Matheus',4,50,1);
 /*!40000 ALTER TABLE `apolice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -239,6 +278,7 @@ CREATE TABLE `segurado` (
 
 LOCK TABLES `segurado` WRITE;
 /*!40000 ALTER TABLE `segurado` DISABLE KEYS */;
+INSERT INTO `segurado` VALUES (1);
 /*!40000 ALTER TABLE `segurado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -421,4 +461,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-15 13:38:44
+-- Dump completed on 2018-07-15 14:56:29
