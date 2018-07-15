@@ -1559,7 +1559,7 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
         if(comboSinistro.getItemCount() == 0){
-        preencherComboBox();
+        //preencherComboBox();
         }
         readTableApolices(segurado);
         visualizarListaDeApolices("Relatar Sinistro");
@@ -2164,7 +2164,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         
     }
     
-    private void preencherComboBox() {
+    //private void preencherComboBox() {
 
         for (int i = 0; i < controlador.lerTipoSinistro().size(); i++) {
             comboSinistro.addItem(controlador.lerTipoSinistro().get(i).getTipoSinistro());
@@ -2173,7 +2173,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
         //}
 
-    }
+    //}
     
     private void habilitarOpcoesSegurado(boolean condicao) {
         relatarSinistro.setEnabled(condicao);
