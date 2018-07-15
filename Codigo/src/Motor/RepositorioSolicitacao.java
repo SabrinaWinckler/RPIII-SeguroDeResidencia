@@ -15,6 +15,7 @@ import entity.TipoSinistro;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
 public class RepositorioSolicitacao {
 
@@ -152,6 +153,14 @@ public class RepositorioSolicitacao {
 
     public List<TipoSinistro> lerTipoSinistro(){
         return geraDAOTipoSinistro().read();
+    }
+    public void tabelaBens(DefaultTableModel tabela){
+        for (Bem string : getBens()) {
+                tabela.addRow(new Object[]{
+                    string.getDescricaoBem(),
+                    String.valueOf(string.getValorEstimadoBem())
+                });
+    }
     }
     public List<Servico> lerServico(){
         
