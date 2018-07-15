@@ -34,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Matheus Montanha
  */
-public class Painel_Corretor extends javax.swing.JFrame {
+public class PainelCorretor extends javax.swing.JFrame {
 
     int visivel = 0;
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
@@ -49,7 +49,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
      *
      * @param corretorOnline
      */
-    public Painel_Corretor(Corretor corretorOnline) {
+    public PainelCorretor(Corretor corretorOnline) {
         initComponents();
         runProgram();
         corretor = corretorOnline;
@@ -1499,7 +1499,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 }
             }
         } catch (ParseException ex) {
-            Logger.getLogger(Painel_Corretor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(PainelCorretor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonConfirmarDataActionPerformed
 
@@ -1955,8 +1955,10 @@ public class Painel_Corretor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Painel_Corretor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(PainelCorretor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
@@ -1965,7 +1967,7 @@ public class Painel_Corretor extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            Painel_Corretor painelCorretor = new Painel_Corretor(corretor);
+            PainelCorretor painelCorretor = new PainelCorretor(corretor);
             painelCorretor.setVisible(true);
         });
     }

@@ -332,7 +332,7 @@ public class Tela_Login extends javax.swing.JFrame {
             for (Corretor certoCorretor : listCorretores) {
                 if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                     usuarioExiste = true;
-                    Painel_Corretor painelCorretor = new Painel_Corretor(certoCorretor);
+                    PainelCorretor painelCorretor = new PainelCorretor(certoCorretor);
                     GerenciadorViewLogin.getInstance().setCorretorOnline(certoCorretor);
                     painelCorretor.setVisible(true);
                     dispose();
