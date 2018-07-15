@@ -1717,12 +1717,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
-        /*
-        editarSelecionado.setVisible(true);
-        cancelarSolicitacao.setVisible(true);
-        editar.setVisible(true);
-        nova.setVisible(true);
-        minhasSolicitacoes.setVisible(true); */
+       
     }//GEN-LAST:event_editarActionPerformed
 
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
