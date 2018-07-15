@@ -767,7 +767,7 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         jLabel46.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
         jLabel46.setText("Parcelar em:");
-        jPanelPagamento.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 340, 90, -1));
+        jPanelPagamento.add(jLabel46, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 350, 90, -1));
 
         quantidadeVezesParcela.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
         quantidadeVezesParcela.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
@@ -776,7 +776,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 quantidadeVezesParcelaItemStateChanged(evt);
             }
         });
-        jPanelPagamento.add(quantidadeVezesParcela, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 340, 40, 20));
+        jPanelPagamento.add(quantidadeVezesParcela, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 350, 50, 20));
 
         buttonConfirmar.setBackground(new java.awt.Color(0, 153, 255));
         buttonConfirmar.setFont(new java.awt.Font("Arial", 1, 11)); // NOI18N
@@ -805,8 +805,8 @@ public class TelaCandidato extends javax.swing.JFrame {
         jPanelPagamento.add(jLabel38, new org.netbeans.lib.awtextra.AbsoluteConstraints(410, 300, -1, -1));
 
         jLabel36.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel36.setText("de");
-        jPanelPagamento.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 340, -1, -1));
+        jLabel36.setText("de R$:");
+        jPanelPagamento.add(jLabel36, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 350, 50, -1));
 
         campoValorParcelado.setEditable(false);
         campoValorParcelado.addActionListener(new java.awt.event.ActionListener() {
@@ -1478,7 +1478,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         });
         panelComListaSolicitacoes.add(buttonFecharMinhasSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 200, -1, -1));
 
-        PanelSolicitarSeguro.add(panelComListaSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 130, 510, 230));
+        PanelSolicitarSeguro.add(panelComListaSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 90, 510, 230));
 
         editar.setBackground(new java.awt.Color(0, 153, 255));
         editar.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
@@ -1717,7 +1717,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
-       
+
     }//GEN-LAST:event_editarActionPerformed
 
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
@@ -2123,10 +2123,12 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_campoValorParceladoActionPerformed
 
     private void quantidadeVezesParcelaItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_quantidadeVezesParcelaItemStateChanged
+        DecimalFormat df;
         double valorTeste = Double.parseDouble(textValorSeguro.getText());
         int quantidadeVezes = Integer.parseInt(quantidadeVezesParcela.getSelectedItem().toString());
         double resultado = valorTeste / quantidadeVezes;
-        campoValorParcelado.setText("" + resultado);
+        df = new DecimalFormat("000.00");
+        campoValorParcelado.setText(""+df.format(resultado));
     }//GEN-LAST:event_quantidadeVezesParcelaItemStateChanged
 
     private void visualizarSolicitacaoServicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarSolicitacaoServicoMouseClicked
