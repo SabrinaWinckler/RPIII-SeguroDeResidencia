@@ -88,17 +88,16 @@ public class ServicoDAO {
         ResultSet rs = null;
         List<ItemServico> listaDeServico = new ArrayList<>();
         try {
-<<<<<<< HEAD
+            /*
             stmt = conexao.prepareStatement("select * from servico inner join solicitacaoservico on "
                     + "servico.idServico = solicitacaoservico.idServico inner join itemservico on "
                     + "solicitacaoservico.iditemservico = itemservico.iditemservico"
                     + segurado.getIdSegurado());
-=======
+             */
             stmt = conexao.prepareStatement("select servico.descricaoServico from servico inner join solicitacaoservico on "
                     + " solicitacaoservico.idServico = servico.idServico inner join itemservico on "
                     + "itemservico.idItemServico = solicitacaoservico.idItemServico inner join apolice on "
                     + "apolice.idSegurado = " + segurado.getIdSegurado());
->>>>>>> master
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ItemServico itemServico = new ItemServico();

@@ -80,11 +80,18 @@ public class Gerenciador {
 
     public void registrarApolice(String bandeiraCartao, long numeroApolice,
             float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento,
-            String vencimentoCartao, long codSegurancaCartao, String nomeNoCartao, int codSolicitacao,
+            String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao, int codSolicitacao,
             int quantidadeParcelas,
-            float valorParcela) {
-        Apolice apolice = new Apolice(codSolicitacao, bandeiraCartao, numeroApolice, premioApolice, dataContratacaoApolice, cartaoCreditoPagamento, vencimentoCartao, codSegurancaCartao, nomeNoCartao, quantidadeParcelas, valorParcela);
-        daoApolice.create(apolice, codSolicitacao);
+            float valorParcela, int codSegurado) {
+        //Apolice(int codSolicitacao, String bandeiraCartão, long numeroApolice,
+        //float premioApolice, Date dataContratacaoApolice, 
+        //String cartaoCreditoPagamento, String vencimentoCartao, 
+        //long codSegurancaCartao, String nomeNoCartao, int quantidadeParcelas, float valorParcela)
+        Apolice apolice = new Apolice(codSolicitacao, bandeiraCartao,
+                numeroApolice, premioApolice, dataContratacaoApolice,
+                cartaoCreditoPagamento, vencimentoCartao, codSegurancaCartao,
+                nomeNoCartao, quantidadeParcelas, valorParcela);
+        daoApolice.create(apolice, codSolicitacao, codSegurado);
     }
 
     public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {

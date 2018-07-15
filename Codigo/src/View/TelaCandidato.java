@@ -1672,8 +1672,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         //}catch(Exception e){
         //    JOptionPane.showMessageDialog(painelP, "Você não possui residências seguradas!");
         //}
-  
-        
 
     }//GEN-LAST:event_relatarSinistroActionPerformed
 
@@ -1947,7 +1945,7 @@ public class TelaCandidato extends javax.swing.JFrame {
             String nomeImpressoCartao = campoImpressoNomeCartao.getText();
             String numeroCartao = campoNumeroDoCartao.getText();
             String validadeCartao = mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
-            long codSeguranca = Long.parseLong(campoCodSegurancaCartao.getText());
+            int codSeguranca = Integer.parseInt(campoCodSegurancaCartao.getText());
             //float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
             float premioApolice = 200;
             String bandeiraCartao = null;
@@ -1955,13 +1953,13 @@ public class TelaCandidato extends javax.swing.JFrame {
             float valorParcela = 50;
             int quantidadeVezes = 4;
             Date dataContratacaoApolice = new Date();
+            gerenciador.transformaCandidatoEmSegurado(candidato.getCpf());
             gerenciador.registrarApolice(bandeiraCartao, numeroApolice,
                     premioApolice, dataContratacaoApolice, numeroCartao,
                     validadeCartao, codSeguranca, nomeImpressoCartao,
                     listaSolicitacao.get(selecionado).getCodSolicitacao(),
-                    quantidadeVezes, valorParcela);
+                    quantidadeVezes, valorParcela, candidato.getCodPessoa());
             JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
-            gerenciador.transformaCandidatoEmSegurado(candidato.getCpf());
             visualizarSolicitacao();
         }
         /*
@@ -2128,7 +2126,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         int quantidadeVezes = Integer.parseInt(quantidadeVezesParcela.getSelectedItem().toString());
         double resultado = valorTeste / quantidadeVezes;
         df = new DecimalFormat("000.00");
-        campoValorParcelado.setText(""+df.format(resultado));
+        campoValorParcelado.setText("" + df.format(resultado));
     }//GEN-LAST:event_quantidadeVezesParcelaItemStateChanged
 
     private void visualizarSolicitacaoServicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarSolicitacaoServicoMouseClicked
@@ -2311,12 +2309,12 @@ public class TelaCandidato extends javax.swing.JFrame {
     }
 
     private void preencherComboBox() {
-       
+
         for (int i = 0; i < controlador.lerSinistro().size(); i++) {
             comboSinistro.addItem(controlador.lerSinistro().get(i).getTipoSinistro());
         }
         //for (int i = 0; i < controlador.lerServico().size(); i++) {
-            //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
+        //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
         //}
 
     }

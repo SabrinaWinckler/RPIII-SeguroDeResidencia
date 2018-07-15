@@ -24,7 +24,7 @@ import java.util.logging.Logger;
  */
 public class ApoliceDAO {
 
-    public void create(Apolice apolice, int codSolicitacao) {
+    public void create(Apolice apolice, int codSolicitacao, int codSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         DateFormat dataFormatada = new SimpleDateFormat("yyyy/MM/dd");
         PreparedStatement stm = null;
@@ -35,19 +35,20 @@ public class ApoliceDAO {
                     + "bandeiraCartao, numeroApolice, premioApolice, "
                     + "dataContratacaoApolice, cartaoCreditoPgto, "
                     + "vencimentoCartao, codSegurancaCartao, nomeNoCartao, "
-                    + "quantidadeParcelas, valorParcela)"
-                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?)");
+                    + "quantidadeParcelas, valorParcela, idSegurado)"
+                    + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             stm.setInt(1, codSolicitacao);
             stm.setString(2, apolice.getBandeiraCartão());
-            stm.setLong(3, apolice.getNumeroApolice());
+            stm.setString(3, String.valueOf(apolice.getNumeroApolice()));
             stm.setFloat(4, apolice.getPremioApolice());
             stm.setString(5, data);
             stm.setString(6, apolice.getCartaoCreditoPagamento());
             stm.setString(7, apolice.getVencimentoCartao());
-            stm.setLong(8, apolice.getCodSegurancaCartao());
+            stm.setInt(8, Integer.parseInt("" + apolice.getCodSegurancaCartao()));
             stm.setString(9, apolice.getNomeNoCartao());
             stm.setInt(10, apolice.getQuantidadeParcelas());
             stm.setFloat(11, apolice.getValorParcela());
+            stm.setInt(12, codSegurado);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
