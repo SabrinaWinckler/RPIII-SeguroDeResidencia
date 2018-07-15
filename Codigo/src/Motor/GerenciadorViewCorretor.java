@@ -8,10 +8,10 @@ package Motor;
 import DAO.ServicoDAO;
 import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
-import Dominio.Residencia;
-import Dominio.Segurado;
-import Dominio.Sinistro;
-import Dominio.Solicitacao;
+import entity.Residencia;
+import entity.Segurado;
+import entity.Sinistro;
+import entity.Solicitacao;
 import java.util.ArrayList;
 import java.util.List;
 

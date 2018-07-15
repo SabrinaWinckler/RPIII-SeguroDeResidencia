@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Dominio.Corretor;
+import entity.Corretor;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

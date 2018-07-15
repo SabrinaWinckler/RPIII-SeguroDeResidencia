@@ -5,8 +5,8 @@
  */
 package DAO;
 
-import Dominio.Bem;
-import Dominio.Residencia;
+import entity.Bem;
+import entity.Residencia;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

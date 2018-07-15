@@ -5,10 +5,10 @@
  */
 package Aplicacao;
 
-import Dominio.Bem;
-import Dominio.Pessoa;
-import Dominio.Residencia;
-import Dominio.Solicitacao;
+import entity.Bem;
+import entity.Pessoa;
+import entity.Residencia;
+import entity.Solicitacao;
 import Motor.GerenciadorViewCorretor;
 import View.Tela_Login;
 import com.sun.javafx.scene.control.skin.VirtualFlow;

@@ -1,6 +1,6 @@
-package Dominio;
+package entity;
 
-import Dominio.Bem;
+import entity.Bem;
 import java.util.List;
 
 public class Residencia {

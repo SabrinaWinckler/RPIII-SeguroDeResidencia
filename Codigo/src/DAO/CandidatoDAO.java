@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Dominio.Candidato;
+import entity.Candidato;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

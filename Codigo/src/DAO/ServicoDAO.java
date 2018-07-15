@@ -5,12 +5,12 @@
  */
 package DAO;
 
-import Dominio.Apolice;
-import Dominio.Servico;
-import Dominio.Bem;
-import Dominio.Candidato;
-import Dominio.ItemServico;
-import Dominio.Segurado;
+import entity.Apolice;
+import entity.Servico;
+import entity.Bem;
+import entity.Candidato;
+import entity.ItemServico;
+import entity.Segurado;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -88,10 +88,10 @@ public class ServicoDAO {
         ResultSet rs = null;
         List<ItemServico> listaDeServico = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("select * from servico inner join itemservico on "
-                    + "servico.idServico = itemservico.idServico inner join seguradosolicitaservico on "
-                    + "seguradosolicitaservico.idServico = servico.idServico and "
-                    + "seguradosolicitaservico.idSegurado = " + segurado.getIdSegurado());
+            stmt = conexao.prepareStatement("select * from servico inner join solicitacaoservico on "
+                    + "servico.idServico = solicitacaoservico.idServico inner join itemservico on "
+                    + "solicitacaoservico.iditemservico = itemservico.iditemservico"
+                    + segurado.getIdSegurado());
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ItemServico itemServico = new ItemServico();

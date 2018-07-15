@@ -5,15 +5,15 @@
  */
 package View;
 
-import Dominio.Apolice;
-import Dominio.Candidato;
+import entity.Apolice;
+import entity.Candidato;
 import Motor.RepositorioSolicitacao;
 import Motor.Gerenciador;
-import Dominio.Solicitacao;
-import Dominio.Bem;
-import Dominio.ItemServico;
-import Dominio.Residencia;
-import Dominio.Segurado;
+import entity.Solicitacao;
+import entity.Bem;
+import entity.ItemServico;
+import entity.Residencia;
+import entity.Segurado;
 import Excecoes.ExceptionEmptySpace;
 import Motor.GerenciadorViewLogin;
 import java.awt.Color;
@@ -37,7 +37,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Matheus Montanha
  */
-public class Painel_Candidato extends javax.swing.JFrame {
+public class TelaCandidato extends javax.swing.JFrame {
 
     int visivel = 0;
     RepositorioSolicitacao controlador = new RepositorioSolicitacao();
@@ -54,13 +54,14 @@ public class Painel_Candidato extends javax.swing.JFrame {
     /**
      * Creates new form Painel_Corretor
      */
-    public Painel_Candidato() {
+    public TelaCandidato() {
         initComponents();
         gerarBackground();
         home();
+        preencherComboBox();
     }
 
-    public Painel_Candidato(Candidato seguradoOnline) {
+    public TelaCandidato(Candidato seguradoOnline) {
         initComponents();
         candidato = seguradoOnline;
         gerarBackground();
@@ -70,7 +71,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         home();
     }
 
-    public Painel_Candidato(Segurado seguradoOnline) {
+    public TelaCandidato(Segurado seguradoOnline) {
         initComponents();
         segurado = seguradoOnline;
         readTableListaServico(seguradoOnline);
@@ -207,15 +208,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
-        painelContato = new javax.swing.JPanel();
-        enviarContato = new javax.swing.JButton();
-        cancelarContato = new javax.swing.JButton();
-        email = new javax.swing.JTextField();
-        jScrollPane12 = new javax.swing.JScrollPane();
-        mensagem = new javax.swing.JTextArea();
-        jLabel56 = new javax.swing.JLabel();
-        jLabel57 = new javax.swing.JLabel();
-        jLabel58 = new javax.swing.JLabel();
         painelResidencias = new javax.swing.JPanel();
         jScrollPane11 = new javax.swing.JScrollPane();
         residencias = new javax.swing.JTable();
@@ -230,6 +222,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSinistro = new javax.swing.JButton();
         jLabel34 = new javax.swing.JLabel();
         comboSinistro = new javax.swing.JComboBox<>();
+        jLabel56 = new javax.swing.JLabel();
+        jLabel57 = new javax.swing.JLabel();
         jPanelHome = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jPanelListaSeguros = new javax.swing.JPanel();
@@ -399,7 +393,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         solicitarSeguro = new javax.swing.JButton();
         buttonContratarSeguro = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
-        buttonContato = new javax.swing.JButton();
         bg = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
@@ -432,83 +425,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         painelP.setBackground(new java.awt.Color(255, 255, 255));
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        enviarContato.setText("Enviar");
-        enviarContato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarContatoActionPerformed(evt);
-            }
-        });
-
-        cancelarContato.setText("Cancelar");
-        cancelarContato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarContatoActionPerformed(evt);
-            }
-        });
-
-        email.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                emailActionPerformed(evt);
-            }
-        });
-
-        mensagem.setColumns(20);
-        mensagem.setRows(5);
-        jScrollPane12.setViewportView(mensagem);
-
-        jLabel56.setText("Contato:");
-
-        jLabel57.setText("Email:");
-
-        jLabel58.setText("Mensagem:");
-
-        javax.swing.GroupLayout painelContatoLayout = new javax.swing.GroupLayout(painelContato);
-        painelContato.setLayout(painelContatoLayout);
-        painelContatoLayout.setHorizontalGroup(
-            painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContatoLayout.createSequentialGroup()
-                .addContainerGap(242, Short.MAX_VALUE)
-                .addComponent(cancelarContato)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(enviarContato)
-                .addGap(32, 32, 32))
-            .addGroup(painelContatoLayout.createSequentialGroup()
-                .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelContatoLayout.createSequentialGroup()
-                        .addGap(188, 188, 188)
-                        .addComponent(jLabel56))
-                    .addGroup(painelContatoLayout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel57)
-                            .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(email)
-                                .addComponent(jScrollPane12, javax.swing.GroupLayout.DEFAULT_SIZE, 332, Short.MAX_VALUE))
-                            .addComponent(jLabel58))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        painelContatoLayout.setVerticalGroup(
-            painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelContatoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel56)
-                .addGap(8, 8, 8)
-                .addComponent(jLabel57)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel58)
-                .addGap(9, 9, 9)
-                .addComponent(jScrollPane12, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 20, Short.MAX_VALUE)
-                .addGroup(painelContatoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(enviarContato)
-                    .addComponent(cancelarContato))
-                .addGap(29, 29, 29))
-        );
-
-        painelP.add(painelContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         residencias.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -583,76 +499,61 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         painelP.add(painelResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
 
-        jLabel33.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        painelSinistro.setBackground(new java.awt.Color(255, 255, 255));
+        painelSinistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jLabel33.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(0, 51, 153));
         jLabel33.setText("Selecione o sinistro que deseja relatar:");
+        painelSinistro.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
 
         descricaoSinistro.setColumns(20);
         descricaoSinistro.setRows(5);
         jScrollPane2.setViewportView(descricaoSinistro);
 
+        painelSinistro.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 380, -1));
+
+        enviarSinistro.setBackground(new java.awt.Color(153, 0, 204));
+        enviarSinistro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        enviarSinistro.setForeground(new java.awt.Color(255, 255, 255));
         enviarSinistro.setText("Enviar");
         enviarSinistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 enviarSinistroActionPerformed(evt);
             }
         });
+        painelSinistro.add(enviarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, -1, -1));
 
+        cancelarSinistro.setBackground(new java.awt.Color(0, 102, 204));
+        cancelarSinistro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
+        cancelarSinistro.setForeground(new java.awt.Color(255, 255, 255));
         cancelarSinistro.setText("Cancelar");
         cancelarSinistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cancelarSinistroActionPerformed(evt);
             }
         });
+        painelSinistro.add(cancelarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 320, -1, -1));
 
+        jLabel34.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
         jLabel34.setText("Descreva Brevemente o que aconteceu:");
+        painelSinistro.add(jLabel34, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, -1, -1));
 
+        comboSinistro.setBackground(new java.awt.Color(153, 0, 204));
+        comboSinistro.setForeground(new java.awt.Color(255, 255, 255));
         comboSinistro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboSinistroActionPerformed(evt);
             }
         });
+        painelSinistro.add(comboSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 100, 114, -1));
 
-        javax.swing.GroupLayout painelSinistroLayout = new javax.swing.GroupLayout(painelSinistro);
-        painelSinistro.setLayout(painelSinistroLayout);
-        painelSinistroLayout.setHorizontalGroup(
-            painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelSinistroLayout.createSequentialGroup()
-                .addGap(88, 88, 88)
-                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSinistroLayout.createSequentialGroup()
-                        .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelSinistroLayout.createSequentialGroup()
-                                .addGap(38, 38, 38)
-                                .addComponent(jLabel34))
-                            .addComponent(jLabel33)
-                            .addGroup(painelSinistroLayout.createSequentialGroup()
-                                .addComponent(comboSinistro, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addGap(160, 160, 160))
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 274, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(78, 78, 78))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelSinistroLayout.createSequentialGroup()
-                        .addComponent(cancelarSinistro)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(enviarSinistro)
-                        .addGap(80, 80, 80))))
-        );
-        painelSinistroLayout.setVerticalGroup(
-            painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelSinistroLayout.createSequentialGroup()
-                .addGap(38, 38, 38)
-                .addComponent(jLabel33)
-                .addGap(18, 18, 18)
-                .addComponent(comboSinistro)
-                .addGap(32, 32, 32)
-                .addComponent(jLabel34)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(painelSinistroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(cancelarSinistro)
-                    .addComponent(enviarSinistro))
-                .addGap(35, 35, 35))
-        );
+        jLabel56.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jLabel56.setText("Tipo de Sinistro:");
+        painelSinistro.add(jLabel56, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 70, -1, -1));
+
+        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/attention.png"))); // NOI18N
+        painelSinistro.add(jLabel57, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, -50, 260, -1));
 
         painelP.add(painelSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 50, 440, 360));
 
@@ -1681,7 +1582,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 relatarSinistroActionPerformed(evt);
             }
         });
-        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 300, 180, 40));
+        getContentPane().add(relatarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 260, 180, 40));
 
         contratarServico.setBackground(new java.awt.Color(255, 255, 255));
         contratarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1694,7 +1595,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 contratarServicoActionPerformed(evt);
             }
         });
-        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 360, 180, 40));
+        getContentPane().add(contratarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 340, 180, 40));
 
         solicitarSeguro.setBackground(new java.awt.Color(255, 255, 255));
         solicitarSeguro.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1706,7 +1607,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 solicitarSeguroActionPerformed(evt);
             }
         });
-        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 240, 180, 40));
+        getContentPane().add(solicitarSeguro, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 190, 180, 40));
         solicitarSeguro.getAccessibleContext().setAccessibleDescription("");
 
         buttonContratarSeguro.setBackground(new java.awt.Color(255, 255, 255));
@@ -1732,17 +1633,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
             }
         });
         getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 110, 30));
-
-        buttonContato.setBackground(new java.awt.Color(255, 255, 255));
-        buttonContato.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        buttonContato.setForeground(new java.awt.Color(110, 48, 110));
-        buttonContato.setText("Contato");
-        buttonContato.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonContatoActionPerformed(evt);
-            }
-        });
-        getContentPane().add(buttonContato, new org.netbeans.lib.awtextra.AbsoluteConstraints(30, 180, 180, 40));
         getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
@@ -1773,6 +1663,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
         readTableApolices(segurado);
+        preencherComboBox();
         visualizarListaDeApolices("Relatar Sinistro");
         //painelResidencias.setVisible(true);
 
@@ -1781,6 +1672,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
         //}catch(Exception e){
         //    JOptionPane.showMessageDialog(painelP, "Você não possui residências seguradas!");
         //}
+  
+        
 
     }//GEN-LAST:event_relatarSinistroActionPerformed
 
@@ -2022,7 +1915,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed
-        //Painel_Candidato painel = new Painel_Candidato();
+        //Painel_Candidato painel = new TelaCandidato();
         //painel.setVisible(true);
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja recusar o seguro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             visualizarSolicitacao();
@@ -2098,7 +1991,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
         try {
             dataVisitaResidencia = (Date) formatter.parse(dataString);
         } catch (ParseException ex) {
-            Logger.getLogger(Painel_Candidato.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaCandidato.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja solicitar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             String escolhido;
@@ -2202,6 +2095,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private void cancelarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSinistroActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             painelSinistro.setVisible(false);
+            ocultarTudo();
         }
     }//GEN-LAST:event_cancelarSinistroActionPerformed
 
@@ -2273,30 +2167,9 @@ public class Painel_Candidato extends javax.swing.JFrame {
     }//GEN-LAST:event_residenciasMouseClicked
 
     private void comboSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSinistroActionPerformed
-
+        preencherComboBox();
 
     }//GEN-LAST:event_comboSinistroActionPerformed
-
-    private void buttonContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonContatoActionPerformed
-        painelContato.setVisible(true);
-    }//GEN-LAST:event_buttonContatoActionPerformed
-
-    private void emailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_emailActionPerformed
-
-    private void enviarContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarContatoActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja enviar esta mensagem?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            controlador.mensagemCandidato(email.getText(), mensagem.getText());
-            painelContato.setVisible(false);
-        }
-    }//GEN-LAST:event_enviarContatoActionPerformed
-
-    private void cancelarContatoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarContatoActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            painelContato.setVisible(false);
-        }
-    }//GEN-LAST:event_cancelarContatoActionPerformed
 
     private void buttonFecharMinhasSolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharMinhasSolicitacoesActionPerformed
         panelComListaSolicitacoes.setVisible(false);
@@ -2336,7 +2209,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
         cancelarSolicitacao.setVisible(false);
         painelSinistro.setVisible(false);
         jPanelListaApoliceServico.setVisible(false);
-        painelContato.setVisible(false);
         buttonVoltar.setVisible(false);
         jPanelListaServicos.setVisible(false);
         calendarServico.setVisible(false);
@@ -2441,13 +2313,14 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
     }
 
-    public void preencherComboBox() {
+    private void preencherComboBox() {
+       
         for (int i = 0; i < controlador.lerSinistro().size(); i++) {
-            comboSinistro.addItem(String.valueOf(controlador.lerSinistro().get(i).getTipoSinistro()));
+            comboSinistro.addItem(controlador.lerSinistro().get(i).getTipoSinistro());
         }
-        for (int i = 0; i < controlador.lerServico().size(); i++) {
-            // comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
-        }
+        //for (int i = 0; i < controlador.lerServico().size(); i++) {
+            //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
+        //}
 
     }
 
@@ -2474,14 +2347,30 @@ public class Painel_Candidato extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Painel_Candidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCandidato.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -2501,7 +2390,7 @@ public class Painel_Candidato extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            Painel_Candidato painel = new Painel_Candidato(segurado);
+            TelaCandidato painel = new TelaCandidato(segurado);
             painel.gerarBackground();
             painel.setVisible(true);
         });
@@ -2521,7 +2410,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel bg;
     private javax.swing.JButton buttonCancelar;
     private javax.swing.JButton buttonConfirmar;
-    private javax.swing.JButton buttonContato;
     private javax.swing.JButton buttonContratarSeguro;
     private javax.swing.JToggleButton buttonDataServico;
     private javax.swing.JButton buttonFecharListaServicos;
@@ -2539,7 +2427,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorParcelado;
     private javax.swing.JTextField campoValorSeguroPagamento;
     private javax.swing.JButton cancelar;
-    private javax.swing.JButton cancelarContato;
     private javax.swing.JButton cancelarRes;
     private javax.swing.JButton cancelarServico;
     private javax.swing.JButton cancelarSinistro;
@@ -2560,10 +2447,8 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JButton editarBem;
     private javax.swing.JButton editarSelecionado;
     private javax.swing.JCheckBox eletricista;
-    private javax.swing.JTextField email;
     private javax.swing.JCheckBox encanador;
     private javax.swing.JButton enviar;
-    private javax.swing.JButton enviarContato;
     private javax.swing.JButton enviarServico;
     private javax.swing.JButton enviarSinistro;
     private javax.swing.JSlider estruturaA;
@@ -2623,7 +2508,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel55;
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
-    private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
@@ -2651,7 +2535,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
     private javax.swing.JScrollPane jScrollPane11;
-    private javax.swing.JScrollPane jScrollPane12;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -2674,7 +2557,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JTable listaSolicitacaoCandidato;
     private javax.swing.JComboBox<String> listaTurnosServico;
     private javax.swing.JSlider localizacaoP;
-    private javax.swing.JTextArea mensagem;
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.Menu menu3;
@@ -2685,7 +2567,6 @@ public class Painel_Candidato extends javax.swing.JFrame {
     private javax.swing.JButton minhasSolicitacoes;
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
-    private javax.swing.JPanel painelContato;
     private javax.swing.JPanel painelP;
     private javax.swing.JPanel painelResidencias;
     private javax.swing.JPanel painelServico;

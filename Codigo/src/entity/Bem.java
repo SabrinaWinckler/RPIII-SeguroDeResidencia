@@ -1,4 +1,4 @@
-package Dominio;
+package entity;
 
 public class Bem {
 

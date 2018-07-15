@@ -5,9 +5,9 @@
  */
 package DAO;
 
-import Dominio.Candidato;
-import Dominio.Segurado;
-import Dominio.Solicitacao;
+import entity.Candidato;
+import entity.Segurado;
+import entity.Solicitacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

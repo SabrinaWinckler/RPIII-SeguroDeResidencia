@@ -5,7 +5,7 @@
  */
 package View;
 
-import Dominio.Candidato;
+import entity.Candidato;
 import Motor.Gerenciador;
 import Excecoes.ExceptionCPFInvalid;
 import Excecoes.ExceptionEmailInvalid;
@@ -350,7 +350,7 @@ public class Tela_cadastraPessoa extends javax.swing.JFrame {
             bairro = campoBairro.getText();
             motor.cadastrarCliente(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
             JOptionPane.showConfirmDialog(rootPane, "Cadastrado com sucesso!", "Aviso", JOptionPane.CLOSED_OPTION);
-            Painel_Candidato candidatoPainel = new Painel_Candidato();
+            TelaCandidato candidatoPainel = new TelaCandidato();
             candidatoPainel.setVisible(true);
             dispose();
         } else {

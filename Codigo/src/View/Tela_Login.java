@@ -5,10 +5,10 @@
  */
 package View;
 
-import Dominio.Candidato;
-import Dominio.Corretor;
-import Dominio.Pessoa;
-import Dominio.Segurado;
+import entity.Candidato;
+import entity.Corretor;
+import entity.Pessoa;
+import entity.Segurado;
 import Motor.Gerenciador;
 import Motor.GerenciadorViewLogin;
 import java.awt.Color;
@@ -24,7 +24,7 @@ import javax.swing.JOptionPane;
 public class Tela_Login extends javax.swing.JFrame {
 
     Gerenciador motor = new Gerenciador();
-    Painel_Candidato painelCandidato;
+    TelaCandidato painelCandidato;
 
     /**
      * Creates new form Tela_Login
@@ -309,7 +309,7 @@ public class Tela_Login extends javax.swing.JFrame {
         String senhaJunta = String.copyValueOf(campoSenha.getPassword());
         for (Segurado segurado : listSegurados) {
             if (segurado.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && segurado.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
-                painelCandidato = new Painel_Candidato(segurado);
+                painelCandidato = new TelaCandidato(segurado);
                 GerenciadorViewLogin.getInstance().setSeguradoOnline(segurado);
                 painelCandidato.setVisible(true);
                 dispose();
@@ -321,7 +321,7 @@ public class Tela_Login extends javax.swing.JFrame {
             for (Candidato pessoa : listPessoas) {
                 if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                     usuarioExiste = true;
-                    painelCandidato = new Painel_Candidato(pessoa);
+                    painelCandidato = new TelaCandidato(pessoa);
                     GerenciadorViewLogin.getInstance().setCandidatoOnline(pessoa);
                     painelCandidato.setVisible(true);
                     dispose();

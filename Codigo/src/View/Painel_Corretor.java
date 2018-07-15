@@ -5,10 +5,10 @@
  */
 package View;
 
-import Dominio.Corretor;
-import Dominio.Segurado;
-import Dominio.Sinistro;
-import Dominio.Solicitacao;
+import entity.Corretor;
+import entity.Segurado;
+import entity.Sinistro;
+import entity.Solicitacao;
 import Motor.RepositorioSolicitacao;
 import Motor.GerenciadorViewCorretor;
 import java.awt.Color;

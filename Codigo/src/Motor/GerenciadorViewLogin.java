@@ -8,9 +8,9 @@ package Motor;
 import DAO.CandidatoDAO;
 import DAO.CorretorDAO;
 import DAO.SeguradoDAO;
-import Dominio.Candidato;
-import Dominio.Corretor;
-import Dominio.Segurado;
+import entity.Candidato;
+import entity.Corretor;
+import entity.Segurado;
 import java.util.List;
 
 /**

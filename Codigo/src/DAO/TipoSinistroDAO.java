@@ -5,7 +5,7 @@
  */
 package DAO;
 
-import Dominio.TipoSinistro;
+import entity.TipoSinistro;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,19 +41,22 @@ public class TipoSinistroDAO {
         ResultSet rs = null;
         ArrayList<TipoSinistro> listaDeTipoSinistro = new ArrayList<>();
         try {
-            stmt = conexao.prepareStatement("SELECT * FROM tipoSinistro");
+            stmt = conexao.prepareStatement("SELECT * FROM tiposinistro");
             rs = stmt.executeQuery();
             while (rs.next()) {
+           
                 TipoSinistro tipoSinistro = new TipoSinistro();
                 tipoSinistro.setCodTipo(rs.getInt("idTipo"));
                 tipoSinistro.setTipoSinistro(rs.getString("descricaoTipoSinistro"));
                 listaDeTipoSinistro.add(tipoSinistro);
+                
             }
         } catch (SQLException e) {
             Logger.getLogger(TipoSinistroDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
+
         return listaDeTipoSinistro;
     }
 }

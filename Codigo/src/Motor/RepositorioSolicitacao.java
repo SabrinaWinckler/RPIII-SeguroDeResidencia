@@ -5,11 +5,11 @@ import DAO.ResidenciaDAO;
 import DAO.ServicoDAO;
 import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
-import Dominio.Solicitacao;
-import Dominio.Servico;
-import Dominio.Bem;
-import Dominio.Residencia;
-import Dominio.Sinistro;
+import entity.Solicitacao;
+import entity.Servico;
+import entity.Bem;
+import entity.Residencia;
+import entity.Sinistro;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -158,6 +158,7 @@ public class RepositorioSolicitacao {
         return geraDAOSinistro().read();
     }
     public List<Servico> lerServico(){
+        
         return geraDAOServico().servicosCadastrados();
     }
     public void mensagemCandidato(String email, String mensagem){
