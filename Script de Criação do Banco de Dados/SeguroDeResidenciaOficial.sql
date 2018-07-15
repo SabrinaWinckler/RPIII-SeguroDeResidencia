@@ -26,18 +26,21 @@ CREATE TABLE `apolice` (
   `idApolice` int(11) NOT NULL AUTO_INCREMENT,
   `idSolicitacao` int(11) DEFAULT NULL,
   `bandeiraCartao` varchar(10) DEFAULT NULL,
-  `numeroApolice` float DEFAULT NULL,
-  `premioApolice` decimal(45,0) DEFAULT NULL,
+  `numeroApolice` varchar(10) DEFAULT NULL,
+  `premioApolice` float DEFAULT NULL,
   `dataContratacaoApolice` varchar(11) DEFAULT NULL,
-  `cartaoCreditoPgto` bigint(45) DEFAULT NULL,
+  `cartaoCreditoPgto` varchar(19) DEFAULT NULL,
   `vencimentoCartao` varchar(10) DEFAULT NULL,
-  `codSegurancaCartao` decimal(10,0) DEFAULT NULL,
+  `codSegurancaCartao` int(11) DEFAULT NULL,
   `nomeNoCartao` varchar(45) DEFAULT NULL,
   `quantidadeParcelas` int(11) DEFAULT NULL,
   `valorParcela` float DEFAULT NULL,
+  `idSegurado` int(11) DEFAULT NULL,
   PRIMARY KEY (`idApolice`),
-  KEY `idSolicitacao` (`idSolicitacao`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+  KEY `idSolicitacao` (`idSolicitacao`),
+  KEY `idSegurado` (`idSegurado`),
+  CONSTRAINT `apolice_ibfk_1` FOREIGN KEY (`idSegurado`) REFERENCES `segurado` (`idSegurado`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -46,7 +49,6 @@ CREATE TABLE `apolice` (
 
 LOCK TABLES `apolice` WRITE;
 /*!40000 ALTER TABLE `apolice` DISABLE KEYS */;
-INSERT INTO `apolice` VALUES (1,1,NULL,2536,200,'2018/07/15',123456,'Jan/2018',125,'Paulo',4,50);
 /*!40000 ALTER TABLE `apolice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -228,7 +230,7 @@ DROP TABLE IF EXISTS `segurado`;
 CREATE TABLE `segurado` (
   `idSegurado` int(11) NOT NULL,
   KEY `idSegurado` (`idSegurado`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -237,7 +239,6 @@ CREATE TABLE `segurado` (
 
 LOCK TABLES `segurado` WRITE;
 /*!40000 ALTER TABLE `segurado` DISABLE KEYS */;
-INSERT INTO `segurado` VALUES (1);
 /*!40000 ALTER TABLE `segurado` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -329,7 +330,7 @@ CREATE TABLE `solicitacaoseguro` (
 
 LOCK TABLES `solicitacaoseguro` WRITE;
 /*!40000 ALTER TABLE `solicitacaoseguro` DISABLE KEYS */;
-INSERT INTO `solicitacaoseguro` VALUES (1,'2018-07-14','2018-07-15',500,'aprovada','null',NULL,1,1,1);
+INSERT INTO `solicitacaoseguro` VALUES (1,'2018-07-14','2018-07-15',500,'aprovada',NULL,NULL,1,1,1);
 /*!40000 ALTER TABLE `solicitacaoseguro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -420,4 +421,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-15  0:48:32
+-- Dump completed on 2018-07-15 13:38:44
