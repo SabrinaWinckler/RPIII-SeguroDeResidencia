@@ -1953,26 +1953,30 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja confirmar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             if (verificarCamposPagamento()) {
-                String nomeImpressoCartao = campoImpressoNomeCartao.getText();
-                String numeroCartao = campoNumeroDoCartao.getText();
-                String validadeCartao = mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
-                int codSeguranca = Integer.parseInt(campoCodSegurancaCartao.getText());
-                //float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
-                float premioApolice = 200;
-                String bandeiraCartao = null;
-                long numeroApolice = 2536;
-                float valorParcela = 50;
-                int quantidadeVezes = 4;
-                Date dataContratacaoApolice = new Date();
-
-                gerenciador.transformaCandidatoEmSegurado(candidato.getCpf());
-                gerenciador.registrarApolice(bandeiraCartao, numeroApolice,
-                        premioApolice, dataContratacaoApolice, numeroCartao,
-                        validadeCartao, codSeguranca, nomeImpressoCartao,
-                        listaSolicitacao.get(selecionado).getCodSolicitacao(),
-                        quantidadeVezes, valorParcela, candidato.getCodPessoa());
-                JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
-                visualizarSolicitacao();
+                try {
+                    String nomeImpressoCartao = campoImpressoNomeCartao.getText();
+                    String numeroCartao = campoNumeroDoCartao.getText();
+                    String validadeCartao = mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
+                    int codSeguranca = Integer.parseInt(campoCodSegurancaCartao.getText());
+                    //float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
+                    float premioApolice = 200;
+                    String bandeiraCartao = null;
+                    long numeroApolice = 2536;
+                    float valorParcela = 50;
+                    int quantidadeVezes = 4;
+                    Date dataContratacaoApolice = new Date();
+                    gerenciador.transformaCandidatoEmSegurado(candidato.getCpf());
+                    gerenciador.registrarApolice(bandeiraCartao, numeroApolice,
+                            premioApolice, dataContratacaoApolice, numeroCartao,
+                            validadeCartao, codSeguranca, nomeImpressoCartao,
+                            listaSolicitacao.get(selecionado).getCodSolicitacao(),
+                            quantidadeVezes, valorParcela, candidato.getCodPessoa());
+                    JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
+                    visualizarSolicitacao();
+                } catch (HeadlessException | NumberFormatException e) {
+                    JOptionPane.showConfirmDialog(rootPane, "Dados fornecidos estão incorretos."
+                            + "Verifique e preencha novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
+                }
             } else {
                 JOptionPane.showConfirmDialog(rootPane, "Preencha todos os campos.", "Alerta", JOptionPane.CLOSED_OPTION);
             }

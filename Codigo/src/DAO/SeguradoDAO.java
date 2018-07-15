@@ -27,12 +27,12 @@ public class SeguradoDAO {
         ResultSet rs;
         int idPessoa = -1;
         try {
-            stm = conexao.prepareStatement("select idCandidato from pessoa where candidato.Cpf = " + cpf);
+            stm = conexao.prepareStatement("select idCandidato from candidato where candidato.Cpf = '" + cpf + "'");
             rs = stm.executeQuery();
             while (rs.next()) {
-                idPessoa = rs.getInt(1);
+                idPessoa = rs.getInt("idCandidato");
             }
-            stm = conexao.prepareStatement("insert into segurado(idCandidato)value(?)");
+            stm = conexao.prepareStatement("insert into segurado(idSegurado)value(?)");
             stm.setInt(1, idPessoa);
             stm.executeUpdate();
         } catch (SQLException e) {
