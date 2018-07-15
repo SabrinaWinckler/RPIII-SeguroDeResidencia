@@ -317,7 +317,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         e = new javax.swing.JLabel();
         cancelar = new javax.swing.JButton();
         confirmarEdicao = new javax.swing.JButton();
-        enviar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         areaConstruida = new javax.swing.JTextField(4);
         jSeparator1 = new javax.swing.JSeparator();
@@ -325,7 +324,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         remover = new javax.swing.JButton();
-        editarBem = new javax.swing.JButton();
         jScrollPane18 = new javax.swing.JScrollPane();
         tabelaBens = new javax.swing.JTable();
         jLabel61 = new javax.swing.JLabel();
@@ -975,7 +973,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         add.setBackground(new java.awt.Color(151, 53, 255));
         add.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         add.setForeground(new java.awt.Color(255, 255, 255));
-        add.setText("Adicionar");
+        add.setText("Concluir");
         add.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 addActionPerformed(evt);
@@ -1129,18 +1127,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 confirmarEdicaoActionPerformed(evt);
             }
         });
-        painelSolicitacao.add(confirmarEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 90, -1));
-
-        enviar.setBackground(new java.awt.Color(0, 153, 255));
-        enviar.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        enviar.setForeground(new java.awt.Color(255, 255, 255));
-        enviar.setText("Enviar");
-        enviar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                enviarActionPerformed(evt);
-            }
-        });
-        painelSolicitacao.add(enviar, new org.netbeans.lib.awtextra.AbsoluteConstraints(450, 220, 90, -1));
+        painelSolicitacao.add(confirmarEdicao, new org.netbeans.lib.awtextra.AbsoluteConstraints(510, 350, 110, -1));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel1.setText("Lista de Bens de sua Residência:");
@@ -1172,18 +1159,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 removerActionPerformed(evt);
             }
         });
-        painelSolicitacao.add(remover, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 220, 90, -1));
-
-        editarBem.setBackground(new java.awt.Color(0, 153, 255));
-        editarBem.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        editarBem.setForeground(new java.awt.Color(255, 255, 255));
-        editarBem.setText("Editar");
-        editarBem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editarBemActionPerformed(evt);
-            }
-        });
-        painelSolicitacao.add(editarBem, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 220, 90, -1));
+        painelSolicitacao.add(remover, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 220, 90, -1));
 
         tabelaBens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -1197,11 +1173,18 @@ public class TelaCandidato extends javax.swing.JFrame {
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Float.class
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
             };
 
             public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
             }
         });
         tabelaBens.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1211,7 +1194,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         });
         jScrollPane18.setViewportView(tabelaBens);
 
-        painelSolicitacao.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 290, 100));
+        painelSolicitacao.add(jScrollPane18, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 120, 290, 90));
 
         jLabel61.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         jLabel61.setText("Dados:");
@@ -1596,7 +1579,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
         
         confirmarEdicao.setVisible(false);
-        enviar.setVisible(true);
+      
         confirmarEdicao.setVisible(true);
         painelSolicitacao.setVisible(true);
         cancelarSolicitacao.setVisible(false);
@@ -1635,56 +1618,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_areaConstruidaActionPerformed
-
-    private void enviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarActionPerformed
-        try {
-            ExceptionEmptySpace.informaDado(cep.getText()); //parse long
-            ExceptionEmptySpace.informaDado(uf.getText());
-            ExceptionEmptySpace.informaDado(cidade.getText());
-            ExceptionEmptySpace.informaDado(bairro.getText());
-            ExceptionEmptySpace.informaDado(rua.getText());
-            ExceptionEmptySpace.informaDado(numero.getText());//parse int
-            ExceptionEmptySpace.informaDado(comodos.getText());//parse int
-            ExceptionEmptySpace.informaDado(banheiro.getText());///parse int
-            ExceptionEmptySpace.informaDado(garagem.getText());//parse int
-            ExceptionEmptySpace.informaDado(andares.getText());///parse int
-            ExceptionEmptySpace.informaDado(areat.getText());//parse int
-            ExceptionEmptySpace.informaDado(anoC.getText());///parse int
-            ExceptionEmptySpace.informaDado(descRes.getText());
-            ExceptionEmptySpace.informaDado(areaConstruida.getText());
-            
-            int numeroCandidato = Integer.parseInt(numero.getText());
-            long cepCandidato = Long.parseLong(cep.getText());
-            
-            int comodosCandidato = Integer.parseInt(comodos.getText());
-            int banheiroCandidato = Integer.parseInt(banheiro.getText());
-            int garagemCandidato = Integer.parseInt(garagem.getText());
-            int andaresCandidato = Integer.parseInt(andares.getText());
-            float areaT = Float.parseFloat(areat.getText());
-            double areaC = Float.parseFloat(areaConstruida.getText());
-            
-            int anoConstrucao = Integer.parseInt(anoC.getText());
-            
-            int localizacao = localizacaoP.getValue();
-            int terreno = terrenoP.getValue();
-            int estrutura = estruturaA.getValue();
-            
-            controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
-                    numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
-                    anoConstrucao, rua.getText(), localizacao, terreno, estrutura, candidato.getCodPessoa());
-            
-            JOptionPane.showMessageDialog(painelP, "\n Sua solicitação foi enviada para avaliação!");
-            //JOptionPane.showMessageDialog(painelP, "/n" + controlador.getSolicitacao().toString());//ler do banco 
-            painelSolicitacao.setVisible(false);
-            cancelarSolicitacao.setVisible(true);
-            editar.setVisible(true);
-            nova.setVisible(true);
-        } catch (HeadlessException | NumberFormatException e) {
-            JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
-        }
-        
-
-    }//GEN-LAST:event_enviarActionPerformed
     public void esvaziarCampos() {
         
     }
@@ -1722,34 +1655,41 @@ public class TelaCandidato extends javax.swing.JFrame {
             String removido = null;
             int select = tabelaBens.getSelectedRow();
             Bem temp = null;
-            for (int i = 0; i < controlador.getBens().size(); i++) {
-                if (controlador.getBens().get(i).getDescricaoBem().equalsIgnoreCase(removido)) {
-                    temp = controlador.getBens().get(i);
-                    break;
-                }
-            }
+
+            temp = controlador.getBens().get(select);
+          
             if (controlador.getBens().remove(temp)) {
-                JOptionPane.showMessageDialog(null, "Bem: \r\n" + removido + " Removido!");
+                JOptionPane.showMessageDialog(null, "Bem: \r\n" + " Removido!");
                 
             }
+            DefaultTableModel tabela = (DefaultTableModel) tabelaBens.getModel();
+            tabela.setNumRows(0);
+                    
+            controlador.tabelaBens(tabela);
+            
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Este bem não foi adicionado!");
         } catch (IndexOutOfBoundsException et) {
             JOptionPane.showMessageDialog(null, "Nenhum bem foi encontrado!");
-        }        // TODO add your handling code here:
+        }        
     }//GEN-LAST:event_removerActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
         try {
             ExceptionEmptySpace.informaDado(descBem.getText());
             ExceptionEmptySpace.informaDado(valor.getText());
+            DefaultTableModel tabela = (DefaultTableModel) tabelaBens.getModel();
+            tabela.setNumRows(0);
             if (controlador.registraBemLista(Float.parseFloat(valor.getText()), descBem.getText())) {
+                controlador.tabelaBens(tabela);
+            }
                 descBem.setText("");
                 valor.setText("");
             }
-        } catch (NumberFormatException ex) {
+             catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-        }
+             }
+            
         // TODO add your handling code here:
     }//GEN-LAST:event_addActionPerformed
     private void gerarBackground() {
@@ -1844,7 +1784,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonVoltarActionPerformed
 
     private void editarSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarSelecionadoActionPerformed
-        enviar.setVisible(false);
+     
         confirmarEdicao.setVisible(true);
         cancelarSolicitacao.setVisible(false);
         nova.setVisible(false);
@@ -2087,10 +2027,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_minhasSolicitacoesActionPerformed
 
-    private void editarBemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarBemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_editarBemActionPerformed
-
     private void tabelaBensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaBensMouseClicked
         
 
@@ -2229,8 +2165,8 @@ public class TelaCandidato extends javax.swing.JFrame {
     
     private void preencherComboBox() {
 
-        for (int i = 0; i < controlador.lerSinistro().size(); i++) {
-            comboSinistro.addItem(controlador.lerSinistro().get(i).getTipoSinistro());
+        for (int i = 0; i < controlador.lerTipoSinistro().size(); i++) {
+            comboSinistro.addItem(controlador.lerTipoSinistro().get(i).getTipoSinistro());
         }
         //for (int i = 0; i < controlador.lerServico().size(); i++) {
         //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
@@ -2357,11 +2293,9 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JTextArea descricaoSinistro;
     private javax.swing.JLabel e;
     private javax.swing.JButton editar;
-    private javax.swing.JButton editarBem;
     private javax.swing.JButton editarSelecionado;
     private javax.swing.JCheckBox eletricista;
     private javax.swing.JCheckBox encanador;
-    private javax.swing.JButton enviar;
     private javax.swing.JButton enviarServico;
     private javax.swing.JButton enviarSinistro;
     private javax.swing.JSlider estruturaA;
