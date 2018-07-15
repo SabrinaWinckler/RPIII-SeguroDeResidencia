@@ -58,7 +58,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         initComponents();
         gerarBackground();
         home();
-        preencherComboBox();
     }
 
     public TelaCandidato(Candidato seguradoOnline) {
@@ -67,7 +66,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         gerarBackground();
         habilitarOpcoesSegurado(false);
         quantidadeDeSolicitacao = readTableListaSolicitacao(seguradoOnline);
-        preencherComboBox();
         home();
     }
 
@@ -164,24 +162,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         } else {
             return 0;
         }
-    }
-
-    private int readTableResidencia(Candidato candidato) {
-        DefaultTableModel modelo = (DefaultTableModel) residencias.getModel();
-        modelo.setNumRows(0);
-        listaSolicitacao = gerenciador.listaSolicitacaoCliente(candidato);
-        int tamanhoLista = listaSolicitacao.size();
-        if (tamanhoLista > 0) {
-            for (Solicitacao solicitacao : listaSolicitacao) {
-                modelo.addRow(new Object[]{
-                    solicitacao.getResidencia().getDescricaoRes(),
-                    solicitacao.getResidencia().getCepRes()
-                });
-            }
-            return 1;
-        } else {
-            return 0;
-        }
+    
     }
 
     /**
@@ -208,12 +189,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         painelP = new javax.swing.JPanel();
-        painelResidencias = new javax.swing.JPanel();
-        jScrollPane11 = new javax.swing.JScrollPane();
-        residencias = new javax.swing.JTable();
-        jLabel59 = new javax.swing.JLabel();
-        confirmResidencia = new javax.swing.JButton();
-        cancelarRes = new javax.swing.JButton();
         painelSinistro = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
@@ -428,86 +403,13 @@ public class TelaCandidato extends javax.swing.JFrame {
         painelP.setForeground(new java.awt.Color(110, 48, 110));
         painelP.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        residencias.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null},
-                {null, null},
-                {null, null},
-                {null, null}
-            },
-            new String [] {
-                "Descrição", "CEP"
-            }
-        ));
-        residencias.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                residenciasMouseClicked(evt);
-            }
-        });
-        jScrollPane11.setViewportView(residencias);
-
-        jLabel59.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        jLabel59.setText("Escolha qual residência deseja gerenciar:");
-
-        confirmResidencia.setFont(new java.awt.Font("Arial", 0, 11)); // NOI18N
-        confirmResidencia.setForeground(new java.awt.Color(110, 48, 110));
-        confirmResidencia.setText("Confirmar");
-        confirmResidencia.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmResidenciaActionPerformed(evt);
-            }
-        });
-
-        cancelarRes.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        cancelarRes.setForeground(new java.awt.Color(110, 48, 110));
-        cancelarRes.setText("Cancelar");
-        cancelarRes.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelarResActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout painelResidenciasLayout = new javax.swing.GroupLayout(painelResidencias);
-        painelResidencias.setLayout(painelResidenciasLayout);
-        painelResidenciasLayout.setHorizontalGroup(
-            painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelResidenciasLayout.createSequentialGroup()
-                .addGap(36, 36, 36)
-                .addGroup(painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(painelResidenciasLayout.createSequentialGroup()
-                        .addComponent(cancelarRes)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(confirmResidencia))
-                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 402, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(53, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelResidenciasLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel59)
-                .addGap(98, 98, 98))
-        );
-        painelResidenciasLayout.setVerticalGroup(
-            painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelResidenciasLayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel59)
-                .addGap(27, 27, 27)
-                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(painelResidenciasLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirmResidencia)
-                    .addComponent(cancelarRes))
-                .addGap(27, 27, 27))
-        );
-
-        painelP.add(painelResidencias, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 30, -1, -1));
-
         painelSinistro.setBackground(new java.awt.Color(255, 255, 255));
         painelSinistro.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        jLabel33.setFont(new java.awt.Font("Arial", 0, 16)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(0, 51, 153));
+        jLabel33.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        jLabel33.setForeground(new java.awt.Color(1, 45, 90));
         jLabel33.setText("Selecione o sinistro que deseja relatar:");
-        painelSinistro.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 20, -1, -1));
+        painelSinistro.add(jLabel33, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 20, -1, -1));
 
         descricaoSinistro.setColumns(20);
         descricaoSinistro.setRows(5);
@@ -515,7 +417,7 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         painelSinistro.add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, 380, -1));
 
-        enviarSinistro.setBackground(new java.awt.Color(153, 0, 204));
+        enviarSinistro.setBackground(new java.awt.Color(0, 153, 255));
         enviarSinistro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         enviarSinistro.setForeground(new java.awt.Color(255, 255, 255));
         enviarSinistro.setText("Enviar");
@@ -526,7 +428,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         });
         painelSinistro.add(enviarSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 320, -1, -1));
 
-        cancelarSinistro.setBackground(new java.awt.Color(0, 102, 204));
+        cancelarSinistro.setBackground(new java.awt.Color(126, 87, 194));
         cancelarSinistro.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         cancelarSinistro.setForeground(new java.awt.Color(255, 255, 255));
         cancelarSinistro.setText("Cancelar");
@@ -1672,8 +1574,10 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
-        readTableApolices(segurado);
+        if(comboSinistro.getItemCount() == 0){
         preencherComboBox();
+        }
+        readTableApolices(segurado);
         visualizarListaDeApolices("Relatar Sinistro");
         //painelResidencias.setVisible(true);
 
@@ -2097,11 +2001,11 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void enviarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSinistroActionPerformed
 
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja relatar este sinistro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            float valorSinistro = controlador.valorSinistroEscolhido(String.valueOf(comboSinistro.getSelectedItem()));
-            controlador.registrarSinistro(String.valueOf(comboSinistro.getSelectedItem()), valorSinistro, descricaoSinistro.getText(), selecionado);
-            JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! \n Valor Estimado para este tipo de sinistro: " + valorSinistro);
+            controlador.registrarSinistro(String.valueOf(comboSinistro.getSelectedItem()), 0, descricaoSinistro.getText(), selecionado);
+            JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! ");
             painelSinistro.setVisible(false);
         }
+        
     }//GEN-LAST:event_enviarSinistroActionPerformed
 
     private void cancelarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSinistroActionPerformed
@@ -2165,23 +2069,8 @@ public class TelaCandidato extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jListaDeApolicesMouseClicked
 
-    private void confirmResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmResidenciaActionPerformed
-        painelResidencias.setVisible(false);
-        painelSinistro.setVisible(true);
-    }//GEN-LAST:event_confirmResidenciaActionPerformed
-
-    private void cancelarResActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarResActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja cancelar essa operação?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            painelResidencias.setVisible(false);
-        }
-    }//GEN-LAST:event_cancelarResActionPerformed
-
-    private void residenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_residenciasMouseClicked
-        selecionado = residencias.getSelectedRow();
-    }//GEN-LAST:event_residenciasMouseClicked
-
     private void comboSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboSinistroActionPerformed
-        preencherComboBox();
+
 
     }//GEN-LAST:event_comboSinistroActionPerformed
 
@@ -2226,7 +2115,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         jPanelPagamento.setVisible(false);
         jPanelSolicitacaoReprovada.setVisible(false);
         jPanelListaSeguros.setVisible(false);
-        painelResidencias.setVisible(false);
         editar.setVisible(false);
         editarSelecionado.setVisible(false);
         excluirSelecionado.setVisible(false);
@@ -2340,8 +2228,8 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void preencherComboBox() {
 
-        for (int i = 0; i < controlador.lerSinistro().size(); i++) {
-            comboSinistro.addItem(controlador.lerSinistro().get(i).getTipoSinistro());
+        for (int i = 0; i < controlador.lerTipoSinistro().size(); i++) {
+            comboSinistro.addItem(controlador.lerTipoSinistro().get(i).getTipoSinistro());
         }
         //for (int i = 0; i < controlador.lerServico().size(); i++) {
         //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
@@ -2452,7 +2340,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JTextField campoValorParcelado;
     private javax.swing.JTextField campoValorSeguroPagamento;
     private javax.swing.JButton cancelar;
-    private javax.swing.JButton cancelarRes;
     private javax.swing.JButton cancelarServico;
     private javax.swing.JButton cancelarSinistro;
     private javax.swing.JButton cancelarSolicitacao;
@@ -2462,7 +2349,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comboBoxBandeira;
     private javax.swing.JComboBox<String> comboSinistro;
     private javax.swing.JTextField comodos;
-    private javax.swing.JButton confirmResidencia;
     private javax.swing.JButton confirmarEdicao;
     private javax.swing.JButton contratarServico;
     private javax.swing.JTextField descBem;
@@ -2535,7 +2421,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
-    private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
@@ -2561,7 +2446,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
-    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -2595,7 +2479,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JButton nova;
     private javax.swing.JTextField numero;
     private javax.swing.JPanel painelP;
-    private javax.swing.JPanel painelResidencias;
     private javax.swing.JPanel painelServico;
     private javax.swing.JPanel painelSinistro;
     private javax.swing.JPanel painelSolicitacao;
@@ -2604,7 +2487,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> quantidadeVezesParcela;
     private javax.swing.JButton relatarSinistro;
     private javax.swing.JButton remover;
-    private javax.swing.JTable residencias;
     private javax.swing.JTextField rua;
     private javax.swing.JButton sairButton;
     private javax.swing.JButton solicitarSeguro;

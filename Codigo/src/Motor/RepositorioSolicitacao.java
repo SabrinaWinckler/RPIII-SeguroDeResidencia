@@ -5,11 +5,13 @@ import DAO.ResidenciaDAO;
 import DAO.ServicoDAO;
 import DAO.SinistroDAO;
 import DAO.SolicitacaoDAO;
+import DAO.TipoSinistroDAO;
 import entity.Solicitacao;
 import entity.Servico;
 import entity.Bem;
 import entity.Residencia;
 import entity.Sinistro;
+import entity.TipoSinistro;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -28,7 +30,7 @@ public class RepositorioSolicitacao {
 
     private Servico servico;
 
-    private ArrayList<Sinistro> sinistros;
+    private ArrayList<TipoSinistro> sinistros;
     
     private Gerenciador gerenciador = new Gerenciador();
 
@@ -131,6 +133,10 @@ public class RepositorioSolicitacao {
         SinistroDAO sinistro = new SinistroDAO();
         return sinistro;
     }
+    public TipoSinistroDAO geraDAOTipoSinistro(){
+        TipoSinistroDAO tipo = new TipoSinistroDAO();
+        return tipo;
+    }
 
     public void registrarSinistro(String tipo, float valor, String descricao, int residencia) {
         Date dataSinistro = new Date();
@@ -138,24 +144,14 @@ public class RepositorioSolicitacao {
         geraDAOSinistro().create(temp);
     }
 
-    public float valorSinistroEscolhido(String escolhido) {
-        float valor = 0;
-        for (int i = 0; i < sinistros.size(); i++) {
-            if (sinistros.get(i).getTipoSinistro().equalsIgnoreCase(escolhido)) {
-                valor = sinistros.get(i).getValorSinistro();
-                break;
-            }
-        }
-        return valor;
-    }
 
     public void cadastrarTipoDeSinistro(String nome) {
-        Sinistro sinistro = new Sinistro(nome);
+        TipoSinistro sinistro = new TipoSinistro(nome);
         sinistros.add(sinistro);
     }
 
-    public List<Sinistro> lerSinistro(){
-        return geraDAOSinistro().read();
+    public List<TipoSinistro> lerTipoSinistro(){
+        return geraDAOTipoSinistro().read();
     }
     public List<Servico> lerServico(){
         
@@ -174,11 +170,11 @@ public class RepositorioSolicitacao {
         this.bens = bens;
     }
 
-    public void setSinistros(ArrayList<Sinistro> sinistros) {
+    public void setSinistros(ArrayList<TipoSinistro> sinistros) {
         this.sinistros = sinistros;
     }
 
-    public ArrayList<Sinistro> getSinistros() {
+    public ArrayList<TipoSinistro> getSinistros() {
         return sinistros;
     }
 
