@@ -5,7 +5,6 @@
  */
 package View;
 
-import entity.Corretor;
 import entity.Segurado;
 import entity.Sinistro;
 import entity.Solicitacao;
@@ -35,7 +34,7 @@ import javax.swing.table.DefaultTableModel;
  *
  * @author Matheus Montanha
  */
-public class PainelCorretor extends javax.swing.JFrame {
+public class TelaCorretor extends javax.swing.JFrame {
 
     int visivel = 0;
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
@@ -44,7 +43,7 @@ public class PainelCorretor extends javax.swing.JFrame {
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     RepositorioSolicitacao controlador = new RepositorioSolicitacao();
 
-    public PainelCorretor() {
+    public TelaCorretor() {
         initComponents();
         runProgram();
     }
@@ -105,12 +104,12 @@ public class PainelCorretor extends javax.swing.JFrame {
         modelo.setNumRows(0);
         int tamanhoLista = gerenciador.servicosPendentes().size();
         if (tamanhoLista > 0) {
-            for (Segurado servicosPendente : gerenciador.servicosPendentes()) {
+            gerenciador.servicosPendentes().forEach((servicosPendente) -> {
                 modelo.addRow(new Object[]{
                     servicosPendente.getServicos().get(0).getDesc(),
                     sdf.format(servicosPendente.getServicos().get(0).getDataDeSolitacao())
                 });
-            }
+            });
             return 1;
         } else {
             return 0;
@@ -1494,7 +1493,7 @@ public class PainelCorretor extends javax.swing.JFrame {
                 }
             }
         } catch (ParseException ex) {
-            Logger.getLogger(PainelCorretor.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(TelaCorretor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButtonConfirmarDataActionPerformed
 
@@ -1950,8 +1949,12 @@ public class PainelCorretor extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(PainelCorretor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaCorretor.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -1962,7 +1965,7 @@ public class PainelCorretor extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            PainelCorretor painelCorretor = new PainelCorretor();
+            TelaCorretor painelCorretor = new TelaCorretor();
             painelCorretor.setVisible(true);
         });
     }

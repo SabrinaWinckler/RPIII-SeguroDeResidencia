@@ -309,8 +309,8 @@ public class TelaLogin extends javax.swing.JFrame {
         String senhaJunta = String.copyValueOf(campoSenha.getPassword());
         for (Segurado segurado : listSegurados) {
             if (segurado.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && segurado.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
-                painelCandidato = new TelaCandidato(segurado);
                 GerenciadorViewLogin.getInstance().setSeguradoOnline(segurado);
+                painelCandidato = new TelaCandidato();
                 painelCandidato.setVisible(true);
                 dispose();
                 usuarioExiste = true;
@@ -333,7 +333,7 @@ public class TelaLogin extends javax.swing.JFrame {
                 if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                     usuarioExiste = true;
                     GerenciadorViewLogin.getInstance().setCorretorOnline(certoCorretor);
-                    PainelCorretor painelCorretor = new PainelCorretor();
+                    TelaCorretor painelCorretor = new TelaCorretor();
                     painelCorretor.setVisible(true);
                     dispose();
                 }

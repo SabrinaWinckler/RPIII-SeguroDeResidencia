@@ -24,7 +24,7 @@ public class RepositorioSolicitacao {
     private Residencia residencia;
 
     private double valorSolicitacao;
-    
+
     private ArrayList<Bem> bens;
 
     private Solicitacao solicitacao = new Solicitacao();
@@ -32,7 +32,7 @@ public class RepositorioSolicitacao {
     private Servico servico;
 
     private ArrayList<TipoSinistro> sinistros;
-    
+
     private Gerenciador gerenciador = new Gerenciador();
 
     public RepositorioSolicitacao() {
@@ -79,11 +79,12 @@ public class RepositorioSolicitacao {
         //areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
         return residenciaTeste;
     }
+
     public void atualizarSolicitacaoResidenciaEditada(String uf, String cidade, String bairro,
             String desc, int numRes, long cepRes, int qntComodos,
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacao,
-            int terreno, int estrutura) {
+            int terreno, int estrutura, String cpf) {
 
         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal,
                 areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
@@ -101,10 +102,10 @@ public class RepositorioSolicitacao {
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacao,
             int terreno, int estrutura, String cpf) {
-        
+
         Residencia temp = new Residencia(ruaRes, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, numAndares, anoConstrucao, ruaRes, ruaRes, cidade, bairro, areaC, bens, localizacao, terreno, estrutura);
         Date data = new Date();
-        geraDAOResidencia().create(temp, cpf  );
+        geraDAOResidencia().create(temp, cpf);
         BemDAO daoBem = new BemDAO();
         for (int i = 0; i < bens.size(); i++) {
             daoBem.create(bens.get(i));
@@ -134,7 +135,8 @@ public class RepositorioSolicitacao {
         SinistroDAO sinistro = new SinistroDAO();
         return sinistro;
     }
-    public TipoSinistroDAO geraDAOTipoSinistro(){
+
+    public TipoSinistroDAO geraDAOTipoSinistro() {
         TipoSinistroDAO tipo = new TipoSinistroDAO();
         return tipo;
     }
@@ -145,25 +147,26 @@ public class RepositorioSolicitacao {
         geraDAOSinistro().create(temp);
     }
 
-
     public void cadastrarTipoDeSinistro(String nome) {
         TipoSinistro sinistro = new TipoSinistro(nome);
         sinistros.add(sinistro);
     }
 
-    public List<TipoSinistro> lerTipoSinistro(){
+    public List<TipoSinistro> lerTipoSinistro() {
         return geraDAOTipoSinistro().read();
     }
-    public void tabelaBens(DefaultTableModel tabela){
+
+    public void tabelaBens(DefaultTableModel tabela) {
         for (Bem string : getBens()) {
-                tabela.addRow(new Object[]{
-                    string.getDescricaoBem(),
-                    String.valueOf(string.getValorEstimadoBem())
-                });
+            tabela.addRow(new Object[]{
+                string.getDescricaoBem(),
+                String.valueOf(string.getValorEstimadoBem())
+            });
+        }
     }
-    }
-    public List<Servico> lerServico(){
-        
+
+    public List<Servico> lerServico() {
+
         return geraDAOServico().servicosCadastrados();
     }
 

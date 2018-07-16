@@ -14,11 +14,11 @@ public class ExceptionEmptySpace extends RuntimeException {
     public ExceptionEmptySpace(String message) {
         super(message);
     }
-    public static void informaDado(String nome) {
+
+    public static void informaDado(String nome) throws Exception {
         while (nome == null || nome.startsWith(" ") || nome.equals("")) {
             throw new ExceptionEmptySpace("Não foi inserida nenhuma informação!");
         }
     }
 
- 
 }
