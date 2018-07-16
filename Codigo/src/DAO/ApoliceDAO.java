@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author Débora Siqueira
  */
 public class ApoliceDAO {
-    
+
     public void create(Apolice apolice, int codSolicitacao, int codSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         DateFormat dataFormatada = new SimpleDateFormat("yyyy/MM/dd");
@@ -56,10 +56,10 @@ public class ApoliceDAO {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
         }
     }
-    
+
     public void createParcela(int codApolice) {
     }
-    
+
     public List<String> apolicePorSegurado(Segurado segurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -81,9 +81,9 @@ public class ApoliceDAO {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
         }
         return listApolicePorResidencia;
-        
+
     }
-    
+
     public int qtdServicosSolicitacosPorApolice(int idApolice, int idServico) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -104,15 +104,16 @@ public class ApoliceDAO {
             Logger.getLogger(ApoliceDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
-            
+
         }
         return quantidade;
     }
-    
+
     public List<Apolice> listaDeApolicePorCliente(int idSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs = null;
+        List<Apolice> listApolices = new ArrayList<>();
         try {
             stm = conexao.prepareStatement("select * from apolice where apolice.idSegurado = " + idSegurado);
             rs = stm.executeQuery();
@@ -120,10 +121,23 @@ public class ApoliceDAO {
                 Apolice apolice = new Apolice();
                 apolice.setCodApolice(rs.getInt("idApolice"));
                 apolice.setCodSolicitacao(rs.getInt("idSolicitacao"));
-                apolice.setBandeiraCartão();
+                apolice.setBandeiraCartao(rs.getString("bandeiraCartao"));
+                apolice.setNumeroApolice(rs.getString("numeroApolice"));
+                apolice.setDataContratacaoApolice(rs.getDate("dataContratacaoApolice"));
+                apolice.setCartaoCreditoPagamento(rs.getString("cartaoCreditoPgto"));
+                apolice.setVencimentoCartao(rs.getString("vencimentoCartao"));
+                apolice.setCodSegurancaCartao(rs.getInt("codSegurancaCartao"));
+                apolice.setNomeNoCartao(rs.getString("nomeNoCartao"));
+                apolice.setQuantidadeParcelas(rs.getInt("quantidadeParcelas"));
+                apolice.setValorParcela(rs.getFloat("valorParcela"));
+                listApolices.add(apolice);
             }
-            
-        } catch (Exception e) {
+            return listApolices;
+        } catch (SQLException e) {
+            Logger.getLogger(ApoliceDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stm, rs);
         }
+        return listApolices;
     }
 }

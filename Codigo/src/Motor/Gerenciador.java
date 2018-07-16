@@ -78,7 +78,7 @@ public class Gerenciador {
         // daoResidencia.create(residencia, candidato.getCpf());
     }
 
-    public void registrarApolice(String bandeiraCartao, long numeroApolice,
+    public void registrarApolice(String bandeiraCartao, String numeroApolice,
             float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento,
             String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao, int codSolicitacao,
             int quantidadeParcelas,
@@ -148,6 +148,10 @@ public class Gerenciador {
 
     public List<String> apolicePorCliente(Segurado segurado) {
         return daoApolice.apolicePorSegurado(segurado);
+    }
+
+    public List<Apolice> listaDeApolices(int idSegurado) {
+        return daoApolice.listaDeApolicePorCliente(idSegurado);
     }
 
     public void transformaCandidatoEmSegurado(String cpf) {

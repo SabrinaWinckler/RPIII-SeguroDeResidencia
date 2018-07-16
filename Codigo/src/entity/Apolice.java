@@ -16,7 +16,7 @@ public class Apolice {
     private int codApolice;
     private int codSolicitacao;
     private String bandeiraCartao;
-    private long numeroApolice;
+    private String numeroApolice;
     private float premioApolice;
     private Date dataContratacaoApolice;
     private String cartaoCreditoPagamento;
@@ -30,9 +30,9 @@ public class Apolice {
 
     }
 
-    public Apolice(int codSolicitacao, String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao, int quantidadeParcelas, float valorParcela) {
+    public Apolice(int codSolicitacao, String bandeiraCartao, String numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao, int quantidadeParcelas, float valorParcela) {
         this.codSolicitacao = codSolicitacao;
-        this.bandeiraCartao = bandeiraCartão;
+        this.bandeiraCartao = bandeiraCartao;
         this.numeroApolice = numeroApolice;
         this.premioApolice = premioApolice;
         this.dataContratacaoApolice = dataContratacaoApolice;
@@ -44,7 +44,7 @@ public class Apolice {
         this.valorParcela = valorParcela;
     }
 
-    public Apolice(int codApolice, String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao) {
+    public Apolice(int codApolice, String bandeiraCartão, String numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao) {
         this.codApolice = codApolice;
         this.bandeiraCartao = bandeiraCartão;
         this.numeroApolice = numeroApolice;
@@ -56,7 +56,7 @@ public class Apolice {
         this.nomeNoCartao = nomeNoCartao;
     }
 
-    public Apolice(String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao) {
+    public Apolice(String bandeiraCartão, String numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao) {
         this.bandeiraCartao = bandeiraCartão;
         this.numeroApolice = numeroApolice;
         this.premioApolice = premioApolice;
@@ -98,14 +98,14 @@ public class Apolice {
     /**
      * @return the numeroApolice
      */
-    public long getNumeroApolice() {
+    public String getNumeroApolice() {
         return numeroApolice;
     }
 
     /**
      * @param numeroApolice the numeroApolice to set
      */
-    public void setNumeroApolice(long numeroApolice) {
+    public void setNumeroApolice(String numeroApolice) {
         this.numeroApolice = numeroApolice;
     }
 
