@@ -10,7 +10,7 @@ import entity.Pessoa;
 import entity.Residencia;
 import entity.Solicitacao;
 import Motor.GerenciadorViewCorretor;
-import View.Tela_Login;
+import View.TelaLogin;
 import com.sun.javafx.scene.control.skin.VirtualFlow;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -125,7 +125,7 @@ public class Principal {
         SinistroDAO daoSinistro = new SinistroDAO();
         daoSinistro.create(sinistro);
          */
-        Tela_Login telaLogin = new Tela_Login();
+        TelaLogin telaLogin = new TelaLogin();
 
         telaLogin.setVisible(true);
     }
