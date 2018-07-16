@@ -11,6 +11,7 @@ import entity.Sinistro;
 import entity.Solicitacao;
 import Motor.RepositorioSolicitacao;
 import Motor.GerenciadorViewCorretor;
+import Motor.GerenciadorViewLogin;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Cursor;
@@ -42,17 +43,10 @@ public class PainelCorretor extends javax.swing.JFrame {
     int selecionado = -1;
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     RepositorioSolicitacao controlador = new RepositorioSolicitacao();
-    static Corretor corretor;
 
-    /**
-     * Creates new form Painel_Corretor
-     *
-     * @param corretorOnline
-     */
-    public PainelCorretor(Corretor corretorOnline) {
+    public PainelCorretor() {
         initComponents();
         runProgram();
-        corretor = corretorOnline;
     }
 
     private int readTableListaDeResidencia() {
@@ -362,7 +356,7 @@ public class PainelCorretor extends javax.swing.JFrame {
         jComboBoxOpcoesCorretor.setBackground(new java.awt.Color(110, 48, 110));
         jComboBoxOpcoesCorretor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
         jComboBoxOpcoesCorretor.setForeground(new java.awt.Color(110, 48, 110));
-        jComboBoxOpcoesCorretor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Minha conta", "Sair" }));
+        jComboBoxOpcoesCorretor.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Minha conta" }));
         jComboBoxOpcoesCorretor.setToolTipText("");
         jComboBoxOpcoesCorretor.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1302,8 +1296,16 @@ public class PainelCorretor extends javax.swing.JFrame {
         if (readTableListaDeSinistros() == 0) {
             JOptionPane.showConfirmDialog(rootPane, "Não possui sinistros para avaliar.", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
-            visualizarSinistros();
-            habilitarButtonsTelaSinistro(false);
+            if (verificarAtividadeEmJPanels() != null) {
+                if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza"
+                        + "que deseja sair do atual processo?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
+                    List<JTextField> listaDeCampos = new ArrayList<>();
+                    guardarCamposPainel(listaDeCampos, verificarAtividadeEmJPanels());
+                    limparCamposGeral(listaDeCampos);
+                    visualizarSinistros();
+                    habilitarButtonsTelaSinistro(false);
+                }
+            }
         }
     }//GEN-LAST:event_avaliarSinistroButtonActionPerformed
 
@@ -1331,26 +1333,19 @@ public class PainelCorretor extends javax.swing.JFrame {
         String opcaoEscolhida;
         opcaoEscolhida = jComboBoxOpcoesCorretor.getSelectedItem().toString();
         if (opcaoEscolhida.equalsIgnoreCase("Minha conta")) {
-            Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
-            jComboBoxOpcoesCorretor.setVisible(false);
+            TelaCadastraPessoa telaCadastro = new TelaCadastraPessoa();
             telaCadastro.setVisible(true);
+            telaCadastro.preencherCamposCadastro(GerenciadorViewLogin.getInstance().getCorretorOnline());
+            jComboBoxOpcoesCorretor.setVisible(false);
             dispose();
-        } else if (opcaoEscolhida.equalsIgnoreCase("Sair")) {
-            if (JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja sair?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-                Tela_Login telaLogin = new Tela_Login();
-                telaLogin.setVisible(true);
-                dispose();
-            } else {
-                jComboBoxOpcoesCorretor.setVisible(false);
-            }
         }
     }//GEN-LAST:event_jComboBoxOpcoesCorretorActionPerformed
 
     private void listaDeResidenciasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeResidenciasMouseClicked
-            selecionado = listaDeResidencias.getSelectedRow();
-            listaDeResidencias.setSelectionBackground(new Color(1, 45, 90));
-            preencherCamposAvaliarResidencia(selecionado);
-            habiltarButtonsTelaResidencia(true);
+        selecionado = listaDeResidencias.getSelectedRow();
+        listaDeResidencias.setSelectionBackground(new Color(1, 45, 90));
+        preencherCamposAvaliarResidencia(selecionado);
+        habiltarButtonsTelaResidencia(true);
     }//GEN-LAST:event_listaDeResidenciasMouseClicked
 
     private void buttonEditarDadosResidenciaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonEditarDadosResidenciaActionPerformed
@@ -1967,7 +1962,7 @@ public class PainelCorretor extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            PainelCorretor painelCorretor = new PainelCorretor(corretor);
+            PainelCorretor painelCorretor = new PainelCorretor();
             painelCorretor.setVisible(true);
         });
     }
