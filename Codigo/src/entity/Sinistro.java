@@ -14,14 +14,13 @@ import java.util.Date;
 public class Sinistro extends TipoSinistro {
 
     private int codSinistro;
-    private int codResidencia; 
+    private int codResidencia;
     private Date dataSinistro;
     private String descricaoSinistro;
     private float valorSinistro;
     private String autorizadoSinistro;
     private String parecerAvaliador;
     private String motivoReprovacao;
-    
 
     public Sinistro() {
 
@@ -46,16 +45,16 @@ public class Sinistro extends TipoSinistro {
         this.parecerAvaliador = parecerAvaliador;
     }
 
-    public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String tipoSinistro, int codRes) {
+    public Sinistro(Date dataSinistro, String descricaoSinistro, float valorSinistro, String tipoSinistro) {
         super(tipoSinistro);
         this.dataSinistro = dataSinistro;
         this.descricaoSinistro = descricaoSinistro;
         this.valorSinistro = valorSinistro;
-        this.codResidencia = codRes;
     }
-     public Sinistro(  String tipoSinistro) {
+
+    public Sinistro(String tipoSinistro) {
         super(tipoSinistro);
-       
+
     }
 
     public Date getDataSinistro() {

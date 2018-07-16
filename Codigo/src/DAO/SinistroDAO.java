@@ -31,10 +31,11 @@ public class SinistroDAO {
         ResultSet rs;
         int idTipo = -1;
         try {
-            stm = conexao.prepareStatement("SELECT max(tiposinistro.idTipo) from tiposinistro");
+            stm = conexao.prepareStatement("select tiposinistro.idTipo from "
+                    + "tiposinistro where tiposinistro.descricaoTipoSinistro = '" + sinistro.getTipoSinistro() + "'");
             rs = stm.executeQuery();
             while (rs.next()) {
-                idTipo = rs.getInt(1);
+                idTipo = rs.getInt("idTipo");
             }
             stm = conexao.prepareStatement("INSERT INTO sinistro(parecerAvaliador, dataSinistro, descricaoSinistro,"
                     + "autorizadoSinistro, valorSinistro, idTipo)VALUES(?,?,?,?,?,?)");
@@ -44,6 +45,28 @@ public class SinistroDAO {
             stm.setString(4, sinistro.getAutorizadoSinistro());
             stm.setFloat(5, sinistro.getValorSinistro());
             stm.setInt(6, idTipo);
+            stm.executeUpdate();
+        } catch (SQLException e) {
+            Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stm);
+        }
+    }
+
+    public void solicitacaoSinistro(int idApolice) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm = null;
+        ResultSet rs;
+        int idSinistro = -1;
+        try {
+            stm = conexao.prepareStatement("select max(idSinistro) from sinistro");
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                idSinistro = rs.getInt("idSinistro");
+            }
+            stm = conexao.prepareStatement("insert into solicitacaosinistro(idSinistro, idApolice)values(?,?)");
+            stm.setInt(1, idSinistro);
+            stm.setInt(2, idApolice);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);

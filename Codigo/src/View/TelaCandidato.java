@@ -71,6 +71,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         DefaultTableModel modelo = (DefaultTableModel) jListaDeApolices.getModel();
         modelo.setNumRows(0);
         int tamanhoLista = gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline()).size();
+        listaDeApolices = gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline());
         if (tamanhoLista > 0) {
             for (String string : gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline())) {
                 modelo.addRow(new Object[]{
@@ -1501,7 +1502,7 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
         if (comboSinistro.getItemCount() == 0) {
-            //preencherComboBox();
+            preencherComboBox();
         }
         //readTableApolices(segurado);
         visualizarListaDeApolices("Relatar Sinistro");
@@ -1861,7 +1862,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirSelecionadoActionPerformed
 
     private void enviarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSinistroActionPerformed
-
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja relatar este sinistro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             controlador.registrarSinistro(String.valueOf(comboSinistro.getSelectedItem()), 0, descricaoSinistro.getText(), selecionado);
             JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! ");
@@ -1939,7 +1939,6 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void minhasSolicitacoesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_minhasSolicitacoesActionPerformed
         if (readTableMinhasSolicitacoes() == 1) {
-            // panelComListaSolicitacoes.setVisible(true);
             jDialogListaDeSolicitacoes.setVisible(true);
             jDialogListaDeSolicitacoes.setLocationRelativeTo(PanelSolicitarSeguro);
         } else {

@@ -5,8 +5,6 @@
  */
 package DAO;
 
-import entity.Candidato;
-import entity.Segurado;
 import entity.Solicitacao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

@@ -15,7 +15,7 @@ public class Apolice {
 
     private int codApolice;
     private int codSolicitacao;
-    private String bandeiraCartão;
+    private String bandeiraCartao;
     private long numeroApolice;
     private float premioApolice;
     private Date dataContratacaoApolice;
@@ -26,9 +26,13 @@ public class Apolice {
     private int quantidadeParcelas;
     private float valorParcela;
 
+    public Apolice() {
+
+    }
+
     public Apolice(int codSolicitacao, String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao, int quantidadeParcelas, float valorParcela) {
         this.codSolicitacao = codSolicitacao;
-        this.bandeiraCartão = bandeiraCartão;
+        this.bandeiraCartao = bandeiraCartão;
         this.numeroApolice = numeroApolice;
         this.premioApolice = premioApolice;
         this.dataContratacaoApolice = dataContratacaoApolice;
@@ -42,7 +46,7 @@ public class Apolice {
 
     public Apolice(int codApolice, String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao) {
         this.codApolice = codApolice;
-        this.bandeiraCartão = bandeiraCartão;
+        this.bandeiraCartao = bandeiraCartão;
         this.numeroApolice = numeroApolice;
         this.premioApolice = premioApolice;
         this.dataContratacaoApolice = dataContratacaoApolice;
@@ -53,7 +57,7 @@ public class Apolice {
     }
 
     public Apolice(String bandeiraCartão, long numeroApolice, float premioApolice, Date dataContratacaoApolice, String cartaoCreditoPagamento, String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao) {
-        this.bandeiraCartão = bandeiraCartão;
+        this.bandeiraCartao = bandeiraCartão;
         this.numeroApolice = numeroApolice;
         this.premioApolice = premioApolice;
         this.dataContratacaoApolice = dataContratacaoApolice;
@@ -80,15 +84,15 @@ public class Apolice {
     /**
      * @return the bandeiraCartão
      */
-    public String getBandeiraCartão() {
-        return bandeiraCartão;
+    public String getBandeiraCartao() {
+        return bandeiraCartao;
     }
 
     /**
      * @param bandeiraCartão the bandeiraCartão to set
      */
-    public void setBandeiraCartão(String bandeiraCartão) {
-        this.bandeiraCartão = bandeiraCartão;
+    public void setBandeiraCartao(String bandeiraCartão) {
+        this.bandeiraCartao = bandeiraCartão;
     }
 
     /**

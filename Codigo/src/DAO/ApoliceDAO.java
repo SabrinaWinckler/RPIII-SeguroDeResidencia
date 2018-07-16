@@ -23,7 +23,7 @@ import java.util.logging.Logger;
  * @author Débora Siqueira
  */
 public class ApoliceDAO {
-
+    
     public void create(Apolice apolice, int codSolicitacao, int codSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         DateFormat dataFormatada = new SimpleDateFormat("yyyy/MM/dd");
@@ -38,7 +38,7 @@ public class ApoliceDAO {
                     + "quantidadeParcelas, valorParcela, idSegurado)"
                     + "VALUES(?,?,?,?,?,?,?,?,?,?,?,?)");
             stm.setInt(1, codSolicitacao);
-            stm.setString(2, apolice.getBandeiraCartão());
+            stm.setString(2, apolice.getBandeiraCartao());
             stm.setString(3, String.valueOf(apolice.getNumeroApolice()));
             stm.setFloat(4, apolice.getPremioApolice());
             stm.setString(5, data);
@@ -56,10 +56,10 @@ public class ApoliceDAO {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
         }
     }
-
+    
     public void createParcela(int codApolice) {
     }
-
+    
     public List<String> apolicePorSegurado(Segurado segurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -81,9 +81,9 @@ public class ApoliceDAO {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
         }
         return listApolicePorResidencia;
-
+        
     }
-
+    
     public int qtdServicosSolicitacosPorApolice(int idApolice, int idServico) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -104,8 +104,26 @@ public class ApoliceDAO {
             Logger.getLogger(ApoliceDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
-
+            
         }
         return quantidade;
+    }
+    
+    public List<Apolice> listaDeApolicePorCliente(int idSegurado) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stm = null;
+        ResultSet rs = null;
+        try {
+            stm = conexao.prepareStatement("select * from apolice where apolice.idSegurado = " + idSegurado);
+            rs = stm.executeQuery();
+            while (rs.next()) {
+                Apolice apolice = new Apolice();
+                apolice.setCodApolice(rs.getInt("idApolice"));
+                apolice.setCodSolicitacao(rs.getInt("idSolicitacao"));
+                apolice.setBandeiraCartão();
+            }
+            
+        } catch (Exception e) {
+        }
     }
 }
