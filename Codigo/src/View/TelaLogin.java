@@ -321,7 +321,7 @@ public class TelaLogin extends javax.swing.JFrame {
             for (Candidato pessoa : listPessoas) {
                 if (pessoa.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && pessoa.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                     usuarioExiste = true;
-                    painelCandidato = new TelaCandidato(pessoa);
+                    painelCandidato = new TelaCandidato();
                     GerenciadorViewLogin.getInstance().setCandidatoOnline(pessoa);
                     painelCandidato.setVisible(true);
                     dispose();

@@ -75,7 +75,7 @@ public class Gerenciador {
                 areaTotal, areaC, numAndares, anoConstrucao, ruaRes,
                 localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada, candidato);
         ResidenciaDAO daoResidencia = new ResidenciaDAO();
-        daoResidencia.create(residencia, candidato.getCpf());
+        // daoResidencia.create(residencia, candidato.getCpf());
     }
 
     public void registrarApolice(String bandeiraCartao, long numeroApolice,

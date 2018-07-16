@@ -22,16 +22,16 @@ public class ResidenciaDAO {
 
     BemDAO daoBem = new BemDAO();
 
-    public void create(Residencia residencia, String cpf) {
+    public void create(Residencia residencia, int id) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
         int idCandidato = -9;
         try {
-            stm = conexao.prepareStatement("select idPessoa from pessoa where pessoa.Cpf =" + cpf);
+            stm = conexao.prepareStatement("select idCandidato from candidato where candidato.idCandidato =" + id);
             rs = stm.executeQuery();
             while (rs.next()) {
-                idCandidato = rs.getInt("idPessoa");
+                idCandidato = rs.getInt("idCandidato");
             }
             stm = conexao.prepareStatement("INSERT INTO residencia(idProprietario,ufResidencia,"
                     + " cidade, bairro, descricaoResidencia, "
@@ -101,7 +101,7 @@ public class ResidenciaDAO {
         return residencia;
     }
 
-    public void updateStatusResidencia(Residencia solicitacao) {
+    public void updateStatusResidencia(Residencia solicitacao, int idProprietario) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
@@ -113,7 +113,7 @@ public class ResidenciaDAO {
                     + "',localizacaoPeridgoas ='" + solicitacao.getLocalizacaoPerigosa() + "',terrenoPerigoso ='" + solicitacao.getTerrenoPerigoso()
                     + "',quantidadeComodos ='" + solicitacao.getQntComodos() + "',quantidadeBanheiros ='" + solicitacao.getQntBanheiros()
                     + "',quantidadeGaragens ='" + solicitacao.getQntGaragens() + "',numeroAndares ='" + solicitacao.getNumAndares() + "'  "
-                    + "where residencia.idProprietario =" + solicitacao.getCandidato().getCodPessoa()
+                    + "where residencia.idProprietario = " + idProprietario
                     + " and residencia.idResidencia =" + solicitacao.getCodResidencia());
             stm.executeUpdate();
         } catch (SQLException e) {

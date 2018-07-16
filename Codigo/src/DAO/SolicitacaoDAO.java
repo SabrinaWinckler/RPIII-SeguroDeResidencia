@@ -29,7 +29,7 @@ public class SolicitacaoDAO {
     CandidatoDAO daoCandidato = new CandidatoDAO();
     DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    public void create(Solicitacao solicitacao, String cpfPessoa) {
+    public void create(Solicitacao solicitacao, int id) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
@@ -41,15 +41,15 @@ public class SolicitacaoDAO {
             while (rs.next()) {
                 idResidencia = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("SELECT idPessoa from pessoa where pessoa.Cpf = "
-                    + cpfPessoa);
+            stm = conexao.prepareStatement("SELECT idCandidato from candidato where candidato.idCandidato = "
+                    + id);
             rs = stm.executeQuery();
             while (rs.next()) {
                 idPessoa = rs.getInt(1);
             }
             stm = conexao.prepareStatement("INSERT INTO solicitacaoseguro(dataSolicitacao, "
                     + "valorSolicitacao, "
-                    + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idPessoa)VALUES(?,?,?,?,?,?,?)");
+                    + "aprovada, motivoReprovacao, motivoAlterecao, idResidencia, idCandidato)VALUES(?,?,?,?,?,?,?)");
             stm.setDate(1, (java.sql.Date.valueOf(sdf.format(solicitacao.getDataSolicitacao()))));
             stm.setDouble(2, solicitacao.getValorSolicitacao());
             stm.setString(3, solicitacao.getAprovadaSolicitacao());

@@ -84,12 +84,12 @@ public class RepositorioSolicitacao {
             String desc, int numRes, long cepRes, int qntComodos,
             int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
             int anoConstrucao, String ruaRes, int localizacao,
-            int terreno, int estrutura, String cpf) {
+            int terreno, int estrutura, int id) {
 
         Residencia temp = this.construirResidencia(uf, cidade, bairro, desc, bens, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal,
                 areaC, numAndares, anoConstrucao, ruaRes, localizacao, terreno, estrutura);
         //this.setResidencia(temp);
-        geraDAOResidencia().updateStatusResidencia(temp);
+        geraDAOResidencia().updateStatusResidencia(temp, id);
     }
 
     public Residencia deletarResidencia() {
@@ -97,22 +97,26 @@ public class RepositorioSolicitacao {
         return this.residencia;
     }
 
-    public void registrarSolicitacao(String uf, String cidade, String bairro,
-            String desc, int numRes, long cepRes, int qntComodos,
-            int qntBanheiros, int qntGaragens, float areaTotal, double areaC, int numAndares,
-            int anoConstrucao, String ruaRes, int localizacao,
-            int terreno, int estrutura, String cpf) {
+    public void registrarSolicitacao(String descricaoRes, int numRes,
+            long cepRes, int qntComodos, int qntBanheiros, int qntGaragens,
+            float areaTotal, int numAndares, int anoConstrucao, String ruaRes,
+            String ufResidencia, String cidade, String bairro, double areaConstruida,
+            int localizacaoPerigosa, int terrenoPerigoso, int estruturaAmeacada, int id) {
 
-        Residencia temp = new Residencia(ruaRes, numRes, cepRes, qntComodos, qntBanheiros, qntGaragens, areaTotal, numAndares, anoConstrucao, ruaRes, ruaRes, cidade, bairro, areaC, bens, localizacao, terreno, estrutura);
+        Residencia temp = new Residencia(descricaoRes,
+                numRes, cepRes, qntComodos, qntBanheiros,
+                qntGaragens, areaTotal, numAndares, anoConstrucao,
+                ruaRes, ufResidencia, cidade, bairro, areaConstruida,
+                bens, localizacaoPerigosa, terrenoPerigoso, estruturaAmeacada);
         Date data = new Date();
-        geraDAOResidencia().create(temp, cpf);
+        geraDAOResidencia().create(temp, id);
         BemDAO daoBem = new BemDAO();
         for (int i = 0; i < bens.size(); i++) {
             daoBem.create(bens.get(i));
         }
         valorSolicitacao = gerenciador.calculaValorSolicitacao(temp);
         Solicitacao tempS = new Solicitacao(data, residencia, valorSolicitacao);
-        geraDAOSolicitacao().create(tempS, GerenciadorViewLogin.getInstance().getUsuarioOnline().getCpf());
+        geraDAOSolicitacao().create(tempS, GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado());
     }
 
     public ServicoDAO geraDAOServico() {

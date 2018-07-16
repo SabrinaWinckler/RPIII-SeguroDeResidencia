@@ -9,15 +9,11 @@ package Excecoes;
  *
  * @author SABRINA
  */
-public class ExceptionEmptySpace extends RuntimeException {
+public class ExceptionEmptySpace {
 
-    public ExceptionEmptySpace(String message) {
-        super(message);
-    }
-
-    public static void informaDado(String nome) throws Exception {
+    public static void informaDado(String nome) throws NullPointerException {
         while (nome == null || nome.startsWith(" ") || nome.equals("")) {
-            throw new ExceptionEmptySpace("Não foi inserida nenhuma informação!");
+            throw new NullPointerException("Não foi inserida nenhuma informação!");
         }
     }
 
