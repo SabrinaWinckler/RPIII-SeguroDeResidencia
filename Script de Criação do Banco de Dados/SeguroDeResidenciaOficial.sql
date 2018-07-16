@@ -105,7 +105,7 @@ CREATE TABLE `bem` (
   `idResidenciaPertencente` int(11) DEFAULT NULL,
   PRIMARY KEY (`idBem`),
   KEY `idResidenciaPertencente` (`idResidenciaPertencente`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,6 +114,7 @@ CREATE TABLE `bem` (
 
 LOCK TABLES `bem` WRITE;
 /*!40000 ALTER TABLE `bem` DISABLE KEYS */;
+INSERT INTO `bem` VALUES (1,'Sofa',450,1),(11,'Sofa',300,5),(10,'Sofa ',500,4);
 /*!40000 ALTER TABLE `bem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -246,7 +247,7 @@ CREATE TABLE `residencia` (
   `numeroAndares` decimal(45,0) DEFAULT NULL,
   PRIMARY KEY (`idResidencia`),
   KEY `idProprietario` (`idProprietario`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -255,7 +256,7 @@ CREATE TABLE `residencia` (
 
 LOCK TABLES `residencia` WRITE;
 /*!40000 ALTER TABLE `residencia` DISABLE KEYS */;
-INSERT INTO `residencia` VALUES (1,1,'RS','Alegrete','Centro','Casa Verde','97547580','Joao Aurelio, 55','200','75',2010,4,2,4,4,1,1,1);
+INSERT INTO `residencia` VALUES (1,1,'RS','Alegrete','Centro','Casa Verde','97547580','Joao Aurelio, 55','200','75',2010,4,2,4,4,1,1,1),(4,1,'RS','Alegrete','Santos Dumont','Casa verde','97547380','Sergipe','100.0','75.0',2010,5,5,5,4,1,1,1),(5,1,'RS','Alegrete','Nossa Senhora da Conceição Aparecida','Casa vermelha','97547590','Joaquim Rodrigues Paim','100.0','75.0',2010,5,5,5,4,1,1,1);
 /*!40000 ALTER TABLE `residencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -323,11 +324,11 @@ CREATE TABLE `sinistro` (
   `valorSinistro` decimal(45,0) DEFAULT NULL,
   `idSinistro` int(11) NOT NULL AUTO_INCREMENT,
   `idTipo` int(11) DEFAULT NULL,
-  `idCorretor` int(11) NOT NULL,
+  `idCorretor` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSinistro`),
   KEY `idTipo` (`idTipo`),
   KEY `idCorretor` (`idCorretor`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -336,6 +337,7 @@ CREATE TABLE `sinistro` (
 
 LOCK TABLES `sinistro` WRITE;
 /*!40000 ALTER TABLE `sinistro` DISABLE KEYS */;
+INSERT INTO `sinistro` VALUES (NULL,'2018-07-16','Ventos fortes e chuvas ocorrendo o destelhamento.',NULL,0,1,5,NULL);
 /*!40000 ALTER TABLE `sinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -356,12 +358,12 @@ CREATE TABLE `solicitacaoseguro` (
   `motivoAlterecao` varchar(150) DEFAULT NULL,
   `idResidencia` int(11) DEFAULT NULL,
   `idCandidato` int(11) DEFAULT NULL,
-  `idCorretor` int(11) NOT NULL,
+  `idCorretor` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSolicitacao`),
   KEY `idResidencia` (`idResidencia`),
   KEY `idCandidato` (`idCandidato`),
   KEY `idCorretor` (`idCorretor`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -370,7 +372,7 @@ CREATE TABLE `solicitacaoseguro` (
 
 LOCK TABLES `solicitacaoseguro` WRITE;
 /*!40000 ALTER TABLE `solicitacaoseguro` DISABLE KEYS */;
-INSERT INTO `solicitacaoseguro` VALUES (1,'2018-07-14','2018-07-15',500,'aprovada',NULL,NULL,1,1,1);
+INSERT INTO `solicitacaoseguro` VALUES (1,'2018-07-14','2018-07-15',500,'aprovada',NULL,NULL,1,1,1),(2,'2018-07-16',NULL,1090.3,NULL,NULL,NULL,5,1,NULL);
 /*!40000 ALTER TABLE `solicitacaoseguro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -412,11 +414,11 @@ DROP TABLE IF EXISTS `solicitacaosinistro`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `solicitacaosinistro` (
   `idSolicitacaoSinistro` int(11) NOT NULL AUTO_INCREMENT,
-  `idSegurado` int(11) DEFAULT NULL,
   `idSinistro` int(11) DEFAULT NULL,
+  `idApolice` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSolicitacaoSinistro`),
-  KEY `idSegurado` (`idSegurado`),
-  KEY `idSinistro` (`idSinistro`)
+  KEY `idSinistro` (`idSinistro`),
+  KEY `idApolice` (`idApolice`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -440,7 +442,7 @@ CREATE TABLE `tiposinistro` (
   `descricaoTipoSinistro` varchar(45) DEFAULT NULL,
   `idTipo` int(11) NOT NULL AUTO_INCREMENT,
   PRIMARY KEY (`idTipo`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -449,6 +451,7 @@ CREATE TABLE `tiposinistro` (
 
 LOCK TABLES `tiposinistro` WRITE;
 /*!40000 ALTER TABLE `tiposinistro` DISABLE KEYS */;
+INSERT INTO `tiposinistro` VALUES ('Incendio',1),('Enchente',2),('Destelhamento',3),('Arrombamento',4),('Furto',5);
 /*!40000 ALTER TABLE `tiposinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -461,4 +464,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-15 14:56:29
+-- Dump completed on 2018-07-16 17:57:42
