@@ -62,7 +62,7 @@ public class SinistroDAO {
             stm = conexao.prepareStatement("select max(idSinistro) from sinistro");
             rs = stm.executeQuery();
             while (rs.next()) {
-                idSinistro = rs.getInt("idSinistro");
+                idSinistro = rs.getInt(1);
             }
             stm = conexao.prepareStatement("insert into solicitacaosinistro(idSinistro, idApolice)values(?,?)");
             stm.setInt(1, idSinistro);
