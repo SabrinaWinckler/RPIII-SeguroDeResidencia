@@ -21,7 +21,7 @@ import javax.swing.JOptionPane;
  *
  * @author Débora Siqueira
  */
-public class Tela_Login extends javax.swing.JFrame {
+public class TelaLogin extends javax.swing.JFrame {
 
     Gerenciador motor = new Gerenciador();
     TelaCandidato painelCandidato;
@@ -29,7 +29,7 @@ public class Tela_Login extends javax.swing.JFrame {
     /**
      * Creates new form Tela_Login
      */
-    public Tela_Login() {
+    public TelaLogin() {
         initComponents();
         usuarioEsqueciASenhajPanel.setVisible(false);
         EsqueciASenhajPanel.setVisible(false);
@@ -238,7 +238,7 @@ public class Tela_Login extends javax.swing.JFrame {
     }//GEN-LAST:event_entrarButtonActionPerformed
 
     private void cadastroMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cadastroMouseClicked
-        Tela_cadastraPessoa telaCadastro = new Tela_cadastraPessoa();
+        TelaCadastraPessoa telaCadastro = new TelaCadastraPessoa();
         telaCadastro.setVisible(true);
         dispose();
     }//GEN-LAST:event_cadastroMouseClicked
@@ -332,8 +332,8 @@ public class Tela_Login extends javax.swing.JFrame {
             for (Corretor certoCorretor : listCorretores) {
                 if (certoCorretor.getUsuarioCliente().equalsIgnoreCase(campoUsuario.getText()) && certoCorretor.getSenhaCliente().equalsIgnoreCase(senhaJunta)) {
                     usuarioExiste = true;
-                    PainelCorretor painelCorretor = new PainelCorretor(certoCorretor);
                     GerenciadorViewLogin.getInstance().setCorretorOnline(certoCorretor);
+                    PainelCorretor painelCorretor = new PainelCorretor();
                     painelCorretor.setVisible(true);
                     dispose();
                 }
@@ -372,15 +372,16 @@ public class Tela_Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Tela_Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(TelaLogin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> {
-            new Tela_Login().setVisible(true);
+            new TelaLogin().setVisible(true);
         });
     }
 

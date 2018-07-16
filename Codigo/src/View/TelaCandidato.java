@@ -38,7 +38,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Matheus Montanha
  */
 public class TelaCandidato extends javax.swing.JFrame {
-    
+
     int visivel = 0;
     RepositorioSolicitacao controlador = new RepositorioSolicitacao();
     List<Solicitacao> listaSolicitacao = new ArrayList<>();
@@ -59,7 +59,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         gerarBackground();
         home();
     }
-    
+
     public TelaCandidato(Candidato seguradoOnline) {
         initComponents();
         candidato = seguradoOnline;
@@ -68,7 +68,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         quantidadeDeSolicitacao = readTableListaSolicitacao(seguradoOnline);
         home();
     }
-    
+
     public TelaCandidato(Segurado seguradoOnline) {
         initComponents();
         segurado = seguradoOnline;
@@ -78,7 +78,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         gerarBackground();
         home();
     }
-    
+
     private int readTableApolices(Segurado segurado) {
         DefaultTableModel modelo = (DefaultTableModel) jListaDeApolices.getModel();
         modelo.setNumRows(0);
@@ -93,9 +93,9 @@ public class TelaCandidato extends javax.swing.JFrame {
         } else {
             return 0;
         }
-        
+
     }
-    
+
     private int readTableMinhasSolicitacoes(Candidato candidato) {
         DefaultTableModel modelo = (DefaultTableModel) listaMinhasSolicitacoes.getModel();
         modelo.setNumRows(0);
@@ -121,7 +121,7 @@ public class TelaCandidato extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     private int readTableListaServico(Segurado segurado) {
         DefaultTableModel modelo = (DefaultTableModel) jTabelaListaServicos.getModel();
         modelo.setNumRows(0);
@@ -138,9 +138,9 @@ public class TelaCandidato extends javax.swing.JFrame {
         } else {
             return 0;
         }
-        
+
     }
-    
+
     private int readTableListaSolicitacao(Candidato candidato) {
         DefaultTableModel modelo = (DefaultTableModel) listaSolicitacaoCandidato.getModel();
         modelo.setNumRows(0);
@@ -162,9 +162,9 @@ public class TelaCandidato extends javax.swing.JFrame {
         } else {
             return 0;
         }
-    
+
     }
-    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1532,8 +1532,8 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_solicitarSeguroActionPerformed
 
     private void relatarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_relatarSinistroActionPerformed
-        if(comboSinistro.getItemCount() == 0){
-        //preencherComboBox();
+        if (comboSinistro.getItemCount() == 0) {
+            //preencherComboBox();
         }
         readTableApolices(segurado);
         visualizarListaDeApolices("Relatar Sinistro");
@@ -1552,9 +1552,9 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_contratarServicoActionPerformed
 
     private void novaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_novaActionPerformed
-        
+
         confirmarEdicao.setVisible(false);
-      
+
         confirmarEdicao.setVisible(true);
         painelSolicitacao.setVisible(true);
         cancelarSolicitacao.setVisible(false);
@@ -1568,7 +1568,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (quantidadeDeSolicitacao > 0) {
             visualizarSolicitacao();
-            
+
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
@@ -1578,11 +1578,23 @@ public class TelaCandidato extends javax.swing.JFrame {
         nova.setVisible(false);*/
     }//GEN-LAST:event_cancelarSolicitacaoActionPerformed
 
+    private void editarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarActionPerformed
+        //recuperar dados da solicitação que ele deseja editar
+        //gerenciador.listaSolicitacaoCliente(candidato);
+        if (quantidadeDeSolicitacao > 0) {
+            visualizarSolicitacao();
+
+        } else {
+            JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
+        }
+
+    }//GEN-LAST:event_editarActionPerformed
+
     private void areaConstruidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_areaConstruidaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_areaConstruidaActionPerformed
     public void esvaziarCampos() {
-        
+
     }
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
         this.esvaziarCampos();
@@ -1620,21 +1632,21 @@ public class TelaCandidato extends javax.swing.JFrame {
             Bem temp = null;
 
             temp = controlador.getBens().get(select);
-          
+
             if (controlador.getBens().remove(temp)) {
                 JOptionPane.showMessageDialog(null, "Bem: \r\n" + " Removido!");
-                
+
             }
             DefaultTableModel tabela = (DefaultTableModel) tabelaBens.getModel();
             tabela.setNumRows(0);
-                    
+
             controlador.tabelaBens(tabela);
-            
+
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(null, "Este bem não foi adicionado!");
         } catch (IndexOutOfBoundsException et) {
             JOptionPane.showMessageDialog(null, "Nenhum bem foi encontrado!");
-        }        
+        }
     }//GEN-LAST:event_removerActionPerformed
 
     private void addActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addActionPerformed
@@ -1646,19 +1658,18 @@ public class TelaCandidato extends javax.swing.JFrame {
             if (controlador.registraBemLista(Float.parseFloat(valor.getText()), descBem.getText())) {
                 controlador.tabelaBens(tabela);
             }
-                descBem.setText("");
-                valor.setText("");
-            }
-             catch (NumberFormatException ex) {
+            descBem.setText("");
+            valor.setText("");
+        } catch (NumberFormatException ex) {
             JOptionPane.showMessageDialog(rootPane, ex.getMessage());
-             }
-            
+        }
+
         // TODO add your handling code here:
     }//GEN-LAST:event_addActionPerformed
     private void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         bg.setIcon(new ImageIcon(pasta + "/src/imagens/barraSup.jpg"));
-        
+
     }
     private void numeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroActionPerformed
         // TODO add your handling code here:
@@ -1709,10 +1720,10 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
         selecionado = listaSolicitacaoCandidato.getSelectedRow();
-        
-            preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
-            controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
-        
+
+        preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
+        controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
+
 
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
@@ -1729,7 +1740,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void ButtonContratarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonContratarSeguroActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja contratar o seguro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             pagamento();
-            
+
         }
 
     }//GEN-LAST:event_ButtonContratarSeguroActionPerformed
@@ -1737,6 +1748,17 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void buttonVoltarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltarActionPerformed
         visualizarSolicitacao();
     }//GEN-LAST:event_buttonVoltarActionPerformed
+
+    private void editarSelecionadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editarSelecionadoActionPerformed
+
+        confirmarEdicao.setVisible(true);
+        cancelarSolicitacao.setVisible(false);
+        nova.setVisible(false);
+        jPanelListaSeguros.setVisible(false);
+        painelSolicitacao.setVisible(true);
+        //editarSelecionado.setVisible(false);
+        excluirSelecionado.setVisible(false);
+    }//GEN-LAST:event_editarSelecionadoActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja confirmar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
@@ -1825,7 +1847,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonHomeActionPerformed
 
     private void confirmarEdicaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmarEdicaoActionPerformed
-      /*  try {
+        try {
             ExceptionEmptySpace.informaDado(cep.getText()); //parse long
             ExceptionEmptySpace.informaDado(uf.getText());
             ExceptionEmptySpace.informaDado(cidade.getText());
@@ -1839,38 +1861,37 @@ public class TelaCandidato extends javax.swing.JFrame {
             ExceptionEmptySpace.informaDado(areat.getText());//parse int
             ExceptionEmptySpace.informaDado(anoC.getText());///parse int
             ExceptionEmptySpace.informaDado(descRes.getText());
-            ExceptionEmptySpace.informaDado(areaConstruida.getText()); */
-            
+            ExceptionEmptySpace.informaDado(areaConstruida.getText());
+
             int numeroCandidato = Integer.parseInt(numero.getText());
             long cepCandidato = Long.parseLong(cep.getText());
-            
+
             int comodosCandidato = Integer.parseInt(comodos.getText());
             int banheiroCandidato = Integer.parseInt(banheiro.getText());
             int garagemCandidato = Integer.parseInt(garagem.getText());
             int andaresCandidato = Integer.parseInt(andares.getText());
             float areaT = Float.parseFloat(areat.getText());
             double areaC = Float.parseFloat(areaConstruida.getText());
-            
+
             int anoConstrucao = Integer.parseInt(anoC.getText());
-            
+
             int localizacao = localizacaoP.getValue();
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
-            long cod = 56465486;
-            
-            controlador.registrarSolicitacao(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
+            /*
+            controlador.atualizarSolicitacaoResidenciaEditada(uf.getText(), cidade.getText(), bairro.getText(), descRes.getText(),
                     numeroCandidato, cepCandidato, comodosCandidato, banheiroCandidato, garagemCandidato, areaT, areaC, andaresCandidato,
                     anoConstrucao, rua.getText(), Integer.parseInt(l.getText()), Integer.parseInt(t.getText()), Integer.parseInt(e.getText()), candidato.getCpf());
             JOptionPane.showMessageDialog(painelP, "Sua solicitação foi enviada com susesso!");
             cancelarSolicitacao.setVisible(true);
-         
+             */
             nova.setVisible(true);
             painelSolicitacao.setVisible(false);
-            
-       // } catch (HeadlessException | NumberFormatException e) {
-      //      JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
-       // }
-        
+
+        } catch (HeadlessException | NumberFormatException e) {
+            JOptionPane.showMessageDialog(painelP, "Por favor insira todas as informações");
+        }
+
 
     }//GEN-LAST:event_confirmarEdicaoActionPerformed
 
@@ -1884,13 +1905,13 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_excluirSelecionadoActionPerformed
 
     private void enviarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enviarSinistroActionPerformed
-        
+
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja relatar este sinistro?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             controlador.registrarSinistro(String.valueOf(comboSinistro.getSelectedItem()), 0, descricaoSinistro.getText(), selecionado);
             JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! ");
             painelSinistro.setVisible(false);
         }
-        
+
     }//GEN-LAST:event_enviarSinistroActionPerformed
 
     private void cancelarSinistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarSinistroActionPerformed
@@ -1912,7 +1933,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_buttonDataServicoActionPerformed
 
     private void visualizarSolicitacaoServicoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarSolicitacaoServicoMouseEntered
-        
+
         visualizarSolicitacaoServico.setFont(new Font("Arial", Font.ITALIC, 14));
         visualizarSolicitacaoServico.setCursor(new Cursor(Cursor.HAND_CURSOR));
     }//GEN-LAST:event_visualizarSolicitacaoServicoMouseEntered
@@ -1973,10 +1994,10 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_minhasSolicitacoesActionPerformed
 
     private void tabelaBensMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tabelaBensMouseClicked
-        
+
 
     }//GEN-LAST:event_tabelaBensMouseClicked
-    
+
     private boolean verificarCamposPagamento() {
         try {
             ExceptionEmptySpace.informaDado(campoNumeroDoCartao.getText());
@@ -1987,7 +2008,7 @@ public class TelaCandidato extends javax.swing.JFrame {
             return false;
         }
     }
-    
+
     private void ocultarTudo() {
         painelP.setVisible(true);
         jPanelHome.setVisible(false);
@@ -1997,7 +2018,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         jPanelPagamento.setVisible(false);
         jPanelSolicitacaoReprovada.setVisible(false);
         jPanelListaSeguros.setVisible(false);
-     
+
         excluirSelecionado.setVisible(false);
         nova.setVisible(false);
         cancelarSolicitacao.setVisible(false);
@@ -2008,62 +2029,62 @@ public class TelaCandidato extends javax.swing.JFrame {
         calendarServico.setVisible(false);
         minhasSolicitacoes.setVisible(false);
         panelComListaSolicitacoes.setVisible(false);
-        
+
     }
-    
+
     private void home() {
         ocultarTudo();
         jPanelHome.setVisible(true);
     }
-    
+
     private void visualizarListaDeApolices(String solicitante) {
         ocultarTudo();
         jPanelListaApoliceServico.setVisible(true);
         caminho = solicitante;
     }
-    
+
     public void visualizarOpcoesSolicitacao() {
         ocultarTudo();
         PanelSolicitarSeguro.setVisible(true);
-     
+
         cancelarSolicitacao.setVisible(true);
         nova.setVisible(true);
         minhasSolicitacoes.setVisible(true);
-        
+
     }
-    
+
     private void visualizarSolicitacao() {
         ocultarTudo();
         jPanelListaSeguros.setVisible(true);
-        
+
     }
-    
+
     public void visualizarServico() {
         ocultarTudo();
         painelServico.setVisible(true);
     }
-    
+
     private void visualizarSinistro() {
         ocultarTudo();
         painelSinistro.setVisible(true);
     }
-    
+
     private void solicitacaoAprovada() {
         ocultarTudo();
         jPanelSolicitacaoAprovada.setVisible(true);
         buttonVoltar.setVisible(true);
     }
-    
+
     private void pagamento() {
         ocultarTudo();
         jPanelPagamento.setVisible(true);
     }
-    
+
     private void solicitacaoRecusada() {
         ocultarTudo();
         jPanelSolicitacaoReprovada.setVisible(true);
     }
-    
+
     private void preencherCamposResultado(int selecionado) {
         DecimalFormat df = new DecimalFormat("0,000.00");
         //System.out.println(df.format(valorTeste));
@@ -2077,7 +2098,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         textValorSeguro.setText("" + gerenciador.calculaValorSolicitacao(listaSolicitacao.get(selecionado).getResidencia()));
         campoValorParcelado.setText(textValorSeguro.getText());
     }
-    
+
     public void preencherCamposReprovado(int selecionado) {
         textCep.setText("" + listaSolicitacao.get(selecionado).getResidencia().getCepRes());
         textB.setText(listaSolicitacao.get(selecionado).getResidencia().getBairro());
@@ -2086,7 +2107,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         textValorSeguro.setText("" + listaSolicitacao.get(selecionado).getValorSolicitacao());
         textMotivo.setText(listaSolicitacao.get(selecionado).getMotivoReprovacao());
     }
-    
+
     public void preencherCamposEdicao(Residencia selecionado) {
         cep.setText("" + selecionado.getCepRes());
         uf.setText(selecionado.getUfResidencia());
@@ -2104,20 +2125,19 @@ public class TelaCandidato extends javax.swing.JFrame {
         numero.setText(String.valueOf(selecionado.getNumRes()));
         localizacaoP.setValue(selecionado.getLocalizacaoPerigosa());
         estruturaA.setValue(selecionado.getEstruturaAmeacada());
-        
-    }
-    
-    //private void preencherComboBox() {
 
+    }
+
+    private void preencherComboBox() {
         for (int i = 0; i < controlador.lerTipoSinistro().size(); i++) {
             comboSinistro.addItem(controlador.lerTipoSinistro().get(i).getTipoSinistro());
         }
-        //for (int i = 0; i < controlador.lerServico().size(); i++) {
-        //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
-        //}
+        for (int i = 0; i < controlador.lerServico().size(); i++) {
+            //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
+        }
 
-    //}
-    
+    }
+
     private void habilitarOpcoesSegurado(boolean condicao) {
         relatarSinistro.setEnabled(condicao);
         contratarServico.setEnabled(condicao);

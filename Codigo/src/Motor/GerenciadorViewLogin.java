@@ -24,7 +24,7 @@ public final class GerenciadorViewLogin {
     private final SeguradoDAO daoSegurado = new SeguradoDAO();
     private final CandidatoDAO daoCandidato = new CandidatoDAO();
     private final CorretorDAO daoCorretor = new CorretorDAO();
-    private Candidato candidatoOnline;
+    private static Candidato candidatoOnline;
     private Segurado seguradoOnline;
     private Corretor corretorOnline;
 
@@ -41,15 +41,15 @@ public final class GerenciadorViewLogin {
     }
 
     public void setCandidatoOnline(Candidato pessoa) {
-        this.candidatoOnline = pessoa;
+        GerenciadorViewLogin.candidatoOnline = pessoa;
     }
 
     public Candidato getUsuarioOnline() {
-        return this.candidatoOnline;
+        return GerenciadorViewLogin.candidatoOnline;
     }
 
     public void setSeguradoOnline(Segurado segurado) {
-        this.seguradoOnline = segurado;
+        seguradoOnline = segurado;
     }
 
     public Segurado getSeguradoOnline() {
@@ -57,11 +57,11 @@ public final class GerenciadorViewLogin {
     }
 
     public void setCorretorOnline(Corretor corretor) {
-        this.corretorOnline = corretor;
+        corretorOnline = corretor;
     }
 
     public Corretor getCorretorOnline() {
-        return this.corretorOnline;
+        return corretorOnline;
     }
 
     public List<Segurado> retornaSegurados() {
@@ -73,7 +73,6 @@ public final class GerenciadorViewLogin {
     }
 
     public List<Corretor> retornarCorretor() {
-        CorretorDAO daoCorretor = new CorretorDAO();
         return daoCorretor.read();
     }
 
