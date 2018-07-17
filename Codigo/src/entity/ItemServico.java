@@ -21,13 +21,21 @@ public class ItemServico extends Servico {
     private String descricaoSolicitacao;
     private Date dataSolicitacaoServico;
     private int idItemServico;
+    private Date dataAgendada;
+    private int quantidadeServicos;
 
     public ItemServico() {
 
     }
 
+    public ItemServico(Date dataAgendada, int quantidadeServicos, Date dataDaSolicitacao) {
+        this.dataAgendada = dataAgendada;
+        this.quantidadeServicos = quantidadeServicos;
+        this.dataSolicitacaoServico = dataDaSolicitacao;
+    }
+
     public ItemServico(String descricaoRecusa, String descricaoAtendimento, Date dataDeAtendimento, String atendidaSolicitacaoServico, String aceitaSolicitacao, String descricaoSolicitacao, Date dataSolicitacaoServico, int idItemServico, int codServico, String desc, int qnt, Date data, Date visitaResidencia) {
-        super(codServico, desc, qnt, data, visitaResidencia);
+        super(codServico, desc);
         this.descricaoRecusa = descricaoRecusa;
         this.descricaoAtendimento = descricaoAtendimento;
         this.dataDeAtendimento = dataDeAtendimento;
@@ -148,6 +156,34 @@ public class ItemServico extends Servico {
      */
     public void setIdItemServico(int idItemServico) {
         this.idItemServico = idItemServico;
+    }
+
+    /**
+     * @return the dataAgendada
+     */
+    public Date getDataAgendada() {
+        return dataAgendada;
+    }
+
+    /**
+     * @param dataAgendada the dataAgendada to set
+     */
+    public void setDataAgendada(Date dataAgendada) {
+        this.dataAgendada = dataAgendada;
+    }
+
+    /**
+     * @return the quantidadeServicos
+     */
+    public int getQuantidadeServicos() {
+        return quantidadeServicos;
+    }
+
+    /**
+     * @param quantidadeServicos the quantidadeServicos to set
+     */
+    public void setQuantidadeServicos(int quantidadeServicos) {
+        this.quantidadeServicos = quantidadeServicos;
     }
 
 }

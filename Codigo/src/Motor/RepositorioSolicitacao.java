@@ -124,15 +124,15 @@ public class RepositorioSolicitacao {
         return solicitacaoDAO;
     }
 
-    public Servico construirServico(String desc, int qnt, Date data, Date visitaResidencia) {
-        Servico temp = new Servico(desc, qnt, data, visitaResidencia);
+    public Servico construirServico(String desc) {
+        Servico temp = new Servico(desc);
         return temp;
     }
 
     public void registrarServico(String desc, int qnt, Date data, Date visitaResidencia) {
-        Servico temp = new Servico(desc, qnt, data, visitaResidencia);
+        Servico temp = new Servico(desc);
         this.setServico(temp);
-        geraDAOServico().create(temp);
+        //eraDAOServico().create(temp);
     }
 
     public SinistroDAO geraDAOSinistro() {
@@ -168,11 +168,6 @@ public class RepositorioSolicitacao {
                 String.valueOf(string.getValorEstimadoBem())
             });
         }
-    }
-
-    public List<Servico> lerServico() {
-
-        return geraDAOServico().servicosCadastrados();
     }
 
     @Override

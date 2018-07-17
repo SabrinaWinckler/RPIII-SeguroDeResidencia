@@ -143,7 +143,8 @@ public class Gerenciador {
     }
 
     public List<ItemServico> servicoPorCliente(Segurado segurado) {
-        return servicoDAO.servicosSegurados(segurado);
+        //servicoDAO.servicosSegurados(segurado);
+        return null;
     }
 
     public List<String> apolicePorCliente(Segurado segurado) {

@@ -62,7 +62,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         } else if (GerenciadorViewLogin.getInstance().getSeguradoOnline() != null) {
             habilitarOpcoesSegurado(true);
             readTableApolices();
-
+            readTableListaServico();
         }
     }
 
@@ -114,16 +114,16 @@ public class TelaCandidato extends javax.swing.JFrame {
         }
     }
 
-    private int readTableListaServico(Segurado segurado) {
+    private int readTableListaServico() {
         DefaultTableModel modelo = (DefaultTableModel) jTabelaListaServicos.getModel();
         modelo.setNumRows(0);
-        listaDeServico = gerenciador.servicoPorCliente(segurado);
+        listaDeServico = gerenciador.servicoPorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline());
         int tamanhoLista = listaDeServico.size();
         if (tamanhoLista > 0) {
             for (ItemServico itemServico : listaDeServico) {
                 modelo.addRow(new Object[]{
                     itemServico.getDesc(),
-                    itemServico.getDataDeSolitacao() //adicionar o cep
+                    itemServico.getDataSolicitacaoServico() //adicionar o cep
                 });
             }
             return 1;
@@ -170,6 +170,12 @@ public class TelaCandidato extends javax.swing.JFrame {
         panelComListaSolicitacoes = new javax.swing.JPanel();
         jScrollPane19 = new javax.swing.JScrollPane();
         listaMinhasSolicitacoes = new javax.swing.JTable();
+        jDialogListaDeServisosSolicitados = new javax.swing.JDialog();
+        jPanelListaServicos = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTabelaListaServicos = new javax.swing.JTable();
+        cancelarSolicitacaoServicoButton = new javax.swing.JButton();
+        buttonFecharListaServicos = new javax.swing.JButton();
         painelP = new javax.swing.JPanel();
         painelSinistro = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
@@ -236,11 +242,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         comboBoxBandeira = new javax.swing.JComboBox<>();
         jLabel58 = new javax.swing.JLabel();
         painelServico = new javax.swing.JPanel();
-        jPanelListaServicos = new javax.swing.JPanel();
-        jScrollPane4 = new javax.swing.JScrollPane();
-        jTabelaListaServicos = new javax.swing.JTable();
-        jButton1 = new javax.swing.JButton();
-        buttonFecharListaServicos = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         calendarServico = new com.toedter.calendar.JCalendar();
         enviarServico = new javax.swing.JButton();
@@ -350,9 +351,11 @@ public class TelaCandidato extends javax.swing.JFrame {
         bg = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
+        jDialogListaDeSolicitacoes.setTitle("Solicitações de Seguro");
         jDialogListaDeSolicitacoes.setModal(true);
         jDialogListaDeSolicitacoes.setResizable(false);
-        jDialogListaDeSolicitacoes.setSize(new java.awt.Dimension(510, 167));
+        jDialogListaDeSolicitacoes.setSize(new java.awt.Dimension(513, 173));
+        jDialogListaDeSolicitacoes.setType(java.awt.Window.Type.UTILITY);
         jDialogListaDeSolicitacoes.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         panelComListaSolicitacoes.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -389,6 +392,75 @@ public class TelaCandidato extends javax.swing.JFrame {
         panelComListaSolicitacoes.add(jScrollPane19, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 170));
 
         jDialogListaDeSolicitacoes.getContentPane().add(panelComListaSolicitacoes, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 510, 170));
+
+        jDialogListaDeServisosSolicitados.setTitle("Solicitações de Serviço");
+        jDialogListaDeServisosSolicitados.setIconImage(null);
+        jDialogListaDeServisosSolicitados.setResizable(false);
+        jDialogListaDeServisosSolicitados.setSize(new java.awt.Dimension(470, 283));
+        jDialogListaDeServisosSolicitados.setType(java.awt.Window.Type.UTILITY);
+        jDialogListaDeServisosSolicitados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jPanelListaServicos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanelListaServicos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        jTabelaListaServicos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
+        jTabelaListaServicos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Serviço", "Data", "cep"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTabelaListaServicos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabelaListaServicosMouseClicked(evt);
+            }
+        });
+        jScrollPane11.setViewportView(jTabelaListaServicos);
+        if (jTabelaListaServicos.getColumnModel().getColumnCount() > 0) {
+            jTabelaListaServicos.getColumnModel().getColumn(0).setResizable(false);
+            jTabelaListaServicos.getColumnModel().getColumn(1).setResizable(false);
+        }
+
+        jPanelListaServicos.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 140));
+
+        cancelarSolicitacaoServicoButton.setBackground(new java.awt.Color(126, 87, 194));
+        cancelarSolicitacaoServicoButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        cancelarSolicitacaoServicoButton.setForeground(new java.awt.Color(255, 255, 255));
+        cancelarSolicitacaoServicoButton.setText("Cancelar Solicitação");
+        jPanelListaServicos.add(cancelarSolicitacaoServicoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
+
+        buttonFecharListaServicos.setBackground(new java.awt.Color(204, 0, 0));
+        buttonFecharListaServicos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        buttonFecharListaServicos.setForeground(new java.awt.Color(255, 255, 255));
+        buttonFecharListaServicos.setText("Fechar");
+        buttonFecharListaServicos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonFecharListaServicosActionPerformed(evt);
+            }
+        });
+        jPanelListaServicos.add(buttonFecharListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 160, -1, -1));
+
+        jDialogListaDeServisosSolicitados.getContentPane().add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 470, 210));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -742,68 +814,6 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         painelServico.setBackground(new java.awt.Color(255, 255, 255));
         painelServico.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jPanelListaServicos.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
-        jPanelListaServicos.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jTabelaListaServicos.setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
-        jTabelaListaServicos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
-            },
-            new String [] {
-                "Serviço", "Data", "cep"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTabelaListaServicos.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTabelaListaServicosMouseClicked(evt);
-            }
-        });
-        jScrollPane4.setViewportView(jTabelaListaServicos);
-        if (jTabelaListaServicos.getColumnModel().getColumnCount() > 0) {
-            jTabelaListaServicos.getColumnModel().getColumn(0).setResizable(false);
-            jTabelaListaServicos.getColumnModel().getColumn(1).setResizable(false);
-        }
-
-        jPanelListaServicos.add(jScrollPane4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 210));
-
-        jButton1.setBackground(new java.awt.Color(126, 87, 194));
-        jButton1.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Cancelar Solicitação");
-        jPanelListaServicos.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 240, -1, -1));
-
-        buttonFecharListaServicos.setBackground(new java.awt.Color(204, 0, 0));
-        buttonFecharListaServicos.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
-        buttonFecharListaServicos.setForeground(new java.awt.Color(255, 255, 255));
-        buttonFecharListaServicos.setText("Fechar");
-        buttonFecharListaServicos.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonFecharListaServicosActionPerformed(evt);
-            }
-        });
-        jPanelListaServicos.add(buttonFecharListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, -1, -1));
-
-        painelServico.add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 80, 460, 270));
 
         jLabel4.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(1, 45, 90));
@@ -1782,15 +1792,25 @@ public class TelaCandidato extends javax.swing.JFrame {
         }
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja solicitar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             String escolhido;
-            Date data = new Date();
+            Date dataSolicitacao = new Date();
             int qnt = 0;
+            if (encanador.isSelected()) {
+                String descricaoEncanador = "Encanador";
+                qnt++;
+            } else if (eletricista.isSelected()) {
+                String descricaoEletrecista = "Eletrecista";
+                qnt++;
+            } else if (chaveiro.isSelected()) {
+                String descricaoChaveiro = "Chaveiro";
+                qnt++;
+            }
+            
             //escolhido = String.valueOf(comboServico.getSelectedItem());
-
             //qnt = escolhido.split(",").length;
             //controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
             //JOptionPane.showInternalInputDialog(painelP, "Qual data que você deseja ser atendido?");
-            // controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
-            // JOptionPane.showMessageDialog(rootPane, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
+            //controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
+            //JOptionPane.showMessageDialog(rootPane, "\n Sua solicitação de " + qnt + " serviço(s) foi enviada para avaliação!");
             //painelServico.setVisible(false);
         }
     }//GEN-LAST:event_enviarServicoActionPerformed
@@ -1884,7 +1904,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 controlador.registrarSinistro(String.valueOf(comboSinistro.getSelectedItem()),
                         Float.parseFloat(campoValorSinistro.getText()), descricaoSinistro.getText(), listaDeApolices.get(indiceApoliceSelecionada).getCodApolice());
                 JOptionPane.showMessageDialog(painelP, "Seu relato foi enviado com Sucesso! ");
-                painelSinistro.setVisible(false);
+                home();
             }
         } catch (NullPointerException e) {
             JOptionPane.showMessageDialog(painelSinistro, "Preencha todos os campos.");
@@ -1922,10 +1942,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         visualizarSolicitacaoServico.setFont(new Font("Arial", Font.BOLD, 14));
     }//GEN-LAST:event_visualizarSolicitacaoServicoMouseExited
 
-    private void buttonFecharListaServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharListaServicosActionPerformed
-        jPanelListaServicos.setVisible(false);
-    }//GEN-LAST:event_buttonFecharListaServicosActionPerformed
-
     private void campoValorParceladoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_campoValorParceladoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_campoValorParceladoActionPerformed
@@ -1940,13 +1956,9 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_quantidadeVezesParcelaItemStateChanged
 
     private void visualizarSolicitacaoServicoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_visualizarSolicitacaoServicoMouseClicked
-        jPanelListaServicos.setVisible(true);
+        jDialogListaDeServisosSolicitados.setLocationRelativeTo(painelServico);
+        jDialogListaDeServisosSolicitados.setVisible(true);
     }//GEN-LAST:event_visualizarSolicitacaoServicoMouseClicked
-
-    private void jTabelaListaServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaListaServicosMouseClicked
-        selecionado = jTabelaListaServicos.getSelectedRow();
-
-    }//GEN-LAST:event_jTabelaListaServicosMouseClicked
 
     private void jListaDeApolicesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jListaDeApolicesMouseClicked
         indiceApoliceSelecionada = jListaDeApolices.getSelectedRow();
@@ -1996,6 +2008,14 @@ public class TelaCandidato extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_campoValorSinistroCaretUpdate
+
+    private void jTabelaListaServicosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabelaListaServicosMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTabelaListaServicosMouseClicked
+
+    private void buttonFecharListaServicosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonFecharListaServicosActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_buttonFecharListaServicosActionPerformed
 
     private boolean verificarCamposPagamento() {
         try {
@@ -2129,10 +2149,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         for (int i = 0; i < controlador.lerTipoSinistro().size(); i++) {
             comboSinistro.addItem(controlador.lerTipoSinistro().get(i).getTipoSinistro());
         }
-        for (int i = 0; i < controlador.lerServico().size(); i++) {
-            //comboServico.addItem(String.valueOf(controlador.lerServico().get(i).getDesc()));
-        }
-
     }
 
     private void habilitarOpcoesSegurado(boolean condicao) {
@@ -2266,6 +2282,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JButton cancelarServico;
     private javax.swing.JButton cancelarSinistro;
     private javax.swing.JButton cancelarSolicitacao;
+    private javax.swing.JButton cancelarSolicitacaoServicoButton;
     private javax.swing.JTextField cep;
     private javax.swing.JCheckBox chaveiro;
     private javax.swing.JTextField cidadeResidenciaSolicitacao;
@@ -2285,7 +2302,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JSlider estruturaA;
     private javax.swing.JButton excluirSelecionado;
     private javax.swing.JTextField garagem;
-    private javax.swing.JButton jButton1;
+    private javax.swing.JDialog jDialogListaDeServisosSolicitados;
     private javax.swing.JDialog jDialogListaDeSolicitacoes;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -2363,6 +2380,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JPanel jPanelSolicitacaoReprovada;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane13;
     private javax.swing.JScrollPane jScrollPane14;
     private javax.swing.JScrollPane jScrollPane15;
@@ -2371,7 +2389,6 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane19;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
-    private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;

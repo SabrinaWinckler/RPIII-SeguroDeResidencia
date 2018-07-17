@@ -107,7 +107,7 @@ public class TelaCorretor extends javax.swing.JFrame {
             gerenciador.servicosPendentes().forEach((servicosPendente) -> {
                 modelo.addRow(new Object[]{
                     servicosPendente.getServicos().get(0).getDesc(),
-                    sdf.format(servicosPendente.getServicos().get(0).getDataDeSolitacao())
+                    sdf.format(servicosPendente.getServicos().get(0).getDataSolicitacaoServico())
                 });
             });
             return 1;
@@ -1876,7 +1876,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         campoCPFSegurado.setText(listaDeSegurado.get(selecionado).getCpf());
         campoEndResidenciaSegurado.setText(listaDeSegurado.get(selecionado).getEndereco());
         campoDescricaoServico.setText(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDescricaoSolicitacao());
-        campoDataAtendimentoCliente.setText(sdf.format(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDataDeVisita()));
+        campoDataAtendimentoCliente.setText(sdf.format(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDataSolicitacaoServico()));
     }
 
     private void ocultarTudo() {
