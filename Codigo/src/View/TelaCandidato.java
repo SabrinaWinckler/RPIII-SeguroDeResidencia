@@ -6,7 +6,6 @@
 package View;
 
 import entity.Apolice;
-import entity.Candidato;
 import Motor.RepositorioSolicitacao;
 import Motor.Gerenciador;
 import entity.Solicitacao;
@@ -144,6 +143,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private int readTableListaSolicitacao() {
         DefaultTableModel modelo = (DefaultTableModel) listaSolicitacaoCandidato.getModel();
         modelo.setNumRows(0);
+        String status = null;
         if (GerenciadorViewLogin.getInstance().getUsuarioOnline() != null) {
             listaSolicitacao = gerenciador.listaSolicitacaoCliente(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa());
         } else {
@@ -153,13 +153,16 @@ public class TelaCandidato extends javax.swing.JFrame {
         if (tamanhoLista > 0) {
             for (Solicitacao solicitacao : listaSolicitacao) {
                 if (solicitacao.getAprovadaSolicitacao() != null) {
-                    buttonContratarSeguro.setEnabled(true);
+                    //buttonContratarSeguro.setEnabled(true);
+                    status = solicitacao.getAprovadaSolicitacao();
+                } else if (solicitacao.getAprovadaSolicitacao() == null) {
+                    status = "Não visualizada";
                 }
                 modelo.addRow(new Object[]{
                     solicitacao.getResidencia().getDescricaoRes(),
                     solicitacao.getDataSolicitacao(),
                     solicitacao.getResidencia().getCepRes(),
-                    solicitacao.getAprovadaSolicitacao()
+                    status
                 });
             }
             return 1;
@@ -256,7 +259,8 @@ public class TelaCandidato extends javax.swing.JFrame {
         calendarServico = new com.toedter.calendar.JCalendar();
         enviarServico = new javax.swing.JButton();
         jLabel27 = new javax.swing.JLabel();
-        chaveiro = new javax.swing.JCheckBox();
+        jLabel63 = new javax.swing.JLabel();
+        vidraceiro = new javax.swing.JCheckBox();
         cancelarServico = new javax.swing.JButton();
         jLabel29 = new javax.swing.JLabel();
         jLabel32 = new javax.swing.JLabel();
@@ -266,6 +270,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         buttonDataServico = new javax.swing.JToggleButton();
         visualizarSolicitacaoServico = new javax.swing.JLabel();
         encanador = new javax.swing.JCheckBox();
+        chaveiro1 = new javax.swing.JCheckBox();
         painelSolicitacao = new javax.swing.JPanel();
         cep = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -405,10 +410,8 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         jDialogListaDeServisosSolicitados.setTitle("Solicitações de Serviço");
         jDialogListaDeServisosSolicitados.setIconImage(null);
-        jDialogListaDeServisosSolicitados.setMinimumSize(new java.awt.Dimension(467, 207));
-        jDialogListaDeServisosSolicitados.setPreferredSize(new java.awt.Dimension(467, 207));
         jDialogListaDeServisosSolicitados.setResizable(false);
-        jDialogListaDeServisosSolicitados.setSize(new java.awt.Dimension(467, 207));
+        jDialogListaDeServisosSolicitados.setSize(new java.awt.Dimension(470, 283));
         jDialogListaDeServisosSolicitados.setType(java.awt.Window.Type.UTILITY);
         jDialogListaDeServisosSolicitados.getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -424,7 +427,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 {null, null, null}
             },
             new String [] {
-                "Serviço", "Data", "Status"
+                "Serviço", "Data", "cep"
             }
         ) {
             Class[] types = new Class [] {
@@ -446,7 +449,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         if (jTabelaListaServicos.getColumnModel().getColumnCount() > 0) {
             jTabelaListaServicos.getColumnModel().getColumn(0).setResizable(false);
             jTabelaListaServicos.getColumnModel().getColumn(1).setResizable(false);
-            jTabelaListaServicos.getColumnModel().getColumn(2).setResizable(false);
         }
 
         jPanelListaServicos.add(jScrollPane11, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 460, 140));
@@ -457,7 +459,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         cancelarSolicitacaoServicoButton.setText("Cancelar Solicitação");
         jPanelListaServicos.add(cancelarSolicitacaoServicoButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 160, -1, -1));
 
-        jDialogListaDeServisosSolicitados.getContentPane().add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 230));
+        jDialogListaDeServisosSolicitados.getContentPane().add(jPanelListaServicos, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 480, 240));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -577,17 +579,9 @@ public class TelaCandidato extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        listaSolicitacaoCandidato.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
-            public void mouseMoved(java.awt.event.MouseEvent evt) {
-                listaSolicitacaoCandidatoMouseMoved(evt);
-            }
-        });
         listaSolicitacaoCandidato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaSolicitacaoCandidatoMouseClicked(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                listaSolicitacaoCandidatoMouseExited(evt);
             }
         });
         jScrollPane1.setViewportView(listaSolicitacaoCandidato);
@@ -816,7 +810,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(1, 45, 90));
         jLabel4.setText("Qual serviço você deseja solicitar?");
         painelServico.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 80, -1, -1));
-        painelServico.add(calendarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 160, -1, -1));
+        painelServico.add(calendarServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 150, -1, -1));
 
         enviarServico.setBackground(new java.awt.Color(0, 153, 255));
         enviarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -832,9 +826,12 @@ public class TelaCandidato extends javax.swing.JFrame {
         jLabel27.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/house-key.png"))); // NOI18N
         painelServico.add(jLabel27, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 230, 30, 30));
 
-        chaveiro.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
-        chaveiro.setText("Chaveiro");
-        painelServico.add(chaveiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 140, -1));
+        jLabel63.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagens/window.png"))); // NOI18N
+        painelServico.add(jLabel63, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 260, 30, 30));
+
+        vidraceiro.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        vidraceiro.setText("Vidraceiro");
+        painelServico.add(vidraceiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 260, 140, -1));
 
         cancelarServico.setBackground(new java.awt.Color(126, 87, 194));
         cancelarServico.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -896,6 +893,10 @@ public class TelaCandidato extends javax.swing.JFrame {
         encanador.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
         encanador.setText("Encanador");
         painelServico.add(encanador, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, 140, -1));
+
+        chaveiro1.setFont(new java.awt.Font("Arial", 1, 16)); // NOI18N
+        chaveiro1.setText("Chaveiro");
+        painelServico.add(chaveiro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 230, 140, -1));
 
         painelP.add(painelServico, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -1673,12 +1674,15 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
         selecionado = listaSolicitacaoCandidato.getSelectedRow();
-        String teste = listaSolicitacao.get(selecionado).getAprovadaSolicitacao();
-        if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().contains("aprovada")) {
-            preencherCamposResultado(selecionado);
-            solicitacaoAprovada();
-        } else {
-            solicitacaoRecusada();
+        try {
+            if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().contains("aprovada")) {
+                preencherCamposResultado(selecionado);
+                solicitacaoAprovada();
+            } else if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().contains("negada")) {
+                solicitacaoRecusada();
+            }
+        } catch (NullPointerException ex) {
+            JOptionPane.showConfirmDialog(rootPane, "Solicitação não visualizada pelo corretor.", "Alerta", JOptionPane.CLOSED_OPTION);
         }
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
@@ -1776,7 +1780,7 @@ public class TelaCandidato extends javax.swing.JFrame {
             if (eletricista.isSelected()) {
                 qnt++;
             }
-            if (chaveiro.isSelected()) {
+            if (vidraceiro.isSelected()) {
                 qnt++;
             }
             String turnoDesejado = String.valueOf(listaTurnosServico.getSelectedItem());
@@ -1792,7 +1796,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                 controlador.resgistrarSolicitacaoServico(listaDeApolices.get(indiceApoliceSelecionada).getCodApolice(),
                         descricaoEletrecista);
             }
-            if (chaveiro.isSelected()) {
+            if (vidraceiro.isSelected()) {
                 descricaoChaveiro = "Chaveiro";
                 controlador.resgistrarSolicitacaoServico(listaDeApolices.get(indiceApoliceSelecionada).getCodApolice(),
                         descricaoChaveiro);
@@ -1800,21 +1804,13 @@ public class TelaCandidato extends javax.swing.JFrame {
             JOptionPane.showConfirmDialog(rootPane, "Solicitações de Servico Enviadas com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
             encanador.setSelected(false);
             eletricista.setSelected(false);
-            chaveiro.setSelected(false);
+            vidraceiro.setSelected(false);
         }
     }//GEN-LAST:event_enviarServicoActionPerformed
 
     private void buttonVoltar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonVoltar3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_buttonVoltar3ActionPerformed
-
-    private void listaSolicitacaoCandidatoMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseMoved
-        listaSolicitacaoCandidato.setBackground(new Color(126, 87, 194));
-    }//GEN-LAST:event_listaSolicitacaoCandidatoMouseMoved
-
-    private void listaSolicitacaoCandidatoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseExited
-        listaSolicitacaoCandidato.setBackground(new Color(204, 204, 255));
-    }//GEN-LAST:event_listaSolicitacaoCandidatoMouseExited
 
     private void buttonHomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonHomeActionPerformed
         home();
@@ -1866,10 +1862,9 @@ public class TelaCandidato extends javax.swing.JFrame {
                     cidadeResidenciaSolicitacao.getText(), ruaResidenciaSolicitacao.getText(),
                     areaC, localizacao,
                     terreno, estrutura, id);
-            //COLOCAR PARA APARECER AS OPÇOES DA SOLICITACAO
-            painelSolicitacao.setVisible(false);
-            PanelSolicitarSeguro.setVisible(true);
-
+            JOptionPane.showMessageDialog(painelP, "Preencha todos os campos, por favor.");
+            visualizarOpcoesSolicitacao();
+            //PanelSolicitarSeguro.setVisible(true);
         } catch (NumberFormatException | NullPointerException ex) {
             JOptionPane.showMessageDialog(painelP, "Preencha todos os campos, por favor.");
         }
@@ -2265,7 +2260,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JButton cancelarSolicitacao;
     private javax.swing.JButton cancelarSolicitacaoServicoButton;
     private javax.swing.JTextField cep;
-    private javax.swing.JCheckBox chaveiro;
+    private javax.swing.JCheckBox chaveiro1;
     private javax.swing.JTextField cidadeResidenciaSolicitacao;
     private javax.swing.JComboBox<String> comboBoxBandeira;
     private javax.swing.JComboBox<String> comboSinistro;
@@ -2344,6 +2339,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel61;
     private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
@@ -2415,6 +2411,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private javax.swing.JTextPane textValorSeguro;
     private javax.swing.JTextField ufResidenciaSolicitacao;
     private javax.swing.JTextField valor;
+    private javax.swing.JCheckBox vidraceiro;
     private javax.swing.JLabel visualizarSolicitacaoServico;
     // End of variables declaration//GEN-END:variables
 }
