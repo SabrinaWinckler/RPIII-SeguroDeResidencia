@@ -112,8 +112,8 @@ public class GerenciadorViewCorretor {
         daoSolicitacao.registrarDataVisita(solicitacao);
     }
 
-    public void updateStatusSinistro(Sinistro sinistro) {
-        daoSinistro.updateStatusSinistro(sinistro);
+    public void updateStatusSinistro(Sinistro sinistro, int idCorretor) {
+        daoSinistro.updateStatusSinistro(sinistro, idCorretor);
     }
 
     public double RecalcularValorSolicitacao(Residencia residencia) {

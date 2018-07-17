@@ -90,13 +90,16 @@ public class SinistroDAO {
         return listaDeSinistros;
     }
 
-    public void updateStatusSinistro(Sinistro sinistro) {
+    public void updateStatusSinistro(Sinistro sinistro, int idCorretor) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm;
         try {
-            stm = conexao.prepareStatement("update sinistro set autorizadoSinistro = '" + sinistro.getAutorizadoSinistro()
-                    + "', motivoReprovacao = '" + sinistro.getMotivoReprovacao()
-                    + "', parecerAvaliador = '" + sinistro.getParecerAvaliador() + "' where sinistro.idSinistro = " + sinistro.getCodSinistro());
+            stm = conexao.prepareStatement("update sinistro set "
+                    + "autorizadoSinistro = '" + sinistro.getAutorizadoSinistro() + "', "
+                    + "motivoReprovacao = '" + sinistro.getMotivoReprovacao() + "', "
+                    + "parecerAvaliador = '" + sinistro.getParecerAvaliador() + "', "
+                    + "idCorretor = " + idCorretor + " where "
+                    + "sinistro.idSinistro = " + sinistro.getCodSinistro());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);

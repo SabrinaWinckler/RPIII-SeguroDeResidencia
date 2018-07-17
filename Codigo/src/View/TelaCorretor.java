@@ -447,6 +447,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        listaSinistrosPendentes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         listaSinistrosPendentes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 listaSinistrosPendentesMouseClicked(evt);
@@ -1303,6 +1304,8 @@ public class TelaCorretor extends javax.swing.JFrame {
                     limparCamposGeral(listaDeCampos);
                     visualizarSinistros();
                     habilitarButtonsTelaSinistro(false);
+                    listaSinistrosPendentes.setEnabled(true);
+                    selecionado = -1;
                 }
             }
         }
@@ -1389,15 +1392,10 @@ public class TelaCorretor extends javax.swing.JFrame {
     }//GEN-LAST:event_jToggleButtonDadosProprietarioActionPerformed
 
     private void listaSinistrosPendentesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSinistrosPendentesMouseClicked
-        if (selecionado == -1) {
-            selecionado = listaSinistrosPendentes.getSelectedRow();
-            preencherCamposAvaliarSinistro(selecionado);
-            habilitarButtonsTelaSinistro(true);
-            listaSinistrosPendentes.setEnabled(false);
-        } else {
-            JOptionPane.showConfirmDialog(rootPane, "Você pode selecionar apenas"
-                    + " um sinistro por vez!", "Confirmação", JOptionPane.CLOSED_OPTION);
-        }
+        selecionado = listaSinistrosPendentes.getSelectedRow();
+        preencherCamposAvaliarSinistro(selecionado);
+        habilitarButtonsTelaSinistro(true);
+        //listaSinistrosPendentes.setEnabled(false);
     }//GEN-LAST:event_listaSinistrosPendentesMouseClicked
 
     private void ButtonAutorizarPagamentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ButtonAutorizarPagamentoActionPerformed
@@ -1406,7 +1404,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         sinistro.setAutorizadoSinistro(resultadoSinistro);
         if (!parecerDoAvaliadorSinistro.getText().equalsIgnoreCase("Digite aqui o parecer técnico do sinistro...") && !parecerDoAvaliadorSinistro.getText().isEmpty() && !parecerDoAvaliadorSinistro.getText().equals("")) {
             sinistro.setParecerAvaliador(parecerDoAvaliadorSinistro.getText());
-            gerenciador.updateStatusSinistro(sinistro);
+            gerenciador.updateStatusSinistro(sinistro, GerenciadorViewLogin.getInstance().getCorretorOnline().getCodPessoa());
             JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro autorizado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
             selecionado = -1;
             if (readTableListaDeSinistros() == 0) {
@@ -1579,7 +1577,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                     + " Por favor, preencha novamente!", "Alerta", JOptionPane.CLOSED_OPTION);
         } else {
             sinistro.setMotivoReprovacao(motivoNegacaoSinistrojTextArea.getText());
-            gerenciador.updateStatusSinistro(sinistro);
+            gerenciador.updateStatusSinistro(sinistro, GerenciadorViewLogin.getInstance().getCorretorOnline().getCodPessoa());
             JOptionPane.showConfirmDialog(rootPane, "Pagamento de sinistro negado com sucesso!", "Confirmação", JOptionPane.CLOSED_OPTION);
             selecionado = -1;
             if (readTableListaDeSinistros() == 0) {
