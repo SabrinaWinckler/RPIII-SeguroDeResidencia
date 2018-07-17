@@ -159,8 +159,8 @@ public class Gerenciador {
         return servicoDAO.servicosSegurados(idSegurado);
     }
 
-    public List<String> apolicePorCliente(Segurado segurado) {
-        return daoApolice.apolicePorSegurado(segurado);
+    public List<String> apolicePorCliente(int idsegurado) {
+        return daoApolice.apolicePorSegurado(idsegurado);
     }
 
     public List<Apolice> listaDeApolices(int idSegurado) {

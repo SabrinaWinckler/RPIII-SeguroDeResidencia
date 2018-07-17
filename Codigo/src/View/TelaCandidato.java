@@ -69,13 +69,31 @@ public class TelaCandidato extends javax.swing.JFrame {
         }
     }
 
+    private int readTableApolicesAposContratar() {
+        DefaultTableModel modelo = (DefaultTableModel) jListaDeApolices.getModel();
+        modelo.setNumRows(0);
+        listaDeApolices = gerenciador.listaDeApolices(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa());
+        int tamanhoLista = gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa()).size();
+        if (tamanhoLista > 0) {
+            for (String string : gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa())) {
+                modelo.addRow(new Object[]{
+                    "Apólice da Residencia: " + string
+                });
+            }
+            return 1;
+        } else {
+            return 0;
+        }
+
+    }
+
     private int readTableApolices() {
         DefaultTableModel modelo = (DefaultTableModel) jListaDeApolices.getModel();
         modelo.setNumRows(0);
         listaDeApolices = gerenciador.listaDeApolices(GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado());
-        int tamanhoLista = gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline()).size();
+        int tamanhoLista = gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado()).size();
         if (tamanhoLista > 0) {
-            for (String string : gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline())) {
+            for (String string : gerenciador.apolicePorCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado())) {
                 modelo.addRow(new Object[]{
                     "Apólice da Residencia: " + string
                 });
@@ -1747,7 +1765,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                     JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
                     visualizarSolicitacao();
                     habilitarOpcoesSegurado(true);
-                    readTableApolices();
+                    readTableApolicesAposContratar();
                 } catch (HeadlessException | NumberFormatException ex) {
                     JOptionPane.showConfirmDialog(rootPane, "Dados fornecidos estão incorretos."
                             + "Verifique e preencha novamente.", "Alerta", JOptionPane.CLOSED_OPTION);

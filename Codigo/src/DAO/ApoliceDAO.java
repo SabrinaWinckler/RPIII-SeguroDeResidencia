@@ -60,7 +60,7 @@ public class ApoliceDAO {
     public void createParcela(int codApolice) {
     }
 
-    public List<String> apolicePorSegurado(Segurado segurado) {
+    public List<String> apolicePorSegurado(int idSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs = null;
@@ -70,7 +70,7 @@ public class ApoliceDAO {
                     + "from residencia inner join solicitacaoseguro on "
                     + "solicitacaoseguro.idResidencia = residencia.idResidencia inner join apolice on "
                     + "apolice.idSolicitacao = solicitacaoseguro.idSolicitacao inner join segurado on "
-                    + "segurado.idSegurado = " + segurado.getIdSegurado());
+                    + "segurado.idSegurado = " + idSegurado);
             rs = stm.executeQuery();
             while (rs.next()) {
                 listApolicePorResidencia.add(rs.getString("enderecoResidencia"));
