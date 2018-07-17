@@ -25,9 +25,9 @@ import java.util.logging.Logger;
  * @author SABRINA
  */
 public class ServicoDAO {
-
+    
     DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-
+    
     public List<Segurado> read() {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
@@ -65,14 +65,14 @@ public class ServicoDAO {
         }
         return listaDeSegurados;
     }
-
+    
     public List<ItemServico> servicosSegurados(int idsegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<ItemServico> listaDeServico = new ArrayList<>();
         try {
-
+            
             stmt = conexao.prepareStatement("select servico.descricaoServico, "
                     + "itemservico.dataAgendada, itemservico.atendidaSolicitacao "
                     + "from servico inner join solicitacaoservico on "
@@ -84,17 +84,8 @@ public class ServicoDAO {
             while (rs.next()) {
                 ItemServico itemServico = new ItemServico();
                 itemServico.setDesc(rs.getString("descricaoServico"));
-                itemServico.setIdCodServico(rs.getInt("idServico"));
-                //itemServico.setQnt(rs.getInt("quantidadeServico"));
-                itemServico.setDescricaoRecusa(rs.getString("descricaoRecusa"));
-                itemServico.setDescricaoAtendimento(rs.getString("descricaoAtendimento"));
-                //itemServico.setDataDeAtendimento(rs.getDate("dataAtendimento"));
                 itemServico.setAtendidaSolicitacaoServico(rs.getString("atendidaSolicitacao"));
-                itemServico.setAceitaSolicitacao(rs.getString("aceitaSolicitacao"));
-                itemServico.setDescricaoSolicitacao(rs.getString("descricaoSolicitacao"));
-                //itemServico.setDataSolicitacaoServico(rs.getDate("dataSolicitacao"));
-                itemServico.setIdItemServico(rs.getInt("idItemServiço"));
-                itemServico.setDataSolicitacaoServico(rs.getDate("dataDeSolicitacao"));
+                itemServico.setDataAgendada(rs.getDate("dataAgendada")); 
                 listaDeServico.add(itemServico);
             }
         } catch (SQLException e) {
@@ -102,11 +93,11 @@ public class ServicoDAO {
         } finally {
             ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
-
+        
         return listaDeServico;
-
+        
     }
-
+    
     public void verificarQtdServicoDisponiveis(int idSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -116,7 +107,7 @@ public class ServicoDAO {
         } catch (Exception e) {
         }
     }
-
+    
     public void registrarItemServico(ItemServico itemServico) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -134,7 +125,7 @@ public class ServicoDAO {
             ConnectionFactory.fecharConexao(conexao, stm);
         }
     }
-
+    
     public void registrarSolicitacaoServico(int idApolice, String servico) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -162,7 +153,7 @@ public class ServicoDAO {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
             ConnectionFactory.fecharConexao(conexao, stm, rs);
-
+            
         }
     }
 }
