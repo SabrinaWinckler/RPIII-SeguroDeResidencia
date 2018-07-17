@@ -17,9 +17,7 @@ import java.awt.Cursor;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.List;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.border.LineBorder;
 import service.WebServiceCep;
@@ -54,6 +52,7 @@ public class TelaCadastraPessoa extends javax.swing.JFrame {
      */
     public TelaCadastraPessoa() {
         initComponents();
+        jPanelMinhaContaCorretor.setVisible(false);
     }
 
     /**
@@ -503,9 +502,10 @@ public class TelaCadastraPessoa extends javax.swing.JFrame {
             uf = ufComboBox.getSelectedItem().toString();
             cidade = campoCidade.getText();
             bairro = campoBairro.getText();
+            cpf = cpfCampo.getText();
             motor.cadastrarCliente(sexo, cep, dataNascimento, nomePessoa, cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf, cidade, bairro);
             JOptionPane.showConfirmDialog(rootPane, "Cadastrado com sucesso!", "Aviso", JOptionPane.CLOSED_OPTION);
-            TelaCandidato candidatoPainel = new TelaCandidato();
+            TelaCandidato candidatoPainel = new TelaCandidato(cpfCampo.getText());
             candidatoPainel.setVisible(true);
             dispose();
         } else {

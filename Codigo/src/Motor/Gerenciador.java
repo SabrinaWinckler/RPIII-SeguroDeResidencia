@@ -60,6 +60,8 @@ public class Gerenciador {
 
     SolicitacaoDAO solicitacaoDAO = new SolicitacaoDAO();
 
+    CandidatoDAO daoCandidato = new CandidatoDAO();
+
     public Gerenciador() {
 
     }
@@ -69,12 +71,9 @@ public class Gerenciador {
             String email, String usuarioCliente, String senhaCliente, String uf,
             String cidade, String bairro) throws NullPointerException {
 
-        Candidato candidato = new Candidato(sexo, cep, dataNescimento, nomePessoa,
-                cpf, endereco, telefone, email, usuarioCliente, senhaCliente, uf,
-                cidade, bairro);
-
-        CandidatoDAO daoCandidato = new CandidatoDAO();
-
+        Candidato candidato = new Candidato(sexo, cep, dataNescimento, uf,
+                cidade, bairro, nomePessoa, cpf, endereco, telefone, email,
+                usuarioCliente, senhaCliente);
         daoCandidato.create(candidato);
 
     }
@@ -173,6 +172,10 @@ public class Gerenciador {
 
     public List<Solicitacao> minhasSolicitacoes(int id) {
         return solicitacaoDAO.listaSolicitacaoCliente(id);
+    }
+
+    public void cadastradoOnline(String cpf) {
+        GerenciadorViewLogin.getInstance().setCandidatoOnline(daoCandidato.candidatoCadastrado(cpf));
     }
 
 }

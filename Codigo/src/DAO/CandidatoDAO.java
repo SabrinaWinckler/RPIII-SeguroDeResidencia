@@ -37,10 +37,10 @@ public class CandidatoDAO {
             stm.setString(7, candidato.getEmail());
             stm.setString(8, String.valueOf(candidato.getCep()));
             stm.setString(9, candidato.getSexo());
-            stm.setString(11, candidato.getUf());
-            stm.setString(12, candidato.getCidade());
-            stm.setString(13, candidato.getBairro());
-            stm.setString(14, candidato.getDataNescimento());
+            stm.setString(10, candidato.getUf());
+            stm.setString(11, candidato.getCidade());
+            stm.setString(12, candidato.getBairro());
+            stm.setString(13, candidato.getDataNescimento());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -93,6 +93,45 @@ public class CandidatoDAO {
             if (candidato.getCodPessoa() == codCandidato) {
                 return candidato;
             }
+        }
+        return null;
+    }
+
+    public Candidato candidatoCadastrado(String cpfPessoaCadastrada) {
+        Connection conexao = ConnectionFactory.realizarConexao();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        long cep;
+        String dataNescimento, endereco, sexo, nome, cpf;
+        String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
+        int codPessoa;
+        try {
+            stmt = conexao.prepareStatement("select candidao.cpf from candidato "
+                    + "where candidato.cpf = '" + cpfPessoaCadastrada + "'");
+            rs = stmt.executeQuery();
+            while (rs.next()) {
+                codPessoa = rs.getInt("idCandidato");
+                cep = rs.getLong("cep");
+                sexo = rs.getString("sexo");
+                uf = rs.getString("ufCandidato");
+                bairro = rs.getString("bairroCandidato");
+                cidade = rs.getString("cidadeCandidato");
+                dataNescimento = rs.getString("dataNascimento");
+                cpf = rs.getString("Cpf");
+                endereco = rs.getString("Endereco");
+                telefone = rs.getString("Telefone");
+                email = rs.getString("email");
+                usuarioCliente = rs.getString("nomeLogin");
+                senhaCliente = rs.getString("senha");
+                nome = rs.getString("Nome");
+                Candidato candidato = new Candidato(sexo, cep, dataNescimento, uf, cidade, bairro,
+                        codPessoa, nome, cpf, endereco, telefone, email, usuarioCliente, senhaCliente);
+                return candidato;
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(CandidatoDAO.class.getName()).log(Level.SEVERE, null, e);
+        } finally {
+            ConnectionFactory.fecharConexao(conexao, stmt, rs);
         }
         return null;
     }

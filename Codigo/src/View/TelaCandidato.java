@@ -51,7 +51,17 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     /**
      * Creates new form Painel_Corretor
+     *
+     * @param cpf
      */
+    public TelaCandidato(String cpf) {
+        initComponents();
+        gerenciador.cadastradoOnline(cpf);
+        gerarBackground();
+        home();
+        habilitarOpcoesSegurado(false);
+    }
+
     public TelaCandidato() {
         initComponents();
         gerarBackground();

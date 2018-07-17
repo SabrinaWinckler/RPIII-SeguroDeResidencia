@@ -78,7 +78,7 @@ CREATE TABLE `apolice` (
   KEY `idSolicitacao` (`idSolicitacao`),
   KEY `idSegurado` (`idSegurado`),
   CONSTRAINT `apolice_ibfk_1` FOREIGN KEY (`idSegurado`) REFERENCES `segurado` (`idSegurado`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -87,7 +87,7 @@ CREATE TABLE `apolice` (
 
 LOCK TABLES `apolice` WRITE;
 /*!40000 ALTER TABLE `apolice` DISABLE KEYS */;
-INSERT INTO `apolice` VALUES (8,1,NULL,'2536',200,'2018/07/15','4545','Jan/2018',140,'Matheus',4,50,1);
+INSERT INTO `apolice` VALUES (3,11,'MasterCard','456',1.08338,'2018/07/17','12345','Jul/2018',150,'Matheus M Montanha',2,54169,1);
 /*!40000 ALTER TABLE `apolice` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -105,7 +105,7 @@ CREATE TABLE `bem` (
   `idResidenciaPertencente` int(11) DEFAULT NULL,
   PRIMARY KEY (`idBem`),
   KEY `idResidenciaPertencente` (`idResidenciaPertencente`)
-) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=35 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -114,7 +114,7 @@ CREATE TABLE `bem` (
 
 LOCK TABLES `bem` WRITE;
 /*!40000 ALTER TABLE `bem` DISABLE KEYS */;
-INSERT INTO `bem` VALUES (1,'Sofa',450,1),(11,'Sofa',300,5),(10,'Sofa ',500,4);
+INSERT INTO `bem` VALUES (34,'Sofa',400,28);
 /*!40000 ALTER TABLE `bem` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -138,13 +138,13 @@ CREATE TABLE `candidato` (
   `idCandidato` int(11) NOT NULL AUTO_INCREMENT,
   `ufCandidato` varchar(2) DEFAULT NULL,
   `cidadeCandidato` varchar(30) DEFAULT NULL,
-  `bairroCandidato` varchar(30) DEFAULT NULL,
+  `bairroCandidato` varchar(150) DEFAULT NULL,
   `dataNascimento` varchar(10) DEFAULT NULL,
   PRIMARY KEY (`idCandidato`),
   UNIQUE KEY `Cpf` (`Cpf`),
   UNIQUE KEY `nomeLogin` (`nomeLogin`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -251,7 +251,7 @@ CREATE TABLE `residencia` (
   `numeroAndares` decimal(45,0) DEFAULT NULL,
   PRIMARY KEY (`idResidencia`),
   KEY `idProprietario` (`idProprietario`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -260,7 +260,7 @@ CREATE TABLE `residencia` (
 
 LOCK TABLES `residencia` WRITE;
 /*!40000 ALTER TABLE `residencia` DISABLE KEYS */;
-INSERT INTO `residencia` VALUES (1,1,'RS','Alegrete','Centro','Casa Verde','97547580','Joao Aurelio, 55','200','75',2010,4,2,4,4,1,1,1),(4,1,'RS','Alegrete','Santos Dumont','Casa verde','97547380','Sergipe','100.0','75.0',2010,5,5,5,4,1,1,1),(5,1,'RS','Alegrete','Nossa Senhora da Conceição Aparecida','Casa vermelha','97547590','Joaquim Rodrigues Paim','100.0','75.0',2010,5,5,5,4,1,1,1);
+INSERT INTO `residencia` VALUES (28,1,'RS','Alegrete','Nossa Senhora da Conceição Aparecida','Casa vermelha','97547590','Joaquim Rodrigues Paim','100.0','75.0',2010,7,3,3,4,1,1,1);
 /*!40000 ALTER TABLE `residencia` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -328,11 +328,12 @@ CREATE TABLE `sinistro` (
   `idTipo` int(11) DEFAULT NULL,
   `idCorretor` int(11) DEFAULT NULL,
   `idApolice` int(11) DEFAULT NULL,
+  `motivoReprovacao` varchar(150) DEFAULT NULL,
   PRIMARY KEY (`idSinistro`),
   KEY `idTipo` (`idTipo`),
   KEY `idCorretor` (`idCorretor`),
   KEY `idApolice` (`idApolice`)
-) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -341,7 +342,7 @@ CREATE TABLE `sinistro` (
 
 LOCK TABLES `sinistro` WRITE;
 /*!40000 ALTER TABLE `sinistro` DISABLE KEYS */;
-INSERT INTO `sinistro` VALUES (NULL,'2018-07-16','Pegou fogo em tudo.',NULL,6500,6,1,NULL,8),(NULL,'2018-07-17','Vento norte.',NULL,500,7,3,NULL,8);
+INSERT INTO `sinistro` VALUES ('Explosao de felicidade','2018-07-16','Pegou fogo em tudo.','Aprovado',6500,6,1,1,8,'null'),('Meio estranho','2018-07-17','Vento norte.','Aprovado',500,7,3,1,8,'null'),(NULL,'2018-07-17','Ta pegando fogo bixo',NULL,540,8,1,NULL,8,NULL),(NULL,'2018-07-17','Tornado',NULL,500,9,3,NULL,9,NULL);
 /*!40000 ALTER TABLE `sinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -367,7 +368,7 @@ CREATE TABLE `solicitacaoseguro` (
   KEY `idResidencia` (`idResidencia`),
   KEY `idCandidato` (`idCandidato`),
   KEY `idCorretor` (`idCorretor`)
-) ENGINE=MyISAM AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -376,7 +377,7 @@ CREATE TABLE `solicitacaoseguro` (
 
 LOCK TABLES `solicitacaoseguro` WRITE;
 /*!40000 ALTER TABLE `solicitacaoseguro` DISABLE KEYS */;
-INSERT INTO `solicitacaoseguro` VALUES (1,'2018-07-14','2018-07-15',500,'aprovada',NULL,NULL,1,1,1),(2,'2018-07-16',NULL,1090.3,NULL,NULL,NULL,5,1,NULL);
+INSERT INTO `solicitacaoseguro` VALUES (11,'2018-07-17','2018-07-20',1083.38,'aprovada','null',NULL,28,1,NULL);
 /*!40000 ALTER TABLE `solicitacaoseguro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -397,7 +398,7 @@ CREATE TABLE `solicitacaoservico` (
   KEY `idItemServico` (`idItemServico`),
   KEY `idApolice` (`idApolice`),
   CONSTRAINT `solicitacaoservico_ibfk_1` FOREIGN KEY (`idApolice`) REFERENCES `apolice` (`idApolice`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -406,7 +407,6 @@ CREATE TABLE `solicitacaoservico` (
 
 LOCK TABLES `solicitacaoservico` WRITE;
 /*!40000 ALTER TABLE `solicitacaoservico` DISABLE KEYS */;
-INSERT INTO `solicitacaoservico` VALUES (3,7,6,8),(4,8,6,8);
 /*!40000 ALTER TABLE `solicitacaoservico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -443,4 +443,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-17  1:18:06
+-- Dump completed on 2018-07-17 18:37:29
