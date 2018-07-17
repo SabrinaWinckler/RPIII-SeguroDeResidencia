@@ -359,7 +359,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                 sairButtonCorretorActionPerformed(evt);
             }
         });
-        getContentPane().add(sairButtonCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 110, 30));
+        getContentPane().add(sairButtonCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 510, 110, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-roxoMenu.jpg"))); // NOI18N
@@ -1698,7 +1698,7 @@ public class TelaCorretor extends javax.swing.JFrame {
     }//GEN-LAST:event_listaDeServicosSolicitacadosMouseClicked
 
     private void sairButtonCorretorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonCorretorActionPerformed
-        if (JOptionPane.showConfirmDialog(rootPane, "Não possui serviços para avaliar", "Alerta!", JOptionPane.YES_NO_OPTION) == 0) {
+        if (JOptionPane.showConfirmDialog(rootPane, "Tem certeza que deseja sair?", "Alerta!", JOptionPane.YES_NO_OPTION) == 0) {
             TelaLogin telaLogin = new TelaLogin();
             telaLogin.setVisible(true);
             dispose();
