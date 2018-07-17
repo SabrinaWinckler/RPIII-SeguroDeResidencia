@@ -1855,11 +1855,18 @@ public class TelaCandidato extends javax.swing.JFrame {
             int terreno = terrenoP.getValue();
             int estrutura = estruturaA.getValue();
             int id;
-            if (GerenciadorViewLogin.getInstance().getSeguradoOnline() != null) {
+            try {
+                id = GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado();
+            } catch (NullPointerException eh) {
+                id = GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa();
+            }
+            /*
+            if (GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado() > 0) {
                 id = GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado();
             } else {
                 id = GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa();
             }
+             */
 
             controlador.registrarSolicitacao(descRes.getText(), numeroCandidato, cepCandidato,
                     comodosCandidato, banheiroCandidato, garagemCandidato, areaT,

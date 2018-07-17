@@ -120,10 +120,8 @@ public class RepositorioSolicitacao {
         valorSolicitacao = gerenciador.calculaValorSolicitacao(temp);
         Solicitacao tempS = new Solicitacao(data, residencia, valorSolicitacao);
         try {
-            if (GerenciadorViewLogin.getInstance().getSeguradoOnline() != null) {
-                geraDAOSolicitacao().create(tempS, GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado());
-            }
-        } catch (Exception ex) {
+            geraDAOSolicitacao().create(tempS, GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado());
+        } catch (NullPointerException ev) {
             geraDAOSolicitacao().create(tempS, GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa());
         }
     }
