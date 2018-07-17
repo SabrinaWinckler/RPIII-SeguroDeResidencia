@@ -1729,11 +1729,12 @@ public class TelaCandidato extends javax.swing.JFrame {
                     String numeroCartao = campoNumeroDoCartao.getText();
                     String validadeCartao = mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
                     int codSeguranca = Integer.parseInt(campoCodSegurancaCartao.getText());
+                    campoValorSeguroPagamento.setText(campoValorSeguroPagamento.getText().replaceAll(",", ""));
                     float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
-                    //float premioApolice = 200;
                     int numeroApoliceGerador = gerador.nextInt(1000);
                     String bandeiraCartao = String.valueOf(comboBoxBandeira.getSelectedItem());
                     String numeroApolice = "" + numeroApoliceGerador;
+                    campoValorParcelado.setText(campoValorParcelado.getText().replaceAll(",", ""));
                     float valorParcela = Float.parseFloat(campoValorParcelado.getText());
                     int quantidadeVezes = Integer.parseInt(String.valueOf(quantidadeVezesParcela.getSelectedItem()));
                     Date dataContratacaoApolice = new Date();
@@ -1745,6 +1746,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                             quantidadeVezes, valorParcela, GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa());
                     JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
                     visualizarSolicitacao();
+                    
                 } catch (HeadlessException | NumberFormatException ex) {
                     JOptionPane.showConfirmDialog(rootPane, "Dados fornecidos estão incorretos."
                             + "Verifique e preencha novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
