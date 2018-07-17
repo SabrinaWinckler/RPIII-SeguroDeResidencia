@@ -106,7 +106,7 @@ public class CandidatoDAO {
         String uf, cidade, bairro, telefone, email, usuarioCliente, senhaCliente;
         int codPessoa;
         try {
-            stmt = conexao.prepareStatement("select candidao.cpf from candidato "
+            stmt = conexao.prepareStatement("select * from candidato "
                     + "where candidato.cpf = '" + cpfPessoaCadastrada + "'");
             rs = stmt.executeQuery();
             while (rs.next()) {
