@@ -66,23 +66,20 @@ public class ServicoDAO {
         return listaDeSegurados;
     }
 
-    /*
-    public List<ItemServico> servicosSegurados(Segurado segurado) {
+    public List<ItemServico> servicosSegurados(int idsegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stmt = null;
         ResultSet rs = null;
         List<ItemServico> listaDeServico = new ArrayList<>();
         try {
-            
-            stmt = conexao.prepareStatement("select * from servico inner join solicitacaoservico on "
-                    + "servico.idServico = solicitacaoservico.idServico inner join itemservico on "
-                    + "solicitacaoservico.iditemservico = itemservico.iditemservico"
-                    + segurado.getIdSegurado());
-             
-            stmt = conexao.prepareStatement("select servico.descricaoServico from servico inner join solicitacaoservico on "
-                    + " solicitacaoservico.idServico = servico.idServico inner join itemservico on "
-                    + "itemservico.idItemServico = solicitacaoservico.idItemServico inner join apolice on "
-                    + "apolice.idSegurado = " + segurado.getIdSegurado());
+
+            stmt = conexao.prepareStatement("select servico.descricaoServico, "
+                    + "itemservico.dataAgendada, itemservico.atendidaSolicitacao "
+                    + "from servico inner join solicitacaoservico on "
+                    + "servico.idServico = solicitacaoservico.idServico inner join itemservico on"
+                    + " solicitacaoservico.iditemservico = itemservico.iditemservico inner join apolice on"
+                    + " apolice.idApolice = solicitacaoservico.idApolice inner join segurado on"
+                    + " apolice.idSegurado =" + idsegurado);
             rs = stmt.executeQuery();
             while (rs.next()) {
                 ItemServico itemServico = new ItemServico();
@@ -109,6 +106,7 @@ public class ServicoDAO {
         return listaDeServico;
 
     }
+
     public void verificarQtdServicoDisponiveis(int idSegurado) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
@@ -118,7 +116,7 @@ public class ServicoDAO {
         } catch (Exception e) {
         }
     }
-     */
+
     public void registrarItemServico(ItemServico itemServico) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;

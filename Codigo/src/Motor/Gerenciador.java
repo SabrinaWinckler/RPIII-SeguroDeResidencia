@@ -12,7 +12,6 @@ import DAO.SeguradoDAO;
 import DAO.ServicoDAO;
 import DAO.SolicitacaoDAO;
 import entity.Candidato;
-import entity.Pessoa;
 import entity.Segurado;
 import entity.Solicitacao;
 import entity.Apolice;
@@ -50,19 +49,6 @@ public class Gerenciador {
         daoCandidato.create(candidato);
     }
 
-    /*
-    public void registrarSolicitacao(Date dataSolicitacao, double valorSolicitacao,
-            Date dataVisitaResidencia, String aprovadaSolicitacao,
-            String motivoReprovacao, String motivoAlteracao, Residencia residencia,
-            ResidenciaDAO daoResidencia) throws NullPointerException {
-
-        Solicitacao solicitacao = new Solicitacao(dataSolicitacao, valorSolicitacao,
-                dataVisitaResidencia, aprovadaSolicitacao, motivoReprovacao,
-                motivoAlteracao, residencia);
-        SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
-        daoSolicitacao.create(solicitacao);
-    }
-     */
     public void registrarResidencia(String uf, String cidade, String bairro,
             String descricaoRes, List bem, int numRes, long cepRes,
             int qntComodos, int qntBanheiros, int qntGaragens, float areaTotal,
@@ -83,10 +69,6 @@ public class Gerenciador {
             String vencimentoCartao, int codSegurancaCartao, String nomeNoCartao, int codSolicitacao,
             int quantidadeParcelas,
             float valorParcela, int codSegurado) {
-        //Apolice(int codSolicitacao, String bandeiraCartão, long numeroApolice,
-        //float premioApolice, Date dataContratacaoApolice, 
-        //String cartaoCreditoPagamento, String vencimentoCartao, 
-        //long codSegurancaCartao, String nomeNoCartao, int quantidadeParcelas, float valorParcela)
         Apolice apolice = new Apolice(codSolicitacao, bandeiraCartao,
                 numeroApolice, premioApolice, dataContratacaoApolice,
                 cartaoCreditoPagamento, vencimentoCartao, codSegurancaCartao,
@@ -143,8 +125,7 @@ public class Gerenciador {
     }
 
     public List<ItemServico> servicoPorCliente(Segurado segurado) {
-        //servicoDAO.servicosSegurados(segurado);
-        return null;
+        return servicoDAO.servicosSegurados(segurado);
     }
 
     public List<String> apolicePorCliente(Segurado segurado) {
