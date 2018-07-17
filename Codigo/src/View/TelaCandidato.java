@@ -1747,6 +1747,7 @@ public class TelaCandidato extends javax.swing.JFrame {
                     JOptionPane.showConfirmDialog(rootPane, "Apólice gerada com sucesso", "Alerta", JOptionPane.CLOSED_OPTION);
                     visualizarSolicitacao();
                     habilitarOpcoesSegurado(true);
+                    readTableApolices();
                 } catch (HeadlessException | NumberFormatException ex) {
                     JOptionPane.showConfirmDialog(rootPane, "Dados fornecidos estão incorretos."
                             + "Verifique e preencha novamente.", "Alerta", JOptionPane.CLOSED_OPTION);
