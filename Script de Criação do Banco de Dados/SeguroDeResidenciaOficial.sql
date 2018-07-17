@@ -210,7 +210,7 @@ CREATE TABLE `itemservico` (
   `quantidadeDeServicos` int(11) DEFAULT NULL,
   `dataAgendada` date DEFAULT NULL,
   PRIMARY KEY (`idItemServico`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,6 +219,7 @@ CREATE TABLE `itemservico` (
 
 LOCK TABLES `itemservico` WRITE;
 /*!40000 ALTER TABLE `itemservico` DISABLE KEYS */;
+INSERT INTO `itemservico` VALUES (NULL,NULL,NULL,NULL,'Tarde',6,'2018-07-17',2,'2018-07-18');
 /*!40000 ALTER TABLE `itemservico` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -326,10 +327,12 @@ CREATE TABLE `sinistro` (
   `idSinistro` int(11) NOT NULL AUTO_INCREMENT,
   `idTipo` int(11) DEFAULT NULL,
   `idCorretor` int(11) DEFAULT NULL,
+  `idApolice` int(11) DEFAULT NULL,
   PRIMARY KEY (`idSinistro`),
   KEY `idTipo` (`idTipo`),
-  KEY `idCorretor` (`idCorretor`)
-) ENGINE=MyISAM AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+  KEY `idCorretor` (`idCorretor`),
+  KEY `idApolice` (`idApolice`)
+) ENGINE=MyISAM AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -338,7 +341,7 @@ CREATE TABLE `sinistro` (
 
 LOCK TABLES `sinistro` WRITE;
 /*!40000 ALTER TABLE `sinistro` DISABLE KEYS */;
-INSERT INTO `sinistro` VALUES (NULL,'2018-07-16','Pegou fogo em tudo.',NULL,6500,6,1,NULL);
+INSERT INTO `sinistro` VALUES (NULL,'2018-07-16','Pegou fogo em tudo.',NULL,6500,6,1,NULL,8),(NULL,'2018-07-17','Vento norte.',NULL,500,7,3,NULL,8);
 /*!40000 ALTER TABLE `sinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -394,7 +397,7 @@ CREATE TABLE `solicitacaoservico` (
   KEY `idItemServico` (`idItemServico`),
   KEY `idApolice` (`idApolice`),
   CONSTRAINT `solicitacaoservico_ibfk_1` FOREIGN KEY (`idApolice`) REFERENCES `apolice` (`idApolice`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -403,34 +406,8 @@ CREATE TABLE `solicitacaoservico` (
 
 LOCK TABLES `solicitacaoservico` WRITE;
 /*!40000 ALTER TABLE `solicitacaoservico` DISABLE KEYS */;
+INSERT INTO `solicitacaoservico` VALUES (3,7,6,8),(4,8,6,8);
 /*!40000 ALTER TABLE `solicitacaoservico` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
--- Table structure for table `solicitacaosinistro`
---
-
-DROP TABLE IF EXISTS `solicitacaosinistro`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `solicitacaosinistro` (
-  `idSolicitacaoSinistro` int(11) NOT NULL AUTO_INCREMENT,
-  `idSinistro` int(11) DEFAULT NULL,
-  `idApolice` int(11) DEFAULT NULL,
-  PRIMARY KEY (`idSolicitacaoSinistro`),
-  KEY `idSinistro` (`idSinistro`),
-  KEY `idApolice` (`idApolice`)
-) ENGINE=MyISAM AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `solicitacaosinistro`
---
-
-LOCK TABLES `solicitacaosinistro` WRITE;
-/*!40000 ALTER TABLE `solicitacaosinistro` DISABLE KEYS */;
-INSERT INTO `solicitacaosinistro` VALUES (1,6,8);
-/*!40000 ALTER TABLE `solicitacaosinistro` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -466,4 +443,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2018-07-16 23:35:28
+-- Dump completed on 2018-07-17  1:18:06
