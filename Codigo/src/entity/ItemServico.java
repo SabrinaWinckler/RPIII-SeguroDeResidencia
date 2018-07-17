@@ -28,10 +28,11 @@ public class ItemServico extends Servico {
 
     }
 
-    public ItemServico(Date dataAgendada, int quantidadeServicos, Date dataDaSolicitacao) {
+    public ItemServico(Date dataAgendada, int quantidadeServicos, Date dataDaSolicitacao, String descricaoSolicitacao) {
         this.dataAgendada = dataAgendada;
         this.quantidadeServicos = quantidadeServicos;
         this.dataSolicitacaoServico = dataDaSolicitacao;
+        this.descricaoSolicitacao = descricaoSolicitacao;
     }
 
     public ItemServico(String descricaoRecusa, String descricaoAtendimento, Date dataDeAtendimento, String atendidaSolicitacaoServico, String aceitaSolicitacao, String descricaoSolicitacao, Date dataSolicitacaoServico, int idItemServico, int codServico, String desc, int qnt, Date data, Date visitaResidencia) {

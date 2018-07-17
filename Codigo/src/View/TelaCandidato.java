@@ -1791,7 +1791,6 @@ public class TelaCandidato extends javax.swing.JFrame {
             Logger.getLogger(TelaCandidato.class.getName()).log(Level.SEVERE, null, ex);
         }
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja solicitar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
-            String escolhido;
             Date dataSolicitacao = new Date();
             int qnt = 0;
             if (encanador.isSelected()) {
@@ -1804,7 +1803,12 @@ public class TelaCandidato extends javax.swing.JFrame {
                 String descricaoChaveiro = "Chaveiro";
                 qnt++;
             }
-            
+            String turnoDesejado = String.valueOf(listaTurnosServico.getSelectedItem());
+            ItemServico item = new ItemServico(dataVisitaResidencia, qnt, dataSolicitacao, turnoDesejado);
+            controlador.registrarItemServico(item);
+            for (int i = 0; i < 3; i++) {
+
+            }
             //escolhido = String.valueOf(comboServico.getSelectedItem());
             //qnt = escolhido.split(",").length;
             //controlador.registrarServico(escolhido, qnt, data, dataVisitaResidencia);
