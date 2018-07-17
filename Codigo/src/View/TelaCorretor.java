@@ -130,6 +130,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         visualizarSolicitacoesButton = new javax.swing.JButton();
         avaliarSinistroButton = new javax.swing.JButton();
         gerenciarServicosButton = new javax.swing.JButton();
+        sairButtonCorretor = new javax.swing.JButton();
         jLabel6 = new javax.swing.JLabel();
         jComboBoxOpcoesCorretor = new javax.swing.JComboBox<>();
         buttonConfiguracao = new javax.swing.JButton();
@@ -295,7 +296,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                 homeButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 130, 180, 40));
+        getContentPane().add(homeButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 110, 180, 40));
 
         avaliarResidencia.setBackground(new java.awt.Color(255, 255, 255));
         avaliarResidencia.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -308,7 +309,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                 avaliarResidenciaActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 220, 180, 40));
+        getContentPane().add(avaliarResidencia, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 190, 180, 40));
         avaliarResidencia.getAccessibleContext().setAccessibleDescription("");
 
         visualizarSolicitacoesButton.setBackground(new java.awt.Color(255, 255, 255));
@@ -322,7 +323,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                 visualizarSolicitacoesButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 400, 180, 40));
+        getContentPane().add(visualizarSolicitacoesButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 350, 180, 40));
 
         avaliarSinistroButton.setBackground(new java.awt.Color(255, 255, 255));
         avaliarSinistroButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -334,7 +335,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                 avaliarSinistroButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 310, 180, 40));
+        getContentPane().add(avaliarSinistroButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 270, 180, 40));
 
         gerenciarServicosButton.setBackground(new java.awt.Color(255, 255, 255));
         gerenciarServicosButton.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -346,7 +347,19 @@ public class TelaCorretor extends javax.swing.JFrame {
                 gerenciarServicosButtonActionPerformed(evt);
             }
         });
-        getContentPane().add(gerenciarServicosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 490, 180, 40));
+        getContentPane().add(gerenciarServicosButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 430, 180, 40));
+
+        sairButtonCorretor.setBackground(new java.awt.Color(255, 255, 255));
+        sairButtonCorretor.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
+        sairButtonCorretor.setForeground(new java.awt.Color(153, 0, 0));
+        sairButtonCorretor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/exit.png"))); // NOI18N
+        sairButtonCorretor.setText("Sair");
+        sairButtonCorretor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sairButtonCorretorActionPerformed(evt);
+            }
+        });
+        getContentPane().add(sairButtonCorretor, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 110, 30));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-roxoMenu.jpg"))); // NOI18N
@@ -1676,13 +1689,21 @@ public class TelaCorretor extends javax.swing.JFrame {
     }//GEN-LAST:event_gerenciarServicosButtonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void listaDeServicosSolicitacadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaDeServicosSolicitacadosMouseClicked
         selecionado = listaDeServicosSolicitacados.getSelectedRow();
         preencherCamposAvaliarServico(selecionado);
     }//GEN-LAST:event_listaDeServicosSolicitacadosMouseClicked
+
+    private void sairButtonCorretorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sairButtonCorretorActionPerformed
+        if (JOptionPane.showConfirmDialog(rootPane, "Não possui serviços para avaliar", "Alerta!", JOptionPane.YES_NO_OPTION) == 0) {
+            TelaLogin telaLogin = new TelaLogin();
+            telaLogin.setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_sairButtonCorretorActionPerformed
 
     private JPanel verificarAtividadeEmJPanels() {
         if (jPanelAvaliarResidencia.isEnabled()) {
@@ -2121,6 +2142,7 @@ public class TelaCorretor extends javax.swing.JFrame {
     private javax.swing.JLabel numeroLocalizacaoPerigosa;
     private javax.swing.JLabel numeroTerrenoPerigoso;
     private javax.swing.JTextArea parecerDoAvaliadorSinistro;
+    private javax.swing.JButton sairButtonCorretor;
     private javax.swing.JButton salvarEditacao;
     private javax.swing.JSlider terrenoPerigoso;
     private javax.swing.JButton visualizarSolicitacoesButton;
