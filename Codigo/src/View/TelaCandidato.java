@@ -25,6 +25,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -1650,7 +1651,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_cepActionPerformed
 
     private void buttonContratarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonContratarSeguroActionPerformed
-        if (listaSolicitacao.size() > 0) {
+        if (readTableListaSolicitacao() > 0) {
             visualizarSolicitacao();
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
@@ -1720,6 +1721,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_editarSelecionadoActionPerformed
 
     private void buttonConfirmarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmarActionPerformed
+        Random gerador = new Random();
         if (JOptionPane.showConfirmDialog(rootPane, "Você tem certeza que deseja confirmar?", "Alerta", JOptionPane.YES_NO_OPTION) == 0) {
             if (verificarCamposPagamento()) {
                 try {
@@ -1727,12 +1729,13 @@ public class TelaCandidato extends javax.swing.JFrame {
                     String numeroCartao = campoNumeroDoCartao.getText();
                     String validadeCartao = mesComboBox.getSelectedItem().toString() + "/" + anoComboBox.getSelectedItem().toString();
                     int codSeguranca = Integer.parseInt(campoCodSegurancaCartao.getText());
-                    //float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
-                    float premioApolice = 200;
-                    String bandeiraCartao = null;
-                    String numeroApolice = "2536";
-                    float valorParcela = 50;
-                    int quantidadeVezes = 4;
+                    float premioApolice = Float.parseFloat(campoValorSeguroPagamento.getText());
+                    //float premioApolice = 200;
+                    int numeroApoliceGerador = gerador.nextInt(1000);
+                    String bandeiraCartao = String.valueOf(comboBoxBandeira.getSelectedItem());
+                    String numeroApolice = "" + numeroApoliceGerador;
+                    float valorParcela = Float.parseFloat(campoValorParcelado.getText());
+                    int quantidadeVezes = Integer.parseInt(String.valueOf(quantidadeVezesParcela.getSelectedItem()));
                     Date dataContratacaoApolice = new Date();
                     gerenciador.transformaCandidatoEmSegurado(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCpf());
                     gerenciador.registrarApolice(bandeiraCartao, numeroApolice,
@@ -2131,7 +2134,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     private void habilitarOpcoesSegurado(boolean condicao) {
         relatarSinistro.setEnabled(condicao);
         contratarServico.setEnabled(condicao);
-        buttonContratarSeguro.setEnabled(condicao);
+        buttonContratarSeguro.setEnabled(true);
     }
 
     /**
