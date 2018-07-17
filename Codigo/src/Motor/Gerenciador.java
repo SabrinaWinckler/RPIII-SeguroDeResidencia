@@ -124,9 +124,9 @@ public class Gerenciador {
         return valorComTaxas += valorBaseSolicitacao;
     }
 
-    public List<ItemServico> servicoPorCliente(Segurado segurado) {
-        return servicoDAO.servicosSegurados(segurado);
-    }
+   // public List<ItemServico> servicoPorCliente(Segurado segurado) {
+       // return servicoDAO.servicosSegurados(segurado);
+   // }
 
     public List<String> apolicePorCliente(Segurado segurado) {
         return daoApolice.apolicePorSegurado(segurado);
