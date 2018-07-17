@@ -25,7 +25,7 @@ public class SinistroDAO {
 
     DateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 
-    public void create(Sinistro sinistro) {
+    public void create(Sinistro sinistro, int idSinistro) {
         Connection conexao = ConnectionFactory.realizarConexao();
         PreparedStatement stm = null;
         ResultSet rs;
@@ -38,35 +38,14 @@ public class SinistroDAO {
                 idTipo = rs.getInt("idTipo");
             }
             stm = conexao.prepareStatement("INSERT INTO sinistro(parecerAvaliador, dataSinistro, descricaoSinistro,"
-                    + "autorizadoSinistro, valorSinistro, idTipo)VALUES(?,?,?,?,?,?)");
+                    + "autorizadoSinistro, valorSinistro, idTipo, idApolice)VALUES(?,?,?,?,?,?,?)");
             stm.setString(1, sinistro.getParecerAvaliador());
             stm.setDate(2, (java.sql.Date.valueOf(sdf.format(sinistro.getDataSinistro()))));
             stm.setString(3, sinistro.getDescricaoSinistro());
             stm.setString(4, sinistro.getAutorizadoSinistro());
             stm.setFloat(5, sinistro.getValorSinistro());
             stm.setInt(6, idTipo);
-            stm.executeUpdate();
-        } catch (SQLException e) {
-            Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);
-        } finally {
-            ConnectionFactory.fecharConexao(conexao, stm);
-        }
-    }
-
-    public void solicitacaoSinistro(int idApolice) {
-        Connection conexao = ConnectionFactory.realizarConexao();
-        PreparedStatement stm = null;
-        ResultSet rs;
-        int idSinistro = -1;
-        try {
-            stm = conexao.prepareStatement("select max(idSinistro) from sinistro");
-            rs = stm.executeQuery();
-            while (rs.next()) {
-                idSinistro = rs.getInt(1);
-            }
-            stm = conexao.prepareStatement("insert into solicitacaosinistro(idSinistro, idApolice)values(?,?)");
-            stm.setInt(1, idSinistro);
-            stm.setInt(2, idApolice);
+            stm.setInt(7, idSinistro);
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(SinistroDAO.class.getName()).log(Level.SEVERE, null, e);

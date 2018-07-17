@@ -151,8 +151,7 @@ public class RepositorioSolicitacao {
     public void registrarSinistro(String tipo, float valor, String descricao, int idApolice) {
         Date dataSinistro = new Date();
         Sinistro temp = new Sinistro(dataSinistro, descricao, valor, tipo);
-        geraDAOSinistro().create(temp);
-        geraDAOSinistro().solicitacaoSinistro(idApolice);
+        geraDAOSinistro().create(temp, idApolice);
     }
 
     public void cadastrarTipoDeSinistro(String nome) {

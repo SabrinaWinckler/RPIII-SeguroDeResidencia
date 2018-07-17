@@ -1905,7 +1905,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         try {
             controlador.deletarResidencia();
             JOptionPane.showMessageDialog(painelP, "Sua residencia com descrição: " + controlador.deletarResidencia().getDescricaoRes() + " foi removida!");
-        } catch (Exception e) {
+        } catch (HeadlessException e) {
             JOptionPane.showMessageDialog(painelP, "Não foi possível remover residência!");
         }
     }//GEN-LAST:event_excluirSelecionadoActionPerformed
