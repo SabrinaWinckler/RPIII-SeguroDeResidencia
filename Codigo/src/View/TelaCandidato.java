@@ -58,10 +58,14 @@ public class TelaCandidato extends javax.swing.JFrame {
         home();
         if (GerenciadorViewLogin.getInstance().getUsuarioOnline() != null) {
             habilitarOpcoesSegurado(false);
+            readTableMinhasSolicitacoes();
+            readTableListaSolicitacao();
         } else if (GerenciadorViewLogin.getInstance().getSeguradoOnline() != null) {
             habilitarOpcoesSegurado(true);
             readTableApolices();
             readTableListaServico();
+            readTableMinhasSolicitacoes();
+            readTableListaSolicitacao();
         }
     }
 
@@ -137,10 +141,14 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     }
 
-    private int readTableListaSolicitacao(Candidato candidato) {
+    private int readTableListaSolicitacao() {
         DefaultTableModel modelo = (DefaultTableModel) listaSolicitacaoCandidato.getModel();
         modelo.setNumRows(0);
-        listaSolicitacao = gerenciador.listaSolicitacaoCliente(candidato);
+        if (GerenciadorViewLogin.getInstance().getUsuarioOnline() != null) {
+            listaSolicitacao = gerenciador.listaSolicitacaoCliente(GerenciadorViewLogin.getInstance().getUsuarioOnline().getCodPessoa());
+        } else {
+            listaSolicitacao = gerenciador.listaSolicitacaoCliente(GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado());
+        }
         int tamanhoLista = listaSolicitacao.size();
         if (tamanhoLista > 0) {
             for (Solicitacao solicitacao : listaSolicitacao) {
@@ -1641,7 +1649,7 @@ public class TelaCandidato extends javax.swing.JFrame {
     }//GEN-LAST:event_cepActionPerformed
 
     private void buttonContratarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonContratarSeguroActionPerformed
-        if (quantidadeDeSolicitacao > 0) {
+        if (listaSolicitacao.size() > 0) {
             visualizarSolicitacao();
         } else {
             JOptionPane.showConfirmDialog(rootPane, "Você não possui solicitações.", "Alerta", JOptionPane.CLOSED_OPTION);
@@ -1665,11 +1673,13 @@ public class TelaCandidato extends javax.swing.JFrame {
 
     private void listaSolicitacaoCandidatoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_listaSolicitacaoCandidatoMouseClicked
         selecionado = listaSolicitacaoCandidato.getSelectedRow();
-
-        preencherCamposEdicao(listaSolicitacao.get(selecionado).getResidencia());
-        controlador.setResidencia(listaSolicitacao.get(selecionado).getResidencia());
-
-
+        String teste = listaSolicitacao.get(selecionado).getAprovadaSolicitacao();
+        if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().contains("aprovada")) {
+            preencherCamposResultado(selecionado);
+            solicitacaoAprovada();
+        } else {
+            solicitacaoRecusada();
+        }
     }//GEN-LAST:event_listaSolicitacaoCandidatoMouseClicked
 
     private void buttonRecusarSeguroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonRecusarSeguroActionPerformed

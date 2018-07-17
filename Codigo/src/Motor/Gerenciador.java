@@ -111,11 +111,11 @@ public class Gerenciador {
 
     }
 
-    public List<Solicitacao> listaSolicitacaoCliente(Candidato candidato) {
+    public List<Solicitacao> listaSolicitacaoCliente(int idUsuario) {
 
         SolicitacaoDAO daoSolicitacao = new SolicitacaoDAO();
 
-        return daoSolicitacao.listaSolicitacaoCliente(candidato.getCodPessoa());
+        return daoSolicitacao.listaSolicitacaoCliente(idUsuario);
 
     }
 
