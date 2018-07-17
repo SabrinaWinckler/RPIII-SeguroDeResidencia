@@ -125,10 +125,10 @@ public class ServicoDAO {
         try {
             stm = conexao.prepareStatement("insert into itemservico(dataSolicitacao,"
                     + " quantidadeDeServicos, dataAgendada, descricaoSolicitacao)values(?,?,?,?)");
-            stm.setDate(7, (java.sql.Date.valueOf(sdf.format(itemServico.getDataSolicitacaoServico()))));
-            stm.setInt(8, itemServico.getQuantidadeServicos());
-            stm.setDate(9, (java.sql.Date.valueOf(sdf.format(itemServico.getDataAgendada()))));
-            stm.setString(5, itemServico.getDescricaoSolicitacao());
+            stm.setDate(1, (java.sql.Date.valueOf(sdf.format(itemServico.getDataSolicitacaoServico()))));
+            stm.setInt(2, itemServico.getQuantidadeServicos());
+            stm.setDate(3, (java.sql.Date.valueOf(sdf.format(itemServico.getDataAgendada()))));
+            stm.setString(4, itemServico.getDescricaoSolicitacao());
             stm.executeUpdate();
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
@@ -147,9 +147,9 @@ public class ServicoDAO {
             stm = conexao.prepareStatement("select max(idItemServico) from itemservico");
             rs = stm.executeQuery();
             while (rs.next()) {
-                idItemServico = rs.getInt("idItemServico");
+                idItemServico = rs.getInt(1);
             }
-            stm = conexao.prepareStatement("select idServico from itemservico where servico.DescricaoServico = '" + servico + "'");
+            stm = conexao.prepareStatement("select idServico from servico where servico.DescricaoServico = '" + servico + "'");
             rs = stm.executeQuery();
             while (rs.next()) {
                 idServico = rs.getInt("idServico");
@@ -163,7 +163,7 @@ public class ServicoDAO {
         } catch (SQLException e) {
             Logger.getLogger(BemDAO.class.getName()).log(Level.SEVERE, null, e);
         } finally {
-            ConnectionFactory.fecharConexao(conexao, stm);
+            ConnectionFactory.fecharConexao(conexao, stm, rs);
 
         }
     }
