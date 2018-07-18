@@ -218,6 +218,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         jScrollPane11 = new javax.swing.JScrollPane();
         jTabelaListaServicos = new javax.swing.JTable();
         cancelarSolicitacaoServicoButton = new javax.swing.JButton();
+        bg = new javax.swing.JLabel();
         painelP = new javax.swing.JPanel();
         painelSinistro = new javax.swing.JPanel();
         jLabel33 = new javax.swing.JLabel();
@@ -392,7 +393,6 @@ public class TelaCandidato extends javax.swing.JFrame {
         solicitarSeguro = new javax.swing.JButton();
         buttonContratarSeguro = new javax.swing.JButton();
         sairButton = new javax.swing.JButton();
-        bg = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         jDialogListaDeSolicitacoes.setTitle("Solicitações de Seguro");
@@ -493,6 +493,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         painelP.setBackground(new java.awt.Color(255, 255, 255));
         painelP.setForeground(new java.awt.Color(110, 48, 110));
@@ -562,7 +563,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         painelSinistro.add(campoValorSinistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 80, 30));
 
         jLabel59.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
-        jLabel59.setText("Informa o valor dos prejuízo:");
+        jLabel59.setText("Informe o valor do prejuízo:");
         painelSinistro.add(jLabel59, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 70, 180, 20));
 
         jLabel62.setFont(new java.awt.Font("Arial", 1, 18)); // NOI18N
@@ -576,7 +577,7 @@ public class TelaCandidato extends javax.swing.JFrame {
 
         jLabel28.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/TelaInicial.png"))); // NOI18N
         jLabel28.setText("jLabel28");
-        jPanelHome.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, -1));
+        jPanelHome.add(jLabel28, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 480));
 
         painelP.add(jPanelHome, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 730, 490));
 
@@ -1447,7 +1448,7 @@ public class TelaCandidato extends javax.swing.JFrame {
         });
         painelP.add(excluirSelecionado, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 430, -1, 30));
 
-        getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 730, -1));
+        getContentPane().add(painelP, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 90, 730, 480));
 
         buttonHome.setBackground(new java.awt.Color(255, 255, 255));
         buttonHome.setFont(new java.awt.Font("Arial", 1, 12)); // NOI18N
@@ -1523,7 +1524,6 @@ public class TelaCandidato extends javax.swing.JFrame {
             }
         });
         getContentPane().add(sairButton, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 510, 110, 30));
-        getContentPane().add(bg, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         jLabel6.setBackground(new java.awt.Color(255, 255, 255));
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/imagens/fundo-roxoMenu.jpg"))); // NOI18N
