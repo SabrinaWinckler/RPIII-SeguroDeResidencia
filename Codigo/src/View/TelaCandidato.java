@@ -124,13 +124,19 @@ public class TelaCandidato extends javax.swing.JFrame {
             listaSolicitacao = gerenciador.minhasSolicitacoes(GerenciadorViewLogin.getInstance().getSeguradoOnline().getIdSegurado());
         }
         int tamanhoLista = listaSolicitacao.size();
-        String status;
+        String status = "";
         if (tamanhoLista > 0) {
             for (Solicitacao solicitacao : listaSolicitacao) {
-                if (solicitacao.getAprovadaSolicitacao() == null) {
+                try {
+                    if (solicitacao.getAprovadaSolicitacao().contains("recusada")) {
+                        status = solicitacao.getMotivoReprovacao();
+                    } else if (solicitacao.getAprovadaSolicitacao().contains("aprovada")) {
+                        status = "aprovada";
+                    } else if (solicitacao.getAprovadaSolicitacao() == null) {
+                        status = "Não visualizada";
+                    }
+                } catch (NullPointerException eo) {
                     status = "Não visualizada";
-                } else {
-                    status = solicitacao.getAprovadaSolicitacao();
                 }
                 modelo.addRow(new Object[]{
                     solicitacao.getResidencia().getDescricaoRes(),
@@ -1707,7 +1713,7 @@ public class TelaCandidato extends javax.swing.JFrame {
             if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().contains("aprovada")) {
                 preencherCamposResultado(selecionado);
                 solicitacaoAprovada();
-            } else if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().contains("negada")) {
+            } else if (listaSolicitacao.get(selecionado).getAprovadaSolicitacao().contains("recusada")) {
                 solicitacaoRecusada();
             }
         } catch (NullPointerException ex) {

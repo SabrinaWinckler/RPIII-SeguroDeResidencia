@@ -35,19 +35,19 @@ import javax.swing.table.DefaultTableModel;
  * @author Matheus Montanha
  */
 public class TelaCorretor extends javax.swing.JFrame {
-    
+
     int visivel = 0;
     GerenciadorViewCorretor gerenciador = new GerenciadorViewCorretor(new ArrayList());
     String motivoReprovacao, motivoAlteracao, resultado;
     int selecionado = -1;
     DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
     RepositorioSolicitacao controlador = new RepositorioSolicitacao();
-    
+
     public TelaCorretor() {
         initComponents();
         runProgram();
     }
-    
+
     private int readTableListaDeResidencia() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeResidencias.getModel();
         modelo.setNumRows(0);
@@ -64,7 +64,7 @@ public class TelaCorretor extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     private int readTableListaDeSolicitacaoSeguro() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeSolicitacoesSeguro.getModel();
         modelo.setNumRows(0);
@@ -81,7 +81,7 @@ public class TelaCorretor extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     private int readTableListaDeSinistros() {
         DefaultTableModel modelo = (DefaultTableModel) listaSinistrosPendentes.getModel();
         modelo.setNumRows(0);
@@ -98,7 +98,7 @@ public class TelaCorretor extends javax.swing.JFrame {
             return 0;
         }
     }
-    
+
     private int readTableListaDeServicos() {
         DefaultTableModel modelo = (DefaultTableModel) listaDeServicosSolicitacados.getModel();
         modelo.setNumRows(0);
@@ -1429,7 +1429,7 @@ public class TelaCorretor extends javax.swing.JFrame {
                 parecerDoAvaliadorSinistro.setText("Digite aqui o parecer técnico do sinistro...");
                 parecerDoAvaliadorSinistro.setFont(new Font("Arial", Font.ITALIC, 12));
                 parecerDoAvaliadorSinistro.setForeground(new Color(119, 119, 119));
-                
+
             }
         } else {
             JOptionPane.showConfirmDialog(rootPane, "O parecer não pode ser deixado em branco!", "Confirmação", JOptionPane.CLOSED_OPTION);
@@ -1524,6 +1524,7 @@ public class TelaCorretor extends javax.swing.JFrame {
             List<Solicitacao> listaDeSolicitacao;
             listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
             listaDeSolicitacao.get(selecionado).setMotivoReprovacao(motivoReprovacaojTextArea.getText());
+            listaDeSolicitacao.get(selecionado).setAprovadaSolicitacao("recusada");
             gerenciador.updateStatusSolicitacao(listaDeSolicitacao.get(selecionado));
             JOptionPane.showConfirmDialog(rootPane, "Residencia recusada com sucesso.", "Alerta", JOptionPane.CLOSED_OPTION);
             jPanelMotivoReprovacao.setVisible(false);
@@ -1706,7 +1707,7 @@ public class TelaCorretor extends javax.swing.JFrame {
             dispose();
         }
     }//GEN-LAST:event_sairButtonCorretorActionPerformed
-    
+
     private JPanel verificarAtividadeEmJPanels() {
         if (jPanelAvaliarResidencia.isEnabled()) {
             listaDeResidencias.setEnabled(true);
@@ -1719,19 +1720,19 @@ public class TelaCorretor extends javax.swing.JFrame {
             return jPanelGerenciarServico;
         }
     }
-    
+
     private void limparCamposGeral(List<JTextField> lista) {
         for (int i = 0; i < lista.size(); i++) {
             lista.get(i).setText("");
         }
     }
-    
+
     private void habilitarCamposGeral(List<Component> lista, boolean condicao) {
         for (int i = 0; i < lista.size(); i++) {
             lista.get(i).setEnabled(condicao);
         }
     }
-    
+
     private void guardarCamposPainel(List<JTextField> lista, JPanel painel) {
         Component components[] = painel.getComponents();
         for (Component component : components) {
@@ -1740,7 +1741,7 @@ public class TelaCorretor extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void guardarComponentesPanel(List<Component> lista, JPanel painel) {
         Component components[] = painel.getComponents();
         for (Component component : components) {
@@ -1749,37 +1750,37 @@ public class TelaCorretor extends javax.swing.JFrame {
             }
         }
     }
-    
+
     private void limparCamposTelaResidencia() {
         List<JTextField> listaCamposTelaResidencia = new ArrayList<>();
         guardarCamposPainel(listaCamposTelaResidencia, jPanelAvaliarResidencia);
         limparCamposGeral(listaCamposTelaResidencia);
     }
-    
+
     private void limparCamposTelaSolicitacao() {
         List<JTextField> listaCamposTelaSolicitacao = new ArrayList<>();
         guardarCamposPainel(listaCamposTelaSolicitacao, jPanelSolicitacaoDeSeguro);
         limparCamposGeral(listaCamposTelaSolicitacao);
     }
-    
+
     private void limparCamposTelaSinistro() {
         List<JTextField> listaCamposTelaSinistro = new ArrayList<>();
         guardarCamposPainel(listaCamposTelaSinistro, jPanelAvaliarSinistro);
         limparCamposGeral(listaCamposTelaSinistro);
     }
-    
+
     private void habilitarButtonsTelaSolicitacao(Boolean condicao) {
         ButtonAgendarVisitaResidencia.setEnabled(condicao);
         buttonRecusarSeguro.setEnabled(condicao);
     }
-    
+
     private void habiltarButtonsTelaResidencia(Boolean condicao) {
         buttonEditarDadosResidencia.setEnabled(condicao);
         buttonAprovarResidencia.setEnabled(condicao);
         buttonRecusarResidencia.setEnabled(condicao);
         jToggleButtonDadosProprietario.setEnabled(condicao);
     }
-    
+
     private void habilitarCamposEdicaoResidencia(Boolean condicao) {
         campoQuantidadeComodos.setEditable(condicao);
         campoQuantidadeDeBanheiros.setEditable(condicao);
@@ -1793,7 +1794,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         estruturaAmeacada.setEnabled(condicao);
         localizacaoPerigosa.setEnabled(condicao);
     }
-    
+
     private void mudarFundoCamposEditadosResidencia(Color color, Font font) {
         campoQuantidadeComodos.setBackground(color);
         campoQuantidadeComodos.setFont(font);
@@ -1808,7 +1809,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         campoAreaTotal.setBackground(color);
         campoAreaTotal.setFont(font);
     }
-    
+
     private void buttonsTelaResidenciaVisivel(Boolean condicao) {
         buttonEditarDadosResidencia.setVisible(condicao);
         buttonAprovarResidencia.setVisible(condicao);
@@ -1816,31 +1817,31 @@ public class TelaCorretor extends javax.swing.JFrame {
         jToggleButtonDadosProprietario.setEnabled(condicao);
         listaDeResidencias.setEnabled(condicao);
     }
-    
+
     private void habilitarButtonsTelaSinistro(Boolean condicao) {
         ButtonAutorizarPagamento.setEnabled(condicao);
         buttonNegarPagamento.setEnabled(condicao);
     }
-    
+
     private void habilitarCamposTelaSolicitacao(Boolean condicao) {
         List<Component> listaDeComponentes = new ArrayList<>();
         guardarComponentesPanel(listaDeComponentes, jPanelSolicitacaoDeSeguro);
         habilitarCamposGeral(listaDeComponentes, condicao);
     }
-    
+
     private void habilitarCamposTelaResidencia(Boolean condicao) {
         List<Component> listDeComponentes = new ArrayList<>();
         guardarComponentesPanel(listDeComponentes, jPanelAvaliarResidencia);
         habilitarCamposGeral(listDeComponentes, condicao);
     }
-    
+
     private void habilitarCamposAvaliarSinistro(Boolean condicao) {
         List<Component> listDeComponentes = new ArrayList<>();
         guardarComponentesPanel(listDeComponentes, jPanelAvaliarSinistro);
         habilitarCamposGeral(listDeComponentes, condicao);
         //habilitarButtonsTelaSinistro(condicao);
     }
-    
+
     private boolean preencherCamposAvaliarResidencia(int numeroLinha) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeResidenciasPendentes();
@@ -1865,7 +1866,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         localizacaoPerigosa.setValue(listaDeSolicitacao.get(numeroLinha).getResidencia().getLocalizacaoPerigosa());
         return true;
     }
-    
+
     private void preencherCamposSolicitacaoSeguro(int numero) {
         List<Solicitacao> listaDeSolicitacao;
         listaDeSolicitacao = gerenciador.listaDeSolicitacoesPendentes();
@@ -1879,7 +1880,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         campoDataSolicitacao.setText("" + listaDeSolicitacao.get(numero).getDataSolicitacao());
         campoValorSolicitacao.setText("" + listaDeSolicitacao.get(numero).getValorSolicitacao());
     }
-    
+
     private void preencherCamposAvaliarSinistro(int selecionado) {
         List<Sinistro> listaSinistro = gerenciador.listaDeSinistrosPendentes();
         campoDataSinistroFormat.setText("" + sdf.format(listaSinistro.get(selecionado).getDataSinistro()));
@@ -1890,7 +1891,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         parecerDoAvaliadorSinistro.setFont(new Font("Arial", Font.ITALIC, 12));
         parecerDoAvaliadorSinistro.setForeground(new Color(119, 119, 119));
     }
-    
+
     private void preencherCamposAvaliarServico(int selecionado) {
         List<Segurado> listaDeSegurado = gerenciador.servicosPendentes();
         campoNomeSegurado.setText(listaDeSegurado.get(selecionado).getNomePessoa());
@@ -1899,7 +1900,7 @@ public class TelaCorretor extends javax.swing.JFrame {
         campoDescricaoServico.setText(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDescricaoSolicitacao());
         campoDataAtendimentoCliente.setText(sdf.format(listaDeSegurado.get(selecionado).getServicos().get(selecionado).getDataSolicitacaoServico()));
     }
-    
+
     private void ocultarTudo() {
         jPanelAvaliarResidencia.setVisible(false);
         jPanelAvaliarSinistro.setVisible(false);
@@ -1918,36 +1919,36 @@ public class TelaCorretor extends javax.swing.JFrame {
         jPanelMotivoReprovacao.setVisible(false);
         jPanelMotivoNegarSinistro.setVisible(false);
     }
-    
+
     private void runProgram() {
         ocultarTudo();
         jPanelCorretor.setVisible(true);
         jPanelBemVindo.setVisible(true);
-        
+
     }
-    
+
     private void visualizarSolicitacao() {
         ocultarTudo();
         jPanelSolicitacaoDeSeguro.setVisible(true);
     }
-    
+
     private void visualizarResidencias() {
         ocultarTudo();
         jPanelAvaliarResidencia.setVisible(true);
-        
+
     }
-    
+
     private void visualizarSinistros() {
         ocultarTudo();
         jPanelAvaliarSinistro.setVisible(true);
-        
+
     }
-    
+
     private void visualizarServicos() {
         ocultarTudo();
         jPanelGerenciarServico.setVisible(true);
     }
-    
+
     private void gerarBackground() {
         String pasta = System.getProperty("user.dir");
         jLabelBarraSup.setIcon(new ImageIcon(pasta + "/src/imagens/Sem Título-1.jpg"));
